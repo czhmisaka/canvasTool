@@ -1,0 +1,32 @@
+.wholeScreen{
+    width:100vw;
+    height:100vh;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.3);
+}
+.share-image {
+    /* border: 1rpx rgba(0,0,0,0.3) solid;
+    border-radius: 20rpx; */
+    position: relative;
+    width:680rpx;
+    margin-left: -340rpx;
+    height: 1120rpx;
+    left: 50%;
+    margin-top: 20px;
+    /* 这个可能设计上有点问题，目前是 定高定宽 16/9 */
+}
+
+.bottomTitle {
+    text-align: center;
+    width: 460rpx;
+    height: 56rpx;
+    line-height: 56rpx;
+    background-color: #21373d;
+    color: white;
+    border: 16rpx;
+    font-size: 26rpx;
+    border-radius: 16rpx 16rpx 0px 0px;
+    z-index: 10;
+    margin: -40rpx auto;
+    margin-bottom: 0px;
+}
