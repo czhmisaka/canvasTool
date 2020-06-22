@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "canvas drawer",
+  "navigationBarTitleText": "canvasTest",
   "usingComponents": {
     "canvasdrawer": "/components/canvasTool/canvasTool"
   }

@@ -71,19 +71,19 @@ Page({
           {
             type: 'image',
             url: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=810988444,1648289218&fm=11&gp=0.jpg',
-            top:420,
-            left: 230,
-            width: 70,
-            height: 70
+            top:415,
+            left: 240,
+            width: 80,
+            height: 80
           },
           {
             type: 'text',
             content: this.data.data.context,
-            fontSize: 16,
+            fontSize: 14,
             lineHeight: 22,
             color: '#666',
             textAlign: 'left',
-            top: 440,
+            top: 450,
             left: 20,
             width: 180,
             MaxLineNumber: 3,
@@ -96,18 +96,18 @@ Page({
             fontSize: 20,
             color: '#EE4866',
             textAlign: 'left',
-            top: 410,
+            top: 420,
             left: 20,
             bolder: true
           },
           {
             type: 'text',
             content: this.data.data.qrCodeSub,
-            fontSize: 14,
+            fontSize: 12,
             color: '#999',
             textAlign: 'left',
-            top: 503,
-            left: 213,
+            top: 500,
+            left: 235,
             lineHeight: 20,
             MaxLineNumber: 2,
             breakWord: true,
@@ -118,6 +118,7 @@ Page({
     })
   },
   eventSave() {
+    console.log(this.data.shareImage)
     wx.saveImageToPhotosAlbum({
       filePath: this.data.shareImage,
       success(res) {

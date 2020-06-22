@@ -1,9 +1,26 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/logs/logs",
     "pages/canvasTest/index"
   ],
+  "tabBar":{
+    "color": "#B3B6BF",
+    "position": "bottom",
+    "selectedColor": "#fc6428",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/canvasTest/index",
+        "iconPath": "static/images/bg.png",
+        "selectedIconPath": "static/images/bg.png",
+        "text": "活动"
+      },{
+        "pagePath": "pages/canvasTest/index",
+        "iconPath": "static/images/bg.png",
+        "selectedIconPath": "static/images/bg.png",
+        "text": "活动"
+      }
+    ]
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

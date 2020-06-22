@@ -1,11 +1,11 @@
 <!--index.wxml-->
 <view class="wholeScreen">
   <!-- <image src="{{shareImage}}" style="{{'width:'+painting.width+'px;height:'+painting.height+'px;margin-top:calc(100vh - '+(painting.height+10)+'px);margin-left:-'+painting.width/2+'px'}}" class="share-image"></image> -->
- <image src="{{shareImage}}" class="share-image"></image>
+ <image src="{{shareImage}}" class="share-image" bindtap="eventSave"></image>
   <canvasdrawer painting="{{painting}}" class="canvasdrawer" bind:getImage="eventGetImage"/>
   <!-- <view class="bottomTitle">播款-好客多</view> -->
   <div class="shareButtonBox">
-    <div class="button">
+    <div class="button" bindtap="eventSave">
       <div class="icon"></div>
       <div class="word"></div>
     </div>
