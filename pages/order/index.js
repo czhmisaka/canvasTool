@@ -5,61 +5,70 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    typeList: [
+      '全部',
+      '待接单',
+      '已接单',
+      '已完成',
+      '已取消'
+    ],
+    selectType: 0,
+    orderList:[]
+  },
+  switchSubtitle(e) {
+    var that = this
+    if (e.currentTarget) {
+     e  = e.currentTarget.dataset.index
+    }
+    let node = wx.createSelectorQuery()
+    node.selectAll('.type').boundingClientRect()
+    node.exec((res) => {
+      let selectType = {
+        index: e,
+        len: that.data.typeList[e].length,
+        left: res[0][e].left
+      }
+      this.setData({
+        selectType: selectType
+      })
+    })
+  },
+  initOrderList(){
+    let orderList = []
+    this.data.typeList.forEach((res)=>{
+      orderList.push()
+    })
+    this.setData({
+      orderList
+    })
+  },
+  initFn() {
+    this.switchSubtitle(0)
+    this.initOrderList()
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+
   onLoad: function (options) {
-
+    this.initFn()
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
   onReady: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
   onHide: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
   onUnload: function () {
 
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
   onPullDownRefresh: function () {
 
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
   onReachBottom: function () {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
   onShareAppMessage: function () {
 
   }

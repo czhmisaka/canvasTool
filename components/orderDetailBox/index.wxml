@@ -1,2 +1,18 @@
 <!--components/orderDetailBox/index.wxml-->
-<text>components/orderDetailBox/index.wxml</text>
+<view class="orderBox_Box">
+    <view class="imgBox">
+        <image src="{{}}" lazy-load="false">
+        </image>
+        <view class="num">
+        {{order_Detail}}
+        </view>
+    </view>
+    <view class="detailBox">
+        <view class="name"></view>
+        <view class="time"></view>
+        <view class="detail">
+            <view class="left"></view>
+            <view class="right"></view>
+        </view>
+    </view>
+</view>

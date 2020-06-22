@@ -2,16 +2,23 @@
 
 <view>
     <view class="search">
-        <input type="text" placeholder="搜索内容">
+        <input type="text" placeholder="搜索内容"></input>
     </view>
     <view class="subTitle">
-        <view class="type" for>
-
+        <view class="moveBottombar"
+            style="{{'width:'+selectType.len*28+'rpx;margin-left:calc('+selectType.left+'px - 1em)'}}"></view>
+        <view class="type {{selectType.index==index?'highLight':''}}" data-index="{{index}}" wx:for="{{typeList}}"
+            bindtap="switchSubtitle" wx:key="*this">
+            {{item}}
         </view>
     </view>
     <view class="orderBox">
-        <order wx:for="{{order_list}}">
-        
-        </order>
+        <swiper current="{{selectType.index}}" indicator-dots="{{true}}" autoplay="{{false}}" duration="{{400}}">
+            <block wx:for="{{typeList}}" wx:key="*this">
+                <swiper-item>
+                    <order order_Detail="{{item}}" wx:key="*this" wx:for="{{order_list[selectType.index]}}"></order>
+                </swiper-item>
+            </block>
+        </swiper>
     </view>
 </view>
