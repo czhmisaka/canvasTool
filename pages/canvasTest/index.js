@@ -5,12 +5,12 @@ Page({
     painting: {},
     shareImage: '',
     data: {
-      avatarUrl: '/static/images/bg.png',
+      avatarUrl: '/static/images/canvasTool/bg.png',
       nickName: '胡一天的店铺',
-      mainImg: '/static/images/bg.png',
+      mainImg: '/static/images/canvasTool/bg.png',
       price: '￥200',
       context: '#248768上衣白色夏季新品及时抢购',
-      qrCodeImg: '/static/images/bg.png',
+      qrCodeImg: '/static/images/canvasTool/bg.png',
       qrCodeSub: '长按识别二维码'
     }
   },
