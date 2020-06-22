@@ -1,23 +1,39 @@
 {
   "pages": [
-    "pages/canvasTest/index"
+    "pages/home/index",
+    "pages/canvasTest/index",
+    "pages/mine/index",
+    "pages/cus/index",
+    "pages/order/index"
   ],
-  "tabBar":{
+  "tabBar": {
     "color": "#B3B6BF",
     "position": "bottom",
     "selectedColor": "#fc6428",
-    "borderStyle": "white",
-    "list": [
+    "borderStyle": "black",
+    "list": [{
+        "pagePath": "pages/home/index",
+        "iconPath": "static/images/Icon_tabBar/tabBar_home.png",
+        "selectedIconPath": "static/images/Icon_tabBar/tabBar_home_light.png",
+        "text": "首页"
+      },
       {
-        "pagePath": "pages/canvasTest/index",
-        "iconPath": "static/images/bg.png",
-        "selectedIconPath": "static/images/bg.png",
-        "text": "活动"
-      },{
-        "pagePath": "pages/canvasTest/index",
-        "iconPath": "static/images/bg.png",
-        "selectedIconPath": "static/images/bg.png",
-        "text": "活动"
+        "pagePath": "pages/order/index",
+        "iconPath": "static/images/Icon_tabBar/tabBar_order.png",
+        "selectedIconPath": "static/images/Icon_tabBar/tabBar_order_light.png",
+        "text": "订单"
+      },
+      {
+        "pagePath": "pages/cus/index",
+        "iconPath": "static/images/Icon_tabBar/tabBar_cus.png",
+        "selectedIconPath": "static/images/Icon_tabBar/tabBar_cus_light.png",
+        "text": "客户"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "iconPath": "static/images/Icon_tabBar/tabBar_my.png",
+        "selectedIconPath": "static/images/Icon_tabBar/tabBar_my_light.png",
+        "text": "我的"
       }
     ]
   },

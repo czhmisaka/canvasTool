@@ -29,7 +29,7 @@ Page({
         clear: true,
         views: [{
             type: 'image',
-            url: '/static/images/ShareBg1.png',
+            url: '/static/images/canvasTool/ShareBg1.png',
             top: 0,
             left: 0,
             width: 340,
@@ -44,7 +44,7 @@ Page({
           },
           {
             type: 'image', // 这个用来当遮罩层
-            url: '/static/images/avatarBg.png',
+            url: '/static/images/canvasTool/avatarBg.png',
             top: 20,
             left: 20,
             width: 50,

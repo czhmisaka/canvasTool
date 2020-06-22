@@ -1,6 +1,7 @@
 {
-  "navigationBarTitleText": "canvasTest",
+  "navigationBarTitleText": "分享",
   "usingComponents": {
     "canvasdrawer": "/components/canvasTool/canvasTool"
-  }
+  },
+  "component": true
 }

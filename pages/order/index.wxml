@@ -1,0 +1,17 @@
+<!--pages/order/index.wxml-->
+
+<view>
+    <view class="search">
+        <input type="text" placeholder="搜索内容">
+    </view>
+    <view class="subTitle">
+        <view class="type" for>
+
+        </view>
+    </view>
+    <view class="orderBox">
+        <order wx:for="{{order_list}}">
+        
+        </order>
+    </view>
+</view>
