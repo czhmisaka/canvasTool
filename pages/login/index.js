@@ -1,66 +1,66 @@
 // pages/login/index.js
+const app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    checkFile:false
+    checkFile: false,
+    type: 'phone', // 用于控制当前页面状态 
+    input: {
+      phoneNumber: '',
+      checkCode: ''
+    }, // 用于保存 input 输入数据
+    getCodeStatus: false,
+    time: 60, //倒计时
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  checkBoxStatus(e) {
+    console.log(e)
+    this.setData({
+      checkFile: !this.data.checkFile
+    })
+  },
+  changeType(e) {
+    this.setData({
+      type: e.currentTarget.dataset.type
+    })
+  },
+  loginWithWx(e) {
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  inputChange(e) {
+    console.log(e)
+    let {
+      type
+    } = e.currentTarget.dataset
+    let {
+      input
+    } = this.data
+    input[type] = e.detail.value
+  },
+  getCheckCode(e) {
+    let {
+      phoneNumber
+    } = this.data.input
+    if (this.checkPhone(phoneNumber)) return wx.showToast({
+      title: '请输入正确的手机号', 
+      icon: 'none',
+      mask: true
+    });
+  },
+  checkPhone(phone) {
+    if (!(/^1[3456789]\d{9}$/.test(phone)))
+      return true
+    return false
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+  onLoad: function (options) {},
+  onReady: function () {},
+  onShow: function () {},
+  onHide: function () {},
+  onUnload: function () {},
+  onPullDownRefresh: function () {},
+  onReachBottom: function () {},
+  onShareAppMessage: function () {},
 })

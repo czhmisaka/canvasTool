@@ -1,4 +1,9 @@
 /* pages/login/index.wxss */
+view,
+button {
+    transition: all 0.4s ease-in-out;
+}
+
 view {
     color: #21373D;
     font-size: 32rpx;
@@ -18,6 +23,13 @@ view {
     height: 320rpx;
 }
 
+.logSizeSmall {
+    width: 200rpx;
+    height: 200rpx;
+    margin: 240rpx 275rpx;
+    margin-bottom: 80rpx;
+}
+
 .logoImage>image {
     width: 100%;
     height: 100%;
@@ -32,6 +44,7 @@ view {
     display: flex;
     justify-content: center;
     line-height: 92rpx;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .buttonBox>.icon {
@@ -45,18 +58,21 @@ view {
     justify-content: center;
 }
 
-.checkBox>.icon>checkBox {
+.checkBox>.icon {
+    line-height: 24rpx;
 }
 
 checkbox .wx-checkbox-input {
+    border: 2rpx #21373D solid;
+    border-radius: 4rpx;
     width: 24rpx;
     height: 24rpx;
 }
 
 checkbox .wx-checkbox-input.wx-checkbox-input-checked {
-    background: #000;
-    color:#fff;
-    border:1px black solid;
+    background: #21373D;
+    color: #fff;
+    border: 2rpx #21373D solid;
 }
 
 .checkBox>.word {
@@ -66,4 +82,50 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked {
 
 .checkBox>.word>.span {
     color: #21373D;
+}
+
+.inputBox {
+    display: flex;
+    justify-content: space-between;
+    width: 560rpx;
+    height: 88rpx;
+    margin: 41rpx 95rpx;
+    margin-top: 23rpx;
+    border-bottom: 1rpx #ccc solid;
+}
+
+.inputBox>input {
+    height: 88rpx;
+    width: 100%;
+    line-height: 88rpx;
+    color: #3D3D3D;
+    font-weight: 400;
+}
+
+.inputBox>.button {
+    width: 222rpx;
+    height: 56rpx;
+    line-height: 56rpx;
+    border-radius: 28rpx;
+    color: #21373D;
+    border: 1rpx #21373D solid;
+    font-size: 24rpx;
+    text-align: center;
+    margin-top: 18rpx;
+}
+
+.grayBg {
+    background-color: #A6AFB1;
+    color:white;
+}
+
+.mainColorBg{
+    background-color: #21373D;
+    color:white;
+}
+.show{
+    opacity: 1;
+}
+.hidden{
+    opacity: 0;
 }
