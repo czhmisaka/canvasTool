@@ -1,1 +1,138 @@
 /* pages/home/index.wxss */
+.home {
+    background-color: #F7F8FA;
+    min-height: 100vh;
+    font-family:"PingFangSC-Regular,PingFang SC";
+}
+
+.promoter {
+    width: 100%;
+    height: 362rpx;
+    color: white;
+}
+
+.promoter>.detail {
+    z-index: 10;
+    position: relative;
+}
+
+.detail>.change {
+    position: absolute;
+    margin: 34rpx;
+    right: 0px;
+    top: 0px;
+    width: auto;
+    height: 28rpx;
+    line-height: 28rpx;
+}
+
+.detail>.change>image {
+    width: 28rpx;
+    height: 28rpx;
+    margin-right: 10rpx;
+}
+
+.detail>.headImg {
+    margin: 10rpx auto;
+    margin-top: 0px;
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.headImg>image {
+    width: 120rpx;
+    height: 120rpx;
+}
+
+.detail>.word {
+    width: 100%;
+    margin: 22rpx 0px;
+    text-align: center;
+    height: 40rpx;
+    line-height: 40rpx;
+}
+
+.detail .button {
+    width: 164rpx;
+    height: 40rpx;
+    border-radius: 40rpx;
+    line-height: 40rpx;
+    text-align: center;
+    font-size: 24rpx;
+    border: 1rpx white solid;
+    margin: 0px auto;
+    margin-top: 20rpx;
+}
+
+.promoter>.background {
+    z-index: 1;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 0px;
+}
+
+.background>.cycle {
+    position: absolute;
+    width: 200vh;
+    height: 200vh;
+    border-radius: 50%;
+    left: 50%;
+    margin-left: -100vh;
+    margin-top: calc(475rpx - 200vh);
+    background-color: #21373D;
+}
+
+.flexBox {
+    z-index: 10;
+    background-color: #fff;
+    width: calc(100% - 40rpx);
+    margin: 20rpx;
+    height: 140rpx;
+    border-radius: 8rpx;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.flexBox>.MsgBox {
+    margin: 20rpx;
+    width: calc(33% - 40rpx);
+    text-align: center;
+}
+
+.MsgBox>.Number {
+    font-family: "DINAlternate-Bold,DINAlternate";
+    color: #21373D;
+    font-weight: bold;
+    font-size: 36rpx;
+}
+
+.MsgBox>.word {
+    padding-top: 16rpx;
+    color: #999999;
+    font-size: 24rpx;
+}
+
+.flexBox>.toPhoto {
+    display: flex;
+    font-weight: 400;
+    font-family: "PingFangSC-Regular,PingFang SC";
+    line-height: 110rpx;
+}
+.flexBox>.right{
+    line-height: 110rpx;
+    margin-right: 35rpx;
+    transform:scale(1.5，1)
+}
+
+
+.icon40 {
+    width: 40rpx;
+    height: 40rpx;
+    margin: 35rpx;
+    margin-right: 10rpx;
+}

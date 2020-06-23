@@ -1,2 +1,38 @@
 <!--pages/home/index.wxml-->
-<text>pages/home/index.wxml</text>
+
+
+<view class="home">
+    <view class="promoter">
+        <view class="detail">
+            <view class="change">
+                <image src="/static/images/icon_page/ic_qh.png" />切换
+            </view>
+            <view class="headImg" style="height:52rpx"></view>
+            <view class="headImg">
+                <image src="{{promoter.storeBackground}}" alt="" />
+            </view>
+            <view class="word">
+                {{promoter.shopName}}
+            </view>
+            <view class="word">
+                <view class="button" bindtap="shareShop">分享店铺</view>
+            </view>
+        </view>
+        <view class="background">
+            <view class="cycle"></view>
+        </view>
+    </view>
+    <view class="flexBox" style="margin-top:0rpx">
+        <view class="MsgBox" wx:for="{{promoter.fastMsg}}" wx:key="*this">
+            <view class="Number">{{item.num}}</view>
+            <view class="word">{{item.type}}</view>
+        </view>
+    </view>
+    <view class="flexBox" style="height:110rpx" bindtap="toPhotoManage">
+        <view class="toPhoto">
+            <image class="icon40" src="/static/images/icon_page/ic_glxc.png" />
+            <view class="word">管理相册</view>
+        </view>
+        <view class="right"><image src="/static/images/icon_page/ic_xy.png" style="width: 14rpx;height: 26rpx;" /></view>
+    </view>
+</view>
