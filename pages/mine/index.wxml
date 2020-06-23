@@ -1,2 +1,4 @@
 <!--pages/mine/index.wxml-->
 <text>pages/mine/index.wxml</text>
+
+<button bindtap="toLogin">跳转登录页面 临时</button>

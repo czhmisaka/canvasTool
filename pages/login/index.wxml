@@ -1,2 +1,27 @@
 <!--pages/login/index.wxml-->
-<text>pages/login/index.wxml</text>
+
+<view>
+    <view class="logoImage">
+        <image src="/static/images/loginImages/logo_hkd_big.png" />
+    </view>
+    <view class="buttonBox">
+        <view class="icon" style="width:40rpx;height:33rpx" >
+            <image src="/static/images/loginImages/ic_wx.png" />
+        </view>
+        <view class="word">微信手机号快捷登录</view>
+    </view>
+    <view class="buttonBox">
+        <view class="icon" style="width:25rpx;height:38rpx">
+            <image src="/static/images/loginImages/ic_sj.png" />
+        </view>
+        <view class="word">手机验证码登录</view>
+    </view>
+    <view class="checkBox">
+        <view class="icon">
+             <checkbox color="#fff" checked="{{checkFile}}" />
+        </view>
+        <view class="word">
+            登录表示同意<span class="span">《服务协议》</span><span class="span">《隐私协议》</span>
+        </view>
+    </view>
+</view>

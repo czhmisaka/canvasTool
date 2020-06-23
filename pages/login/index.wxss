@@ -1,1 +1,69 @@
 /* pages/login/index.wxss */
+view {
+    color: #21373D;
+    font-size: 32rpx;
+    font-weight: 400;
+}
+
+.icon>image {
+    width: 100%;
+    height: 100%;
+}
+
+
+.logoImage {
+    margin: 262rpx 215rpx;
+    margin-bottom: 80rpx;
+    width: 320rpx;
+    height: 320rpx;
+}
+
+.logoImage>image {
+    width: 100%;
+    height: 100%;
+}
+
+.buttonBox {
+    margin: 40rpx 95rpx;
+    width: 560rpx;
+    height: 92rpx;
+    border-radius: 46rpx;
+    border: 1px #21373D solid;
+    display: flex;
+    justify-content: center;
+    line-height: 92rpx;
+}
+
+.buttonBox>.icon {
+    margin: 4rpx 10rpx;
+}
+
+.checkBox {
+    margin: 40rpx 95rpx;
+    width: 560rpx;
+    display: flex;
+    justify-content: center;
+}
+
+.checkBox>.icon>checkBox {
+}
+
+checkbox .wx-checkbox-input {
+    width: 24rpx;
+    height: 24rpx;
+}
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+    background: #000;
+    color:#fff;
+    border:1px black solid;
+}
+
+.checkBox>.word {
+    color: #666;
+    font-size: 24rpx;
+}
+
+.checkBox>.word>.span {
+    color: #21373D;
+}
