@@ -1,4 +1,7 @@
 // pages/order/index.js
+const app = getApp()
+const util = require('../../utils/util.js')
+
 Page({
 
   /**
@@ -13,12 +16,18 @@ Page({
       '已取消'
     ],
     selectType: 0,
-    orderList:[]
+    orderList: []
+  },
+  watch: {
+  },
+
+  swiperChaneg(e) {
+    this.switchSubtitle(e.detail.current)
   },
   switchSubtitle(e) {
     var that = this
     if (e.currentTarget) {
-     e  = e.currentTarget.dataset.index
+      e = e.currentTarget.dataset.index
     }
     let node = wx.createSelectorQuery()
     node.selectAll('.type').boundingClientRect()
@@ -33,9 +42,9 @@ Page({
       })
     })
   },
-  initOrderList(){
+  initOrderList() {
     let orderList = []
-    this.data.typeList.forEach((res)=>{
+    this.data.typeList.forEach((res) => {
       orderList.push()
     })
     this.setData({

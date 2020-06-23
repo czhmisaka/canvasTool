@@ -55,7 +55,9 @@
 
 .orderBox {
     width: 100%;
-    height: auto;
-    display: inline-block;
-    min-height: 300rpx;
+    height:calc(100vh - 196rpx);
+}
+.swiper{
+    width:100%;
+    height:calc(100vh - 196rpx);
 }
