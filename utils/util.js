@@ -1,34 +1,5 @@
-function version() {
-  let testMode
-  try {
-    testMode = require('./test_mode.js')
-  } catch (err) {}
-
-  try {
-    switch (__wxConfig.envVersion) {
-      case 'develop':
-        return {
-          api_server: "wxapi.91bkw.com/photo/workbench",
-            api_protocal: "https://"
-        }
-        // 正式版
-        case 'release':
-          return {
-            api_server: "wxapi.91bkw.com/photo/workbench",
-              api_protocal: "https://"
-          };
-        default:
-          return {
-            api_server: "wxapi.91bkw.com/photo/workbench",
-              api_protocal: "https://"
-          }
-    }
-  } catch (err) {
-    return {}
-  }
-
-}
-let config = version()
+const config = require('../config/config.js')
+const api = require('../config/api.js')
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -44,16 +15,14 @@ const formatNumber = n => {
 }
 let myRequest = obj => {
   obj.url = obj.url || '/'
-  let baseUrl = config.api_protocal + config.api_server // 'https://match-dev.new-talk.cn'
+  let baseUrl = config.api_protocal + config.api_server
   return new Promise((resolve, reject) => {
     wx.request({
-      url: baseUrl + obj.url, // 仅为示例，并非真实的接口地址
+      url: baseUrl + obj.url,
       data: obj.data || {},
       header: obj.header || {
-        'content-type': 'application/json', // 默认值
-        // 'content-type': 'application/x-www-form-urlencoded'
+        'content-type': 'application/json',
         'token': getApp().globalData.accessToken ? getApp().globalData.accessToken.Token : ''
-
       },
       method: obj.method || 'get',
       success(res) {
@@ -177,7 +146,24 @@ function get_random() {
   return s.join('');
 }
 
+function checkVersion() {
+  const updateManager = wx.getUpdateManager();
+  wx.getUpdateManager().onUpdateReady(function () {
+    wx.showModal({
+      title: '更新提示',
+      content: '新版本已经准备好，是否重启应用？',
+      success: function (res) {
+        if (res.confirm) {
+          // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+          updateManager.applyUpdate()
+        }
+      }
+    })
+  })
+}
+
 module.exports = {
+  checkVersion,
   get_random,
   myRequest,
   myUploadFile,

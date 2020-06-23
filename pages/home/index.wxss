@@ -2,7 +2,7 @@
 .home {
     background-color: #F7F8FA;
     min-height: 100vh;
-    font-family:"PingFangSC-Regular,PingFang SC";
+    font-family: "PingFangSC-Regular,PingFang SC";
 }
 
 .promoter {
@@ -42,8 +42,11 @@
 }
 
 .headImg>image {
-    width: 120rpx;
-    height: 120rpx;
+    width: 124rpx;
+    height: 124rpx;
+    margin-left: -2rpx;
+    margin-top: -2rpx;
+
 }
 
 .detail>.word {
@@ -123,12 +126,36 @@
     font-family: "PingFangSC-Regular,PingFang SC";
     line-height: 110rpx;
 }
-.flexBox>.right{
+
+.flexBox>.right {
     line-height: 110rpx;
     margin-right: 35rpx;
-    transform:scale(1.5，1)
+    transform: scale(1.5，1)
 }
 
+
+.divideLine {
+    width: 100%;
+    height: 24rpx;
+    margin: 24rpx 0px;
+    line-height: 24rpx;
+    text-align: center;
+    background-position: center;
+    font-weight: 400;
+    background-repeat: no-repeat;
+    font-size: 24rpx;
+    background-size: 344rpx 13rpx;
+    color: rgba(33, 55, 61, 1);
+}
+
+.divideLine>.bgImage>image {
+    width: 344rpx;
+    height: 12rpx;
+    position: absolute;
+    margin-left: -172rpx;
+    margin-top: 6rpx;
+    left: 50%;
+}
 
 .icon40 {
     width: 40rpx;

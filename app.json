@@ -4,14 +4,16 @@
     "pages/canvasTest/index",
     "pages/mine/index",
     "pages/cus/index",
-    "pages/order/index"
+    "pages/order/index",
+    "pages/login/index"
   ],
   "tabBar": {
     "color": "#B3B6BF",
     "position": "bottom",
     "selectedColor": "#21373D",
     "borderStyle": "black",
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/home/index",
         "iconPath": "static/images/Icon_tabBar/ic_home.png",
         "selectedIconPath": "static/images/Icon_tabBar/ic_home_pre.png",

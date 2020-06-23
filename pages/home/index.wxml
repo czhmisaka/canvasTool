@@ -33,6 +33,14 @@
             <image class="icon40" src="/static/images/icon_page/ic_glxc.png" />
             <view class="word">管理相册</view>
         </view>
-        <view class="right"><image src="/static/images/icon_page/ic_xy.png" style="width: 14rpx;height: 26rpx;" /></view>
+        <view class="right">
+            <image src="/static/images/icon_page/ic_xy.png" style="width: 14rpx;height: 26rpx;" />
+        </view>
     </view>
+    <view class="divideLine">
+        <view class="bgImage">
+            <image src="/static/images/icon_page/pic_zjsx.png"  />
+            最近上新</view>
+    </view>
+    <photoWaterFall data="{{photoData}}"></photoWaterFall>
 </view>

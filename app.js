@@ -1,6 +1,11 @@
+const utils = require('utils/util.js')
 //app.js
+
 App({
   onLaunch: function () {
+    // 检查小程序版本
+    utils.checkVersion()
+
     // 登录
     wx.login({
       success: res => {
