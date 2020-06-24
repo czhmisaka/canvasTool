@@ -1,7 +1,17 @@
 <!--components/photoFall/photoFall.wxml-->
 <view class="widthLimit">
-    <view class="add">
+    <!-- <photoFall items="{{line}}" container-width="690" gap-width="20" generic:card="card"></photoFall> -->
+    <!-- <view class="add">
         <image src="/static/images/icon_page/ic_tjtpsp.png" />
     </view>
-    <photoBox class="photoBox" wx:for="{{line}}" photo="{{item}}" wx:key="*this"></photoBox>
+    <card class="photoBox" wx:for="{{line}}" photo="{{item}}" wx:key="*this"></card> -->
+    <view class="line leftLine" id="l">
+        <view class="add">
+            <image src="/static/images/icon_page/ic_tjtpsp.png" />
+        </view>
+        <photoBox class="photoBox" wx:for="{{leftLine}}" id="{{'l'+index}}" index="{{index}}" photo="{{item}}" wx:key="*this"></photoBox>
+    </view>
+    <view class="line rightLine" id="r">
+        <photoBox class="photoBox" wx:for="{{rightLine}}" id="{{'r'+index}}" index="{{index}}" photo="{{item}}" wx:key="*this"></photoBox>
+    </view>
 </view>

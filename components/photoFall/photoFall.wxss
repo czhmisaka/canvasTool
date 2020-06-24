@@ -1,19 +1,45 @@
 /* components/photoFall/photoFall.wxss */
-.widthLimit {
+/* .widthLimit {
     margin-left: 20rpx;
     width: calc(100% - 40rpx);
     height: auto;
     column-count: 2;
     column-gap: 10rpx;
+    column-fill: balance;
+} */
+.widthLimit {
+    margin-left: 20rpx;
+    width: calc(100% - 40rpx);
+    height: auto;
+    display: inline-block;
 }
 
-.photoBox {}
+.photoBox {
+    transition: all 0.4s;
+}
+
+.line {
+    display: inline-block;
+    width: calc(50% - 10rpx);
+    margin: 0px 5rpx;
+    height: auto;
+}
+
+
+.leftLine {
+    float: left;
+}
+
+.rightLine {
+    float: right;
+}
 
 .add {
     width: 100%;
     height: 264rpx;
     border-radius: 8rpx;
     background-color: #E6E6E6;
+    margin-bottom: 10rpx;
 }
 
 .add>image {

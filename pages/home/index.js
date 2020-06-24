@@ -84,4 +84,7 @@ Page({
   onPullDownRefresh: function () {},
   onReachBottom: function () {},
   onShareAppMessage: function () {},
+  onReachBottom: function () {
+    this.selectComponent('#fall').getMore()
+  }
 })
