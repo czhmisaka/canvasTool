@@ -8,9 +8,9 @@ Page({
    */
   data: {
     checkFile: true,
-    type: 'phone', // 用于控制当前页面状态 
+    type: 'check', // 用于控制当前页面状态 
     input: {
-      phoneNumber: '13906600323',
+      phoneNumber: '',
       checkCode: ''
     }, // 用于保存 input 输入数据
     getCodeStatus: false,
@@ -37,8 +37,6 @@ Page({
   // 微信授权手机号登录
   loginWithWx(e) {
     this.checkFile()
-    app.checkCode()
-    console.log(e.detail)
     let {
       encryptedData,
       iv
@@ -49,13 +47,30 @@ Page({
         code: app.globalData.code,
         iv: iv,
         encryptedData: encryptedData
+      },
+      header: {
+        'content-type': 'application/json',
       }
-    }).then(res => {
+    }).then(result => {
+      let res = result.data
       if (res.code === 200) {
-        app.globalData.userInfo = res.data
+        app.globalData.shopInfo = res.data
+        console.log(res.data)
+        app.globalData.accessToken = result.header.Authorization // 获取token
+        app.setStorage()
         wx.showToast({
           title: '登录成功',
           icon: 'success',
+          success: function () {
+            wx.switchTab({
+              url: '/pages/home/index'
+            });
+          }
+        });
+      } else {
+        wx.showToast({
+          title: res.msg, //提示的内容,
+          icon: 'none', //图标,
         });
       }
     })
@@ -167,7 +182,7 @@ Page({
   },
 
   onLoad: function (options) {
-    console.log(app.globalData)
+    app.checkCode()
     this.setData({
       code: app.globalData.code
     })

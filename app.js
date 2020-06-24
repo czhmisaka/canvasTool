@@ -1,19 +1,27 @@
 const utils = require('utils/util.js')
-
+const tools = require('utils/appTool.js')
 const {
   config
 } = require('config/config.js')
-const util = require('./utils/util')
+// const {
+//   promisifyAll,
+//   promisify
+// } = require('miniprogram-api-promise')
+const wxp = {}
+// 将wx的api proimse化
+// promisifyAll(wx, wxp)
 //app.js
 
 App({
+  ...tools,
   onLaunch: function () {
     // 检查小程序版本
     utils.checkVersion()
+    this.getGlobalDataStorage()
+
     // 登录
     wx.login({
       success: res => {
-        console.log(res)
         this.globalData.code = res.code
       },
       fail: () => {
@@ -42,15 +50,25 @@ App({
         }
       }
     })
-
-
-
   },
-  checkCode:()=>{util.checkCode()},
+  
+  setToken: (Authorization) => {
+    this.globalData.accessToken = Authorization
+  },
+  checkCode: () => {
+    utils.checkCode()
+  },
+  setStorage: function () {
+    wx.setStorageSync('globalData', this.globalData)
+  },
+  getGlobalDataStorage: function () {
+    this.globalData = wx.getStorageSync('globalData');
+  },
   globalData: {
     accessToken: null,
     userInfo: null,
     code: null,
-    config: config
+    config: config,
+    shopInfo:null
   }
 })

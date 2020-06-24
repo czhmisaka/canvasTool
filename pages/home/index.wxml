@@ -2,17 +2,17 @@
 
 
 <view class="home">
-    <view class="promoter">
+    <view class="shopDetail">
         <view class="detail">
             <view class="change">
                 <image src="/static/images/icon_page/ic_qh.png" />切换
             </view>
             <view class="headImg" style="height:52rpx"></view>
             <view class="headImg">
-                <image src="{{promoter.storeBackground}}" alt="" />
+                <image src="{{shopDetail.storeBackground}}" alt="" />
             </view>
             <view class="word">
-                {{promoter.shopName}}
+                {{shopDetail.shopName}}
             </view>
             <view class="word">
                 <view class="button" bindtap="shareShop">分享店铺</view>
@@ -23,7 +23,7 @@
         </view>
     </view>
     <view class="flexBox" style="margin-top:0rpx">
-        <view class="MsgBox" wx:for="{{promoter.fastMsg}}" wx:key="*this">
+        <view class="MsgBox" wx:for="{{shopDetail.fastMsg}}" wx:key="*this">
             <view class="Number">{{item.num}}</view>
             <view class="word">{{item.type}}</view>
         </view>

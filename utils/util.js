@@ -20,25 +20,50 @@ const formatNumber = n => {
 let request = obj => {
   obj.url = obj.url || '/'
   let baseUrl = config.api_protocal + config.api_server
-  console.log(baseUrl, config, config.api_protocal, config.api_server)
   return new Promise((resolve, reject) => {
     wx.request({
       url: baseUrl + obj.url,
       data: obj.data || {},
       header: obj.header || {
         'content-type': 'application/json',
-        'token': getApp().globalData.accessToken ? getApp().globalData.accessToken.Token : ''
+        'Authorization': getApp().globalData.accessToken ? getApp().globalData.accessToken : ''
       },
       method: obj.method || 'post',
       success(res) {
-        resolve(res)
+        if (res.header.Authorization) {
+          resolve(res)
+        }
+        if (res.statusCode == 200) {
+          if (res.data.code == 403) {
+            toLogin()
+          }
+          if (res.data.errno == 501) {
+            toLogin()
+          }
+          resolve(res.data)
+        } else {
+          toLogin()
+        }
+        reject(res.errMsg)
       },
       fail(err) {
         reject(err)
-      }
+      },
+
     })
+
   })
 }
+
+let toLogin = () => {
+  try {
+    getApp().cleanGlobalData()
+    getApp().cleanStorage()
+  } catch (e) {} finally {
+    return getApp().toLoginPage()
+  }
+}
+
 
 let uploadAudio = (obj, callback, msg_fail_callback) => {
   const MY_NAMESPACE = '1b671a64-40d5-491e-99b0-da01ff5f3341';
@@ -69,9 +94,6 @@ let uploadPhoto = (obj, callback, msg_fail_callback) => {
     Region: config.region,
     Key: key,
     FilePath: obj.tmpFilePath[obj.index], // wx.chooseImage 选择文件得到的 tmpFilePath
-    // onProgress: function (info) {
-    //   console.log(JSON.stringify(info));
-    // }
   }, function (err, data) {
     if (err) return msg_fail_callback && msg_fail_callback(obj.msg_list[obj.index])
     callback && callback('https://' + data.Location, obj.msg_list[obj.index])
@@ -102,6 +124,8 @@ let myUploadFile = obj => {
     })
   })
 };
+
+
 let handleNewsNum = (num, app) => {
   if (num < 0) return
   if (num > 99) num = '99+'
@@ -168,16 +192,13 @@ function checkVersion() {
 }
 
 let checkCode = () => {
-  return new Promise((resolve) => {
-    if (!app.globalData.code) {
-      wx.login({
-        success: res => {
-          app.globalData.code = res.code
-          resolve(res)
-        },
-      });
-    }
-  })
+  if (!getApp().globalData.code) {
+    wx.login({
+      success: res => {
+        getApp().globalData.code = res.code
+      },
+    });
+  }
 
 }
 

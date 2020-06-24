@@ -118,7 +118,6 @@ Page({
     })
   },
   eventSave() {
-    console.log(this.data.shareImage)
     wx.saveImageToPhotosAlbum({
       filePath: this.data.shareImage,
       success(res) {
@@ -131,7 +130,6 @@ Page({
     })
   },
   eventGetImage(event) {
-    console.log(event)
     wx.hideLoading()
     const {
       tempFilePath,
