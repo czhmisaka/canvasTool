@@ -1,5 +1,8 @@
-const config = require('../config/config.js')
+const {
+  config
+} = require('../config/config.js')
 const api = require('../config/api.js')
+const app = getApp()
 
 const formatTime = date => {
   const year = date.getFullYear()
@@ -14,9 +17,10 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
-let myRequest = obj => {
+let request = obj => {
   obj.url = obj.url || '/'
   let baseUrl = config.api_protocal + config.api_server
+  console.log(baseUrl, config, config.api_protocal, config.api_server)
   return new Promise((resolve, reject) => {
     wx.request({
       url: baseUrl + obj.url,
@@ -25,7 +29,7 @@ let myRequest = obj => {
         'content-type': 'application/json',
         'token': getApp().globalData.accessToken ? getApp().globalData.accessToken.Token : ''
       },
-      method: obj.method || 'get',
+      method: obj.method || 'post',
       success(res) {
         resolve(res)
       },
@@ -163,10 +167,26 @@ function checkVersion() {
   })
 }
 
+let checkCode = () => {
+  return new Promise((resolve) => {
+    if (!app.globalData.code) {
+      wx.login({
+        success: res => {
+          app.globalData.code = res.code
+          resolve(res)
+        },
+      });
+    }
+  })
+
+}
+
+
 module.exports = {
+  checkCode,
   checkVersion,
   get_random,
-  myRequest,
+  request,
   myUploadFile,
   getTouchData,
   formatTime,

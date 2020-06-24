@@ -114,9 +114,10 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked {
     margin-top: 18rpx;
 }
 
-.grayBg {
+.inputBox>.grayBg {
     background-color: #A6AFB1;
     color:white;
+    border: none;
 }
 
 .mainColorBg{

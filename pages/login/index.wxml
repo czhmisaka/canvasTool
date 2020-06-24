@@ -9,6 +9,8 @@
     <view class="{{type=='check'?'show':'hidden'}}">
         <button open-type="getPhoneNumber" class="buttonBox" wx:if="{{type==='check'}}"
             bindgetphonenumber="loginWithWx">
+        <!-- <button open-type="getUserInfo" class="buttonBox" wx:if="{{type==='check'}}" bindgetuserinfo="loginWithWx"> -->
+
             <view class="icon" style="width:40rpx;height:33rpx">
                 <image src="/static/images/loginImages/ic_wx.png" />
             </view>
@@ -43,8 +45,18 @@
             <view class="button {{getCodeStatus?'grayBg':''}}" bindtap="getCheckCode">
                 {{getCodeStatus?time+'s后尝试':'获取验证码'}}</view>
         </view>
-        <view class="buttonBox mainColorBg" style="margin-top:65rpx" hidden="{{type!='phone'}}">
+        <view class="buttonBox mainColorBg" style="margin-top:65rpx" hidden="{{type!='phone'}}"
+            bindtap="loginWithCheckCode">
             登录
+        </view>
+        <view class="checkBox" wx:if="{{type=='phone'}}">
+            <view class="icon">
+                <checkbox value="{{checkFile}}" color="#fff" checked="{{checkFile}}" bindtap="checkBoxStatus">
+                </checkbox>
+            </view>
+            <view class="word">
+                登录表示同意<span class="span">《服务协议》</span><span class="span">《隐私协议》</span>
+            </view>
         </view>
     </view>
     <!-- type == phone -->
