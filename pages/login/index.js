@@ -33,7 +33,15 @@ Page({
       icon: 'none',
     });
   },
-
+  getCode(e) {
+    return new Promise((resolve, reject) => {
+      wx.login({
+        success: res => {
+          resolve(res)
+        }
+      });
+    })
+  },
   // 微信授权手机号登录
   loginWithWx(e) {
     this.checkFile()
@@ -89,6 +97,9 @@ Page({
         code: this.data.input.checkCode,
         codeWechat: app.globalData.code,
         phone: this.data.input.phoneNumber
+      },
+      header: {
+        'content-type': 'application/json',
       }
     }).then((res) => {
       console.log(res)
@@ -126,6 +137,9 @@ Page({
       this.startClock()
       utils.request({
         url: '/login/sendsms/' + this.data.input.phoneNumber,
+        header: {
+          'content-type': 'application/json',
+        }
       }).then((res) => {
         if (res.code === 200 && res.msg === '请求成功') {
 

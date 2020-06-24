@@ -7,59 +7,75 @@ Page({
    * 页面的初始数据
    */
   data: {
-    shopDetail: {
-      storeBackground: '/static/images/canvasTool/bg.png',
-      shopName: '17826845676的档口',
-      fastMsg: [{
-        num: 1234567890,
-        type: '销售金额'
-      }, {
-        num: 1009099112,
-        type: '售出件数'
-      }, {
-        num: 99012000,
-        type: '购买人数'
-      }]
-    }
+    storeVo: {},
+    shopDetail: {},
+    fastMsg: []
   },
 
-  formatNum: function (promoter) {
+  formatNum: function (data) {
     // 格式化大数字输出
-    promoter.fastMsg.forEach((item) => {
+    data.forEach((item) => {
       item.num = item.num > 10000 ? item.num / 10000 > 10000 ? Math.round(item.num / 100000000) + '亿' : Math.round(item.num / 10000) + '万' : item.num
     })
     this.setData({
-      shopDetail: promoter
+      fastMsg: data
     })
   },
   shareShopName() {
-
   },
   toPhotoManage() {
     wx.navigateTo({
       url: ''
     });
   },
-  //  获取 首页详情
+  // 获取 首页详情
   getShopDetail() {
     let that = this
     let times = 10
     let time = setInterval(() => {
       if (app.globalData.accessToken || times < 0) {
-        if(!app.globalData.shopInfo) return app.toLoginPage()
+        if (!app.globalData.shopInfo) return app.toLoginPage()
         that.setData({
-          shopDetail: app.globalData.shopInfo
+          shopDetail: app.globalData.shopInfo,
+          storeVo: app.globalData.shopInfo.storeVo
         })
+        setTimeout(() => {
+          this.getFastMsg()
+        }, 100)
         clearInterval(time)
       } else {
         times--
       }
     }, 100)
   },
+  // 获取订单数据
+  getFastMsg() {
+    utils.request({
+      url: '/order/getSellSituation',
+      data: {
+        storeId: this.data.storeVo.id
+      }
+    }).then((res) => {
+      let {
+        buyerNum,
+        goodsNum,
+        salesVolume
+      } = res.data
+      this.formatNum([{
+        num: buyerNum||0,
+        type: '购买人数'
+      }, {
+        num: goodsNum||0,
+        type: '售出件数'
+      }, {
+        num: salesVolume||0,
+        type: '售出金额'
+      }])
+    })
 
+  },
   onLoad: function (options) {
     this.getShopDetail()
-    // this.formatNum(this.data.shopDetail)
   },
   onReady: function () {},
   onShow: function () {},

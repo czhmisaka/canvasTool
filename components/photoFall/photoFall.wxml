@@ -1,2 +1,9 @@
 <!--components/photoFall/photoFall.wxml-->
-<text>components/photoFall/photoFall.wxml</text>
+<view class="widthLimit">
+    <view class="waterLine left">
+        <photoBox wx:for="{{leftLine}}"></photoBox>
+    </view>
+    <view class="waterLine right">
+        <photoBox wx:for="{{rightLine}}"></photoBox>
+    </view>
+</view>

@@ -30,10 +30,11 @@ let request = obj => {
       },
       method: obj.method || 'post',
       success(res) {
-        if (res.header.Authorization) {
-          resolve(res)
-        }
         if (res.statusCode == 200) {
+          if (res.header.Authorization) {
+            console.log(a)
+            resolve(res)
+          }
           if (res.data.code == 403) {
             toLogin()
           }

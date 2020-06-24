@@ -51,7 +51,7 @@ App({
       }
     })
   },
-  
+
   setToken: (Authorization) => {
     this.globalData.accessToken = Authorization
   },
@@ -62,13 +62,14 @@ App({
     wx.setStorageSync('globalData', this.globalData)
   },
   getGlobalDataStorage: function () {
-    this.globalData = wx.getStorageSync('globalData');
+    if (wx.getStorageSync('globalData'))
+      this.globalData = wx.getStorageSync('globalData');
   },
   globalData: {
     accessToken: null,
     userInfo: null,
     code: null,
     config: config,
-    shopInfo:null
+    shopInfo: null
   }
 })

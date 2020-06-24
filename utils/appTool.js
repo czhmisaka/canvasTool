@@ -31,12 +31,17 @@ const cleanStorage = async function cleanStorage(callback) {
 
 // 清空 globalData 数据
 const cleanGlobalData = async function refreshGlobalData(callback) {
-    getApp().globalData = {
-        accessToken: null,
-        userInfo: null,
-        code: null,
-        config: config
-    }
+    wx.login({
+        success: res => {
+            getApp().globalData = {
+                accessToken: null,
+                userInfo: null,
+                code: res.code,
+                config: config
+            }
+        }
+    });
+
 }
 
 const toLoginPage = () => {
