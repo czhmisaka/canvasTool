@@ -32,7 +32,6 @@ let request = obj => {
       success(res) {
         if (res.statusCode == 200) {
           if (res.header.Authorization) {
-            console.log(a)
             resolve(res)
           }
           if (res.data.code == 403) {
@@ -192,20 +191,7 @@ function checkVersion() {
   })
 }
 
-let checkCode = () => {
-  if (!getApp().globalData.code) {
-    wx.login({
-      success: res => {
-        getApp().globalData.code = res.code
-      },
-    });
-  }
-
-}
-
-
 module.exports = {
-  checkCode,
   checkVersion,
   get_random,
   request,

@@ -1,6 +1,5 @@
 {
   "usingComponents": {
     "photoWaterFall": "../../components/photoFall/photoFall"
-  },
-  "navigationStyle": "custom"
+  }
 }

@@ -1,19 +1,23 @@
 /* components/photoFall/photoFall.wxss */
 .widthLimit {
+    margin-left: 20rpx;
+    width: calc(100% - 40rpx);
+    height: auto;
+    column-count: 2;
+    column-gap: 10rpx;
+}
+
+.photoBox {}
+
+.add {
     width: 100%;
-    height:auto;
-    display: inline-block;
+    height: 264rpx;
+    border-radius: 8rpx;
+    background-color: #E6E6E6;
 }
 
-.waterLine{
-    width: 50%;
-    height:auto;
-    display:inline-block;
-}
-.left {
-
-}
-
-.right {
-    
+.add>image {
+    width: 64rpx;
+    height: 64rpx;
+    margin: 100rpx 143rpx;
 }

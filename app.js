@@ -55,9 +55,6 @@ App({
   setToken: (Authorization) => {
     this.globalData.accessToken = Authorization
   },
-  checkCode: () => {
-    utils.checkCode()
-  },
   setStorage: function () {
     wx.setStorageSync('globalData', this.globalData)
   },

@@ -14,7 +14,7 @@ Page({
       checkCode: ''
     }, // 用于保存 input 输入数据
     getCodeStatus: false,
-    time: ''
+    time: '',
   },
 
 
@@ -33,15 +33,6 @@ Page({
       icon: 'none',
     });
   },
-  getCode(e) {
-    return new Promise((resolve, reject) => {
-      wx.login({
-        success: res => {
-          resolve(res)
-        }
-      });
-    })
-  },
   // 微信授权手机号登录
   loginWithWx(e) {
     this.checkFile()
@@ -49,37 +40,41 @@ Page({
       encryptedData,
       iv
     } = e.detail
-    utils.request({
-      url: '/login/wechat',
-      data: {
-        code: app.globalData.code,
-        iv: iv,
-        encryptedData: encryptedData
-      },
-      header: {
-        'content-type': 'application/json',
-      }
-    }).then(result => {
-      let res = result.data
-      if (res.code === 200) {
-        app.globalData.shopInfo = res.data
-        console.log(res.data)
-        app.globalData.accessToken = result.header.Authorization // 获取token
-        app.setStorage()
-        wx.showToast({
-          title: '登录成功',
-          icon: 'success',
-          success: function () {
-            wx.switchTab({
-              url: '/pages/home/index'
+    wx.login({
+      success: function (res) {
+        utils.request({
+          url: '/login/wechat',
+          data: {
+            code: res.code,
+            iv: iv,
+            encryptedData: encryptedData
+          },
+          header: {
+            'content-type': 'application/json',
+          }
+        }).then(result => {
+          let res = result.data
+          if (res.code === 200) {
+            app.globalData.shopInfo = res.data
+            console.log(res.data)
+            app.globalData.accessToken = result.header.Authorization // 获取token
+            app.setStorage()
+            wx.showToast({
+              title: '登录成功',
+              icon: 'success',
+              success: function () {
+                wx.switchTab({
+                  url: '/pages/home/index'
+                });
+              }
+            });
+          } else {
+            wx.showToast({
+              title: res.msg, //提示的内容,
+              icon: 'none', //图标,
             });
           }
-        });
-      } else {
-        wx.showToast({
-          title: res.msg, //提示的内容,
-          icon: 'none', //图标,
-        });
+        })
       }
     })
   },
@@ -91,20 +86,23 @@ Page({
       title: '手机号和验证码不能为空',
       icon: 'none',
     });
-    utils.request({
-      url: '/workbench/login/seller',
-      data: {
-        code: this.data.input.checkCode,
-        codeWechat: app.globalData.code,
-        phone: this.data.input.phoneNumber
-      },
-      header: {
-        'content-type': 'application/json',
+    wx.login({
+      success: function (res) {
+        utils.request({
+          url: '/workbench/login/seller',
+          data: {
+            code: this.data.input.checkCode,
+            codeWechat: res.code,
+            phone: this.data.input.phoneNumber
+          },
+          header: {
+            'content-type': 'application/json',
+          }
+        }).then((res) => {
+          console.log(res)
+        })
       }
-    }).then((res) => {
-      console.log(res)
     })
-
   },
 
   // 输入监听事件
@@ -194,13 +192,7 @@ Page({
       checkFile: !this.data.checkFile
     })
   },
-
-  onLoad: function (options) {
-    app.checkCode()
-    this.setData({
-      code: app.globalData.code
-    })
-  },
+  onLoad: function (options) {},
   onReady: function () {},
   onShow: function () {},
   onHide: function () {},

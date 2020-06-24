@@ -19,7 +19,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    leftLine: [],
+    rightLine: []
   },
 
   /**
@@ -34,9 +35,14 @@ Component({
             storeId: this.properties.storeId
           }
         }).then((res) => {
-
+          this.calcHeight(res.data.data)
         })
       }
+    },
+    calcHeight: function (data) {
+      this.setData({
+        line:data
+      })
     }
   }
 })

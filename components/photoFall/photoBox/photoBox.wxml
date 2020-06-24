@@ -1,2 +1,20 @@
 <!--components/photoFall/photoBox/photoBox.wxml-->
-<text>components/photoFall/photoBox/photoBox.wxml</text>
+<view class="photo">
+    <view class="imageBox">
+        <image mode="widthFix" src="{{photo.photoImage}}" />
+        <view class="info">
+            <view class="icon" wx:if="{{photo.photoImage==''}}">
+                <image src="/static/images/icon_page/ic_sp.png" />
+            </view>
+            <!-- <view class="word" wx:if="{{photo.photoImage}}">{{photo.photoImageMore+'张'}}</view> -->
+        </view>
+    </view>
+    <view class="bottom">
+        <view class="name">
+            {{photo.photoDesc}}
+        </view>
+        <view class="button" wx:if="{{photo.photoShow===1}}" data-id="{{photo.goodsId}}">分享</view>
+        <view class="status" wx:if="{{photo.photoShow===0}}">仅自己可见</view>
+    </view>
+
+</view>
