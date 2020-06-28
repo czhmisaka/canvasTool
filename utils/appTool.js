@@ -47,7 +47,7 @@ const cleanGlobalData = async function refreshGlobalData(callback) {
 const toLoginPage = () => {
     let page = getCurrentPages()
     let lastPage = page[page.length - 1]
-    if (lastPage.route != 'pages/login/index') return wx.redirectTo({
+    if (lastPage.route != 'pages/login/index') return wx.reLaunch({
         url: '/pages/login/index'
     });
 }

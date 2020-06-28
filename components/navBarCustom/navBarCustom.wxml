@@ -1,0 +1,10 @@
+<!--components/navBarCustom/navBarCustom.wxml-->
+
+<view class="navbar custom-class" style='height:{{navHeight}}px;background-color:{{bgColor}}'>
+    <view class="icon">
+    <image src="" />
+    </view>
+    <view class='navbar-title' style='top:{{navTop+2}}px'>
+        {{pageName}}
+    </view>
+</view>

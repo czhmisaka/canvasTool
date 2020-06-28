@@ -1,28 +1,31 @@
-// pages/order/index.js
+// pages/albumManage/alnumManageMain/index.js
 const app = getApp()
-const util = require('../../utils/util.js')
+const util = require('../../../utils/util.js')
 
 Page({
 
-  /**
-   * 页面的初始数据
-   */
+  // 数据
   data: {
     typeList: [
       '全部',
-      '待接单',
-      '已接单',
-      '已完成',
-      '已取消'
+      '未发布',
+      '已发布'
     ],
     selectType: 0,
-    orderList: []
+    orderList: [],
+    data: [
+      [],
+      [],
+      []
+    ]
   },
   watch: {},
 
+  // 页面切换
   swiperChaneg(e) {
     this.switchSubtitle(e.detail.current)
   },
+  // 页面切换
   switchSubtitle(e) {
     var that = this
     if (e.currentTarget) {
@@ -41,20 +44,40 @@ Page({
       })
     })
   },
-  initOrderList() {
-    let orderList = []
-    this.data.typeList.forEach((res) => {
-      orderList.push()
-    })
-    this.setData({
-      orderList
+
+  // 获取相册
+  getAblum(e) {
+    console.log(app.globalData)
+    util.request({
+      url: '/photo/list',
+      data: {
+        storeId: app.globalData.shopInfo.storeVo.id,
+        pageNum: 1,
+        pageSize: 100
+      }
+    }).then((res) => {
+      res = res.data
+      let {
+        data
+      } = this.data
+      res.data.forEach((item) => {
+        data[this.data.selectType.index].push(item)
+      })
+      this.setData({
+        data: data
+      })
     })
   },
+
+
+  // 初始化函数
   initFn() {
     this.switchSubtitle(0)
-    this.initOrderList()
+    this.getAblum()
   },
-  onLoad: function (options) {},
+  onLoad: function (options) {
+    this.initFn()
+  },
   onReady: function () {},
   onShow: function () {},
   onHide: function () {},

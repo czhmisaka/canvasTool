@@ -1,0 +1,36 @@
+<!--pages/albumManage/alnumManageMain/index.wxml-->
+<view>
+    <!-- <navBarCustom page-name = '管理相册'></navBarCustom> -->
+    <view class="search">
+        <input type="text" placeholder="搜索内容"></input>
+        <view class="word">筛选</view>
+
+    </view>
+    <view class="subTitle">
+        <view class="moveBottombar"
+            style="{{'width:'+selectType.len*28+'rpx;margin-left:calc('+selectType.left+'px - 1em)'}}"></view>
+        <view class="type {{selectType.index==index?'highLight':''}}" data-index="{{0}}" bindtap="switchSubtitle"
+            wx:key="*this" style="margin:0px 30rpx">
+            全部
+        </view>
+        <view class="type {{selectType.index==index?'highLight':''}}" data-index="{{1}}" bindtap="switchSubtitle"
+            wx:key="*this">
+            未发布<span class="red">{{}}</span>
+        </view>
+        <view class="type {{selectType.index==index?'highLight':''}}" data-index="{{2}}" bindtap="switchSubtitle"
+            wx:key="*this">
+            已发布
+        </view>
+
+    </view>
+    <view class="orderBox">
+        <swiper current="{{selectType.index}}" bindchange="swiperChaneg" indicator-dots="{{true}}" autoplay="{{false}}"
+            duration="{{400}}" class="swiper">
+            <block wx:for="{{typeList}}" wx:key="*this">
+                <swiper-item>
+                    <albumCard wx:for="{{data[index]}}" wx:key="*this" data="{{item}}"></albumCard>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+</view>

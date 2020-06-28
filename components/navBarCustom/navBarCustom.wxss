@@ -1,0 +1,30 @@
+/* components/navBarCustom/navBarCustom.wxss */
+/* components/navbar/index.wxss */
+
+.navbar {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    flex-shrink: 0;
+}
+
+.navbar-title {
+    width: 100%;
+    box-sizing: border-box;
+    height: 32px;
+    line-height: 32px;
+    text-align: left;
+    position: absolute;
+    left: 0;
+    z-index: 10;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-indent: 1em;
+}

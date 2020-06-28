@@ -85,6 +85,13 @@
 					"id": -1,
 					"name": "登录页面",
 					"pathName": "pages/login/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "相册管理页面",
+					"pathName": "pages/albumManage/albumManageMain/index",
 					"scene": null
 				}
 			]

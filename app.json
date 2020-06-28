@@ -5,7 +5,8 @@
     "pages/mine/index",
     "pages/cus/index",
     "pages/order/index",
-    "pages/login/index"
+    "pages/login/index",
+    "pages/albumManage/albumManageMain/index"
   ],
   "tabBar": {
     "color": "#B3B6BF",

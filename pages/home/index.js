@@ -24,7 +24,7 @@ Page({
   shareShopName() {},
   toPhotoManage() {
     wx.navigateTo({
-      url: ''
+      url: '/pages/albumManage/albumManageMain/index'
     });
   },
   // 获取 首页详情
