@@ -24,11 +24,13 @@
 
     </view>
     <view class="orderBox">
-        <swiper current="{{selectType.index}}" bindchange="swiperChaneg" indicator-dots="{{true}}" autoplay="{{false}}"
+        <swiper current="{{selectType.index}}" bindchange="swiperChaneg" indicator-dots="{{false}}" autoplay="{{false}}"
             duration="{{400}}" class="swiper">
-            <block wx:for="{{typeList}}" wx:key="*this">
+            <block wx:for="{{typeList}}" wx:key="id">
                 <swiper-item>
-                    <albumCard wx:for="{{data[index]}}" wx:key="*this" data="{{item}}"></albumCard>
+                    <view class="scroll">
+                        <albumCard wx:for="{{data[index]}}" wx:key="id" data="{{item}}"></albumCard>
+                    </view>
                 </swiper-item>
             </block>
         </swiper>

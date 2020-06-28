@@ -1,1 +1,113 @@
 /* pages/albumManage/components/albumCard/albumCard.wxss */
+.ablumCard {
+    width: 710rpx;
+    height: 370rpx;
+    margin: 20rpx;
+    background-color: white;
+    border-radius: 16rpx;
+}
+
+.ablumCard>.view {
+    width: 100%;
+    height: auto;
+    display: inline-block;
+    position: relative;
+}
+
+.photoBox {
+    height: 180rpx;
+}
+
+.photoBox>.image {
+    width: 180rpx;
+    height: 180rpx;
+    margin: 20rpx;
+    margin-bottom: 0rpx;
+    margin-right: 0rpx;
+    border-radius: 8rpx;
+    overflow: hidden;
+    position: relative;
+    float: left;
+}
+
+.image>image {
+    width: 100%;
+    height: 100%;
+}
+
+.photoBox>.right {
+    line-height: 180rpx;
+    text-align: right;
+    margin: 20rpx 0rpx;
+    margin-right: 24rpx;
+    margin-bottom: 0rpx;
+    font-size: 24rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(153, 153, 153, 1);
+    width: 3em;
+    float: right;
+}
+
+.icon {
+    width: 12rpx;
+    height: 24rpx;
+    float: right;
+    margin-left: 8rpx;
+    margin-top: 4rpx;
+}
+
+.icon>image {
+    width: 100%;
+    height: 100%;
+}
+
+
+.infoBox {
+    height: 28rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 500;
+    color: rgba(61, 61, 61, 1);
+    line-height: 28rpx;
+    margin-top: 4rpx;
+    padding-bottom: 24rpx;
+    border-bottom: 1rpx #E6E6E6 solid;
+}
+
+.red {
+    font-size: 28rpx;
+    font-family: DINAlternate-Bold, DINAlternate;
+    font-weight: 500;
+    color: rgba(238, 72, 102, 1);
+    margin-left: 24rpx;
+}
+
+.statusBox {
+    height: 89rpx;
+}
+
+.leftBox {
+    margin: 32rpx 0rpx 24rpx 33rpx;
+    font-size: 24rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(153, 153, 153, 1);
+    float: left;
+}
+
+.shareBtn {
+    width: auto;
+    height: 56rpx;
+    border-radius: 28rpx;
+    border: 1px solid rgba(33, 55, 61, 1);
+    display: inline-block;
+    line-height: 56rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(33, 55, 61, 1);
+    padding: 0rpx 32rpx;
+    margin: 16rpx 24rpx;
+    float: right;
+}

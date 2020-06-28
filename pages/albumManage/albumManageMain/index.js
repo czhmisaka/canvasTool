@@ -1,7 +1,7 @@
 // pages/albumManage/alnumManageMain/index.js
 const app = getApp()
 const util = require('../../../utils/util.js')
-
+let swiperLock = false
 Page({
 
   // 数据
@@ -23,6 +23,7 @@ Page({
 
   // 页面切换
   swiperChaneg(e) {
+    console.log(e.detail)
     this.switchSubtitle(e.detail.current)
   },
   // 页面切换
@@ -42,30 +43,42 @@ Page({
       this.setData({
         selectType: selectType
       })
+      setTimeout(() => {
+        if (that.data.data[e].length == 0) {
+          that.getAblum()
+        }
+      }, 10)
     })
   },
 
   // 获取相册
   getAblum(e) {
-    console.log(app.globalData)
+    if (swiperLock) return
+    swiperLock = true
+    let that = this
+    console.log(that.data.selectType.index)
+    let photoShow = that.data.selectType.index != 0 ? that.data.selectType.index - 1 : ''
+    console.log('asd', photoShow)
     util.request({
       url: '/photo/list',
       data: {
         storeId: app.globalData.shopInfo.storeVo.id,
         pageNum: 1,
-        pageSize: 100
+        pageSize: 100,
+        photoShow
       }
     }).then((res) => {
       res = res.data
       let {
         data
-      } = this.data
+      } = that.data
       res.data.forEach((item) => {
-        data[this.data.selectType.index].push(item)
+        data[that.data.selectType.index ? that.data.selectType.index : 0].push(item)
       })
-      this.setData({
+      that.setData({
         data: data
       })
+      swiperLock = false
     })
   },
 
@@ -73,7 +86,6 @@ Page({
   // 初始化函数
   initFn() {
     this.switchSubtitle(0)
-    this.getAblum()
   },
   onLoad: function (options) {
     this.initFn()

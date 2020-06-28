@@ -39,7 +39,7 @@
     justify-content: space-between;
     width: calc(100% - 68rpx);
     margin: 0px 34rpx;
-    height: 102rpx;
+    height: 87rpx;
 }
 
 .subTitle>.type {
@@ -69,9 +69,17 @@
 .orderBox {
     width: 100%;
     height: calc(100vh - 196rpx);
+    overflow-y: scroll;
+    background: rgba(247, 248, 250, 1);
 }
 
 .swiper {
     width: 100%;
     height: calc(100vh - 196rpx);
+}
+
+.scroll {
+    width: 100%;
+    height: calc(100vh - 196rpx);
+    overflow-y: scroll;
 }

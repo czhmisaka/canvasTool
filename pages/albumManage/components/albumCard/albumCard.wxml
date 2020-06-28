@@ -1,2 +1,29 @@
 <!--pages/albumManage/components/albumCard/albumCard.wxml-->
-<text>pages/albumManage/components/albumCard/albumCard.wxml</text>
+
+<view class="ablumCard">
+    <view class="view photoBox">
+        <view class="image" wx:for="{{photoList}}" wx::key="*this">
+            <image mode="aspectFill" src="{{item}}"/>
+        </view>
+        <view class="right">
+            {{photoNum}}图
+            <view class="icon">
+                <image src="/static/images/icon_page/ic_xy.png"/>
+            </view>
+        </view>
+    </view>
+    <view class="view infoBox">
+        <span class="red">
+            ￥{{price}}
+        </span>
+        {{data.photoDesc}}
+    </view>
+    <view class=" view statusBox">
+        <view class="leftBox">
+            {{photo.photoShow==1?'所有人可见':'仅自己可见'}}
+        </view>
+        <view class="shareBtn" bindtap="eventBtn" data-type="{{photo.photoShow}}">
+            {{photo.photoShow==1?'分享':'发布到相册'}}
+        </view>
+    </view>
+</view>
