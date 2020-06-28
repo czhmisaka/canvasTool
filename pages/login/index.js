@@ -25,6 +25,14 @@ Page({
     })
   },
 
+  // 显示条约
+  showConfidence(e) {
+    let {
+      type
+    } = e.currentTarget.dataset
+    if (type == "服务协议") {} else if (type == "隐私协议") {}
+  },
+
   // 检查条约是否同意
   checkFile(e) {
     let that = this
@@ -33,6 +41,7 @@ Page({
       icon: 'none',
     });
   },
+
   // 微信授权手机号登录
   loginWithWx(e) {
     this.checkFile()
@@ -56,7 +65,6 @@ Page({
           let res = result.data
           if (res.code === 200) {
             app.globalData.shopInfo = res.data
-            console.log(res.data)
             app.globalData.accessToken = result.header.Authorization // 获取token
             app.setStorage()
             wx.showToast({
@@ -81,6 +89,7 @@ Page({
 
   // 使用验证码登录
   loginWithCheckCode(e) {
+    let that = this
     this.checkFile()
     if (!this.checkInput()) return wx.showToast({
       title: '手机号和验证码不能为空',
@@ -89,17 +98,31 @@ Page({
     wx.login({
       success: function (res) {
         utils.request({
-          url: '/workbench/login/seller',
+          url: '/login/seller',
           data: {
-            code: this.data.input.checkCode,
+            code: that.data.input.checkCode,
             codeWechat: res.code,
-            phone: this.data.input.phoneNumber
+            phone: that.data.input.phoneNumber
           },
           header: {
             'content-type': 'application/json',
           }
-        }).then((res) => {
-          console.log(res)
+        }).then((result) => {
+          let res = result.data
+          if (res.code === 200) {
+            app.globalData.shopInfo = res.data
+            app.globalData.accessToken = result.header.Authorization // 获取token
+            app.setStorage()
+            wx.showToast({
+              title: '登录成功',
+              icon: 'success',
+              success: function () {
+                wx.switchTab({
+                  url: '/pages/home/index'
+                });
+              }
+            });
+          }
         })
       }
     })

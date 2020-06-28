@@ -21,8 +21,7 @@ Page({
       fastMsg: data
     })
   },
-  shareShopName() {
-  },
+  shareShopName() {},
   toPhotoManage() {
     wx.navigateTo({
       url: ''
@@ -62,13 +61,13 @@ Page({
         salesVolume
       } = res.data
       this.formatNum([{
-        num: buyerNum||0,
+        num: buyerNum || 0,
         type: '购买人数'
       }, {
-        num: goodsNum||0,
+        num: goodsNum || 0,
         type: '售出件数'
       }, {
-        num: salesVolume||0,
+        num: salesVolume || 0,
         type: '售出金额'
       }])
     })
@@ -78,7 +77,13 @@ Page({
     this.getShopDetail()
   },
   onReady: function () {},
-  onShow: function () {},
+  onShow: function () {
+    // this.selectComponent('#fall').getMore()
+    let comp = this.selectComponent('#fall')
+    if (comp.data.rightLine) {
+      console.log(comp.data.rightLine)
+    }
+  },
   onHide: function () {},
   onUnload: function () {},
   onPullDownRefresh: function () {},

@@ -28,7 +28,7 @@
                 </checkbox>
             </view>
             <view class="word">
-                登录表示同意<span class="span">《服务协议》</span><span class="span">《隐私协议》</span>
+                登录表示同意<span class="span" bindtap="showConfidence" data-type="服务协议">《服务协议》</span><span class="span"  bindtap="showConfidence" data-type="隐私协议">《隐私协议》</span>
             </view>
         </view>
     </view>

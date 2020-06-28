@@ -42,5 +42,5 @@
             <image src="/static/images/icon_page/pic_zjsx.png" />
             最近上新</view>
     </view>
-    <photoWaterFall storeId="{{storeVo.id}}" id="fall"></photoWaterFall>
+    <photoWaterFall storeId="{{storeVo.id}}" id="fall" ></photoWaterFall>
 </view>

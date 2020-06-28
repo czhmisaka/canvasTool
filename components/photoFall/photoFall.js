@@ -13,7 +13,7 @@ Component({
       value: '',
       type: String,
       observer: function () {
-        console.log(index, 'a', new Date().getTime())
+
         let that = this
         that.getPhotoList()
       }
@@ -42,9 +42,11 @@ Component({
         duration: 2000,
         mask: true,
       });
-      this.getPhotoList(++page)
+      this.getPhotoList(page)
     },
-    getPhotoList: function (num = 0) {
+    getPhotoList: function (num) {
+
+
       if (!open) return;
       if (!finish) return;
       open = false
@@ -54,11 +56,12 @@ Component({
           data: {
             storeId: this.properties.storeId,
             pageNum: num,
-            pageSize: 4
+            pageSize: 6
           }
         }).then((res) => {
           if (res.data.pages === page)
             finish = false
+            page++
           let {
             data
           } = this.data
@@ -68,9 +71,7 @@ Component({
           this.setData({
             data: data
           })
-          setTimeout(() => {
-            this.compareAndFix()
-          }, 10)
+          this.compareAndFix()
         })
       }
     },
@@ -90,7 +91,6 @@ Component({
     //   })
     // },
     compareAndFix: function (e) {
-      // console.log(index, 'a', new Date().getTime())
       var that = this
       let {
         data,
@@ -102,7 +102,7 @@ Component({
       query.select('#l').boundingClientRect()
       query.select('#r').boundingClientRect()
       query.exec(function (res) {
-        // console.log(index, res[0].height, res[1].height, res[0].height < res[1].height ? '左' : '右')
+
         if (res[0].height < res[1].height) {
           leftLine.push(data[index])
         } else {
