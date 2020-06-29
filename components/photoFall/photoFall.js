@@ -13,14 +13,16 @@ Component({
       value: '',
       type: String,
       observer: function () {
-
-        let that = this
-        that.getPhotoList()
+        var that = this
+        that.refresh()
       }
     }
   },
 
-
+  lifetimes: {
+    attached: function () {},
+    detached: function () {},
+  },
   /**
    * 组件的初始数据
    */
@@ -35,6 +37,20 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    // 刷新
+    refresh: function () {
+      this.setData({
+        leftLine: [],
+        rightLine: [],
+        line: [],
+        data: [],
+      })
+      index = 0
+      page = 1
+      open = true
+      finish = true
+      this.getPhotoList()
+    },
     // 去添加新相册
     toAdd: function () {
       wx.navigateTo({
@@ -55,8 +71,8 @@ Component({
     getPhotoList: function (num) {
       if (!open) return;
       if (!finish) return;
-      open = false
       if (this.properties.storeId) {
+        open = false
         utils.request({
           url: '/photo/list',
           data: {

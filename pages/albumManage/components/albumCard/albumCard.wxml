@@ -22,7 +22,7 @@
         <view class="leftBox">
             {{publish?'所有人可见':'仅自己可见'}}
         </view>
-        <view class="shareBtn" bindtap="eventBtn" data-type="{{data.photoShow}}" data-photoid="{{data.id}}">
+        <view class="shareBtn" bindtap="eventBtn" data-type="{{publish}}" data-photoid="{{data.id}}">
             {{publish?'分享':'发布到相册'}}
         </view>
     </view>

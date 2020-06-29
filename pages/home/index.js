@@ -81,13 +81,7 @@ Page({
   },
   onReady: function () {},
   onShow: function () {
-    let comp = this.selectComponent('#fall')
-    if (comp.data.rightLine) {
-      console.log(comp.data.rightLine)
-    }
-    // if(app.globalData.refreshHome){
-    //   console.log('a',comp.data)
-    // }
+    this.selectComponent('#fall').refresh()
   },
   onHide: function () {},
   onUnload: function () {},

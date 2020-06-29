@@ -1,6 +1,5 @@
-//index.js
-
-
+// /pages/canvas/index
+const util = require('../../utils/util.js')
 Page({
   data: {
     painting: {},
@@ -16,17 +15,20 @@ Page({
     }
   },
   onLoad(options) {
-    console.log(options.id)
+    this.eventDraw()
     if (options.id) {
-
-      this.eventDraw()
+      // util.request({
+      //   url:""
+      // })
+      // this.eventDraw()
     } else {
       wx.navigateBack({
         delta: 1 //返回的页面数，如果 delta 大于现有页面数，则返回到首页,
       });
     }
-    
+
   },
+  // 绘制函数
   eventDraw() {
     wx.showLoading({
       title: '绘制分享图片中',

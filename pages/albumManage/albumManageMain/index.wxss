@@ -44,26 +44,31 @@
 
 .subTitle>.type {
     height: 102rpx;
-    font-weight: 400;
-    color: rgba(102, 102, 102, 1);
+    font-weight: 100;
+    color: #666;
     line-height: 102rpx;
     margin: 0px 20rpx;
     text-align: left;
     font-size: 28rpx;
     font-family: PingFangSC-Regular, PingFang SC;
     z-index: 10;
+    transition: all 0.4s;
 }
 
 .subTitle>.highLight {
     color: #21373D;
+    font-weight: 600;
 }
 
 .subTitle>.moveBottombar {
     position: absolute;
-    border-bottom: 4rpx #21373D solid;
+    /* border-bottom: 4rpx #21373D solid; */
     z-index: 1;
     transition: all 0.4s;
-    height: 82rpx;
+    margin-top: 82rpx;
+    height: 4rpx;
+    background-color:  #21373D;
+    border-radius: 2rpx;
 }
 
 .orderBox {

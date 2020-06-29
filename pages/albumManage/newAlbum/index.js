@@ -3,6 +3,7 @@
 const uploadImage = require('../../../utils/js/uploadImg.js');
 const utils = require('../../../utils/util.js')
 const app = getApp()
+let times = 0
 Page({
 
   /**
@@ -57,37 +58,42 @@ Page({
   },
   submit: function (e) {
     let that = this
-    let times = 0
     let {
       imageList
     } = that.data
     if (imageList.length == 0) return wx.showToast({
-      title: '请上传图片后提交', //提示的内容,
-      icon: 'none', //图标,
-      duration: 2000, //延迟时间,
-      mask: true, //显示透明蒙层，防止触摸穿透,
-      success: res => {}
+      title: '请上传图片后提交',
+      icon: 'none',
     });
-    let imageSrcList = []
+
     wx.showLoading({
-      title: '上传中', //提示的内容,
-      mask: true, //显示透明蒙层，防止触摸穿透,
+      title: '上传中',
+      mask: true,
       success: res => {}
     });
-    imageList.forEach((item, index) => {
-      imageSrcList.push([])
-    })
-    imageList.forEach((item, index) => {
-      uploadImage(item, 'images/',
-        function (result) {
-          times++
-          imageSrcList[index] = result
-          if (times == imageList.length) {
-            that.addPhoto(imageSrcList)
-          }
-        },
-        function (result) {}
-      )
+    that.upload(imageList)
+  },
+  upload(imageList, imageSrcList = []) {
+    let that = this
+    if (imageSrcList == []) {
+      imageList.forEach(() => {
+        imageSrcList.push([])
+      })
+    }
+    let clear = (times == imageList.length - 1)
+    uploadImage(imageList[times], clear).then((result) => {
+      wx.hideLoading();
+      times++
+      wx.showLoading({
+        title: times + '/' + imageList.length
+      })
+      imageSrcList[times - 1] = result
+      if (times == imageList.length) {
+        times = 0
+        that.addPhoto(imageSrcList)
+      } else {
+        that.upload(imageList, imageSrcList)
+      }
     })
   },
   addPhoto: function (imageSrcList) {
@@ -133,9 +139,7 @@ Page({
   },
   onLoad: function (options) {},
   onReady: function () {},
-  onShow: function () {
-    // console.log(app.globalData.ossEnv)
-  },
+  onShow: function () {},
   onHide: function () {},
   onUnload: function () {},
   onPullDownRefresh: function () {},

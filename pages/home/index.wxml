@@ -5,7 +5,7 @@
     <view class="promoter">
         <view class="detail">
             <view class="change">
-                <image src="/static/images/icon_page/ic_qh.png" />切换
+                <image src="/static/images/icon_page/ic_qh.png" /><view class="span">切换</view>
             </view>
             <view class="headImg" style="height:52rpx"></view>
             <view class="headImg">

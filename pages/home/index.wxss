@@ -24,6 +24,12 @@
     width: auto;
     height: 28rpx;
     line-height: 28rpx;
+    font-size: 28rpx;
+}
+
+.detail>.change>.span {
+    line-height: 30rpx;
+    float: right;
 }
 
 .detail>.change>image {

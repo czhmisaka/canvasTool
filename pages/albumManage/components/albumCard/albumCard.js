@@ -57,14 +57,14 @@ Component({
     eventBtn: function (e) {
       let that = this
       let {
-        type, // 1 已发布，0未发布
+        type, // true 已发布，false未发布
         photoid
       } = e.currentTarget.dataset
-      if (type == 1) {
+      if (type) {
         wx.navigateTo({
           url: '/pages/canvas/index?id='+this.properties.data.id
         });
-      } else if (type == 0) {
+      } else {
         util.request({
           url: '/photo/publish',
           data: {

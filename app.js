@@ -7,7 +7,6 @@ const {
 //   promisifyAll,
 //   promisify
 // } = require('miniprogram-api-promise')
-const wxp = {}
 // 将wx的api proimse化
 // promisifyAll(wx, wxp)
 //app.js
@@ -20,7 +19,8 @@ App({
     config: config,
     shopInfo: null,
     ossEnv: {},
-    refreshHome: true
+    refreshHome: false,
+    ossEnv: {}
   },
   ...tools,
   onLaunch: function () {
@@ -47,18 +47,18 @@ App({
     })
 
     // 图片上传环境
-    let checkToken = setInterval(() => {
-      if (this.globalData.accessToken) {
-        clearInterval(checkToken)
-        utils.request({
-          url: '/account/oss/getSign',
-          method: 'get'
-        }).then((res) => {
-          this.globalData.ossEnv = res.data
-          // console.log('a',this.globalData.ossEnv)
-        })
-      }
-    }, 300)
+    // let checkToken = setInterval(() => {
+    //   if (this.globalData.accessToken) {
+    //     clearInterval(checkToken)
+    //     utils.request({
+    //       url: '/account/oss/getSign',
+    //       method: 'get'
+    //     }).then((res) => {
+    //       this.globalData.ossEnv = res.data
+    //       // console.log('a',this.globalData.ossEnv)
+    //     })
+    //   }
+    // }, 300)
 
     // 登录
     wx.login({
@@ -99,7 +99,7 @@ App({
   setStorage: function () {
     wx.setStorageSync('globalData', this.globalData)
   },
-  getGlobalDataStorage: function () {
+  getGlobalDataStorage: function () { // 缓存机制需要修改
     if (wx.getStorageSync('globalData'))
       this.globalData = wx.getStorageSync('globalData');
   }

@@ -9,16 +9,14 @@
     <view class="subTitle">
         <view class="moveBottombar"
             style="{{'width:'+selectType.len*28+'rpx;margin-left:calc('+selectType.left+'px - 1em)'}}"></view>
-        <view class="type {{selectType.index==index?'highLight':''}}" data-index="{{0}}" bindtap="switchSubtitle"
-            wx:key="*this" style="margin:0px 30rpx">
+        <view class="type {{selectType.index==0?'highLight':''}}" data-index="{{0}}" bindtap="switchSubtitle"
+            style="margin:0px 30rpx">
             全部
         </view>
-        <view class="type {{selectType.index==index?'highLight':''}}" data-index="{{1}}" bindtap="switchSubtitle"
-            wx:key="*this">
+        <view class="type {{selectType.index==1?'highLight':''}}" data-index="{{1}}" bindtap="switchSubtitle">
             未发布<span class="red">{{}}</span>
         </view>
-        <view class="type {{selectType.index==index?'highLight':''}}" data-index="{{2}}" bindtap="switchSubtitle"
-            wx:key="*this">
+        <view class="type {{selectType.index==2?'highLight':''}}" data-index="{{2}}" bindtap="switchSubtitle">
             已发布
         </view>
 

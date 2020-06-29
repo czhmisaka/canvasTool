@@ -19,9 +19,11 @@
     color: white;
     font-weight: 400;
 }
-.gray{
-    background-color: rgba(0,0,0,0.3);
+
+.gray {
+    background-color: rgba(0, 0, 0, 0.3);
 }
+
 .show {
     opacity: 1;
 }
@@ -40,7 +42,7 @@
     width: 100%;
 }
 
-image {
+.imageBox>.image {
     width: 100%;
     height: auto;
 }
