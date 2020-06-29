@@ -1,4 +1,5 @@
-const config = require('../config/config.js')
+const config = require('../config/config.js');
+// const { promises } = require('fs');
 
 //检测是否获取到uid
 const checkoutUidStatus = async function checkoutUidStatus(callback, loginStatus = true) {
@@ -47,10 +48,17 @@ const cleanGlobalData = async function refreshGlobalData(callback) {
 const toLoginPage = () => {
     let page = getCurrentPages()
     let lastPage = page[page.length - 1]
+    console.log(lastPage.route)
     if (lastPage.route != 'pages/login/index') return wx.reLaunch({
         url: '/pages/login/index'
     });
 }
+
+// const uploadImage =(imageList)=>{
+//     return new Promise((resolve, reject) => {
+        
+//     })
+// }
 
 module.exports = {
     checkoutUidStatus,

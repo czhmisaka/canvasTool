@@ -2,7 +2,7 @@
 
 <view class="ablumCard">
     <view class="view photoBox">
-        <view class="image" wx:for="{{photoList}}" wx::key="*this">
+        <view class="image" wx:for="{{photoList}}" wx:key="*this">
             <image mode="aspectFill" src="{{item}}"/>
         </view>
         <view class="right">
@@ -20,10 +20,10 @@
     </view>
     <view class=" view statusBox">
         <view class="leftBox">
-            {{photo.photoShow==1?'所有人可见':'仅自己可见'}}
+            {{publish?'所有人可见':'仅自己可见'}}
         </view>
-        <view class="shareBtn" bindtap="eventBtn" data-type="{{photo.photoShow}}">
-            {{photo.photoShow==1?'分享':'发布到相册'}}
+        <view class="shareBtn" bindtap="eventBtn" data-type="{{data.photoShow}}" data-photoid="{{data.id}}">
+            {{publish?'分享':'发布到相册'}}
         </view>
     </view>
 </view>

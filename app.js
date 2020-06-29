@@ -13,6 +13,15 @@ const wxp = {}
 //app.js
 
 App({
+  globalData: {
+    accessToken: null,
+    userInfo: null,
+    code: null,
+    config: config,
+    shopInfo: null,
+    ossEnv: {},
+    refreshHome: true
+  },
   ...tools,
   onLaunch: function () {
     // 检查小程序版本
@@ -36,6 +45,20 @@ App({
         console.log(err);
       }
     })
+
+    // 图片上传环境
+    let checkToken = setInterval(() => {
+      if (this.globalData.accessToken) {
+        clearInterval(checkToken)
+        utils.request({
+          url: '/account/oss/getSign',
+          method: 'get'
+        }).then((res) => {
+          this.globalData.ossEnv = res.data
+          // console.log('a',this.globalData.ossEnv)
+        })
+      }
+    }, 300)
 
     // 登录
     wx.login({
@@ -79,12 +102,5 @@ App({
   getGlobalDataStorage: function () {
     if (wx.getStorageSync('globalData'))
       this.globalData = wx.getStorageSync('globalData');
-  },
-  globalData: {
-    accessToken: null,
-    userInfo: null,
-    code: null,
-    config: config,
-    shopInfo: null
   }
 })

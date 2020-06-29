@@ -1,3 +1,5 @@
+const util = require("../../../../utils/util")
+
 // pages/albumManage/components/albumCard/albumCard.js
 Component({
   /**
@@ -19,7 +21,8 @@ Component({
   data: {
     price: 0,
     photoList: [],
-    photoNum: 0
+    photoNum: 0,
+    publish: false
   },
 
   /**
@@ -47,17 +50,38 @@ Component({
       this.setData({
         photoList,
         price,
-        photoNum
+        photoNum,
+        publish: (data.photoShow == 1)
       })
     },
     eventBtn: function (e) {
+      let that = this
       let {
-        type // 1 已发布，0未发布
+        type, // 1 已发布，0未发布
+        photoid
       } = e.currentTarget.dataset
       if (type == 1) {
         wx.navigateTo({
-          url: '/pages/canvasTest/index'
+          url: '/pages/canvas/index?id='+this.properties.data.id
         });
+      } else if (type == 0) {
+        util.request({
+          url: '/photo/publish',
+          data: {
+            photoIds: [photoid],
+            labelIds: [1]
+          }
+        }).then((res) => {
+          if (res.data) {
+            that.setData({
+              publish: true
+            })
+            wx.showToast({
+              title: '发布成功',
+              icon: 'success',
+            });
+          }
+        })
       }
     }
   }

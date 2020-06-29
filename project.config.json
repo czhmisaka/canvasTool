@@ -23,7 +23,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -63,7 +63,7 @@
 				{
 					"id": 0,
 					"name": "canvas Test",
-					"pathName": "pages/canvasTest/index",
+					"pathName": "pages/canvas/index",
 					"query": "",
 					"scene": null
 				},
@@ -92,6 +92,14 @@
 					"id": -1,
 					"name": "相册管理页面",
 					"pathName": "pages/albumManage/albumManageMain/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "添加一个新的相册",
+					"pathName": "pages/albumManage/newAlbum/index",
+					"query": "",
 					"scene": null
 				}
 			]

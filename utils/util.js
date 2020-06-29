@@ -54,7 +54,6 @@ let request = obj => {
 
   })
 }
-
 let toLogin = () => {
   try {
     getApp().cleanGlobalData()
@@ -63,25 +62,6 @@ let toLogin = () => {
     return getApp().toLoginPage()
   }
 }
-
-
-let uploadAudio = (obj, callback, msg_fail_callback) => {
-  const MY_NAMESPACE = '1b671a64-40d5-491e-99b0-da01ff5f3341';
-  let fileName = uuidv5(get_random() + obj.uid + Date.now().toString(), MY_NAMESPACE);
-  //获取文件后缀
-  let fileExt = obj.tmpFilePath.replace(/.+\./, "");
-  let key = obj.catalog + '/messages' + '/' + obj.roomId + '/' + obj.uid + '/' + fileName + '.' + fileExt
-  cos.postObject({
-    Bucket: config.bucket,
-    Region: config.region,
-    Key: key,
-    FilePath: obj.tmpFilePath,
-  }, function (err, data) {
-    if (err) return msg_fail_callback && msg_fail_callback()
-    callback && callback('https://' + data.Location, obj.duration)
-  })
-}
-
 let uploadPhoto = (obj, callback, msg_fail_callback) => {
   if (obj.index === obj.tmpFilePath.length) return
   const MY_NAMESPACE = '1b671a64-40d5-491e-99b0-da01ff5f3341';
@@ -190,7 +170,6 @@ function checkVersion() {
     })
   })
 }
-
 module.exports = {
   checkVersion,
   get_random,
@@ -200,6 +179,5 @@ module.exports = {
   formatTime,
   handleNewsNum,
   uploadPhoto,
-  uploadAudio,
   formatTime: formatTime
 }

@@ -33,14 +33,17 @@ Page({
     let times = 10
     let time = setInterval(() => {
       if (app.globalData.accessToken || times < 0) {
-        if (!app.globalData.shopInfo) return app.toLoginPage()
+        if (!app.globalData.shopInfo) {
+          clearInterval(time)
+          return app.toLoginPage()
+        }
         that.setData({
           shopDetail: app.globalData.shopInfo,
           storeVo: app.globalData.shopInfo.storeVo
         })
         setTimeout(() => {
           this.getFastMsg()
-        }, 100)
+        }, 300)
         clearInterval(time)
       } else {
         times--
@@ -78,11 +81,13 @@ Page({
   },
   onReady: function () {},
   onShow: function () {
-    // this.selectComponent('#fall').getMore()
     let comp = this.selectComponent('#fall')
     if (comp.data.rightLine) {
       console.log(comp.data.rightLine)
     }
+    // if(app.globalData.refreshHome){
+    //   console.log('a',comp.data)
+    // }
   },
   onHide: function () {},
   onUnload: function () {},

@@ -2,6 +2,7 @@
 const app = getApp()
 const util = require('../../../utils/util.js')
 let swiperLock = false
+let swiperChangeLock = false
 Page({
 
   // 数据
@@ -23,7 +24,6 @@ Page({
 
   // 页面切换
   swiperChaneg(e) {
-    console.log(e.detail)
     this.switchSubtitle(e.detail.current)
   },
   // 页面切换
@@ -32,6 +32,7 @@ Page({
     if (e.currentTarget) {
       e = e.currentTarget.dataset.index
     }
+    if (e === that.data.selectType.index) return
     let node = wx.createSelectorQuery()
     node.selectAll('.type').boundingClientRect()
     node.exec((res) => {
@@ -56,9 +57,7 @@ Page({
     if (swiperLock) return
     swiperLock = true
     let that = this
-    console.log(that.data.selectType.index)
     let photoShow = that.data.selectType.index != 0 ? that.data.selectType.index - 1 : ''
-    console.log('asd', photoShow)
     util.request({
       url: '/photo/list',
       data: {
@@ -82,6 +81,19 @@ Page({
     })
   },
 
+  //简化跳转逻辑
+  navTo(e) {
+    let {
+      url,
+      query
+    } = e.currentTarget.dataset
+    if (query) {
+      url = url + query
+    }
+    wx.navigateTo({
+      url: url
+    });
+  },
 
   // 初始化函数
   initFn() {
@@ -89,6 +101,15 @@ Page({
   },
   onLoad: function (options) {
     this.initFn()
+    util.request({
+      url: '/customer/label/list',
+      data: {
+        id: app.globalData.shopInfo.storeVo.id
+      }
+    }).then(res => {
+      res = res.data
+      console.log(res)
+    })
   },
   onReady: function () {},
   onShow: function () {},

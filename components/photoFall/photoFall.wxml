@@ -6,7 +6,7 @@
     </view>
     <card class="photoBox" wx:for="{{line}}" photo="{{item}}" wx:key="*this"></card> -->
     <view class="line leftLine" id="l">
-        <view class="add">
+        <view class="add" bindtap="toAdd">
             <image src="/static/images/icon_page/ic_tjtpsp.png" />
         </view>
         <photoBox class="photoBox" wx:for="{{leftLine}}" id="{{'l'+index}}" index="{{index}}" photo="{{item}}" wx:key="*this"></photoBox>

@@ -35,6 +35,13 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    // 去添加新相册
+    toAdd: function () {
+      wx.navigateTo({
+        url: '/pages/albumManage/newAlbum/index'
+      });
+    },
+    // 下拉加载预置
     getMore: function () {
       if (!finish) return wx.showToast({
         title: '再滑也没有啦！',
@@ -44,9 +51,8 @@ Component({
       });
       this.getPhotoList(page)
     },
+    // 数据获取
     getPhotoList: function (num) {
-
-
       if (!open) return;
       if (!finish) return;
       open = false
@@ -61,7 +67,7 @@ Component({
         }).then((res) => {
           if (res.data.pages === page)
             finish = false
-            page++
+          page++
           let {
             data
           } = this.data
@@ -75,21 +81,7 @@ Component({
         })
       }
     },
-    // calcHeight: function (data) {
-    //   let leftLine = [],
-    //     rightLine = []
-    //   data.forEach((item, index) => {
-    //     if (this.compareAndFix()) {
-    //       leftLine.push(item)
-    //     } else {
-    //       rightLine.push(item)
-    //     }
-    //   })
-    //   this.setData({
-    //     leftLine,
-    //     rightLine
-    //   })
-    // },
+    // 比对左右高度并填充数据
     compareAndFix: function (e) {
       var that = this
       let {
@@ -102,7 +94,6 @@ Component({
       query.select('#l').boundingClientRect()
       query.select('#r').boundingClientRect()
       query.exec(function (res) {
-
         if (res[0].height < res[1].height) {
           leftLine.push(data[index])
         } else {

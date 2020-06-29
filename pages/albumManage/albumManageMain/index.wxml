@@ -35,4 +35,15 @@
             </block>
         </swiper>
     </view>
+    <view class="bottomBtnList">
+        <view class="button" bindtap="navTo" data-url="../newAlbum/index">
+            添加
+        </view>
+        <view class="button">
+            批量选择
+        </view>
+        <view class="button black">
+            分享档口
+        </view>
+    </view>
 </view>

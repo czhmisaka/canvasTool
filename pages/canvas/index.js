@@ -1,5 +1,6 @@
 //index.js
 
+
 Page({
   data: {
     painting: {},
@@ -14,8 +15,17 @@ Page({
       qrCodeSub: '长按识别二维码'
     }
   },
-  onLoad() {
-    this.eventDraw()
+  onLoad(options) {
+    console.log(options.id)
+    if (options.id) {
+
+      this.eventDraw()
+    } else {
+      wx.navigateBack({
+        delta: 1 //返回的页面数，如果 delta 大于现有页面数，则返回到首页,
+      });
+    }
+    
   },
   eventDraw() {
     wx.showLoading({
@@ -71,7 +81,7 @@ Page({
           {
             type: 'image',
             url: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=810988444,1648289218&fm=11&gp=0.jpg',
-            top:415,
+            top: 415,
             left: 240,
             width: 80,
             height: 80
