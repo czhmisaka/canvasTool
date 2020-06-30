@@ -8,7 +8,8 @@
     "pages/login/index",
     "pages/albumManage/albumManageMain/index",
     "pages/albumManage/newAlbum/index",
-    "pages/albumManage/findGoods/index"
+    "pages/albumManage/findGoods/index",
+    "pages/albumManage/findGoods/GoodsDetail/index"
   ],
   "tabBar": {
     "color": "#B3B6BF",

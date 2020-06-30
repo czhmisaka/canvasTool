@@ -1,0 +1,53 @@
+<!--pages/albumManage/findGoods/GoodsDetail/index.wxml-->
+
+<view class="body">
+    <view class="section">
+        <view class="navToBox">
+            <view class="left icon1">
+                <image src="/static/images/icon_page/ic_hh.png" />
+            </view>
+            <view class="left noMarginLeft">货号<span class="grayWord">(必填)</span></view>
+            <input class="right gray" bindinput="inputType" value="{{goodsDetail.goodsSerial}}"
+                placeholder="{{goodsDetail.goodsSerial}}" />
+        </view>
+    </view>
+    <view class="section">
+        <view class="navToBox">
+            <view class="left icon1">
+                <image src="/static/images/icon_page/ic_pl.png" />
+            </view>
+            <view class="left noMarginLeft">品类</view>
+            <view class="right icon">
+                <image src="/static/images/icon_page/ic_xy.png" />
+            </view>
+            <view class="right MarginRight12 gray">{{goodsDetail.goodsClassName?goodsDetail.goodsClassName:noChoice}}
+            </view>
+        </view>
+    </view>
+    <view class="section" bindtap="letCusCheck">
+        <view class="navToBox">
+            <view class="left icon1">
+                <image src="/static/images/icon_page/ic_cm.png" />
+            </view>
+            <view class="left noMarginLeft">尺码</view>
+            <view class="right icon">
+                <image src="/static/images/icon_page/ic_xy.png" />
+            </view>
+            <view class="right MarginRight12 gray">{{size?size:noChoice}}</view>
+        </view>
+    </view>
+    <view class="section">
+        <view class="navToBox">
+            <view class="left icon1">
+                <image src="/static/images/icon_page/ic_ys.png" />
+            </view>
+            <view class="left noMarginLeft">颜色</view>
+            <view class="right icon">
+                <image src="/static/images/icon_page/ic_xy.png" />
+            </view>
+            <view class="right MarginRight12 gray">{{color?color:noChoice}}</view>
+        </view>
+    </view>
+</view>
+
+<cusShowToast checkData="{{checkData}}" bind:returnBack="setCheck" letCusCheck="{{checkStatus}}"></cusShowToast>

@@ -103,6 +103,20 @@
 					"pathName": "pages/albumManage/newAlbum/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "关联商品",
+					"pathName": "pages/albumManage/findGoods/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 7,
+					"name": "商品详情-通过id获取",
+					"pathName": "pages/albumManage/findGoods/GoodsDetail/index",
+					"query": "id=1262936181228814338",
+					"scene": null
 				}
 			]
 		}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "关联商品",
+  "usingComponents": {
+    "cusShowToast": "../../components/customCheckToast/customCheckToast"
+  }
+}

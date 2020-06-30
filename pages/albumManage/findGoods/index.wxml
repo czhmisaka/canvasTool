@@ -1,2 +1,21 @@
 <!--pages/albumManage/findGoods/index.wxml-->
-<text>pages/albumManage/findGoods/index.wxml</text>
+<view>
+    <view class="search">
+        <view class="icon">
+            <image mode="widthFix" src="/static/images/icon_page/ic_ss.png" />
+        </view>
+        <input type="text" placeholder="搜索内容" value="{{searchValue}}" bindconfirm="searchStart"
+            bindinput="searchInput"></input>
+        <view class="word">筛选</view>
+    </view>
+    <scroll-view class="goodsList">
+        <view wx:for="{{goodsList}}" wx:key="*this" class="goods">
+            <view wx:if="{{item.goodsSerial}}" bindtap="navTo" data-url="{{'GoodsDetail/index?id='+item.goodsId}}">
+                {{item.goodsSerial}}
+            </view>
+            <view wx:if="{{item.classId}}">
+                {{item.className}}
+            </view>
+        </view>
+    </scroll-view>
+</view>

@@ -1,0 +1,13 @@
+<!--pages/albumManage/components/customCheckToast/customCheckToast.wxml-->
+<view class="mainBox">
+    <view class="MainCheckBox">
+        <view class="title">
+            <view class="cancel" bindtap="cancel">取消</view>
+            <view class="word">{{"请选择"+title}}</view>
+            <view class="confirm">确认</view>
+        </view>
+        <view class="tabBox">
+            <view class="add">{{"添加"+title}}</view>
+        </view>
+    </view>
+</view>

@@ -1,66 +1,49 @@
 // pages/albumManage/findGoods/index.js
+const app = getApp()
+const util = require('../../../utils/util.js')
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    searchValue: '',
+    goodsList: [], // 商品列表
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  // 绑定搜索框输入
+  searchInput(e) {
+    this.setData({
+      searchValue: e.detail.value
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  // 回车搜索
+  searchStart(e) {
+    util.request({
+      url: '/photo/serial',
+      data: {
+        id: this.data.searchValue,
+        storeId: app.globalData.shopInfo.storeVo.id
+      }
+    }).then((res) => {
+      res = res.data
+      this.setData({
+        goodsList: res
+      })
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  // 通用跳转
+  navTo(e) {
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+  onLoad: function (options) {},
+  onReady: function () {},
+  onShow: function () {},
+  onHide: function () {},
+  onUnload: function () {},
+  onPullDownRefresh: function () {},
+  onReachBottom: function () {},
+  onShareAppMessage: function () {},
+  onReachBottom: function () {}
 })

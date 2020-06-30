@@ -7,13 +7,14 @@
 }
 
 .search>input {
-    width: 602rpx;
+    width: calc(602rpx - 2em);
     height: 54rpx;
     margin: 20rpx 0px;
     margin-left: 34rpx;
     border-radius: 28rpx;
     text-align: left;
-    text-indent: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
     background-color: #F0F0F0;
     font-weight: 400;
     color: rgba(153, 153, 153, 1);
@@ -21,6 +22,7 @@
     font-family: PingFangSC-Regular, PingFang SC;
     float: left;
 }
+
 .search>.word {
     margin: 34rpx 24rpx;
     font-size: 28rpx;

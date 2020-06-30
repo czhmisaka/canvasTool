@@ -1,1 +1,72 @@
 /* pages/albumManage/findGoods/index.wxss */
+
+
+.search {
+    width: 100%;
+    height: 96rpx;
+}
+
+.search>input {
+    width: calc(602rpx - 4em);
+    height: 54rpx;
+    margin: 20rpx 0px;
+    margin-left: 34rpx;
+    border-radius: 28rpx;
+    text-align: left;
+    padding-left: 2.5em;
+    padding-right: 1em;
+    /* text-indent: 28rpx; */
+    background-color: #F0F0F0;
+    font-weight: 400;
+    color: rgba(153, 153, 153, 1);
+    font-size: 24rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    float: left;
+}
+
+.icon {
+    width: 28rpx;
+    height: 28rpx;
+    position: absolute;
+    margin-top: 27rpx;
+    margin-left: 52rpx;
+
+}
+
+.icon>image {
+    width: 100%;
+    height: 100%;
+}
+
+.search>.word {
+    margin: 34rpx 24rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(33, 55, 61, 1);
+    float: left;
+    line-height: 28rpx;
+    height: 28rpx;
+}
+
+.goodsList {
+    background: rgba(247, 248, 250, 1);
+    width: 100%;
+    height: calc(100vh - 96rpx);
+    padding-top: 0rpx;
+}
+
+.goods {
+    width: 710rpx;
+    height: 110rpx;
+    line-height: 110rpx;
+    text-align: center;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 8rpx;
+    margin: 20rpx;
+    display: flex;
+    justify-content: center;
+}
+.goods>view{
+    padding: 0px 10rpx;
+}   

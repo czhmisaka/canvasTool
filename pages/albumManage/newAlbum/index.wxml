@@ -20,7 +20,7 @@
     </view>
 
     <view class="section">
-        <view class="navToBox" bindtap="navTo" data-url="../">
+        <view class="navToBox" bindtap="navTo" data-url="../findGoods/index">
             <view class="left">关联商品</view>
             <view class="right icon">
                 <image src="/static/images/icon_page/ic_xy.png" />

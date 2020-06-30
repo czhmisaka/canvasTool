@@ -1,0 +1,83 @@
+/* pages/albumManage/findGoods/GoodsDetail/index.wxss */
+
+.body {
+    background-color: #F7F8FA;
+    width: 100vw;
+    height: 100vh;
+}
+
+.section {
+    width: 100%;
+    background-color: white;
+    height: auto;
+    display: inline-block;
+    margin-bottom: -10rpx;
+}
+
+.navToBox {
+    width: 682rpx;
+    height: 110rpx;
+    background-color: white;
+    line-height: 110rpx;
+    margin-left: 34rpx;
+    border-bottom: 1rpx #E6E6E6 solid;
+}
+
+.navToBox>.left {
+    margin-left: 34rpx;
+    float: left;
+    font-size: 32rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(61, 61, 61, 1);
+}
+
+.navToBox>.right {
+    float: right;
+    /* margin-right: 34rpx; */
+    color: #666;
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+}
+
+.navToBox>input {
+    height: 30rpx;
+    text-align: right;
+    margin-top: 30rpx;
+}
+
+.navToBox>.icon {
+    width: 14rpx;
+    height: 26rpx;
+    line-height: 115rpx;
+}
+
+.navToBox>.icon1 {
+    width: 40rpx;
+    height: 40rpx;
+    margin: 35rpx 16rpx 0rpx 0rpx;
+    line-height: 0px;
+}
+
+.navToBox>.noMarginLeft {
+    margin-left: 0rpx;
+}
+
+.navToBox>.MarginRight12 {
+    margin-right: 12rpx;
+}
+
+.icon>image {
+    width: 100%;
+    height: 100%;
+}
+
+.icon1>image {
+    width: 100%;
+    height: 100%;
+}
+
+.grayWord {
+    color: #999;
+}
