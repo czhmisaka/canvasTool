@@ -22,7 +22,6 @@ const checkoutUidStatus = async function checkoutUidStatus(callback, loginStatus
     } else {
         callback && callback()
     }
-
 }
 
 // 清空缓存（待完善）
@@ -48,7 +47,6 @@ const cleanGlobalData = async function refreshGlobalData(callback) {
 const toLoginPage = () => {
     let page = getCurrentPages()
     let lastPage = page[page.length - 1]
-    console.log(lastPage.route)
     if (lastPage.route != 'pages/login/index') return wx.reLaunch({
         url: '/pages/login/index'
     });

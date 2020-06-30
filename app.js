@@ -46,19 +46,6 @@ App({
       }
     })
 
-    // 图片上传环境
-    // let checkToken = setInterval(() => {
-    //   if (this.globalData.accessToken) {
-    //     clearInterval(checkToken)
-    //     utils.request({
-    //       url: '/account/oss/getSign',
-    //       method: 'get'
-    //     }).then((res) => {
-    //       this.globalData.ossEnv = res.data
-    //       // console.log('a',this.globalData.ossEnv)
-    //     })
-    //   }
-    // }, 300)
 
     // 登录
     wx.login({

@@ -30,21 +30,26 @@ let request = obj => {
       },
       method: obj.method || 'post',
       success(res) {
-        if (res.statusCode == 200) {
-          if (res.header.Authorization) {
-            resolve(res)
-          }
-          if (res.data.code == 403) {
-            toLogin()
-          }
-          if (res.data.errno == 501) {
-            toLogin()
-          }
-          resolve(res.data)
-        } else {
-          toLogin()
+        switch (res.statusCode) {
+          case 200:
+            if (res.header.Authorization) {
+              resolve(res)
+            }
+            if (res.data.code == 403) {
+              toLogin()
+            }
+            if (res.data.errno == 501) {
+              toLogin()
+            }
+            resolve(res.data)
+            break;
+          case 503:
+            return wx.showToast({
+              title: '系统开小差了',
+              icon: 'none',
+            });
         }
-        reject(res.errMsg)
+
       },
       fail(err) {
         reject(err)

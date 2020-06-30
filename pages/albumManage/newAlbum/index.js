@@ -1,7 +1,8 @@
 // pages/albumManage/newAlbum/index.js
 
 const uploadImage = require('../../../utils/js/uploadImg.js');
-const utils = require('../../../utils/util.js')
+const utils = require('../../../utils/util.js');
+const util = require('../../../utils/util.js');
 const app = getApp()
 let times = 0
 Page({
@@ -11,13 +12,22 @@ Page({
    */
   data: {
     imageList: [],
-    word: ''
+    word: '',
+    goodsList: [],
+    goodsSerial: "",
+    albumData: {},
+    pageType: 0, // 0 新建 , 1 编辑 
+    id: ''
   },
+
+  // 绑定输入
   typing: function (e) {
     this.setData({
       word: e.detail.value
     })
   },
+
+  // 选择图片
   chooseImg: function (e) {
     wx.chooseImage({
       count: (20 - this.data.imageList.length) > 9 ? '9' : (20 - this.data.imageList.length),
@@ -44,6 +54,8 @@ Page({
       }
     });
   },
+
+  // 删除
   delete: function (e) {
     let {
       index
@@ -56,6 +68,8 @@ Page({
       imageList
     })
   },
+
+  // 上传图片预处理 -- 新建
   submit: function (e) {
     let that = this
     let {
@@ -73,6 +87,8 @@ Page({
     });
     that.upload(imageList)
   },
+
+  // 上传图片
   upload(imageList, imageSrcList = []) {
     let that = this
     if (imageSrcList == []) {
@@ -96,6 +112,8 @@ Page({
       }
     })
   },
+
+  // 提交请求 -需要上传完图片后操作
   addPhoto: function (imageSrcList) {
     let photoImageMore = ''
     imageSrcList.forEach((item, index) => {
@@ -137,7 +155,60 @@ Page({
       }
     })
   },
-  onLoad: function (options) {},
+
+  // 删除 编辑状态中
+  deleteAlbum: function () {
+    util.request({
+      url: 'photo/del',
+      data: [this.data.id]
+    }).then(res => {
+      console.log(res)
+    })
+  },
+
+  // 图片相册处理
+  imageAlbumInitFn: function (data) {
+    this.setData({
+      albumData: data,
+      goodsSerial: data.goodsSerial,
+      imageList: data.photoImageMore.split(','),
+      word: data.photoDesc
+    })
+  },
+
+  // 视频相册处理
+  videoAlbumInitFn: function (data) {},
+
+  // 获取相册详情
+  getAlbumDetial: function (id) {
+    this.setData({
+      pageType: 1,
+      id
+    })
+    utils.request({
+      url: '/photo/' + id,
+      method: 'get'
+    }).then((res) => {
+      if (res.data.photoImage) {
+        this.imageAlbumInitFn(res.data)
+      }
+    })
+  },
+
+  // 通用跳转函数
+  navTo: function (e) {
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url
+    });
+  },
+
+
+  onLoad: function (options) {
+    // 判断页面状态
+    if (options.id) {
+      this.getAlbumDetial(options.id)
+    }
+  },
   onReady: function () {},
   onShow: function () {},
   onHide: function () {},

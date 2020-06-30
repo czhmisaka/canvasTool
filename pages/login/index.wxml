@@ -9,6 +9,7 @@
     <view class="{{type=='check'?'show':'hidden'}}">
         <button open-type="getPhoneNumber" class="buttonBox" wx:if="{{type==='check'}}"
             bindgetphonenumber="loginWithWx">
+            
         <!-- <button open-type="getUserInfo" class="buttonBox" wx:if="{{type==='check'}}" bindgetuserinfo="loginWithWx"> -->
 
             <view class="icon" style="width:40rpx;height:33rpx">

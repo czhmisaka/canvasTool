@@ -7,6 +7,25 @@
     border-radius: 16rpx;
 }
 
+.transition {
+    transition: ease-in-out 0.5s;
+}
+
+.icon_check {
+    width: 0px;
+    height: 0px;
+    margin-left: 750rpx;
+}
+
+.icon_check>image {
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.check {
+    /* margin-left: -50px; */
+}
+
 .ablumCard>.view {
     width: 100%;
     height: auto;
@@ -63,7 +82,7 @@
 }
 
 
-.infoBox {
+.ablumCard>.infoBox {
     height: 28rpx;
     font-size: 28rpx;
     font-family: PingFangSC-Regular, PingFang SC;
@@ -73,6 +92,12 @@
     margin-top: 4rpx;
     padding-bottom: 24rpx;
     border-bottom: 1rpx #E6E6E6 solid;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    width: calc(100% - 24rpx);
+    overflow: hidden;
 }
 
 .red {

@@ -19,18 +19,18 @@ Component({
    */
   data: {
     show: false,
-    number:0
+    number: 0
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    getNumber:function(){
-      if(this.properties.photo.photoImageMore){
+    getNumber: function () {
+      if (this.properties.photo.photoImageMore) {
         let number = this.properties.photo.photoImageMore.split(',')
         this.setData({
-          number:number.length
+          number: number.length
         })
       }
     },
@@ -41,7 +41,11 @@ Component({
           show: true
         })
       }, this.properties.index * 100)
-
     },
+    toDetail: function (e) {
+      wx.navigateTo({
+        url: '/pages/albumManage/newAlbum/index?id='+this.properties.photo.id
+      });
+    }
   }
 })

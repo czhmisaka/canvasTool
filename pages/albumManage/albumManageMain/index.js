@@ -18,7 +18,13 @@ Page({
       [],
       [],
       []
-    ]
+    ],
+    checkIndex: [
+      [],
+      [],
+      []
+    ], // 记录选择用表
+    checkMore: [false, false, false],
   },
   watch: {},
 
@@ -33,6 +39,7 @@ Page({
       e = e.currentTarget.dataset.index
     }
     if (e === that.data.selectType.index) return
+    this.offCheck()
     let node = wx.createSelectorQuery()
     node.selectAll('.type').boundingClientRect()
     node.exec((res) => {
@@ -69,10 +76,14 @@ Page({
     }).then((res) => {
       res = res.data
       let {
-        data
+        data,
+        checkIndex
       } = that.data
       res.data.forEach((item) => {
         data[that.data.selectType.index ? that.data.selectType.index : 0].push(item)
+        checkIndex[that.data.selectType.index ? that.data.selectType.index : 0].push({
+          checkIndex: false
+        })
       })
       that.setData({
         data: data
@@ -95,10 +106,57 @@ Page({
     });
   },
 
+  // 批量选择 -状态切换
+  checkMoreStatusChange() {
+    let {
+      checkMore
+    } = this.data
+    checkMore[this.data.selectType.index] = !checkMore[this.data.selectType.index]
+    this.setData({
+      checkMore
+    })
+  },
+
+  // 批量选择 -选中某个元素
+  changeCheck(e) {
+    console.log(e)
+    let {
+      type
+    } = e.detail
+    let {
+      id
+    } = e.currentTarget
+    let {
+      checkIndex
+    } = this.data
+    checkIndex[this.data.selectType.index ? this.data.selectType.index : 0][id].checkIndex = !type
+    this.setData({
+      checkIndex
+    })
+  },
+
+  // 关闭批量选择
+  offCheck(e) {
+    let {
+      checkIndex
+    } = this.data
+    checkIndex.forEach(res => {
+      res.forEach(item => {
+        item.checkIndex = false
+      })
+    })
+    this.setData({
+      checkMore: [false, false, false],
+      checkIndex
+    })
+  },
+
   // 初始化函数
   initFn() {
     this.switchSubtitle(0)
   },
+
+
   onLoad: function (options) {
     this.initFn()
     util.request({
@@ -108,9 +166,9 @@ Page({
       }
     }).then(res => {
       res = res.data
-      console.log(res)
     })
   },
+
   onReady: function () {},
   onShow: function () {},
   onHide: function () {},

@@ -12,7 +12,11 @@ Component({
       observer: function () {
         this.initFn()
       }
-    }
+    },
+    id: Number,
+    check: Boolean, // 批量选择
+    checkindex: Boolean, // 是否选中
+    transitionMax: Number
   },
 
   /**
@@ -54,6 +58,24 @@ Component({
         publish: (data.photoShow == 1)
       })
     },
+
+    // 前往详情
+    toDetail: function (e) {
+      wx.navigateTo({
+        url: '/pages/albumManage/newAlbum/index?id=' + this.properties.data.id
+      });
+    },
+
+    changeCheck: function () {
+      
+      console.log(this.properties.transitionMax)
+      this.triggerEvent('changeCheck', {
+        type: this.properties.checkindex,
+        id: this.properties.id
+      })
+    },
+
+    // 按钮事件处理
     eventBtn: function (e) {
       let that = this
       let {
@@ -62,7 +84,7 @@ Component({
       } = e.currentTarget.dataset
       if (type) {
         wx.navigateTo({
-          url: '/pages/canvas/index?id='+this.properties.data.id
+          url: '/pages/canvas/index?id=' + this.properties.data.id
         });
       } else {
         util.request({

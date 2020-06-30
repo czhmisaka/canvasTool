@@ -2,7 +2,7 @@
 <view class="photo {{show?'':'gray'}}">
     <view class="{{show?'show':'hidden'}}">
         <view class="imageBox">
-            <image class="image" mode="widthFix" src="{{photo.photoImage}}" wx:if="{{photo.photoImage}}" bindload="loadOver" />
+            <image class="image" mode="widthFix" bindtap="toDetail" src="{{photo.photoImage}}" wx:if="{{photo.photoImage}}" bindload="loadOver" />
             <video class="widthFix" src="{{photo.photoVedio}}" wx:if="{{photo.photoVedio}}" />
             <view class="info">
                 <view class="icon" wx:if="{{!photo.photoImage}}">

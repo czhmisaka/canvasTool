@@ -20,17 +20,38 @@
     </view>
 
     <view class="section">
-        <view class="navToBox">
+        <view class="navToBox" bindtap="navTo" data-url="../">
             <view class="left">关联商品</view>
             <view class="right icon">
                 <image src="/static/images/icon_page/ic_xy.png" />
             </view>
+            <view class="right gray">{{goodsSerial}}</view>
+        </view>
+    </view>
+    <view class="section" wx:if="{{goodsSerial}}">
+        <view class="navToBox">
+            <view class="left">设置价格</view>
+            <view class="right icon">
+                <image src="/static/images/icon_page/ic_xy.png" />
+            </view>
+            <view class="right red">{{price}}</view>
         </view>
     </view>
 
-    <view class="bottomBtnList">
+    <view class="bottomBtnList" wx:if="{{pageType===0}}">
         <view class="longButton black" bindtap="submit">
             上传到相册
+        </view>
+    </view>
+    <view class="bottomBtnList" wx:if="{{pageType===1}}">
+        <view class="button" bindtap="deleteAlbum">
+            删除
+        </view>
+        <!-- <view class="button" bindtap="ChanegSubmit">
+            编辑
+        </view> -->
+        <view class="button black" bindtap="share">
+            分享
         </view>
     </view>
 </view>

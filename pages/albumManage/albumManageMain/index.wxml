@@ -1,47 +1,45 @@
 <!--pages/albumManage/alnumManageMain/index.wxml-->
 <view>
-    <!-- <navBarCustom page-name = '管理相册'></navBarCustom> -->
-    <view class="search">
-        <input type="text" placeholder="搜索内容"></input>
+    <!-- <navBarCustom page-name='管理相册'>
+        </navBarCustom>-->
+    <view class="search"><input type="text" placeholder="搜索内容"></input>
         <view class="word">筛选</view>
-
     </view>
     <view class="subTitle">
         <view class="moveBottombar"
             style="{{'width:'+selectType.len*28+'rpx;margin-left:calc('+selectType.left+'px - 1em)'}}"></view>
         <view class="type {{selectType.index==0?'highLight':''}}" data-index="{{0}}" bindtap="switchSubtitle"
-            style="margin:0px 30rpx">
-            全部
-        </view>
+            style="margin:0px 30rpx">全部 </view>
         <view class="type {{selectType.index==1?'highLight':''}}" data-index="{{1}}" bindtap="switchSubtitle">
-            未发布<span class="red">{{}}</span>
+            未发布<span class="red"> {{}}</span></view>
+        <view class="type {{selectType.index==2?'highLight':''}}" data-index="{{2}}" bindtap="switchSubtitle">已发布
         </view>
-        <view class="type {{selectType.index==2?'highLight':''}}" data-index="{{2}}" bindtap="switchSubtitle">
-            已发布
-        </view>
-
     </view>
     <view class="orderBox">
         <swiper current="{{selectType.index}}" bindchange="swiperChaneg" indicator-dots="{{false}}" autoplay="{{false}}"
             duration="{{400}}" class="swiper">
             <block wx:for="{{typeList}}" wx:key="id">
                 <swiper-item>
-                    <view class="scroll">
-                        <albumCard wx:for="{{data[index]}}" wx:key="id" data="{{item}}"></albumCard>
+                    <view class="scroll {{checkMore[selectType.index]?'check':''}}">
+                        <albumCard bind:changeCheck="changeCheck"
+                            checkindex="{{checkIndex[selectType.index][index].checkIndex}}" check="{{checkMore[selectType.index]}}"
+                            id="{{index}}" wx:for="{{data[index]}}"
+                            transitionMax="{{checkIndex[selectType.index].length}}" wx:key="*this" data="{{item}}">
+                        </albumCard>
+                        <!-- <albumCard bind:changeCheck="changeCheck"
+                            checkindex="{{checkIndex[selectType.index][index].checkIndex}}" id="{{index}}"
+                            wx:for="{{data[index]}}" transitionMax="{{checkIndex[selectType.index].length}}"
+                            wx:key="*this" data="{{item}}">
+                        </albumCard> -->
                     </view>
                 </swiper-item>
             </block>
         </swiper>
     </view>
     <view class="bottomBtnList">
-        <view class="button" bindtap="navTo" data-url="../newAlbum/index">
-            添加
+        <view class="button" bindtap="navTo" data-url="../newAlbum/index">添加 </view>
+        <view class="button {{checkMore[selectType.index]?'black':''}}" bindtap="checkMoreStatusChange">批量选择
         </view>
-        <view class="button">
-            批量选择
-        </view>
-        <view class="button black">
-            分享档口
-        </view>
+        <view class="button black">分享档口 </view>
     </view>
 </view>

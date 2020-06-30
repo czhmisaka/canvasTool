@@ -1,14 +1,19 @@
 <!--pages/albumManage/components/albumCard/albumCard.wxml-->
 
-<view class="ablumCard">
-    <view class="view photoBox">
+<view class="ablumCard {{check?'check':''}} {{transitionMax>30?'':'transition'}}">
+    <view class="icon_check" wx:if="{{check}}">
+    <!-- <view class="icon_check" wx:if="{{true}}"> -->
+        <image src="{{'/static/images/icon_page/'+(checkindex?'ic_chose_pre.png':'ic_chose.png')}}"
+            bindtap="changeCheck" />
+    </view>
+    <view class="view photoBox" bindtap="toDetail">
         <view class="image" wx:for="{{photoList}}" wx:key="*this">
-            <image mode="aspectFill" src="{{item}}"/>
+            <image mode="aspectFill" src="{{item}}" />
         </view>
         <view class="right">
             {{photoNum}}图
             <view class="icon">
-                <image src="/static/images/icon_page/ic_xy.png"/>
+                <image src="/static/images/icon_page/ic_xy.png" />
             </view>
         </view>
     </view>
@@ -18,7 +23,7 @@
         </span>
         {{data.photoDesc}}
     </view>
-    <view class=" view statusBox">
+    <view class="view statusBox">
         <view class="leftBox">
             {{publish?'所有人可见':'仅自己可见'}}
         </view>

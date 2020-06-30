@@ -41,7 +41,7 @@ Page({
       icon: 'none',
     });
   },
-
+  
   // 微信授权手机号登录
   loginWithWx(e) {
     this.checkFile()
@@ -121,6 +121,11 @@ Page({
                   url: '/pages/home/index'
                 });
               }
+            });
+          } else {
+            wx.showToast({
+              title: res.msg, //提示的内容,
+              icon: 'none', //图标,
             });
           }
         })
@@ -215,7 +220,8 @@ Page({
       checkFile: !this.data.checkFile
     })
   },
-  onLoad: function (options) {},
+  onLoad: function (options) {
+  },
   onReady: function () {},
   onShow: function () {},
   onHide: function () {},
