@@ -1,0 +1,139 @@
+/* pages/albumManage/components/customCheckToast/customCheckToast.wxss */
+
+.mainBox {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: all 0.2s;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+}
+
+.mainBox_then {
+    opacity: 1;
+}
+
+.touchBack {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: calc(100vh - 720rpx);
+    z-index: 10;
+}
+
+.mainCheckBox {
+    z-index: 100;
+    width: 100%;
+    height: 720rpx;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 16px 16px 0px 0px;
+    position: absolute;
+    bottom: -720rpx;
+}
+
+.mainCheckBox_then {
+    bottom: 0rpx;
+}
+
+.mainCheckBox>.title {
+    height: 104rpx;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1rpx rgba(0, 0, 0, 0.1) solid;
+}
+
+.title>.btn {
+    width: 2em;
+    height: 28rpx;
+    padding: 38rpx 34rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+}
+
+.gray {
+    color: #999;
+}
+
+.title>.word {
+    width: 12em;
+    height: 32rpx;
+    padding: 36rpx 0rpx;
+    text-align: center;
+}
+
+.tabBox {
+    width: calc(100% - 34rpx);
+    margin-left: 34rpx;
+    margin-top: 0rpx;
+    max-height: calc(720rpx - 104rpx - 40rpx);
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+}
+
+.tabBox>.barBox {
+    width: calc(100% - 68rpx);
+    height: auto;
+    display: inline-block;
+    line-height: 120rpx;
+    border-bottom: 1rpx rgba(0, 0, 0, 0.2) solid;
+}
+.tabBox>.barBox2{
+    width: calc(100% - 102rpx);
+    margin: 0px 34rpx;
+    height: 100rpx;
+    display: inline-block;
+    line-height: 100rpx;
+    border-bottom: none;
+}
+
+.barBox>.left {
+    float: left;
+}
+
+.barBox>.right {
+    float: right;
+}
+
+.barBox input {
+    width: auto;
+    height: 56rpx;
+    background: rgba(245, 245, 245, 1);
+    border-radius: 28rpx;
+    margin: 32rpx 0px;
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(61, 61, 61, 1);
+    padding: 0px 20rpx;
+    max-width: 200rpx;
+}
+.barBox2>input{
+    margin: 22rpx 0px ;
+    max-width: 100rpx;
+    text-align: center;
+}
+.barBox2>.left{
+    font-size: 28rpx;
+}
+
+.barBox>.icon {
+    width: 40rpx;
+    height: 40rpx;
+    margin: 40rpx 0px;
+    margin-right: 16rpx;
+    line-height: 40rpx;
+}
+.barBox2>.icon{
+    margin: 30rpx 0px;
+    margin-right: 16rpx;
+}
+.icon>image {
+    width: 100%;
+    height: 100%;
+}

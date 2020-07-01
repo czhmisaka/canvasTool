@@ -1,3 +1,6 @@
 {
-    "navigationBarTitleText":"添加新的相册"
+    "navigationBarTitleText": "添加新的相册",
+    "usingComponents": {
+        "cusShowToast": "../components/customCheckToastForPrice/customCheckToast"
+    }
 }

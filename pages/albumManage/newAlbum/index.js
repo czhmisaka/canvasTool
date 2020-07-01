@@ -14,10 +14,17 @@ Page({
     imageList: [],
     word: '',
     goodsList: [],
-    goodsSerial: "",
+    goodsSerial: "1",
     albumData: {},
     pageType: 0, // 0 新建 , 1 编辑 
-    id: ''
+    id: '',
+    price: '',
+    // 自定义弹窗控制
+    checkStatus: false, // 自定义组件 显示控制
+    checkData: {
+      title: '',
+      tabList: []
+    }, // 自定义组件 显示数据
   },
 
   // 绑定输入
@@ -155,10 +162,15 @@ Page({
           word: ''
         })
         wx.showToast({
-          title: '上传成功', //提示的内容,
-          icon: 'success', //图标,
-          duration: 2000, //延迟时间,
-          mask: true, //显示透明蒙层，防止触摸穿透,
+          title: '上传成功',
+          icon: 'success',
+          success: () => {
+            setTimeout(() => {
+              wx.navigateBack({
+                delta: 1
+              });
+            }, 1000)
+          }
         });
       }
     })
@@ -235,6 +247,54 @@ Page({
     });
   },
 
+  // 通用弹窗提示
+  show(word) {
+    wx.showToast({
+      title: word,
+      icon: 'none',
+    });
+  },
+
+  // 调起自定义选择
+  letCusCheck(e) {
+    let {
+      type
+    } = e.currentTarget.dataset
+    let checkData = {
+      title: type,
+      tabList: this.data.price
+    }
+    this.setData({
+      checkData,
+      checkStatus: true
+    })
+  },
+
+  // 跳出自定义选择
+  checkCancel(e) {
+    this.setData({
+      checkStatus: false,
+      checkData: {
+        title: '',
+        tabList: []
+      }
+    })
+    setTimeout(() => {
+      this.setData({
+        checkStatus: false
+      })
+    }, 50)
+  },
+
+  // 获取选择项
+  setCheck(e) {
+    let {
+      check
+    } = e.detail
+    let {
+      price
+    } = this.data
+  },
 
   onLoad: function (options) {
     // 判断页面状态

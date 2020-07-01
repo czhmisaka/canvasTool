@@ -145,7 +145,6 @@ Page({
 
   // 获取选择项
   setCheck(e) {
-    console.log(e.detail.check)
     let {
       check
     } = e.detail
@@ -238,6 +237,7 @@ Page({
   submit(e) {
     let pages = getCurrentPages()
     pages.forEach((item, index) => {
+      console.log(item.route)
       if (item.route == "pages/albumManage/newAlbum/index") {
         item.setData({
           goodsSerial: this.data.goodsDetail.goodsSerial
@@ -259,7 +259,6 @@ Page({
         this.show('关联失败，未找到正在编辑的相册')
       }
     })
-
   },
 
   // 新建商品
@@ -277,7 +276,11 @@ Page({
       url: 'photo/goods/addGoods',
       data: this.dealDataToGoodsDetail(tabCheckList, goodsDetail)
     }).then((res) => {
-      console.log(res)
+      if (res.msg != "请求成功") {
+        this.show('创建失败')
+      } else {
+        this.submit()
+      }
     })
   },
 

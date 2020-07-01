@@ -1,0 +1,45 @@
+<!--pages/albumManage/components/customCheckToast/customCheckToast.wxml-->
+<view wx:if="{{show}}" class="mainBox {{status?'mainBox_then':''}}">
+    <view class="touchBack" bindtap="cancel"></view>
+    <view class="mainCheckBox {{status?'mainCheckBox_then':''}}">
+        <view class="title">
+            <view class="btn gray" bindtap="cancel">取消</view>
+            <view class="word">{{title}}</view>
+            <view class="btn" bindtap="callBackToPage">确认</view>
+        </view>
+        <view class="tabBox">
+            <view class="barBox">
+                <view class="left icon">
+                    <image src="/static/images/icon_page/{{select==0?'ic_chose_pre.png':'ic_chose.png'}}"
+                        bindtap='changeSelect' data-select="0" />
+                </view>
+                <view class="left word">一口价</view>
+                <view class='right' wx:if="{{false}}">{{'￥'+checkLists}}</view>
+                <input type="text" class="right" wx:else placeholder="{{price}}" />
+            </view>
+            <view class="barBox">
+                <view class="left icon">
+                    <image src="/static/images/icon_page/{{select==1?'ic_chose_pre.png':'ic_chose.png'}}"
+                        bindtap='changeSelect' data-select="1" />
+                </view>
+                <view class="left word">按购买件数定价</view>
+                <view class="right icon">
+                    <image src="/static/images/icon_page/ic_tj.png" bindtap="addPriceList" />
+                </view>
+                <!-- <view class="right icon">
+                    <image src="/static/images/icon_page/ic_jian.png" />
+                </view> -->
+            </view>
+            <view class="barBox barBox2" wx:for="{{priceList}}">
+                <view class="left">购买</view>
+                <input class="left" value="{{item.num}}" />
+                <view class="left">件以上：</view>
+                <input class="left" value="{{item.price}}" />
+                <view class="left">元/件</view>
+                <view class="right icon">
+                    <image src="/static/images/icon_page/ic_jian.png" />
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

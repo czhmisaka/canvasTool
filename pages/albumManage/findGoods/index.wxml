@@ -6,7 +6,7 @@
         </view>
         <input type="text" placeholder="搜索内容" value="{{searchValue}}" bindconfirm="searchStart"
             bindinput="searchInput"></input>
-        <view class="word">筛选</view>
+        <view class="word" bindtap="navTo" data-url="GoodsDetail/index">新建</view>
     </view>
     <scroll-view scroll-y="{{true}}" class="goodsList" style="height:calc(100vh - 96rpx)">
         <view style="height:10rpx;width:100%"></view>

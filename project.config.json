@@ -128,7 +128,7 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 9,
 					"name": "商品详情",
 					"pathName": "pages/albumManage/findGoods/GoodsDetail/index",
 					"query": "",

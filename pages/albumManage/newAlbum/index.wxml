@@ -30,7 +30,7 @@
             <view class="right gray">{{goodsSerial}}</view>
         </view>
     </view>
-    <view class="section" wx:if="{{goodsSerial}}">
+    <view class="section" wx:if="{{goodsSerial}}" bindtap="letCusCheck" data-type="价格">
         <view class="navToBox">
             <view class="left">设置价格</view>
             <view class="right icon">
@@ -57,3 +57,5 @@
         </view>
     </view>
 </view>
+<cusShowToast checkData="{{checkData}}" bind:returnBack="setCheck" bind:cancel="checkCancel"
+    letCusCheck="{{checkStatus}}"></cusShowToast>

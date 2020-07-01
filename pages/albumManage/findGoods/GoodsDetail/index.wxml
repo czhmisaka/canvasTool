@@ -44,7 +44,7 @@
         <view class="bottomBtnList">
             <view class="button black" wx:if="{{!new}}" bindtap="submit">关联
             </view>
-            <view class="button black" wx:else bindtap="createGoods">{{new?'提交并':''}}关联
+            <view class="button black" wx:else bindtap="createGoods">关联
             </view>
         </view>
     </view>
