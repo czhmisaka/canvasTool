@@ -63,10 +63,11 @@
     text-align: center;
     background: rgba(255, 255, 255, 1);
     border-radius: 8rpx;
-    margin: 20rpx;
-    display: flex;
+    margin: 10rpx 20rpx;
+    display: inline-block;
     justify-content: center;
 }
-.goods>view{
+
+.goods>view {
     padding: 0px 10rpx;
-}   
+}

@@ -67,8 +67,6 @@ Component({
     },
 
     changeCheck: function () {
-      
-      console.log(this.properties.transitionMax)
       this.triggerEvent('changeCheck', {
         type: this.properties.checkindex,
         id: this.properties.id

@@ -162,7 +162,28 @@ Page({
       url: 'photo/del',
       data: [this.data.id]
     }).then(res => {
-      console.log(res)
+      if (res.data) return wx.showToast({
+        title: '删除成功',
+        icon: 'success',
+        success: res => {
+          setTimeout(() => {
+            wx.navigateBack({
+              delta: 1
+            });
+          }, 1000)
+        }
+      });
+      wx.showToast({
+        title: res.msg,
+        icon: 'success',
+        success: res => {
+          setTimeout(() => {
+            wx.navigateBack({
+              delta: 1
+            });
+          }, 1000)
+        }
+      });
     })
   },
 

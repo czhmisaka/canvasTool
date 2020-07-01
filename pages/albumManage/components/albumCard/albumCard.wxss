@@ -90,7 +90,7 @@
     color: rgba(61, 61, 61, 1);
     line-height: 28rpx;
     margin-top: 4rpx;
-    padding-bottom: 24rpx;
+    padding-bottom: 14rpx;
     border-bottom: 1rpx #E6E6E6 solid;
     white-space: nowrap;
     text-overflow: ellipsis;

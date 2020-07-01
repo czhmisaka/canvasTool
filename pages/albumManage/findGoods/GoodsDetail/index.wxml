@@ -7,7 +7,10 @@
                 <image src="/static/images/icon_page/ic_hh.png" />
             </view>
             <view class="left noMarginLeft">货号<span class="grayWord">(必填)</span></view>
-            <input class="right gray" bindinput="inputType" value="{{goodsDetail.goodsSerial}}"
+            <view wx:if="{{!new}}" class="right gary">
+                {{goodsDetail.goodsSerial}}
+            </view>
+            <input wx:if="{{new}}" class="right gray" bindinput="inputType" value="{{goodsDetail.goodsSerial}}"
                 placeholder="{{goodsDetail.goodsSerial}}" />
         </view>
     </view>
@@ -24,30 +27,26 @@
             </view>
         </view>
     </view>
-    <view class="section" bindtap="letCusCheck">
+    <view class="section" wx:for="{{tabCheckList}}" bindtap="letCusCheck" data-type="{{item.title}}">
         <view class="navToBox">
             <view class="left icon1">
-                <image src="/static/images/icon_page/ic_cm.png" />
+                <image
+                    src="{{'/static/images/icon_page/ic_'+(item.title=='尺寸'?'cm':'') + (item.title=='颜色'?'ys':'')+'.png'}}" />
             </view>
-            <view class="left noMarginLeft">尺码</view>
+            <view class="left noMarginLeft">{{item.title}}</view>
             <view class="right icon">
                 <image src="/static/images/icon_page/ic_xy.png" />
             </view>
-            <view class="right MarginRight12 gray">{{size?size:noChoice}}</view>
+            <view class="right MarginRight12 gray">{{item.word?item.word:noChoice}}</view>
         </view>
     </view>
-    <view class="section">
-        <view class="navToBox">
-            <view class="left icon1">
-                <image src="/static/images/icon_page/ic_ys.png" />
+    <view class="section buttom">
+        <view class="bottomBtnList">
+            <view class="button black" bindtap="submit">关联
             </view>
-            <view class="left noMarginLeft">颜色</view>
-            <view class="right icon">
-                <image src="/static/images/icon_page/ic_xy.png" />
-            </view>
-            <view class="right MarginRight12 gray">{{color?color:noChoice}}</view>
         </view>
     </view>
 </view>
 
-<cusShowToast checkData="{{checkData}}" bind:returnBack="setCheck" letCusCheck="{{checkStatus}}"></cusShowToast>
+<cusShowToast checkData="{{checkData}}" bind:returnBack="setCheck" bind:cancel="checkCancel"
+    letCusCheck="{{checkStatus}}"></cusShowToast>

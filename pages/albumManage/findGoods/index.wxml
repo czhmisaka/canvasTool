@@ -8,13 +8,12 @@
             bindinput="searchInput"></input>
         <view class="word">筛选</view>
     </view>
-    <scroll-view class="goodsList">
-        <view wx:for="{{goodsList}}" wx:key="*this" class="goods">
-            <view wx:if="{{item.goodsSerial}}" bindtap="navTo" data-url="{{'GoodsDetail/index?id='+item.goodsId}}">
-                {{item.goodsSerial}}
-            </view>
-            <view wx:if="{{item.classId}}">
-                {{item.className}}
+    <scroll-view scroll-y="{{true}}" class="goodsList" style="height:calc(100vh - 96rpx)">
+        <view style="height:10rpx;width:100%"></view>
+        <view wx:for="{{goodsList}}" wx:key="*this" class="goods" bindtap="navTo"
+            data-url="{{'GoodsDetail/index?id='+item.goodsId}}">
+            <view wx:if="{{item.goodsSerial}}">
+                {{item.goodsSerial}}{{ item.className?'    '+item.className:''}}
             </view>
         </view>
     </scroll-view>
