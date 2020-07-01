@@ -22,6 +22,10 @@ Page({
 
   // 绑定输入
   typing: function (e) {
+    if (this.data.pageType != 0) return wx.showToast({
+      title: '暂时不支持修改',
+      icon: 'none',
+    });
     this.setData({
       word: e.detail.value
     })
@@ -29,6 +33,10 @@ Page({
 
   // 选择图片
   chooseImg: function (e) {
+    if (this.data.pageType != 0) return wx.showToast({
+      title: '暂时不支持修改',
+      icon: 'none',
+    });
     wx.chooseImage({
       count: (20 - this.data.imageList.length) > 9 ? '9' : (20 - this.data.imageList.length),
       success: res => {
@@ -125,7 +133,7 @@ Page({
       url: '/photo/add',
       data: {
         "contentType": 0,
-        "goodsId": "",
+        "goodsId": this.data.goodsSerial,
         "goodsPriceAddDtos": [{
           "editType": 0,
           "favorableNum": 0,
@@ -156,7 +164,7 @@ Page({
     })
   },
 
-  // 删除 编辑状态中
+  // 删除 新建编辑状态中
   deleteAlbum: function () {
     util.request({
       url: 'photo/del',
@@ -218,6 +226,10 @@ Page({
 
   // 通用跳转函数
   navTo: function (e) {
+    if (this.data.pageType != 0) return wx.showToast({
+      title: '暂时不支持修改',
+      icon: 'none',
+    });
     wx.navigateTo({
       url: e.currentTarget.dataset.url
     });
@@ -228,6 +240,13 @@ Page({
     // 判断页面状态
     if (options.id) {
       this.getAlbumDetial(options.id)
+      this.setData({
+        pageType: 1
+      })
+    } else {
+      this.setData({
+        pageType: 0
+      })
     }
   },
   onReady: function () {},

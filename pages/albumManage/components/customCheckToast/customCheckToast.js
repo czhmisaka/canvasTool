@@ -5,17 +5,21 @@ Component({
       type: Object,
       observer: function (e) {
         let checkLists = []
+        let only = false
         this.properties.checkData.tabList.forEach(item => {
           checkLists.push({
             name: item.attrValueName,
             id: item.id,
-            storeId: item.storeId,
             check: false
           })
         })
+        if (this.properties.checkData.only) {
+          only = this.properties.checkData.only
+        }
         this.setData({
           title: this.properties.checkData.title,
-          checkLists
+          checkLists,
+          only
         })
       }
     },
@@ -40,16 +44,24 @@ Component({
     status: false,
     title: '',
     checkLists: [],
-    back: {
-      list: [],
-      name: [],
-    }
+    only: false // 默认可以复选
   },
   methods: {
     callBackToPage(e) {
+      let back = {
+        title: this.properties.checkData.title,
+        id: [],
+        name: []
+      }
+      this.data.checkLists.forEach((res) => {
+        if (res.check) {
+          back.name.push(res.name)
+          back.id.push(res.id)
+        }
+      })
       this.cancel()
       this.triggerEvent('returnBack', {
-        check: this.data.back
+        check: back
       })
     },
     cancel(e) {
@@ -70,15 +82,20 @@ Component({
         index
       } = e.currentTarget.dataset
       let {
-        checkLists,
-        back
+        checkLists
       } = this.data
-      checkLists[index].check = !checkLists[index].check
-      back.list.push(index)
-      back.name.push(checkLists[index].name)
+      if (this.data.only) {
+        checkLists.forEach((res, indexa) => {
+          if (indexa != index) {
+            res.check = false
+          }
+        })
+        checkLists[index].check = true
+      } else {
+        checkLists[index].check = !checkLists[index].check
+      }
       this.setData({
         checkLists,
-        back
       })
     }
   }

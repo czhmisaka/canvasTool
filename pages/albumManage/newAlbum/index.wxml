@@ -5,7 +5,7 @@
         <view class="iamgeBox">
             <view class="image" wx:for="{{imageList}}" wx:key="*this">
                 <image mode="aspectFill" src="{{item}}" />
-                <view class="icon" bindtap="delete" data-index="{{index}}">
+                <view class="icon" bindtap="delete" data-index="{{index}}" wx:if="{{pageType==0}}">
                     <image src="/static/images/icon_page/ic_sc.png" />
                 </view>
             </view>
@@ -14,8 +14,10 @@
             </view>
         </view>
         <view class="wordBox">
-            <textarea placeholder="请输入商品说明" bindinput="typing" value="{{word}}">
+            <textarea class="textarea" wx:if="{{pageType===0}}" placeholder="请输入商品说明" bindinput="typing"
+                value="{{word}}">
             </textarea>
+            <view class="textarea" wx:else>{{word}}</view>
         </view>
     </view>
 

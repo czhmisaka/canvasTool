@@ -4,7 +4,7 @@
     "pages/canvas/index",
     "pages/mine/index",
     "pages/cus/index",
-    "pages/order/index",
+    "pages/orderManage/orderManageMain/index",
     "pages/login/index",
     "pages/albumManage/albumManageMain/index",
     "pages/albumManage/newAlbum/index",
@@ -24,7 +24,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/order/index",
+        "pagePath": "pages/orderManage/orderManageMain/index",
         "iconPath": "static/images/Icon_tabBar/ic_dd.png",
         "selectedIconPath": "static/images/Icon_tabBar/ic_dd_pre.png",
         "text": "订单"

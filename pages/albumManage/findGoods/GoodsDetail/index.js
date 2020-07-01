@@ -4,7 +4,10 @@ const util = require('../../../../utils/util.js');
 Page({
   data: {
     goodsId: '',
-    goodsDetail: {},
+    goodsDetail: {
+      goodsSerial: '',
+      goodsClassName: ''
+    },
     noChoice: '请选择',
     size: '',
     color: '',
@@ -15,26 +18,18 @@ Page({
       tabList: ['', '']
     }, // 自定义组件 显示数据
     tabCheckList: [], // 属性列表
+    classList: []
   },
 
   // 输入绑定-货号
   inputType(e) {
-    if (!this.data.new) {
-      let {
-        goodsDetail
-      } = this.data
-      goodsDetail.goodsSerial = e.currentTarget.value
-      this.setData({
-        goodsDetail
-      })
-    } else {
-      let {
-        goodsDetail
-      } = this.data
-      this.setData({
-        goodsDetail
-      })
-    }
+    let {
+      goodsDetail
+    } = this.data
+    goodsDetail.goodsSerial = e.detail.value
+    this.setData({
+      goodsDetail
+    })
   },
 
   // id查询商品数据
@@ -76,13 +71,14 @@ Page({
         goodsSpecAttrVos
       } = res
       goodsSpecAttrVos.forEach(item => {
-        tabCheckList.forEach((tab, index) => {
+        tabCheckList.forEach((tab) => {
           if (item.goodsAttrId == tab.id) {
-            if (tabCheckList[index].word.split('/').indexOf(item.goodsAttrValueName)) {
-              if (tabCheckList[index].word.length != 0) {
-                tabCheckList[index].word += '/'
+            if (tab.word.split('/').indexOf(item.goodsAttrValueName) == -1) {
+              if (tab.word.length != 0) {
+                tab.word += '/'
               }
               tab.word += item.goodsAttrValueName
+              tab.checkIdList.push(item.goodsAttrValueId)
             }
           }
         })
@@ -120,7 +116,8 @@ Page({
           id: item.id,
           title: item.attrName,
           tabList: tabList,
-          word: ''
+          word: '',
+          checkIdList: []
         })
       })
       this.setData({
@@ -132,9 +129,53 @@ Page({
     })
   },
 
+  // 获取商品品类列表
+  getClassList(e) {
+    util.request({
+      url: 'photo/goodsClass',
+      data: {
+        id: app.globalData.shopInfo.storeVo.id
+      }
+    }).then((res) => {
+      this.setData({
+        classList: res.data
+      })
+    })
+  },
+
   // 获取选择项
   setCheck(e) {
-    console.log(e)
+    console.log(e.detail.check)
+    let {
+      check
+    } = e.detail
+    let {
+      tabCheckList,
+      goodsDetail
+    } = this.data
+    if (check.title === "品类") {
+      goodsDetail.goodsClassName = check.name[0]
+      goodsDetail.goodsClassId = check.id[0]
+      this.setData({
+        goodsDetail
+      })
+    } else {
+      tabCheckList.forEach(tab => {
+        if (tab.title === check.title) {
+          tab.word = ''
+          tab.checkIdList = check.id
+          check.name.forEach(word => {
+            if (tab.word.length != 0) {
+              tab.word += '/'
+            }
+            tab.word += word
+          })
+        }
+      })
+      this.setData({
+        tabCheckList
+      })
+    }
   },
 
   // 跳出自定义选择
@@ -146,27 +187,51 @@ Page({
         tabList: []
       }
     })
+    setTimeout(() => {
+      this.setData({
+        checkStatus: false
+      })
+    }, 50)
   },
 
   // 调起自定义选择
   letCusCheck(e) {
     if (!this.data.new) return wx.showToast({
-      title: '请在pc端页面编辑',
+      title: '当前不支持编辑',
       icon: 'none',
     });
     let {
       type
     } = e.currentTarget.dataset
-    let checkData = {}
-    this.data.tabCheckList.forEach(item => {
-      if (item.title == type) {
-        checkData = item
+    if (type == '品类') {
+      let checkData = {
+        tabList: [],
+        title: '品类',
+        only: true
       }
-    })
-    this.setData({
-      checkStatus: true,
-      checkData
-    })
+      this.data.classList.forEach(item => {
+        checkData.tabList.push({
+          attrValueName: item.goodsClassName,
+          id: item.id,
+          storeId: item.storeId,
+        })
+      })
+      this.setData({
+        checkStatus: true,
+        checkData
+      })
+    } else {
+      let checkData = {}
+      this.data.tabCheckList.forEach(item => {
+        if (item.title == type) {
+          checkData = item
+        }
+      })
+      this.setData({
+        checkStatus: true,
+        checkData
+      })
+    }
   },
 
   // 提交关联
@@ -177,20 +242,85 @@ Page({
         item.setData({
           goodsSerial: this.data.goodsDetail.goodsSerial
         })
-        wx.showToast({
+        return wx.showToast({
           title: '关联成功',
           icon: 'success',
           duration: 1000,
           mask: true,
           success: res => {
-            wx.navigateBack({
-              delta: pages.length - index - 1
-            });
+            setTimeout(() => {
+              wx.navigateBack({
+                delta: pages.length - index - 1
+              });
+            }, 1000)
           }
         });
+      } else if (index == pages.length) {
+        this.show('关联失败，未找到正在编辑的相册')
       }
     })
+
   },
+
+  // 新建商品
+  createGoods(e) {
+    if (!this.data.goodsDetail.goodsSerial) return this.show('货号不能为空')
+    if (!this.data.goodsDetail.goodsClassId) return this.show('品类不能为空')
+    this.data.tabCheckList.forEach(item => {
+      if (!item.word.length) return this.show(item.title + '不能为空')
+    })
+    let {
+      goodsDetail,
+      tabCheckList
+    } = this.data
+    util.request({
+      url: 'photo/goods/addGoods',
+      data: this.dealDataToGoodsDetail(tabCheckList, goodsDetail)
+    }).then((res) => {
+      console.log(res)
+    })
+  },
+
+  // 通用弹窗
+  show(word) {
+    wx.showToast({
+      title: word,
+      icon: 'none',
+    });
+  },
+
+  // 处理属性到 goodsDetail
+  dealDataToGoodsDetail(data, goods) {
+    let goodsSpecAddDtos_ready = []
+    data.forEach((type) => {
+      let goodsSpecAttrAddDtos = []
+      type.checkIdList.forEach((item, i) => {
+        goodsSpecAttrAddDtos.push({
+          goodsAttrId: type.id,
+          goodsAttrName: type.title,
+          goodsAttrValueId: item,
+          goodsAttrValueName: type.word.split('/')[i],
+        })
+      })
+      goodsSpecAddDtos_ready.push(goodsSpecAttrAddDtos)
+    })
+    let list = util.cartesianProductOf(...goodsSpecAddDtos_ready)
+    let back = {
+      goodsClassId: goods.goodsClassId,
+      goodsClassName: goods.goodsClassName,
+      goodsSerial: goods.goodsSerial,
+      goodsSpecAddDtos: [],
+      storeId: app.globalData.shopInfo.storeVo.id,
+      storeName: app.globalData.shopInfo.storeVo.storeNamse
+    }
+    list.forEach(item => {
+      back.goodsSpecAddDtos.push({
+        goodsSpecAttrAddDtos: item
+      })
+    })
+    return back
+  },
+
 
   onLoad: function (options) {
     if (options.id) {
@@ -202,7 +332,9 @@ Page({
       this.setData({
         new: true
       })
+      this.getCheckList()
     }
+    this.getClassList()
   },
   onReady: function () {},
   onShow: function () {},

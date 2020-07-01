@@ -1,4 +1,4 @@
-var fileHost = "xxxx.aliyuncs.com(你的阿里云oss地址)"
+var fileHost = ""
 const config = {
     api_server: "wxapi.91bkw.com/photo/workbench/",
     api_protocal: "https://",

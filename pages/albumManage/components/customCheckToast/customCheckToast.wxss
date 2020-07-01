@@ -66,16 +66,17 @@
 }
 
 .tabBox {
-    width: 100%;
+    width: calc(100% - 34rpx);
+    margin-left: 34rpx;
     margin-top: 40rpx;
-    height: calc(720rpx - 104rpx - 40rpx);
+    max-height: calc(720rpx - 104rpx - 40rpx);
     display: flex;
     justify-content: flex-start;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
 
 .tabBox>.tab {
-    margin: 0px 10rpx;
+    margin: 10rpx;
     height: 28rpx;
     padding: 14rpx 30rpx;
     font-size: 28rpx;
@@ -86,10 +87,13 @@
     border-radius: 28rpx;
     background: rgba(245, 245, 245, 1);
     border: 1rpx solid rgba(33, 55, 61, 0);
+    transition:all 0.3s;
 }
 
 .tabBox>.highLight {
     border: 1rpx solid rgba(33, 55, 61, 1);
+    color: white;
+    background-color: rgba(33,55,61,1);
 }
 
 .tabBox>.add {

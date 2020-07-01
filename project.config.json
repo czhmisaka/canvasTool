@@ -5,30 +5,30 @@
 	},
 	"setting": {
 		"urlCheck": false,
-		"scopeDataCheck": false,
-		"coverView": true,
 		"es6": true,
+		"enhance": true,
 		"postcss": true,
-		"compileHotReLoad": false,
 		"preloadBackgroundData": false,
 		"minified": true,
-		"autoAudits": false,
 		"newFeature": true,
-		"uglifyFileName": false,
-		"uploadWithSourceMap": true,
-		"useIsolateContext": true,
+		"coverView": true,
 		"nodeModules": false,
-		"enhance": true,
-		"useCompilerModule": true,
-		"userConfirmedUseCompilerModuleSwitch": false,
+		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"uglifyFileName": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"useIsolateContext": true,
+		"useCompilerModule": true,
+		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.11.1",
@@ -117,7 +117,21 @@
 					"id": 7,
 					"name": "商品详情-通过id获取",
 					"pathName": "pages/albumManage/findGoods/GoodsDetail/index",
-					"query": "id=1262936181228814338",
+					"query": "id=1278244207982546946",
+					"scene": null
+				},
+				{
+					"id": 8,
+					"name": "访问已有相册",
+					"pathName": "pages/albumManage/newAlbum/index",
+					"query": "id=1277499271490310145",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "商品详情",
+					"pathName": "pages/albumManage/findGoods/GoodsDetail/index",
+					"query": "",
 					"scene": null
 				}
 			]
