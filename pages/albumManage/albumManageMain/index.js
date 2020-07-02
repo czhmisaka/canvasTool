@@ -18,13 +18,15 @@ Page({
       [],
       [],
       []
-    ],
+    ], // 数据保存表
     checkIndex: [
       [],
       [],
       []
     ], // 记录选择用表
-    checkMore: [false, false, false],
+    checkMore: [false, false, false], // 多选开启
+    checkData: [], // 自定义 侧滑菜单 选项
+    checkStatus: false,
   },
   watch: {},
 
@@ -76,8 +78,8 @@ Page({
     }).then((res) => {
       res = res.data
       let {
-        data,
-        checkIndex
+        checkIndex,
+        data
       } = that.data
       res.data.forEach((item) => {
         data[that.data.selectType.index ? that.data.selectType.index : 0].push(item)
@@ -151,6 +153,81 @@ Page({
     })
   },
 
+  // 获取选择项 - 商品品类以及 相册标签
+  getCheckList(e) {
+    util.request({
+      url: 'photo/goodsClass',
+      data: {
+        id: app.globalData.shopInfo.storeVo.id
+      }
+    }).then(res => {
+      let {
+        checkData
+      } = this.data
+      if (res.data) {
+        let tab = {
+          title:'品类',
+          tabList:[]
+        }
+        res.data.forEach((item, index) => {
+          tab.tabList.push({
+            tab: item.goodsClassName,
+            check: false,
+            id: item.id
+          })
+        })
+        checkData.push(tab)
+      }
+      util.request({
+        url: '/customer/label/list',
+        data: { 
+          id: app.globalData.shopInfo.storeVo.id
+        }
+      }).then(result => {
+        let tab = {
+          title:"对谁可见",
+          tabList:[]
+        }
+        result.data.data.forEach((item, index) => {
+          tab.tabList.push({
+            tab: item.labelName,
+            id: item.id,
+            check: false
+          })
+        })
+        checkData.push(tab)
+        this.setData({
+          checkData,
+        })
+      })
+    })
+  },
+
+  // 处理筛选后返回数据
+  checkReturn(e) {
+  // console.log(e.detail.check,e.detail.chec==checkData)
+    this.setData({
+      checkData:e.detail.check
+    })
+    if(e.detail.start){
+      // 触发搜索函数
+    }
+  },
+
+  // 关闭筛选
+  checkCancel(e) {
+    this.setData({
+      checkStatus:false
+    })
+  },
+
+  // 打开筛选
+  checkOpen(e) {
+    this.setData({
+      checkStatus:true
+    })
+  },
+
   // 初始化函数
   initFn() {
     this.switchSubtitle(0)
@@ -159,14 +236,7 @@ Page({
 
   onLoad: function (options) {
     this.initFn()
-    util.request({
-      url: '/customer/label/list',
-      data: {
-        id: app.globalData.shopInfo.storeVo.id
-      }
-    }).then(res => {
-      res = res.data
-    })
+    this.getCheckList()
   },
 
   onReady: function () {},

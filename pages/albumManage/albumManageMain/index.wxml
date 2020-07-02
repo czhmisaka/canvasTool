@@ -2,8 +2,9 @@
 <view>
     <!-- <navBarCustom page-name='管理相册'>
         </navBarCustom>-->
+    <screenSliderBar wx:if="{{checkStatus}}" bind:returnBack="checkReturn" bind:cancel="checkCancel" checkData="{{checkData}}" checkStatus="{{checkStatus}}"></screenSliderBar>
     <view class="search"><input type="text" placeholder="搜索内容"></input>
-        <view class="word">筛选</view>
+        <view class="word" bindtap="checkOpen">筛选</view>
     </view>
     <view class="subTitle">
         <view class="moveBottombar"
@@ -26,11 +27,6 @@
                             id="{{index}}" wx:for="{{data[index]}}"
                             transitionMax="{{checkIndex[selectType.index].length}}" wx:key="*this" data="{{item}}">
                         </albumCard>
-                        <!-- <albumCard bind:changeCheck="changeCheck"
-                            checkindex="{{checkIndex[selectType.index][index].checkIndex}}" id="{{index}}"
-                            wx:for="{{data[index]}}" transitionMax="{{checkIndex[selectType.index].length}}"
-                            wx:key="*this" data="{{item}}">
-                        </albumCard> -->
                     </view>
                 </swiper-item>
             </block>

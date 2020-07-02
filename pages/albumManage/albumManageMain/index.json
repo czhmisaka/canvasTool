@@ -1,7 +1,8 @@
 {
   "navigationBarTitleText":"相册管理",
   "usingComponents": {
-    "navBarCustom":"../../../components/navBarCustom/navBarCustom",
-    "albumCard":"/pages/albumManage/components/albumCard/albumCard"
+    "navBarCustom":"/components/navBarCustom/navBarCustom",
+    "albumCard":"../components/albumCard/albumCard",
+    "screenSliderBar":"../components/screenSliderBar/screenSliderBar"
   }
 }

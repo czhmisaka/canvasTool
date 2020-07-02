@@ -88,9 +88,9 @@
     width: 100%;
     height: calc(100vh - 276rpx);
     overflow-y: scroll;
-    /* left: -0px; */
     transition: all ease-in-out 0.5s;
     position: absolute;
+    overflow-x: hidden;
 }
 
 .normal {

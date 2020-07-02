@@ -4,7 +4,7 @@
 <view class="home">
     <view class="promoter">
         <view class="detail">
-            <view class="change">
+            <view class="change" wx:if="{{false}}">
                 <image src="/static/images/icon_page/ic_qh.png" /><view class="span">切换</view>
             </view>
             <view class="headImg" style="height:52rpx"></view>

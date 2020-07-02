@@ -16,8 +16,7 @@
     "position": "bottom",
     "selectedColor": "#21373D",
     "borderStyle": "black",
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/home/index",
         "iconPath": "static/images/Icon_tabBar/ic_home.png",
         "selectedIconPath": "static/images/Icon_tabBar/ic_home_pre.png",

@@ -12,6 +12,7 @@ Page({
     fastMsg: []
   },
 
+  // 格式化 fastMsg
   formatNum: function (data) {
     // 格式化大数字输出
     data.forEach((item) => {
@@ -63,14 +64,16 @@ Page({
         goodsNum,
         salesVolume
       } = res.data
+
+      // 这里注入了假数据， 待修改
       this.formatNum([{
-        num: buyerNum || 0,
+        num: buyerNum || 832733,
         type: '购买人数'
       }, {
-        num: goodsNum || 0,
+        num: goodsNum || 1220991,
         type: '售出件数'
       }, {
-        num: salesVolume || 0,
+        num: salesVolume || 39208301,
         type: '售出金额'
       }])
     })

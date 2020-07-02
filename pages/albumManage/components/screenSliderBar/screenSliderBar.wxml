@@ -1,0 +1,24 @@
+<!--pages/albumManage/components/screenSliderBar/screenSliderBar.wxml-->
+<view class="wholeScreen">
+    <view class="grayBg" bindtap="cancel"></view>
+    <view class="sliderBar {{ani?'hide':''}}">
+        <view class="title">筛选</view>
+        <view class="tabBox" wx:for="{{tabCheckList}}" wx:key="*this">
+            <view class="title">
+                {{item.title}}
+            </view>
+            <view class="tabList">
+                <view class="tab {{tabItem.check?'highLight':''}}" wx:for="{{item.tabList}}" wx:for-item="tabItem"
+                    wx:for-index="tabIndex" wx:key="*this" bindtap="changeCheck" data-listIndex="{{index}}"
+                    data-index="{{tabIndex}}">
+                    {{tabItem.tab}}
+                </view>
+            </view>
+            <view style="width:100%;height:100rpx"></view>
+        </view>
+    </view>
+    <view class="buttonBox {{ani?'hide':''}}">
+        <view class="button" bindtap="reset">取消筛选</view>
+        <view class="button highLight" bindtap="callBackToPage">确认</view>
+    </view>
+</view>

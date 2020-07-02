@@ -37,7 +37,9 @@ Page({
     });
   },
 
-  onLoad: function (options) {},
+  onLoad: function (options) {
+    this.searchStart()
+  },
   onReady: function () {},
   onShow: function () {},
   onHide: function () {},

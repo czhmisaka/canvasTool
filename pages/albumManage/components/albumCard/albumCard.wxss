@@ -8,7 +8,7 @@
 }
 
 .transition {
-    transition: ease-in-out 0.5s;
+    transition: ease-in-out 0.3s;
 }
 
 .icon_check {
@@ -20,10 +20,11 @@
 .icon_check>image {
     width: 40rpx;
     height: 40rpx;
+    margin-top: 172rpx;
 }
 
 .check {
-    /* margin-left: -50px; */
+    margin-left: -40px;
 }
 
 .ablumCard>.view {
