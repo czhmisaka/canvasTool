@@ -1,3 +1,5 @@
+const util = require("../../../../utils/util")
+
 // pages/albumManage/components/customCheckToastForPrice/customCheckToast.js
 Component({
   properties: {
@@ -5,11 +7,25 @@ Component({
       type: Object,
       observer: function (e) {
         let checkLists = []
-        checkLists = this.properties.checkData.tabList
-        this.setData({
-          title: this.properties.checkData.title,
-          checkLists,
-        })
+        let priceList = []
+        if (this.properties.checkData.goodsPriceAddDtos && this.properties.checkData.goodsPriceAddDtos.length > 0) {
+          this.properties.checkData.goodsPriceAddDtos.forEach(res => {
+            priceList.push({
+              num: res.favorableNum,
+              price: res.goodsPrice
+            })
+          })
+          this.setData({
+            priceList
+          })
+        }
+        if (!this.data.priceList) {
+          checkLists = this.properties.checkData.tabList
+          this.setData({
+            title: this.properties.checkData.title,
+            checkLists,
+          })
+        }
       }
     },
     letCusCheck: {
@@ -20,11 +36,6 @@ Component({
           show: this.properties.letCusCheck,
           status: this.properties.letCusCheck
         })
-        // setTimeout(() => {
-        // this.setData({
-        //   status: this.properties.letCusCheck,
-        // })
-        // }, 30)
       }
     }
   },
@@ -35,23 +46,28 @@ Component({
     checkLists: [],
     select: 0, //默认 一口价
     price: '',
-    priceList: [
-      {price:122,num:123}
-    ]
+    priceList: []
   },
   methods: {
     callBackToPage(e) {
       let back = {
         title: this.properties.checkData.title,
-        id: [],
-        name: []
+        goodsPriceAddDtos: []
       }
-      this.data.checkLists.forEach((res) => {
-        if (res.check) {
-          back.name.push(res.name)
-          back.id.push(res.id)
-        }
-      })
+      if (this.data.select == 0) {
+        back.goodsPriceAddDtos.push({
+          goodsPrice: this.data.price,
+          favorableNum: 0
+        })
+      } else if (this.data.select == 1) {
+        this.data.priceList.forEach((res) => {
+          console.log(res, back)
+          back.goodsPriceAddDtos.push({
+            favorableNum: res.num,
+            goodsPrice: res.price
+          })
+        })
+      }
       this.cancel()
       this.triggerEvent('returnBack', {
         check: back
@@ -62,35 +78,31 @@ Component({
         type: false
       })
     },
-    check(e) {
+
+    // 添加定价方式
+    addToPriceList(e) {
+      let {
+        priceList
+      } = this.data
+      priceList.push({
+        num: 1,
+        price: 0
+      })
+      this.setData({
+        priceList,
+        select: 1
+      })
+    },
+
+    // 去除定价方式
+    remove(e) {
       let {
         index
       } = e.currentTarget.dataset
       let {
-        checkLists
+        priceList
       } = this.data
-      if (this.data.only) {
-        checkLists.forEach((res, indexa) => {
-          if (indexa != index) {
-            res.check = false
-          }
-        })
-        checkLists[index].check = true
-      } else {
-        checkLists[index].check = !checkLists[index].check
-      }
-      this.setData({
-        checkLists,
-      })
-    },
-
-    // 添加定价方式
-    addToPriceList(e){
-      let {priceList} = this.data
-      priceList.push({
-        num:0,
-        price:0
-      })
+      priceList.splice(index, 1)
       this.setData({
         priceList
       })
@@ -105,5 +117,49 @@ Component({
         select
       })
     },
+
+    // 输入绑定
+    bindInput(e) {
+      let {
+        type,
+        index
+      } = e.currentTarget.dataset
+      let {
+        priceList,
+      } = this.data
+      let {
+        value
+      } = e.detail
+      if (type == '一口价') {
+        let price = util.checkFloat(value)
+        this.setData({
+          price: price
+        })
+      } else if (type == 'num') {
+        value = util.validateNumber(value)
+        value = value.split('.')[0]*1
+        if (value == 0) {
+          wx.showToast({
+            title: '最低为一件',
+            icon: 'none',
+          });
+          priceList[index][type] = 1
+          this.setData({
+            priceList
+          })
+        } else {
+          console.log(value)
+          priceList[index][type] = value
+          this.setData({
+            priceList
+          })
+        }
+      } else {
+        priceList[index][type] = util.checkFloat(value)
+        this.setData({
+          priceList
+        })
+      }
+    }
   }
 })

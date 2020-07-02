@@ -15,7 +15,8 @@
                 </view>
                 <view class="left word">一口价</view>
                 <view class='right' wx:if="{{false}}">{{'￥'+checkLists}}</view>
-                <input type="text" class="right" wx:else placeholder="{{price}}" />
+                <input type="number" type="text" class="right" wx:else value="{{price}}" bindinput="bindInput"
+                    data-type="一口价" />
             </view>
             <view class="barBox">
                 <view class="left icon">
@@ -24,7 +25,7 @@
                 </view>
                 <view class="left word">按购买件数定价</view>
                 <view class="right icon">
-                    <image src="/static/images/icon_page/ic_tj.png" bindtap="addPriceList" />
+                    <image src="/static/images/icon_page/ic_tj.png" bindtap="addToPriceList" />
                 </view>
                 <!-- <view class="right icon">
                     <image src="/static/images/icon_page/ic_jian.png" />
@@ -32,12 +33,14 @@
             </view>
             <view class="barBox barBox2" wx:for="{{priceList}}">
                 <view class="left">购买</view>
-                <input class="left" value="{{item.num}}" />
+                <input type="number" class="left" value="{{item.num}}" bindinput="bindInput" data-type="num"
+                    data-index="{{index}}" />
                 <view class="left">件以上：</view>
-                <input class="left" value="{{item.price}}" />
+                <input class="left" value="{{item.price}}" bindinput="bindInput" data-type="price"
+                    data-index="{{index}}" />
                 <view class="left">元/件</view>
                 <view class="right icon">
-                    <image src="/static/images/icon_page/ic_jian.png" />
+                    <image src="/static/images/icon_page/ic_jian.png" bindtap="remove" data-index="{{index}}" />
                 </view>
             </view>
         </view>

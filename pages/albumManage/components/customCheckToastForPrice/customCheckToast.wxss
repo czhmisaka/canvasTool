@@ -112,6 +112,7 @@
     color: rgba(61, 61, 61, 1);
     padding: 0px 20rpx;
     max-width: 200rpx;
+    text-align: center;
 }
 .barBox2>input{
     margin: 22rpx 0px ;

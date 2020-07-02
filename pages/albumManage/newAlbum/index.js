@@ -14,11 +14,13 @@ Page({
     imageList: [],
     word: '',
     goodsList: [],
-    goodsSerial: "1",
+    goodsSerial: "",
+    goodsId:'',
     albumData: {},
     pageType: 0, // 0 新建 , 1 编辑 
     id: '',
     price: '',
+    goodsPriceAddDtos: [],
     // 自定义弹窗控制
     checkStatus: false, // 自定义组件 显示控制
     checkData: {
@@ -136,17 +138,14 @@ Page({
       if (index < imageSrcList.length - 1)
         photoImageMore += ','
     })
+    console.log(this.data.goodsPriceAddDtos)
+    if (this.data.goodsId && this.data.goodsPriceAddDtos.length < 1) return this.show('请添加价格信息')
     utils.request({
       url: '/photo/add',
       data: {
         "contentType": 0,
-        "goodsId": this.data.goodsSerial,
-        "goodsPriceAddDtos": [{
-          "editType": 0,
-          "favorableNum": 0,
-          "goodsPhotoId": "",
-          "goodsPrice": 0
-        }],
+        "goodsId": this.data.goodsId,
+        "goodsPriceAddDtos": this.data.goodsPriceAddDtos,
         "photoDesc": this.data.word,
         "photoImage": imageSrcList[0],
         "photoImageMore": photoImageMore,
@@ -276,7 +275,8 @@ Page({
       checkStatus: false,
       checkData: {
         title: '',
-        tabList: []
+        tabList: [],
+        goodsPriceAddDtos: this.data.goodsPriceAddDtos
       }
     })
     setTimeout(() => {
@@ -291,9 +291,11 @@ Page({
     let {
       check
     } = e.detail
-    let {
-      price
-    } = this.data
+    console.log(check)
+    this.setData({
+      price: check.goodsPriceAddDtos[0].goodsPrice,
+      goodsPriceAddDtos: check.goodsPriceAddDtos
+    })
   },
 
   onLoad: function (options) {

@@ -190,8 +190,26 @@ function cartesianProductOf() {
   ]);
 }
 
+function validateNumber(val) {
+  return val.replace(/\D/g, '')
+}
+
+function checkFloat(value) {
+  if (value.split('.').length > 1 && value.split('.')[1].length) {
+    value = validateNumber(value.split('.')[0]) * 1 + '.' + validateNumber(value.split('.')[1].substr(0, 2)) * 1
+  } else if (value.split('.')[1] == '') {
+    value = validateNumber(value.split('.')[0]) * 1 + '.'
+  } else if (!value.split('.')[1]) {
+    value = validateNumber(value.split('.')[0]) * 1
+  } 
+  return value
+}
+
+
 module.exports = {
+  checkFloat,
   checkVersion,
+  validateNumber,
   get_random,
   request,
   myUploadFile,

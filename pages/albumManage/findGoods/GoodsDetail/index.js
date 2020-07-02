@@ -240,7 +240,8 @@ Page({
       console.log(item.route)
       if (item.route == "pages/albumManage/newAlbum/index") {
         item.setData({
-          goodsSerial: this.data.goodsDetail.goodsSerial
+          goodsSerial: this.data.goodsDetail.goodsSerial,
+          goodsId: this.data.goodsId
         })
         return wx.showToast({
           title: '关联成功',
