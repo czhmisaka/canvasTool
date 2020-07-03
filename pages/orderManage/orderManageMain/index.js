@@ -50,11 +50,37 @@ Page({
       orderList
     })
   },
+
+  // 获得订单信息
+  getOrderList() {
+    util.request({
+      url: 'order/getOrders',
+      data: {
+        "keyWord": "",
+        "memberId": "",
+        "pageNum": 0,
+        "pageSize": 100,
+        "sellerId": "",
+        "source": "cloudPhoto",
+        "status": 0,
+        "storeId": app.globalData.shopInfo.storeVo.id
+      }
+    }).then((res) => {
+      let {orderList} = this.data
+      orderList[0] = res.data.data
+      this.setData({
+        orderList:orderList
+      })
+    })
+  },
   initFn() {
     this.switchSubtitle(0)
     this.initOrderList()
+    this.getOrderList()
   },
-  onLoad: function (options) {},
+  onLoad: function (options) {
+    this.initFn()
+  },
   onReady: function () {},
   onShow: function () {},
   onHide: function () {},

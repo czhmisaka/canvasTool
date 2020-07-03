@@ -25,8 +25,9 @@
         </view>
         <view class="checkBox" wx:if="{{type=='check'}}">
             <view class="icon">
-                <checkbox value="{{checkFile}}" color="#fff" checked="{{checkFile}}" bindtap="checkBoxStatus">
-                </checkbox>
+                <!-- <checkbox value="{{checkFile}}" color="#fff" checked="{{checkFile}}" bindtap="checkBoxStatus">
+                </checkbox> -->
+                <image src="{{checkFile?'/static/images/loginImages/ic_choose_pre.png':''}}" bindtap="checkBoxStatus" />
             </view>
             <view class="word">
                 登录表示同意<span class="span" bindtap="showConfidence" data-type="服务协议">《服务协议》</span><span class="span"  bindtap="showConfidence" data-type="隐私协议">《隐私协议》</span>

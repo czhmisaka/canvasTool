@@ -179,7 +179,7 @@ Page({
         checkData.push(tab)
       }
       util.request({
-        url: '/customer/label/list',
+        url: '/customer/label/allList',
         data: { 
           id: app.globalData.shopInfo.storeVo.id
         }

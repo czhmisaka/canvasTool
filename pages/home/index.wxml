@@ -5,17 +5,19 @@
     <view class="promoter">
         <view class="detail">
             <view class="change" wx:if="{{false}}">
-                <image src="/static/images/icon_page/ic_qh.png" /><view class="span">切换</view>
+                <image src="/static/images/icon_page/ic_qh.png" />
+                <view class="span">切换</view>
             </view>
             <view class="headImg" style="height:52rpx"></view>
             <view class="headImg">
-                <image src="{{storeVo.storeLogo}}" alt="" />
+                <image src="{{storeVo.storeLogo?storeVo.storeLogo:'/static/images/icon_page/img_zwtx.png'}}"
+                    alt="" />
             </view>
             <view class="word">
                 {{storeVo.storeName}}
             </view>
             <view class="word">
-                <view class="button" bindtap="shareShop">分享店铺</view>
+                <view class="button" bindtap="shareShop">分享档口</view>
             </view>
         </view>
         <view class="background">
@@ -42,5 +44,5 @@
             <image src="/static/images/icon_page/pic_zjsx.png" />
             最近上新</view>
     </view>
-    <photoWaterFall storeId="{{storeVo.id}}" id="fall" ></photoWaterFall>
+    <photoWaterFall storeId="{{storeVo.id}}" id="fall"></photoWaterFall>
 </view>

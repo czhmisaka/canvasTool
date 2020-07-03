@@ -13,10 +13,10 @@
         </view>
     </view>
     <view class="orderBox">
-        <swiper current="{{selectType.index}}" bindchange="swiperChaneg" indicator-dots="{{true}}" autoplay="{{false}}" duration="{{400}}" class="swiper">
+        <swiper current="{{selectType.index}}" bindchange="swiperChaneg" indicator-dots="{{false}}" autoplay="{{false}}" duration="{{400}}" class="swiper">
             <block wx:for="{{typeList}}" wx:key="*this">
-                <swiper-item>
-                    <order order_Detail="{{item}}" wx:key="*this" wx:for="{{order_list[selectType.index]}}"></order>
+                <swiper-item class="swiper">
+                    <order order_Detail="{{item}}" wx:key="*this" wx:for="{{orderList[selectType.index]}}"></order>
                 </swiper-item>
             </block>
         </swiper>
