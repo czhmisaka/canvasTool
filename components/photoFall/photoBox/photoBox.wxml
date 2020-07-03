@@ -16,7 +16,7 @@
             <view class="name">
                 {{photo.photoDesc}}
             </view>
-            <view class="price">{{photo.price}}</view>
+            <view class="price">{{price}}</view>
             <view class="button" wx:if="{{photo.photoShow===1}}" data-id="{{photo.goodsId}}">分享</view>
             <view class="status" wx:if="{{photo.photoShow===0}}">仅自己可见</view>
         </view>

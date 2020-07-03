@@ -26,6 +26,11 @@ Component({
             checkLists,
           })
         }
+        if (this.properties.checkData.isNew) {
+          this.setData({
+            isNew: this.properties.checkData.isNew
+          })
+        }
       }
     },
     letCusCheck: {
@@ -46,7 +51,8 @@ Component({
     checkLists: [],
     select: 0, //默认 一口价
     price: '',
-    priceList: []
+    priceList: [],
+    isNew:false// 是否为 查看状态
   },
   methods: {
     callBackToPage(e) {
@@ -137,7 +143,7 @@ Component({
         })
       } else if (type == 'num') {
         value = util.validateNumber(value)
-        value = value.split('.')[0]*1
+        value = value.split('.')[0] * 1
         if (value == 0) {
           wx.showToast({
             title: '最低为一件',

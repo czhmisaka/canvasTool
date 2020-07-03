@@ -188,7 +188,7 @@ Page({
           title:"对谁可见",
           tabList:[]
         }
-        result.data.data.forEach((item, index) => {
+        result.data.forEach((item, index) => {
           tab.tabList.push({
             tab: item.labelName,
             id: item.id,
@@ -235,12 +235,13 @@ Page({
 
 
   onLoad: function (options) {
-    this.initFn()
-    this.getCheckList()
   },
 
   onReady: function () {},
-  onShow: function () {},
+  onShow: function () {
+    this.initFn()
+    this.getCheckList()
+  },
   onHide: function () {},
   onUnload: function () {},
   onPullDownRefresh: function () {},

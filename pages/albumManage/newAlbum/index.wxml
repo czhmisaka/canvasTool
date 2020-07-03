@@ -17,7 +17,7 @@
             <textarea class="textarea" wx:if="{{pageType===0}}" placeholder="请输入商品说明" bindinput="typing"
                 value="{{word}}">
             </textarea>
-            <view class="textarea" wx:else>{{word}}</view>
+            <view class="textarea-show" wx:else>{{word}}</view>
         </view>
     </view>
 
@@ -30,13 +30,20 @@
             <view class="right gray">{{goodsSerial}}</view>
         </view>
     </view>
-    <view class="section" wx:if="{{goodsSerial}}" bindtap="letCusCheck" data-type="价格">
+    <view class="section" style="margin-bottom:160rpx" wx:if="{{goodsSerial}}" bindtap="letCusCheck" data-type="价格">
         <view class="navToBox">
             <view class="left">设置价格</view>
             <view class="right icon">
                 <image src="/static/images/icon_page/ic_xy.png" />
             </view>
-            <view class="right red">{{price}}</view>
+            <view class="right red">
+                <view >
+                    {{price[0].favorableNum+'件以上'+price[0].goodsPrice+'元'}}
+                </view>
+                <view class="list" wx:key="*this" wx:for="{{price}}" wx:if="{{index!=0}}">
+                    {{item.favorableNum+'件以上'+item.goodsPrice+'元'}}
+                </view>
+            </view>
         </view>
     </view>
 

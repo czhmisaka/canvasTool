@@ -124,7 +124,7 @@
 					"id": 8,
 					"name": "访问已有相册",
 					"pathName": "pages/albumManage/newAlbum/index",
-					"query": "id=1277499271490310145",
+					"query": "id=1279147521758728194",
 					"scene": null
 				},
 				{
@@ -139,6 +139,13 @@
 					"name": "客户 一级页面",
 					"pathName": "pages/cus/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "订单详情",
+					"pathName": "pages/orderManage/orderDetail/orderDetail",
+					"query": "id=1279147521758728194",
 					"scene": null
 				}
 			]

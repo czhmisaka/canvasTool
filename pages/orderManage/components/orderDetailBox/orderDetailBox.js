@@ -2,11 +2,9 @@
 // const util = require('../../../../utils/util.js')
 
 const util = require("../../../../utils/util");
+const { WxApiRoot } = require("../../../../config/api");
 
 Component({
-  /**
-   * 组件的属性列表
-   */
   properties: {
     order_Detail: {
       type: Object,
@@ -34,7 +32,7 @@ Component({
             status = '交易完成';
             break;
           case 50:
-            status = '已提交';
+            status = '待接单';
             break;
           case 60:
             status = '已确认';
@@ -48,18 +46,16 @@ Component({
     }
   },
 
-  /**
-   * 组件的初始数据
-   */
   data: {
 
   },
 
-  /**
-   * 组件的方法列表
-   */
   methods: {
-
+    toDetail:function(e){
+      wx.navigateTo({
+        url:"../orderDetail/orderDetail?id="+this.properties.order_Detail.orderId
+      })
+    },
     timeset:function(date){
     return util.formatTime(date)  
     }

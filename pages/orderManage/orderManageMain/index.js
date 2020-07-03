@@ -1,7 +1,8 @@
 // pages/orderManage/orderDetail/index.js
 const app = getApp()
 const util = require('../../../utils/util.js')
-
+let order_list = [0, 0, 0, 0, 0]
+let lock = true
 Page({
 
   /**
@@ -15,6 +16,7 @@ Page({
       '已完成',
       '已取消'
     ],
+
     selectType: 0,
     orderList: []
   },
@@ -39,6 +41,8 @@ Page({
       this.setData({
         selectType: selectType
       })
+      if (!this.data.orderList[e])
+        this.getOrderList(e)
     })
   },
   initOrderList() {
@@ -51,32 +55,81 @@ Page({
     })
   },
 
+  // 继续加载订单
+  getMoreOrderList(e) {
+    if (!lock) return;
+    lock = false
+    wx.showLoading({
+      title: '加载中'
+    })
+    let index = e.currentTarget.dataset.i
+    let indexList = ['', 50, 60, 40, 0];
+    util.request({
+      url: 'order/getOrders',
+      data: {
+        "keyWord": "",
+        "memberId": "",
+        "pageNum": order_list[index],
+        "pageSize": 6,
+        "sellerId": "",
+        "source": "cloudPhoto",
+        "status": indexList[index],
+        "storeId": app.globalData.shopInfo.storeVo.id
+      }
+    }).then((res) => {
+      wx.hideLoading()
+      if (res.data.pages-1 > order_list[index]) {
+        wx.showToast({
+          title: '加载成功'
+        })
+        let {
+          orderList
+        } = this.data
+        order_list[index]++;
+        res.data.data.forEach((item) => {
+          orderList[index].push(item)
+        })
+        this.setData({
+          orderList: orderList
+        })
+      }else{
+        wx.showToast({
+          title: '没有更多数据',
+          icon:'none'
+        })
+      }
+      lock = true
+    })
+  },
+
   // 获得订单信息
-  getOrderList() {
+  getOrderList(index) {
+    let indexList = ['', 50, 60, 40, 0];
     util.request({
       url: 'order/getOrders',
       data: {
         "keyWord": "",
         "memberId": "",
         "pageNum": 0,
-        "pageSize": 100,
+        "pageSize": 6,
         "sellerId": "",
         "source": "cloudPhoto",
-        "status": 0,
+        "status": indexList[index],
         "storeId": app.globalData.shopInfo.storeVo.id
       }
     }).then((res) => {
-      let {orderList} = this.data
-      orderList[0] = res.data.data
+      let {
+        orderList
+      } = this.data
+      orderList[index] = res.data.data
       this.setData({
-        orderList:orderList
+        orderList: orderList
       })
     })
   },
   initFn() {
     this.switchSubtitle(0)
     this.initOrderList()
-    this.getOrderList()
   },
   onLoad: function (options) {
     this.initFn()
@@ -86,7 +139,9 @@ Page({
   onHide: function () {},
   onUnload: function () {},
   onPullDownRefresh: function () {},
-  onReachBottom: function () {},
+  onReachBottom: function () {
+    this.getMoreOrderList(this.data.selectType.index)
+  },
   onShareAppMessage: function () {},
   onReachBottom: function () {}
 })

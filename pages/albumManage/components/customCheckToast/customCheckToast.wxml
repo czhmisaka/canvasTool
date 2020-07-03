@@ -8,10 +8,11 @@
             <view class="btn" bindtap="callBackToPage">确认</view>
         </view>
         <view class="tabBox">
-            <view class="tab {{item.check?'highLight':''}}" wx:for="{{checkLists}}" wx:key="*this" bindtap="check" data-index="{{index}}">
+            <view class="tab {{item.check?'highLight':''}}" wx:for="{{checkLists}}" wx:key="*this" bindtap="check"
+                data-index="{{index}}">
                 {{item.name}}
             </view>
-            <view class="tab add">{{"添加"+title}}</view>
+            <input class="tab add" bindconfirm="addTab" value="{{newValue}}" data-type="{{title}}" placeholder='{{"添加"+title}}' />
         </view>
     </view>
 </view>

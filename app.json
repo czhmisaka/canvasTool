@@ -9,7 +9,8 @@
     "pages/albumManage/albumManageMain/index",
     "pages/albumManage/newAlbum/index",
     "pages/albumManage/findGoods/index",
-    "pages/albumManage/findGoods/GoodsDetail/index"
+    "pages/albumManage/findGoods/GoodsDetail/index",
+    "pages/orderManage/orderDetail/orderDetail"
   ],
   "tabBar": {
     "color": "#B3B6BF",

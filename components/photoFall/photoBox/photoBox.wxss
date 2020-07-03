@@ -80,13 +80,17 @@
 
 .bottom {
     height: auto;
-    display: inline-block;
+    /* display: inline-block; */
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .bottom>.name {
     float: left;
     margin: 20rpx 16rpx;
+    min-width: 300 rpx;
     color: #3D3D3D;
     font-size: 28rpx;
     font-weight: 500;
@@ -100,13 +104,13 @@
 }
 
 .bottom>.price {
-    float: left;
+    float: right;
     margin: 20rpx 22rpx;
     color: #EE4866;
-    font-size: 28px;
+    font-size: 28rpx;
     font-family: PingFangSC-Semibold, PingFang SC;
     font-weight: 600;
-    line-height: 28rpx;
+    line-height: 36rpx;
 }
 
 .bottom>.button {

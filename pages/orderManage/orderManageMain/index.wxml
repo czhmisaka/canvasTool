@@ -13,10 +13,13 @@
         </view>
     </view>
     <view class="orderBox">
-        <swiper current="{{selectType.index}}" bindchange="swiperChaneg" indicator-dots="{{false}}" autoplay="{{false}}" duration="{{400}}" class="swiper">
+        <swiper current="{{selectType.index}}" bindchange="swiperChaneg" indicator-dots="{{false}}" autoplay="{{false}}"
+            duration="{{400}}" class="swiper">
             <block wx:for="{{typeList}}" wx:key="*this">
                 <swiper-item class="swiper">
-                    <order order_Detail="{{item}}" wx:key="*this" wx:for="{{orderList[selectType.index]}}"></order>
+                    <scroll-view class="scroll" scroll-y height="100%" bindscrolltolower="getMoreOrderList" data-i="{{selectType.index}}">
+                        <order order_Detail="{{item}}" wx:key="*this" wx:for="{{orderList[selectType.index]}}"></order>
+                    </scroll-view>
                 </swiper-item>
             </block>
         </swiper>

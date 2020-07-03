@@ -19,7 +19,10 @@ Page({
     albumData: {},
     pageType: 0, // 0 新建 , 1 编辑 
     id: '',
-    price: '',
+    price: [{
+      favorableNum:0,
+      goodsPrice:0
+    }],
     goodsPriceAddDtos: [],
     // 自定义弹窗控制
     checkStatus: false, // 自定义组件 显示控制
@@ -210,11 +213,19 @@ Page({
 
   // 图片相册处理
   imageAlbumInitFn: function (data) {
+    let price = []
+    data.goodsPriceVos.forEach(item=>{
+      price.push(item)
+    })
+    price = price.sort((a,b)=>{
+      return a.goodsPrice - b.goodsPrice
+    })
     this.setData({
       albumData: data,
       goodsSerial: data.goodsSerial,
       imageList: data.photoImageMore.split(','),
-      word: data.photoDesc
+      word: data.photoDesc,
+      price
     })
   },
 
@@ -258,12 +269,15 @@ Page({
 
   // 调起自定义选择
   letCusCheck(e) {
+    if(this.data.pageType==1) return this.show('编辑功能未开放')
     let {
       type
     } = e.currentTarget.dataset
     let checkData = {
       title: type,
-      tabList: this.data.price
+      tabList: this.data.price,
+      isNew:(this.data.pageType==0),
+      priceData:this.data.albumData.goodsPriceVos
     }
     this.setData({
       checkData,
@@ -295,7 +309,7 @@ Page({
     } = e.detail
     console.log(check)
     this.setData({
-      price: check.goodsPriceAddDtos[0].goodsPrice,
+      price: check.goodsPriceAddDtos,
       goodsPriceAddDtos: check.goodsPriceAddDtos
     })
   },

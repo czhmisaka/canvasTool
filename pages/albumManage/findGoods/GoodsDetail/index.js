@@ -99,7 +99,7 @@ Page({
   },
 
   // 获取自定义选择用列表
-  getCheckList(id = '') {
+  getCheckList(id = '') { 
     let tabCheckList = []
     util.request({
       url: 'photo/goodsAttr',
@@ -159,6 +159,7 @@ Page({
         goodsDetail
       })
     } else {
+      let idList = []
       tabCheckList.forEach(tab => {
         if (tab.title === check.title) {
           tab.word = ''
@@ -169,8 +170,22 @@ Page({
             }
             tab.word += word
           })
+          // 新增判断
+          tab.tabList.forEach(res=>{
+            idList.push(res.id)
+          })
+          check.id.forEach((res,index)=>{
+            if(idList.indexOf(res)==-1){
+              tab.tabList.push({
+                attrValueName:check.name[index],
+                id:res,
+                storeId:app.globalData.shopInfo.storeVo.id
+              })
+            }
+          })
         }
       })
+      
       this.setData({
         tabCheckList
       })
@@ -183,7 +198,7 @@ Page({
       checkStatus: false,
       checkData: {
         title: '',
-        tabList: []
+        tabList: [],
       }
     })
     setTimeout(() => {
@@ -237,7 +252,6 @@ Page({
   submit(e) {
     let pages = getCurrentPages()
     pages.forEach((item, index) => {
-      console.log(item.route)
       if (item.route == "pages/albumManage/newAlbum/index") {
         item.setData({
           goodsSerial: this.data.goodsDetail.goodsSerial,

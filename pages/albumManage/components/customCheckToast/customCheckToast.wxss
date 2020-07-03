@@ -87,17 +87,19 @@
     border-radius: 28rpx;
     background: rgba(245, 245, 245, 1);
     border: 1rpx solid rgba(33, 55, 61, 0);
-    transition:all 0.3s;
+    transition: all 0.3s;
 }
 
 .tabBox>.highLight {
     border: 1rpx solid rgba(33, 55, 61, 1);
     color: white;
-    background-color: rgba(33,55,61,1);
+    background-color: rgba(33, 55, 61, 1);
 }
 
 .tabBox>.add {
-    padding: 16rpx 30rpx;
+    padding: 7rpx 30rpx;
+    width: 4em;
+    display: inline-block;
     height: 24rpx;
     font-size: 24rpx;
     font-family: PingFangSC-Regular, PingFang SC;

@@ -10,6 +10,7 @@ Component({
       type: Object,
       observer: function () {
         this.getNumber()
+        this.setPrice()
       }
     }
   },
@@ -19,13 +20,27 @@ Component({
    */
   data: {
     show: false,
-    number: 0
+    number: 0,
+    price: ''
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
+    setPrice: function () {
+      let {
+        goodsPriceVos
+      } = this.properties.photo
+      if (goodsPriceVos) {
+        goodsPriceVos = goodsPriceVos.sort((a, b) => {
+          return a.goodsPrice - b.goodsPrice
+        })
+      }
+      if (goodsPriceVos[0]) return this.setData({
+        price: '￥' + goodsPriceVos[0].goodsPrice
+      })
+    },
     getNumber: function () {
       if (this.properties.photo.photoImageMore) {
         let number = this.properties.photo.photoImageMore.split(',')
@@ -44,7 +59,7 @@ Component({
     },
     toDetail: function (e) {
       wx.navigateTo({
-        url: '/pages/albumManage/newAlbum/index?id='+this.properties.photo.id
+        url: '/pages/albumManage/newAlbum/index?id=' + this.properties.photo.id
       });
     }
   }
