@@ -143,7 +143,7 @@ Component({
             title: '最低为一件',
             icon: 'none',
           });
-          priceList[index][type] = 1
+          priceList[index][type] = ''
           this.setData({
             priceList
           })

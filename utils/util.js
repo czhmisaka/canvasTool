@@ -48,6 +48,13 @@ let request = obj => {
               title: '系统开小差了',
               icon: 'none',
             });
+            break;
+          case 500:
+            return wx.showToast({
+              title: '系统开小差了',
+              icon: 'none',
+            });
+            break;
         }
 
       },
@@ -201,7 +208,7 @@ function checkFloat(value) {
     value = validateNumber(value.split('.')[0]) * 1 + '.'
   } else if (!value.split('.')[1]) {
     value = validateNumber(value.split('.')[0]) * 1
-  } 
+  }
   return value
 }
 

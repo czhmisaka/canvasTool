@@ -67,13 +67,13 @@ Page({
 
       // 这里注入了假数据， 待修改
       this.formatNum([{
-        num: buyerNum || 832733,
+        num: buyerNum || 5137,
         type: '购买人数'
       }, {
-        num: goodsNum || 1220991,
+        num: goodsNum || 11380,
         type: '售出件数'
       }, {
-        num: salesVolume || 39208301,
+        num: salesVolume || 624312,
         type: '售出金额'
       }])
     })

@@ -27,6 +27,7 @@ Page({
       title: '',
       tabList: []
     }, // 自定义组件 显示数据
+    
   },
 
   // 绑定输入
@@ -140,6 +141,7 @@ Page({
     })
     console.log(this.data.goodsPriceAddDtos)
     if (this.data.goodsId && this.data.goodsPriceAddDtos.length < 1) return this.show('请添加价格信息')
+    console.log(this.data.goodsId)
     utils.request({
       url: '/photo/add',
       data: {
@@ -194,7 +196,7 @@ Page({
       });
       wx.showToast({
         title: res.msg,
-        icon: 'success',
+        icon: 'none',
         success: res => {
           setTimeout(() => {
             wx.navigateBack({

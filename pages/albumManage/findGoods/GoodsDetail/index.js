@@ -280,6 +280,9 @@ Page({
       if (res.msg != "请求成功") {
         this.show('创建失败')
       } else {
+        this.setData({
+          goodsId:res.data.id
+        })
         this.submit()
       }
     })

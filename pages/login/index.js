@@ -52,7 +52,7 @@ Page({
     wx.login({
       success: function (res) {
         utils.request({
-          url: '/login/wechat',
+          url: 'login/wechat',
           data: {
             code: res.code,
             iv: iv,
