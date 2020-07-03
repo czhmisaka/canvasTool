@@ -1,1 +1,84 @@
 /* pages/mine/index.wxss */
+
+.mine {
+    background-color: #F7F8FA;
+    height: 100vh;
+    font-family: "PingFangSC-Regular,PingFang SC";
+}
+
+.promoter {
+    width: 750rpx;
+    height: 232rpx;
+    background: rgba(33, 55, 61, 1);
+}
+
+.promoter>.left {
+    width: auto;
+    height: 232rpx;
+    line-height: 232rpx;
+    display: inline-block;
+    float: left;
+    font-size: 36rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+}
+
+.promoter>.left>image {
+    margin: 56rpx 34rpx;
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 60rpx;
+    box-shadow: 1rpx 1rpx 3rpx rgba(0, 0, 0, 0.2);
+}
+
+.icon40 {
+    width: 40rpx;
+    height: 40rpx;
+    margin: 35rpx;
+    margin-right: 10rpx;
+}
+
+.flexBox {
+    z-index: 10;
+    background-color: #fff;
+    width: calc(100% - 40rpx);
+    margin: 20rpx;
+    height: 140rpx;
+    border-radius: 8rpx;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.flexBox>.MsgBox {
+    margin: 20rpx;
+    width: calc(33% - 40rpx);
+    text-align: center;
+}
+
+.MsgBox>.Number {
+    font-family: "DINAlternate-Bold,DINAlternate";
+    color: #21373D;
+    font-weight: bold;
+    font-size: 36rpx;
+}
+
+.MsgBox>.word {
+    padding-top: 16rpx;
+    color: #999999;
+    font-size: 24rpx;
+}
+
+.flexBox>.toPhoto {
+    display: flex;
+    font-weight: 400;
+    font-family: "PingFangSC-Regular,PingFang SC";
+    line-height: 110rpx;
+}
+
+.flexBox>.right {
+    line-height: 110rpx;
+    margin-right: 35rpx;
+    transform: scale(1.5，1)
+}

@@ -64,7 +64,7 @@ Page({
         }).then(result => {
           let res = result.data
           if (res.code === 200) {
-            app.globalData.shopInfo = res.data
+            app.globalData.shopInfo = res.data // 留个坑 这里 没有保存 userinfo 记得检查下面那个
             app.globalData.accessToken = result.header.Authorization // 获取token
             app.setStorage()
             wx.showToast({

@@ -17,8 +17,14 @@ Page({
         pageNum:0
       }
     }).then(res=>{
+      res = res.data.data
+
+      res.forEach(item=>{
+        item.isBuyer=1
+        item.orderAmount = Math.floor(Math.random(1)*300+300+Math.random(1)*2000)
+      })
       this.setData({
-        cusList:res.data.data
+        cusList:res
       })
     })
   },
