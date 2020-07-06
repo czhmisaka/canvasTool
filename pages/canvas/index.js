@@ -82,7 +82,7 @@ Page({
           },
           {
             type: 'image',
-            url: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=810988444,1648289218&fm=11&gp=0.jpg',
+            url: '/static/images/canvasTool/avatarBg.png',
             top: 415,
             left: 240,
             width: 80,

@@ -30,11 +30,12 @@ Page({
   },
   watch: {},
 
-  // 页面切换
+  // 页面切换 （滑动触发函数）
   swiperChaneg(e) {
     this.switchSubtitle(e.detail.current)
   },
-  // 页面切换
+
+  // 页面切换 （主函数）
   switchSubtitle(e) {
     var that = this
     if (e.currentTarget) {
@@ -166,8 +167,8 @@ Page({
       } = this.data
       if (res.data) {
         let tab = {
-          title:'品类',
-          tabList:[]
+          title: '品类',
+          tabList: []
         }
         res.data.forEach((item, index) => {
           tab.tabList.push({
@@ -180,13 +181,13 @@ Page({
       }
       util.request({
         url: '/customer/label/allList',
-        data: { 
+        data: {
           id: app.globalData.shopInfo.storeVo.id
         }
       }).then(result => {
         let tab = {
-          title:"对谁可见",
-          tabList:[]
+          title: "对谁可见",
+          tabList: []
         }
         result.data.forEach((item, index) => {
           tab.tabList.push({
@@ -205,11 +206,11 @@ Page({
 
   // 处理筛选后返回数据
   checkReturn(e) {
-  // console.log(e.detail.check,e.detail.chec==checkData)
+    // console.log(e.detail.check,e.detail.chec==checkData)
     this.setData({
-      checkData:e.detail.check
+      checkData: e.detail.check
     })
-    if(e.detail.start){
+    if (e.detail.start) {
       // 触发搜索函数
     }
   },
@@ -217,14 +218,67 @@ Page({
   // 关闭筛选
   checkCancel(e) {
     this.setData({
-      checkStatus:false
+      checkStatus: false
     })
   },
 
   // 打开筛选
   checkOpen(e) {
     this.setData({
-      checkStatus:true
+      checkStatus: true
+    })
+  },
+
+  // 获取组件的返回函数
+  callBack(e) {
+    console.log(e)
+    let {
+      preData,
+      publish
+    } = e.detail.back
+    let {
+      data
+    } = this.data
+    preData.photoShow = publish ? 1 : 0
+    // 留个坑 待优化
+    data.forEach((tab, index) => {
+      tab.forEach((item, i) => {
+        if (item.id === preData.id) {
+          item.photoShow == publish ? '1' : '0';
+          if (index == 1) {
+            data[index].splice(i, 1)
+            if (data[2].length != 0) {
+              let canInsert = true
+              data[2].forEach(insert => {
+                if (insert.id == preData.id)
+                  canInsert = false
+              })
+              if (canInsert)
+                data[2].unshift(preData)
+            }
+          }
+        }
+      })
+    })
+    this.setData({
+      data
+    })
+  },
+
+  // 按时间排序 留个坑 可以优化
+  sortDataByTime(e) {
+    let {
+      data
+    } = this.data
+    data.forEach(tab => {
+      tab.sort((a, b) => {
+        let TimeA = new Date(a.createTime),
+          TimeB = new Date(b.createTime);
+        return TimeB - TimeA
+      })
+    })
+    this.setData({
+      data
     })
   },
 
@@ -234,8 +288,7 @@ Page({
   },
 
 
-  onLoad: function (options) {
-  },
+  onLoad: function (options) {},
 
   onReady: function () {},
   onShow: function () {

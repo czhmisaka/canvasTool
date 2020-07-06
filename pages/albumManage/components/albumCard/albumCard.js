@@ -33,7 +33,8 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    // 获取价格
+
+    // 初始化函数
     initFn: function (e) {
       let price = 0,
         photoList = [],
@@ -59,6 +60,17 @@ Component({
       })
     },
 
+    // 反馈当前状态
+    callBack: function (e) {
+      let back = {
+        preData: this.properties.data,
+        publish: e
+      }
+      this.triggerEvent("callBack", {
+        back
+      })
+    },
+
     // 前往详情
     toDetail: function (e) {
       wx.navigateTo({
@@ -66,6 +78,7 @@ Component({
       });
     },
 
+    // 选择函数
     changeCheck: function () {
       this.triggerEvent('changeCheck', {
         type: this.properties.checkindex,
@@ -100,6 +113,12 @@ Component({
               title: '发布成功',
               icon: 'success',
             });
+            this.callBack()
+          }else{
+            wx.showToast({
+              title:'发布失败',
+              icon:'none'
+            })
           }
         })
       }

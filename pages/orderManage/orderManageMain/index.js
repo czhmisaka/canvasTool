@@ -22,9 +22,12 @@ Page({
   },
   watch: {},
 
+  // 切换tab页（滑动控制）
   swiperChaneg(e) {
     this.switchSubtitle(e.detail.current)
   },
+
+  // 切换tab页（主函数）
   switchSubtitle(e) {
     var that = this
     if (e.currentTarget) {
@@ -45,6 +48,8 @@ Page({
         this.getOrderList(e)
     })
   },
+
+  // 初始化 订单列表
   initOrderList() {
     let orderList = []
     this.data.typeList.forEach((res) => {

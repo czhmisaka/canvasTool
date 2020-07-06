@@ -1,6 +1,14 @@
 const config = require('../config/config.js');
 // const { promises } = require('fs');
 
+// 简化弹窗
+const noIconToast = (e) => {
+    wx.showToast({
+        title: e,
+        icon: 'none'
+    })
+}
+
 //检测是否获取到uid
 const checkoutUidStatus = async function checkoutUidStatus(callback, loginStatus = true) {
     let {
@@ -54,7 +62,7 @@ const toLoginPage = () => {
 
 // const uploadImage =(imageList)=>{
 //     return new Promise((resolve, reject) => {
-        
+
 //     })
 // }
 

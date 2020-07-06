@@ -22,7 +22,7 @@
             <block wx:for="{{typeList}}" wx:key="id">
                 <swiper-item>
                     <view class="scroll {{checkMore[selectType.index]?'check':''}}">
-                        <albumCard bind:changeCheck="changeCheck"
+                        <albumCard bind:changeCheck="changeCheck" bind:callBack="callBack"
                             checkindex="{{checkIndex[selectType.index][index].checkIndex}}" check="{{checkMore[selectType.index]}}"
                             id="{{index}}" wx:for="{{data[index]}}"
                             transitionMax="{{checkIndex[selectType.index].length}}" wx:key="*this" data="{{item}}">
@@ -36,6 +36,6 @@
         <view class="button" bindtap="navTo" data-url="../newAlbum/index">添加 </view>
         <view class="button {{checkMore[selectType.index]?'black':''}}" bindtap="checkMoreStatusChange">批量选择
         </view>
-        <view class="button black">分享档口 </view>
+        <view class="button black" bindtap="sortDataByTime">分享档口 </view>
     </view>
 </view>
