@@ -247,7 +247,7 @@ page{
   line-height: 40rpx;
 }
 .orderTabbar{
-  height:136rpx;
+  height:120rpx;
   width:100%;
   background: #ffffff;
   /* display: flex; */

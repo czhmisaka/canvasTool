@@ -6,7 +6,7 @@
             <image src="{{globalData.avatar||'/static/images/canvasTool/bg.png'}}" />
         </view>
         <view class="left">
-            {{globalData.nickname||'暂未设置用户名'}}
+            {{globalData.nickname||globalData.shopInfo.phone}}
         </view>
     </view>
 
@@ -29,7 +29,5 @@
             <image src="/static/images/icon_page/ic_xy.png" style="width: 14rpx;height: 26rpx;" />
         </view>
     </view>
-
-
-    <button bindtap="toLogin">跳转登录页面 临时</button>
+    <!-- <button bindtap="toLogin">跳转登录页面 临时</button> -->
 </view>

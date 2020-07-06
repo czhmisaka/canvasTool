@@ -1,6 +1,6 @@
 <!--pages/orderManage/components/orderDetailBox/orderDetailBox.wxml-->
 
-<view class="order" bindtap="toDetail">
+<view class="order" bindtap="toDetail" wx:if="{{TaskType!=''?order_Detail.orderStatus==TaskType:true}}">
     <view class="left">
         <image src="{{order_Detail.goodsImg[0]}}" />
     </view>

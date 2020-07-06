@@ -1,5 +1,5 @@
 <!-- 收件人 -->
-<view class="addressAdmin" bindtap="toAmendAddress">
+<view class="addressAdmin" wx:if="{{false}}">
   <view class="addressName"></view>
   <view class="addressPhone"></view>
   <view class="addressDetail"></view>
@@ -22,7 +22,7 @@
     </view>
     <view class="storeMoneyBox">
       <text class="storeMoney">商品金额</text>
-      <text class="storePrice">¥{{item.goodsPayPrice}}</text>
+      <text class="storePrice">¥{{item.goodsPrice}}</text>
     </view>
     <view class="orderTotalPriceBox">
       <text class="orderTotalPrice">订单总价</text>
@@ -37,7 +37,8 @@
   <view class="takeOrderTime">接单时间: {{orderDetailList.receiveTime || "-"}}</view>
 </view>
 <view class="orderTabbar">
-  <view class="transmit">转发给商家</view>
-  <view class="cancel" wx:if="{{state == 50}}">取消</view>
+  <view class="transmit" wx:if="{{orderDetailList.orderStatus == 50}}" bindtap="checkIn">接单</view>
+  <view class="transmit" wx:if="{{orderDetailList.orderStatus == 60}}">已确认</view>
+  <!-- <view class="cancel" wx:if="{{state == 50}}">取消</view> -->
   <!-- <view class="relation">联系商家</view> -->
 </view>

@@ -9,6 +9,46 @@ Page({
   data: {
 
   },
+
+  checkIn(e) {
+    util.request({
+      url: '/order/confirmOrder/' + this.data.options.id,
+      data: {},
+      method: 'get'
+    }).then((res) => {
+      if (res.data.success) {
+        let pages = getCurrentPages()
+        pages.forEach(item => {
+          console.log(item.route)
+          if (item.route == "pages/orderManage/orderManageMain/index") {
+            let {
+              orderList
+            } = item.data
+            orderList.forEach(tab => {
+              tab.forEach(i => {
+                if (i.orderId == this.data.options.id) {
+                  i.orderStatus = 60
+                }
+              })
+            })
+            item.setData({
+              orderList
+            })
+          }
+        })
+        wx.showToast({
+          title: '接单成功',
+          success: function () {
+            setTimeout(() => {
+              wx.navigateBack({
+                deleta: 1
+              })
+            }, 1000)
+          }
+        })
+      }
+    })
+  },
   toAmendAddress: function (e) {
     wx.navigateTo({
       url: '/pages/amendAddress/amendAddress',
@@ -29,13 +69,13 @@ Page({
       method: 'get'
     }).then(res => {
       let data = res.data
-      
+
       console.log(data)
-      data.createTime =  data.createTime.replace('T', ' ')
+      data.createTime = data.createTime.replace('T', ' ')
       that.setData({
         orderDetailList: res.data,
         status: res.data,
-        state: options.state
+        options: options
       })
       console.log('订单详情列表', res.data)
     })
@@ -66,7 +106,7 @@ Page({
 
   },
 
-  
+
   onShow: function () {
 
   },

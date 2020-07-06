@@ -43,7 +43,8 @@ Component({
           status
         })
       }
-    }
+    },
+    TaskType:Number
   },
 
   data: {

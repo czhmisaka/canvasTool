@@ -16,7 +16,7 @@ Page({
       '已完成',
       '已取消'
     ],
-
+    typeStatus:['', 50, 60, 40, 0],
     selectType: 0,
     orderList: []
   },

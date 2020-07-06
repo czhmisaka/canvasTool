@@ -18,7 +18,7 @@
             <block wx:for="{{typeList}}" wx:key="*this">
                 <swiper-item class="swiper">
                     <scroll-view class="scroll" scroll-y height="100%" bindscrolltolower="getMoreOrderList" data-i="{{selectType.index}}">
-                        <order order_Detail="{{item}}" wx:key="*this" wx:for="{{orderList[selectType.index]}}"></order>
+                        <order order_Detail="{{item}}" wx:key="*this" wx:for="{{orderList[selectType.index]}}" TaskType="{{typeStatus[selectType.index]}}"></order>
                     </scroll-view>
                 </swiper-item>
             </block>
