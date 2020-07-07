@@ -10,8 +10,7 @@
             </view>
             <view class="headImg" style="height:52rpx"></view>
             <view class="headImg">
-                <image src="{{storeVo.storeLogo?storeVo.storeLogo:'/static/images/icon_page/img_zwtx.png'}}"
-                    alt="" />
+                <image src="{{storeVo.storeLogo?storeVo.storeLogo:'/static/images/icon_page/img_zwtx.png'}}" alt="" />
             </view>
             <view class="word">
                 {{storeVo.storeName}}
@@ -44,5 +43,6 @@
             <image src="/static/images/icon_page/pic_zjsx.png" />
             最近上新</view>
     </view>
-    <photoWaterFall storeId="{{storeVo.id}}" id="fall"></photoWaterFall>
+    <photoWaterFall storeId="{{storeVo.id}}" bind:returnBack="returnBack" id="fall"></photoWaterFall>
 </view>
+<shareToast style="z-index:10000" dataid="{{ShareId}}" shareDetail="{{shareDetail}}"  bind:closeShare="closeShare" type="goods" open="whatever" id="share"></shareToast>

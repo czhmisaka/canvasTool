@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "photoBox":"photoBox/photoBox"
+    "photoBox":"photoBox/photoBox",
+    "shareToast":"/components/shareToast/shareToast"
   }
 }

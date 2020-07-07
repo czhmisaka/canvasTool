@@ -3,6 +3,7 @@
   "usingComponents": {
     "navBarCustom":"/components/navBarCustom/navBarCustom",
     "albumCard":"../components/albumCard/albumCard",
-    "screenSliderBar":"../components/screenSliderBar/screenSliderBar"
+    "screenSliderBar":"../components/screenSliderBar/screenSliderBar",
+    "shareToast":"/components/shareToast/shareToast"
   }
 }

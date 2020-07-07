@@ -94,9 +94,13 @@ Component({
         photoid
       } = e.currentTarget.dataset
       if (type) {
-        wx.navigateTo({
-          url: '/pages/canvas/index?id=' + this.properties.data.id
-        });
+        this.triggerEvent('returnBack', {
+          back: {
+            id: photoid,
+            image: this.properties.data.photoImage,
+            title: this.properties.data.photoDesc
+          }
+        })
       } else {
         util.request({
           url: '/photo/publish',
@@ -114,10 +118,10 @@ Component({
               icon: 'success',
             });
             this.callBack(true)
-          }else{
+          } else {
             wx.showToast({
-              title:'发布失败',
-              icon:'none'
+              title: '发布失败',
+              icon: 'none'
             })
           }
         })

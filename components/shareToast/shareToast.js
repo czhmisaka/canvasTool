@@ -27,7 +27,8 @@ Component({
     painting: {},
     shareImage: '',
     data: {},
-    detail: {}
+    detail: {},
+    showTabbar: true
   },
 
   /**
@@ -40,24 +41,33 @@ Component({
         painting: {},
         shareImage: '',
         data: {},
-        detail: {}
+        detail: {},
+        showTabbar: true
       })
       this.setData({
         show: true
       })
     },
+
     hide: function () {
       this.setData({
         show: false
+      })
+      this.triggerEvent('closeShare', {
+        back: false
       })
     },
 
     // 点击生成海报
     clickToPurduceShareImage: function () {
+      this.setData({
+        showTabbar: false
+      })
       let {
         dataid,
         type
       } = this.properties
+      console.log(dataid, type)
       if (dataid && type == "goods") {
         this.getAlbumDetial(dataid).then((url) => {
           this.goodsDetailDraw(app.globalData.shopInfo, url, this.data.detail)

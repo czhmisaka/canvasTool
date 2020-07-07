@@ -2,7 +2,6 @@
 // const util = require('../../../../utils/util.js')
 
 const util = require("../../../../utils/util");
-const { WxApiRoot } = require("../../../../config/api");
 
 Component({
   properties: {
@@ -44,7 +43,7 @@ Component({
         })
       }
     },
-    TaskType:Number
+    TaskType: Number
   },
 
   data: {
@@ -52,13 +51,13 @@ Component({
   },
 
   methods: {
-    toDetail:function(e){
+    toDetail: function (e) {
       wx.navigateTo({
-        url:"../orderDetail/orderDetail?id="+this.properties.order_Detail.orderId
+        url: "../orderDetail/orderDetail?id=" + this.properties.order_Detail.orderId
       })
     },
-    timeset:function(date){
-    return util.formatTime(date)  
+    timeset: function (date) {
+      return util.formatTime(date)
     }
   }
 })

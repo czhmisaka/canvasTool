@@ -21,7 +21,8 @@ Component({
   data: {
     show: false,
     number: 0,
-    price: ''
+    price: '',
+    whatever: false
   },
 
   /**
@@ -29,11 +30,22 @@ Component({
    */
   methods: {
 
-    // 前往分享
+    // 前往分享 已废弃
     toShare: function (e) {
       console.log(this.data.photo)
       wx.navigateTo({
         url: '/pages/canvas/index?type=goods&id=' + this.data.photo.id
+      })
+    },
+
+    // 调起通用分享接口
+    share(e) {
+      this.triggerEvent('returnBack', {
+        back: {
+          id: this.properties.photo.id,
+          image: this.properties.photo.photoImage,
+          title: this.properties.photo.photoDesc
+        }
       })
     },
 

@@ -3,7 +3,6 @@
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .wholeScreen>view,
@@ -13,12 +12,13 @@ image,
 }
 
 .wholeScreen>.hide {
-    z-index: 1;
+    z-index: 11;
     width: 100vw;
     height: 100vh;
     position: fixed;
     top: 0px;
     left: 0px;
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .share-image {
@@ -26,9 +26,8 @@ image,
     width: 680rpx;
     margin-left: 35rpx;
     height: 1120rpx;
-    bottom: 181rpx;
+    bottom: 40rpx;
     border-radius: 12rpx;
-
     /* 这个可能设计上有点问题，目前是 定高定宽 16/9 */
 }
 

@@ -9,7 +9,9 @@ Page({
   data: {
     storeVo: {},
     shopDetail: {},
-    fastMsg: []
+    fastMsg: [],
+    ShareId: '',
+    shareDetail: {}
   },
 
   // 格式化 fastMsg
@@ -79,6 +81,21 @@ Page({
     })
 
   },
+  // 分享回调
+  returnBack(e) {
+    this.setData({
+      ShareId: e.detail.back.id,
+      shareDetail: e.detail.back
+    })
+    wx.hideTabBar()
+    this.selectComponent('#share').show()
+  },
+  // 关闭分享
+  closeShare(e) {
+    wx.showTabBar()
+  },
+
+
   onLoad: function (options) {
     this.getShopDetail()
   },
@@ -90,7 +107,19 @@ Page({
   onUnload: function () {},
   onPullDownRefresh: function () {},
   onReachBottom: function () {},
-  onShareAppMessage: function () {},
+  onShareAppMessage: function (e) {
+    if (e.target && e.target.dataset.type == "goods") {
+      let {
+        sharedetail
+      } = e.target.dataset
+      return {
+        title: sharedetail.title,
+        imageUrl: sharedetail.image,
+        path: 'pages/albumManage/newAlbum/index?id' + sharedetail.id
+      }
+    }
+
+  },
   onReachBottom: function () {
     this.selectComponent('#fall').getMore()
   }

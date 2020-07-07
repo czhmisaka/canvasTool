@@ -9,9 +9,11 @@
         <view class="add" bindtap="toAdd">
             <image src="/static/images/icon_page/ic_tjtpsp.png" />
         </view>
-        <photoBox class="photoBox" wx:for="{{leftLine}}" id="{{'l'+index}}" index="{{index}}" photo="{{item}}" wx:key="*this"></photoBox>
+        <photoBox class="photoBox" wx:for="{{leftLine}}" id="{{'l'+index}}" index="{{index}}" photo="{{item}}"
+            wx:key="*this" bind:returnBack="returnBack"></photoBox>
     </view>
     <view class="line rightLine" id="r">
-        <photoBox class="photoBox" wx:for="{{rightLine}}" id="{{'r'+index}}" index="{{index}}" photo="{{item}}" wx:key="*this"></photoBox>
+        <photoBox class="photoBox" wx:for="{{rightLine}}" id="{{'r'+index}}" index="{{index}}" photo="{{item}}"
+            wx:key="*this" bind:returnBack="returnBack"></photoBox>
     </view>
 </view>

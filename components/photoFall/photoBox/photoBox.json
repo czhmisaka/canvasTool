@@ -1,4 +1,6 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "shareToast":"/components/shareToast/shareToast"
+  }
 }

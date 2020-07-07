@@ -2,7 +2,8 @@
 <view class="photo {{show?'':'gray'}}">
     <view class="{{show?'show':'hidden'}}">
         <view class="imageBox">
-            <image class="image" mode="widthFix" bindtap="toDetail" src="{{photo.photoImage}}" wx:if="{{photo.photoImage}}" bindload="loadOver" />
+            <image class="image" mode="widthFix" bindtap="toDetail" src="{{photo.photoImage}}"
+                wx:if="{{photo.photoImage}}" bindload="loadOver" />
             <video class="widthFix" src="{{photo.photoVedio}}" wx:if="{{photo.photoVedio}}" />
             <view class="info">
                 <view class="icon" wx:if="{{!photo.photoImage}}">
@@ -17,7 +18,7 @@
                 {{photo.photoDesc}}
             </view>
             <view class="price">{{price}}</view>
-            <view class="button" wx:if="{{photo.photoShow===1}}" data-id="{{photo.goodsId}}" bindtap="toShare">分享</view>
+            <view class="button" wx:if="{{photo.photoShow===1}}" data-id="{{photo.goodsId}}" bindtap="share">分享</view>
             <view class="status" wx:if="{{photo.photoShow===0}}">仅自己可见</view>
         </view>
     </view>

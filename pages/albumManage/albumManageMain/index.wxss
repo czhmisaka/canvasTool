@@ -58,7 +58,7 @@
 
 .subTitle>.highLight {
     color: #21373D;
-    font-weight: 600;
+    font-weight: bolder;
 }
 
 .subTitle>.moveBottombar {

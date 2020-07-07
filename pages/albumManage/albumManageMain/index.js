@@ -27,6 +27,8 @@ Page({
     checkMore: [false, false, false], // 多选开启
     checkData: [], // 自定义 侧滑菜单 选项
     checkStatus: false,
+    ShareId:'',
+    shareDetail:''
   },
   watch: {},
 
@@ -227,6 +229,15 @@ Page({
     })
   },
 
+  // 分享
+  returnBack(e) {
+    this.setData({
+      ShareId: e.detail.back.id,
+      shareDetail: e.detail.back
+    })
+    this.selectComponent('#share').show()
+  },
+
   // 获取组件的返回函数
   callBack(e) {
     let {
@@ -240,7 +251,7 @@ Page({
     data.forEach((tab, index) => {
       tab.forEach((item, i) => {
         if (item.id === preData.id) {
-          item.photoShow = publish 
+          item.photoShow = publish
           if (index == 1 && index == 0) {
             if (index == 1)
               data[index].splice(i, 1)
@@ -296,6 +307,18 @@ Page({
   onUnload: function () {},
   onPullDownRefresh: function () {},
   onReachBottom: function () {},
-  onShareAppMessage: function () {},
+  onShareAppMessage: function (e) {
+    if (e.target && e.target.dataset.type == "goods") {
+      let {
+        sharedetail
+      } = e.target.dataset
+      return {
+        title: sharedetail.title,
+        imageUrl: sharedetail.image,
+        path: 'pages/albumManage/newAlbum/index?id' + sharedetail.id
+      }
+    }
+
+  },
   onReachBottom: function () {}
 })

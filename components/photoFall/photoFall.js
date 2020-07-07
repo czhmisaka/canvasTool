@@ -31,6 +31,7 @@ Component({
     rightLine: [],
     line: [],
     data: [],
+    shareId: '' // 分享用的哈
   },
 
   /**
@@ -56,6 +57,13 @@ Component({
       wx.navigateTo({
         url: '/pages/albumManage/newAlbum/index'
       });
+    },
+
+    // 分享用 回调函数
+    returnBack: function (e) {
+      this.triggerEvent('returnBack', {
+        back: e.detail.back
+      })
     },
     // 下拉加载预置
     getMore: function () {

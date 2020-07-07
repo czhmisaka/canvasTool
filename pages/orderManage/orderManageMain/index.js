@@ -107,6 +107,11 @@ Page({
     })
   },
 
+  refreshOrderlist(e){
+    wx.showLoading({title:'刷新中'})
+    this.getOrderList(e.currentTarget.dataset.i)
+  },
+
   // 获得订单信息
   getOrderList(index) {
     let indexList = ['', 50, 60, 40, 0];
@@ -123,6 +128,7 @@ Page({
         "storeId": app.globalData.shopInfo.storeVo.id
       }
     }).then((res) => {
+      wx.hideLoading()
       let {
         orderList
       } = this.data

@@ -22,7 +22,7 @@
             <block wx:for="{{typeList}}" wx:key="id">
                 <swiper-item>
                     <view class="scroll {{checkMore[selectType.index]?'check':''}}">
-                        <albumCard bind:changeCheck="changeCheck" bind:callBack="callBack"
+                        <albumCard bind:changeCheck="changeCheck" bind:callBack="callBack" bind:returnBack="returnBack"
                             checkindex="{{checkIndex[selectType.index][index].checkIndex}}" check="{{checkMore[selectType.index]}}"
                             id="{{index}}" wx:for="{{data[index]}}"
                             transitionMax="{{checkIndex[selectType.index].length}}" wx:key="*this" data="{{item}}">
@@ -39,3 +39,4 @@
         <view class="button black" bindtap="sortDataByTime">分享档口 </view>
     </view>
 </view>
+<shareToast style="z-index:10000" dataid="{{ShareId}}" shareDetail="{{shareDetail}}"  bind:closeShare="closeShare" type="goods" open="whatever" id="share"></shareToast>
