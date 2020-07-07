@@ -17,13 +17,30 @@ Page({
     detail: {}
   },
 
+  onShareAppMessage: function () {
+    return {
+      title: this.data.data.context,
+      path: '/pages/orderManage/orderDetail/orderDetail?id=' + this.data.detail.id,
+      imageUrl: this.data.shareImage
+    }
+  },
+  // 目前也不支持
+  // onShareTimeline: function () {
+  //   return {
+  //     title: this.data.data.context,
+  //     path: '/pages/orderManage/orderDetail/orderDetail?id=' + this.data.detail.id,
+  //     imageUrl: this.data.shareImage
+  //   }
+  // },
   onLoad(options) {
     if (options.id && options.type == "goods") {
       this.getAlbumDetial(options.id).then((url) => {
         this.goodsDetailDraw(app.globalData.shopInfo, url, this.data.detail)
       })
+    } else if (options.id && options.type == "shop") {
+      this.getShopInfoDetail()
     } else {
-      this.goodsDetailDraw()
+      app.errorTimeOutBack('分享失败')
     }
 
   },
@@ -82,8 +99,7 @@ Page({
             codeimg
           })
         },
-        fail: (e) => {
-        }
+        fail: (e) => {}
       });
     })
   },
@@ -93,11 +109,11 @@ Page({
     const fs = wx.getFileSystemManager();
     fs.unlink({
       filePath: this.data.codeimg,
-      complete: (e) => {
-      }
+      complete: (e) => {}
     })
   },
-  // 绘制函数
+
+  // 绘制预处理函数 商品详情
   goodsDetailDraw(shopInfo, qrCodeImage, goodDetail) {
     wx.showLoading({
       title: '绘制分享图片中',
@@ -117,7 +133,8 @@ Page({
             height: 560
           }, {
             type: 'image',
-            url: shopInfo.storeVo.storeLogo,
+            // url: shopInfo.storeVo.storeLogo,
+            url: qrCodeImage,
             top: 20,
             left: 20,
             width: 50,
@@ -203,6 +220,19 @@ Page({
             width: 125
           }
         ]
+      }
+    })
+  },
+
+  // 绘制预处理函数 店铺分享
+  shopDetailDraw() {
+    wx.showLoading({
+      title: '绘制分享图片中',
+      mask: true
+    })
+    this.setData({
+      painting:{
+        
       }
     })
   },

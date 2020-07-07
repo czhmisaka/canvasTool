@@ -15,13 +15,13 @@ Page({
     word: '',
     goodsList: [],
     goodsSerial: "",
-    goodsId:'',
+    goodsId: '',
     albumData: {},
     pageType: 0, // 0 新建 , 1 编辑 
     id: '',
     price: [{
-      favorableNum:0,
-      goodsPrice:0
+      favorableNum: 0,
+      goodsPrice: 0
     }],
     goodsPriceAddDtos: [],
     // 自定义弹窗控制
@@ -30,7 +30,7 @@ Page({
       title: '',
       tabList: []
     }, // 自定义组件 显示数据
-    
+
   },
 
   // 绑定输入
@@ -42,6 +42,14 @@ Page({
     this.setData({
       word: e.detail.value
     })
+  },
+
+  // 预览图片 
+  preWatchImg(e) {
+    wx.previewImage({
+      current: e.currentTarget.dataset.url,
+      urls: this.data.imageList
+    });
   },
 
   // 选择图片
@@ -214,10 +222,10 @@ Page({
   // 图片相册处理
   imageAlbumInitFn: function (data) {
     let price = []
-    data.goodsPriceVos.forEach(item=>{
+    data.goodsPriceVos.forEach(item => {
       price.push(item)
     })
-    price = price.sort((a,b)=>{
+    price = price.sort((a, b) => {
       return a.goodsPrice - b.goodsPrice
     })
     this.setData({
@@ -269,15 +277,15 @@ Page({
 
   // 调起自定义选择
   letCusCheck(e) {
-    if(this.data.pageType==1) return this.show('编辑功能未开放')
+    if (this.data.pageType == 1) return this.show('编辑功能未开放')
     let {
       type
     } = e.currentTarget.dataset
     let checkData = {
       title: type,
       tabList: this.data.price,
-      isNew:(this.data.pageType==0),
-      priceData:this.data.albumData.goodsPriceVos
+      isNew: (this.data.pageType == 0),
+      priceData: this.data.albumData.goodsPriceVos
     }
     this.setData({
       checkData,

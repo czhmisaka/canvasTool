@@ -10,14 +10,16 @@
     "pages/albumManage/newAlbum/index",
     "pages/albumManage/findGoods/index",
     "pages/albumManage/findGoods/GoodsDetail/index",
-    "pages/orderManage/orderDetail/orderDetail"
+    "pages/orderManage/orderDetail/orderDetail",
+    "pages/Springboard/index"
   ],
   "tabBar": {
     "color": "#B3B6BF",
     "position": "bottom",
     "selectedColor": "#21373D",
     "borderStyle": "black",
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/home/index",
         "iconPath": "static/images/Icon_tabBar/ic_home.png",
         "selectedIconPath": "static/images/Icon_tabBar/ic_home_pre.png",

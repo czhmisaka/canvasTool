@@ -5,14 +5,14 @@
   <canvasdrawer painting="{{painting}}" class="canvasdrawer" bind:getImage="eventGetImage"  />
   <!-- <view class="bottomTitle">播款-好客多</view> -->
   <div class="shareButtonBox">
-    <div class="button" bindtap="eventSave">
-      <div class="icon"><image src="/static/images/canvasTool/ic_pyq.png" /></div>
-      <div class="word">朋友圈</div>
-    </div>
-    <div class="button">
+    <div class="button" bindtap="onShareAppMessage">
       <div class="icon"><image src="/static/images/canvasTool/ic_wx.png" /></div>
       <div class="word">微信</div>
     </div>
+    <button class="button" open-type="share" bindtap="eventSave">
+      <div class="icon"><image src="/static/images/canvasTool/ic_schb.png" /></div>
+      <div class="word">生成海报</div>
+    </button>
   </div>
 </view>
 

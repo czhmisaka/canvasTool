@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"enhance": true,
 		"postcss": true,
@@ -27,7 +27,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -124,7 +124,7 @@
 					"id": 8,
 					"name": "访问已有相册",
 					"pathName": "pages/albumManage/newAlbum/index",
-					"query": "id=1279147521758728194",
+					"query": "id=1280075499581739009",
 					"scene": null
 				},
 				{
