@@ -1,1 +1,106 @@
 /* components/shareToast/shareToast.wxss */
+.wholeScreen {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.wholeScreen>view,
+image,
+.canvasdrawer {
+    z-index: 100;
+}
+
+.wholeScreen>.hide {
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+
+.share-image {
+    position: fixed;
+    width: 680rpx;
+    margin-left: 35rpx;
+    height: 1120rpx;
+    bottom: 181rpx;
+    border-radius: 12rpx;
+
+    /* 这个可能设计上有点问题，目前是 定高定宽 16/9 */
+}
+
+.bottomTitle {
+    text-align: center;
+    width: 460rpx;
+    height: 56rpx;
+    line-height: 56rpx;
+    background-color: #21373d;
+    color: white;
+    border: 16rpx;
+    font-size: 26rpx;
+    border-radius: 16rpx 16rpx 0px 0px;
+    z-index: 10;
+    margin: -40rpx auto;
+    margin-bottom: 0px;
+}
+
+.shareButtonBox {
+    position: fixed;
+    bottom: 0px;
+    width: 100vw;
+    background-color: white;
+    border-top-left-radius: 20rpx;
+    border-top-right-radius: 20rpx;
+    height: 160rpx;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    z-index: 100;
+}
+
+.shareButtonBox>.button {
+    width: 120rpx;
+    height: 120rpx;
+    margin: 20rpx 60rpx;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.button>.icon {
+    width: 80rpx;
+    height: 80rpx;
+}
+
+.icon>image {
+    width: 80rpx;
+    height: 80rpx;
+    margin: 0rpx;
+
+}
+
+button {
+    margin: 0rpx;
+    padding: 0rpx;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    overflow: none;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
+
+.button::after {
+    border: 0px solid rgba(0, 0, 0, .2);
+}
+
+.button>.word {
+    font-size: 24rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(147, 149, 153, 1);
+    line-height: 24rpx;
+}

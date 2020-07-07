@@ -1,18 +1,4 @@
 <!--index.wxml-->
-<view class="wholeScreen">
-  <!-- <image src="{{shareImage}}" style="{{'width:'+painting.width+'px;height:'+painting.height+'px;margin-top:calc(100vh - '+(painting.height+10)+'px);margin-left:-'+painting.width/2+'px'}}" class="share-image"></image> -->
-  <image src="{{shareImage}}" class="share-image" bindload="finish" bindtap="eventSave"></image>
-  <canvasdrawer painting="{{painting}}" class="canvasdrawer" bind:getImage="eventGetImage"  />
-  <!-- <view class="bottomTitle">播款-好客多</view> -->
-  <div class="shareButtonBox">
-    <div class="button" bindtap="onShareAppMessage">
-      <div class="icon"><image src="/static/images/canvasTool/ic_wx.png" /></div>
-      <div class="word">微信</div>
-    </div>
-    <button class="button" open-type="share" bindtap="eventSave">
-      <div class="icon"><image src="/static/images/canvasTool/ic_schb.png" /></div>
-      <div class="word">生成海报</div>
-    </button>
-  </div>
-</view>
+<shareToast dataid="{{id}}" type="{{type}}"  id="share"></shareToast>
 
+<button bindtap="share">分享</button>
