@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"enhance": true,
 		"postcss": true,
@@ -146,6 +146,13 @@
 					"name": "订单详情",
 					"pathName": "pages/orderManage/orderDetail/orderDetail",
 					"query": "id=1279147521758728194",
+					"scene": null
+				},
+				{
+					"id": 12,
+					"name": "分享指定商品",
+					"pathName": "pages/canvas/index",
+					"query": "id=1280031834456985601&type=goods",
 					"scene": null
 				}
 			]

@@ -1,2 +1,4 @@
 <canvas canvas-id="canvasdrawer" style="width:{{width}}px;height:{{height}}px;" class="board"
     wx:if="{{showCanvas}}"></canvas>
+
+    <!-- <image src="{{imgData}}"></image> -->

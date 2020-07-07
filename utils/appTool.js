@@ -3,10 +3,20 @@ const config = require('../config/config.js');
 
 // 简化弹窗
 const noIconToast = (e) => {
+    wx.hideLoading()
     wx.showToast({
         title: e,
         icon: 'none'
     })
+}
+
+const errorTimeOutBack = (word, index = 1) => {
+    noIconToast(word)
+    setTimeout(() => {
+        wx.navigateBack({
+            delta: index //返回的页面数，如果 delta 大于现有页面数，则返回到首页,
+        });
+    }, 1500)
 }
 
 //检测是否获取到uid
@@ -70,5 +80,7 @@ module.exports = {
     checkoutUidStatus,
     cleanStorage,
     cleanGlobalData,
-    toLoginPage
+    toLoginPage,
+    noIconToast,
+    errorTimeOutBack
 }

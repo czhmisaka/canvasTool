@@ -56,7 +56,7 @@ Component({
         photoList,
         price,
         photoNum,
-        publish: (data.photoShow == 1)
+        publish: data.photoShow
       })
     },
 
@@ -113,7 +113,7 @@ Component({
               title: '发布成功',
               icon: 'success',
             });
-            this.callBack()
+            this.callBack(true)
           }else{
             wx.showToast({
               title:'发布失败',

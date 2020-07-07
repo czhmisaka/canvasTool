@@ -28,6 +28,16 @@ Component({
    * 组件的方法列表
    */
   methods: {
+
+    // 前往分享
+    toShare: function (e) {
+      console.log(this.data.photo)
+      wx.navigateTo({
+        url: '/pages/canvas/index?type=goods&id=' + this.data.photo.id
+      })
+    },
+
+    // 设置价格
     setPrice: function () {
       let {
         goodsPriceVos
@@ -41,6 +51,8 @@ Component({
         price: '￥' + goodsPriceVos[0].goodsPrice
       })
     },
+
+    // 获取图片数据
     getNumber: function () {
       if (this.properties.photo.photoImageMore) {
         let number = this.properties.photo.photoImageMore.split(',')
@@ -49,6 +61,8 @@ Component({
         })
       }
     },
+
+    // 顺序加载
     loadOver: function (e) {
       let that = this
       setTimeout(() => {

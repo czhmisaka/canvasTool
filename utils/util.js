@@ -17,54 +17,80 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
+
+let getConfig = (type = "baseUrl") => {
+  switch (type) {
+    case 'baseUrl':
+      return config.api_protocal + config.api_server
+  }
+}
+
 let request = obj => {
   obj.url = obj.url || '/'
   let baseUrl = config.api_protocal + config.api_server
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url: baseUrl + obj.url,
-      data: obj.data || {},
-      header: obj.header || {
-        'content-type': 'application/json',
-        'Authorization': getApp().globalData.accessToken ? getApp().globalData.accessToken : ''
-      },
-      method: obj.method || 'post',
-      success(res) {
-        switch (res.statusCode) {
-          case 200:
-            if (res.header.Authorization) {
-              resolve(res)
-            }
-            if (res.data.code == 403) {
-              toLogin()
-            }
-            if (res.data.errno == 501) {
-              toLogin()
-            }
-            resolve(res.data)
-            break;
-          case 503:
-            return wx.showToast({
-              title: '系统开小差了',
-              icon: 'none',
-            });
-            break;
-          case 500:
-            return wx.showToast({
-              title: '系统开小差了',
-              icon: 'none',
-            });
-            break;
-        }
+  if (!obj.responseType) {
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url: baseUrl + obj.url,
+        data: obj.data || {},
+        header: obj.header || {
+          'content-type': 'application/json',
+          'Authorization': getApp().globalData.accessToken ? getApp().globalData.accessToken : ''
+        },
+        method: obj.method || 'post',
+        success(res) {
+          switch (res.statusCode) {
+            case 200:
+              if (res.header.Authorization) {
+                resolve(res)
+              }
+              if (res.data.code == 403) {
+                toLogin()
+              }
+              if (res.data.errno == 501) {
+                toLogin()
+              }
+              resolve(res.data)
+              break;
+            case 503:
+              return wx.showToast({
+                title: '系统开小差了',
+                icon: 'none',
+              });
+              break;
+            case 500:
+              return wx.showToast({
+                title: '系统开小差了',
+                icon: 'none',
+              });
+              break;
+          }
 
-      },
-      fail(err) {
-        reject(err)
-      },
+        },
+        fail(err) {
+          reject(err)
+        },
+
+      })
 
     })
-
-  })
+  } else {
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url: baseUrl + obj.url,
+        data: obj.data || {},
+        header: obj.header || {
+          'content-type': 'application/json',
+          'Authorization': getApp().globalData.accessToken ? getApp().globalData.accessToken : ''
+        },
+        method: obj.method || 'post',
+        responseType: 'arraybuffer',
+        success(res) {
+          resolve(res)
+        }
+      })
+    })
+  }
 }
 let toLogin = () => {
   try {
@@ -225,5 +251,6 @@ module.exports = {
   handleNewsNum,
   uploadPhoto,
   formatTime: formatTime,
-  cartesianProductOf
+  cartesianProductOf,
+  getConfig
 }

@@ -28,14 +28,14 @@ Component({
       }
     }
   },
-  lifeTimes:{
-  },
+  lifeTimes: {},
   data: {
     showCanvas: false,
     width: 375,
     height: 555,
     tempFileList: [],
-    isPainting: false
+    isPainting: false,
+    codeimg: ''
   },
   ctx: null,
   cache: {},

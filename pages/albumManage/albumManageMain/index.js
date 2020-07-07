@@ -122,7 +122,6 @@ Page({
 
   // 批量选择 -选中某个元素
   changeCheck(e) {
-    console.log(e)
     let {
       type
     } = e.detail
@@ -206,7 +205,6 @@ Page({
 
   // 处理筛选后返回数据
   checkReturn(e) {
-    // console.log(e.detail.check,e.detail.chec==checkData)
     this.setData({
       checkData: e.detail.check
     })
@@ -231,7 +229,6 @@ Page({
 
   // 获取组件的返回函数
   callBack(e) {
-    console.log(e)
     let {
       preData,
       publish
@@ -239,14 +236,14 @@ Page({
     let {
       data
     } = this.data
-    preData.photoShow = publish ? 1 : 0
     // 留个坑 待优化
     data.forEach((tab, index) => {
       tab.forEach((item, i) => {
         if (item.id === preData.id) {
-          item.photoShow == publish ? '1' : '0';
-          if (index == 1) {
-            data[index].splice(i, 1)
+          item.photoShow = publish 
+          if (index == 1 && index == 0) {
+            if (index == 1)
+              data[index].splice(i, 1)
             if (data[2].length != 0) {
               let canInsert = true
               data[2].forEach(insert => {
