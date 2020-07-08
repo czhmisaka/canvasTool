@@ -1,5 +1,15 @@
 /* pages/orderManage/orderManageMain/index.wxss */
 
+.wholeScreen{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+}
 
 .search {
     width: 100%;

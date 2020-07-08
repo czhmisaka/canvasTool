@@ -1,42 +1,19 @@
-/* pages/mine/index.wxss */
+/* pages/mine/myShopManage/index.wxss */
 
-.mine {
-    background-color: #F7F8FA;
+
+.wholeScreen {
+    width: 100vw;
     height: 100vh;
-    font-family: "PingFangSC-Regular,PingFang SC";
+    overflow-y: scroll;
+    background: rgba(247, 248, 250, 1);
 }
 
-.promoter {
-    width: 750rpx;
-    height: 232rpx;
-    background: rgba(33, 55, 61, 1);
-}
-
-.promoter>.left {
-    width: auto;
-    height: 232rpx;
-    line-height: 232rpx;
-    display: inline-block;
-    float: left;
-    font-size: 36rpx;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 1);
-}
-
-.promoter>.left>image {
-    margin: 56rpx 34rpx;
+.icon120 {
     width: 120rpx;
     height: 120rpx;
-    border-radius: 60rpx;
-    box-shadow: 1rpx 1rpx 3rpx rgba(0, 0, 0, 0.2);
-}
-
-.icon40 {
-    width: 40rpx;
-    height: 40rpx;
-    margin: 35rpx;
+    margin: 24rpx;
     margin-right: 10rpx;
+    border-radius: 60rpx;
 }
 
 .flexBox {
@@ -44,7 +21,7 @@
     background-color: #fff;
     width: calc(100% - 40rpx);
     margin: 20rpx;
-    height: 140rpx;
+    height: 168rpx;
     border-radius: 8rpx;
     position: relative;
     display: flex;
@@ -74,11 +51,24 @@
     display: flex;
     font-weight: 400;
     font-family: "PingFangSC-Regular,PingFang SC";
-    line-height: 110rpx;
+    line-height: 168rpx;
 }
 
 .flexBox>.right {
-    line-height: 110rpx;
+    line-height: 168rpx;
     margin-right: 35rpx;
     transform: scale(1.5，1)
+}
+
+.button_long {
+    position: fixed;
+    bottom: 48rpx;
+    margin: 0rpx 95rpx;
+    width: 560rpx;
+    height: 80rpx;
+    background: rgba(33, 55, 61, 1);
+    border-radius: 40rpx;
+    line-height: 80rpx;
+    color: white;
+    text-align: center;
 }

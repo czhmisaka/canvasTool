@@ -2,7 +2,7 @@
   "pages": [
     "pages/home/index",
     "pages/canvas/index",
-    "pages/mine/index",
+    "pages/mine/mine/index",
     "pages/cus/index",
     "pages/orderManage/orderManageMain/index",
     "pages/login/index",
@@ -11,7 +11,10 @@
     "pages/albumManage/findGoods/index",
     "pages/albumManage/findGoods/GoodsDetail/index",
     "pages/orderManage/orderDetail/orderDetail",
-    "pages/Springboard/index"
+    "pages/Springboard/index",
+    "pages/mine/shopManage/index",
+    "pages/mine/myShop/index",
+    "pages/mine/myShopManage/index"
   ],
   "tabBar": {
     "color": "#B3B6BF",
@@ -38,7 +41,7 @@
         "text": "客户"
       },
       {
-        "pagePath": "pages/mine/index",
+        "pagePath": "pages/mine/mine/index",
         "iconPath": "static/images/Icon_tabBar/ic_me.png",
         "selectedIconPath": "static/images/Icon_tabBar/ic_me_pre.png",
         "text": "我的"

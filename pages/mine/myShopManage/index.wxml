@@ -1,0 +1,18 @@
+<!--pages/mine/myShopManage/index.wxml-->
+
+<view class="wholeScreen">
+    <view class="flexBox" wx:for="{{shopList}}" wx:key="*this">
+        <view class="toPhoto">
+            <image class="icon120" src="{{item.storeLogo}}" />
+            <view class="word">{{item.storeName}}</view>
+        </view>
+        <view class="right">
+            {{state[item.storeState]}}
+            <image src="/static/images/icon_page/ic_xy.png" style="width: 14rpx;height: 26rpx;" />
+        </view>
+    </view>
+
+    <view class="button_long">
+        新建档口
+    </view>
+</view>

@@ -1,6 +1,11 @@
 <!--pages/login/index.wxml-->
 
 <view>
+
+    <view class="back">
+        <image src="/static/images/loginImages/ic_back.png" wx:if="{{type=='phone'}}" bindtap="changeType"
+            data-type="check" />
+    </view>
     <view class="logoImage {{type=='phone'?'logSizeSmall':''}}" bindtap="changeType" data-type="check">
         <image src="/static/images/loginImages/logo_hkd_big.png" />
     </view>
@@ -9,8 +14,8 @@
     <view class="{{type=='check'?'show':'hidden'}}">
         <button open-type="getPhoneNumber" class="buttonBox" wx:if="{{type==='check'}}"
             bindgetphonenumber="loginWithWx">
-            
-        <!-- <button open-type="getUserInfo" class="buttonBox" wx:if="{{type==='check'}}" bindgetuserinfo="loginWithWx"> -->
+
+            <!-- <button open-type="getUserInfo" class="buttonBox" wx:if="{{type==='check'}}" bindgetuserinfo="loginWithWx"> -->
 
             <view class="icon" style="width:40rpx;height:33rpx">
                 <image src="/static/images/loginImages/ic_wx.png" />
@@ -25,12 +30,11 @@
         </view>
         <view class="checkBox" wx:if="{{type=='check'}}">
             <view class="icon">
-                <!-- <checkbox value="{{checkFile}}" color="#fff" checked="{{checkFile}}" bindtap="checkBoxStatus">
-                </checkbox> -->
                 <image src="{{checkFile?'/static/images/loginImages/ic_choose_pre.png':''}}" bindtap="checkBoxStatus" />
             </view>
             <view class="word">
-                登录表示同意<span class="span" bindtap="showConfidence" data-type="服务协议">《服务协议》</span><span class="span"  bindtap="showConfidence" data-type="隐私协议">《隐私协议》</span>
+                登录表示同意<span class="span" bindtap="showConfidence" data-type="服务协议">《服务协议》</span><span class="span"
+                    bindtap="showConfidence" data-type="隐私协议">《隐私协议》</span>
             </view>
         </view>
     </view>
@@ -53,8 +57,7 @@
         </view>
         <view class="checkBox" wx:if="{{type=='phone'}}">
             <view class="icon">
-                <checkbox value="{{checkFile}}" color="#fff" checked="{{checkFile}}" bindtap="checkBoxStatus">
-                </checkbox>
+                <image src="{{checkFile?'/static/images/loginImages/ic_choose_pre.png':''}}" bindtap="checkBoxStatus" />
             </view>
             <view class="word">
                 登录表示同意<span class="span">《服务协议》</span><span class="span">《隐私协议》</span>

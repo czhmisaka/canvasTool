@@ -1,6 +1,6 @@
 <!--pages/orderManage/orderManageMain/index.wxml-->
 
-<view>
+<view class="wholeScreen">
     <view class="search">
         <input type="text" placeholder="搜索内容"></input>
     </view>

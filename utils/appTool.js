@@ -70,6 +70,12 @@ const toLoginPage = () => {
     });
 }
 
+const navTo = (url) => {
+    wx.navigateTo({
+        url
+    })
+}
+
 // const uploadImage =(imageList)=>{
 //     return new Promise((resolve, reject) => {
 
@@ -77,6 +83,7 @@ const toLoginPage = () => {
 // }
 
 module.exports = {
+    navTo,
     checkoutUidStatus,
     cleanStorage,
     cleanGlobalData,
