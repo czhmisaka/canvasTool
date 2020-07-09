@@ -42,3 +42,4 @@
   <!-- <view class="cancel" wx:if="{{state == 50}}">取消</view> -->
   <!-- <view class="relation">联系商家</view> -->
 </view>
+<sharePreDeal preDealId="{{id}}"></sharePreDeal>

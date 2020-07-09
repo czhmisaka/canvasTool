@@ -1,7 +1,7 @@
 <!--pages/mine/myShopManage/index.wxml-->
 
 <view class="wholeScreen">
-    <view class="flexBox" wx:for="{{shopList}}" wx:key="*this">
+    <view class="flexBox" wx:for="{{shopList}}" wx:key="*this" bindtap="navTo" data-url="/pages/mine/myShop/index?id={{item.id}}">
         <view class="toPhoto">
             <image class="icon120" src="{{item.storeLogo}}" />
             <view class="word">{{item.storeName}}</view>

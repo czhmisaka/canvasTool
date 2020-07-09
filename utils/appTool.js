@@ -19,6 +19,17 @@ const errorTimeOutBack = (word, index = 1) => {
     }, 1500)
 }
 
+const successTimeOutBack = (word, index = 1) => {
+    wx.showToast({
+        title: word
+    })
+    setTimeout(() => {
+        wx.navigateBack({
+            delta: index //返回的页面数，如果 delta 大于现有页面数，则返回到首页,
+        });
+    }, 1500)
+}
+
 //检测是否获取到uid
 const checkoutUidStatus = async function checkoutUidStatus(callback, loginStatus = true) {
     let {
@@ -83,6 +94,7 @@ const navTo = (url) => {
 // }
 
 module.exports = {
+    successTimeOutBack,
     navTo,
     checkoutUidStatus,
     cleanStorage,

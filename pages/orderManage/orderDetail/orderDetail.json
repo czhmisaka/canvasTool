@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "sharePreDeal": "../components/sharePreDeal/sharePreDeal"
+  },
   "navigationBarTitleText": "订单详情"
 }

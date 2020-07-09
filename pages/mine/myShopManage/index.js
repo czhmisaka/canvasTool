@@ -9,7 +9,12 @@ Page({
    */
   data: {
     shopList: '',
-    state: ['关闭中', '开启中', '审核中']
+    state: ['关闭中', '', '审核中']
+  },
+
+  //  通用跳转
+  navTo: function (e) {
+    app.navTo(e.currentTarget.dataset.url)
   },
 
   // 获取档口列表 

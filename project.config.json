@@ -27,7 +27,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -160,6 +160,13 @@
 					"name": "档口管理",
 					"pathName": "pages/mine/myShopManage/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "访问已有档口",
+					"pathName": "pages/mine/myShop/index",
+					"query": "id=1262933820242509825",
 					"scene": null
 				}
 			]
