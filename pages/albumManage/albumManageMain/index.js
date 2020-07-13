@@ -27,8 +27,8 @@ Page({
     checkMore: [false, false, false], // 多选开启
     checkData: [], // 自定义 侧滑菜单 选项
     checkStatus: false,
-    ShareId:'',
-    shareDetail:''
+    ShareId: '',
+    shareDetail: ''
   },
   watch: {},
 
@@ -163,9 +163,7 @@ Page({
         id: app.globalData.shopInfo.storeVo.id
       }
     }).then(res => {
-      let {
-        checkData
-      } = this.data
+      let checkData = []
       if (res.data) {
         let tab = {
           title: '品类',
@@ -300,8 +298,30 @@ Page({
 
   onReady: function () {},
   onShow: function () {
-    this.initFn()
-    this.getCheckList()
+    app.checkNeedRefresh().then(res => {
+      if (res.refresh) {
+        this.setData({
+          orderList: [],
+          data: [
+            [],
+            [],
+            []
+          ], // 数据保存表
+          checkIndex: [
+            [],
+            [],
+            []
+          ], // 记录选择用表
+          checkMore: [false, false, false], // 多选开启
+        })
+        this.initFn()
+        this.getAblum()
+        this.getCheckList()
+      } else {
+        this.initFn()
+        this.getCheckList()
+      }
+    })
   },
   onHide: function () {},
   onUnload: function () {},

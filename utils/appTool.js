@@ -53,6 +53,25 @@ const checkoutUidStatus = async function checkoutUidStatus(callback, loginStatus
     }
 }
 
+// 检查当前页面是否需要重新载入 -- 跨页面传参
+const checkNeedRefresh = async function checkNeedRefresh(callback) {
+    return new Promise((res, rej) => {
+        let pageStack = getCurrentPages()
+        let page = pageStack[pageStack.length - 1]
+        let {
+            route
+        } = page
+        let back = false
+        this.globalData.needRefresh.forEach((item, i) => {
+            if (item.route == route) {
+                back = item.back
+                this.globalData.needRefresh.splice(i, 1)
+            }
+        })
+        res(back)
+    })
+}
+
 // 清空缓存（待完善）
 const cleanStorage = async function cleanStorage(callback) {
 
@@ -94,6 +113,7 @@ const navTo = (url) => {
 // }
 
 module.exports = {
+    checkNeedRefresh,
     successTimeOutBack,
     navTo,
     checkoutUidStatus,

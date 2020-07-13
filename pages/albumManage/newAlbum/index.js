@@ -177,6 +177,12 @@ Page({
           title: '上传成功',
           icon: 'success',
           success: () => {
+            app.globalData.needRefresh.push({
+              'route': 'pages/albumManage/albumManageMain/index',
+              'back': {
+                refresh: true
+              }
+            })
             setTimeout(() => {
               wx.navigateBack({
                 delta: 1

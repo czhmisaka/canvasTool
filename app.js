@@ -20,7 +20,8 @@ App({
     shopInfo: null,
     ossEnv: {},
     refreshHome: false,
-    ossEnv: {}
+    ossEnv: {},
+    needRefresh: []
   },
   ...tools,
   onLaunch: function () {
