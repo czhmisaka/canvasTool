@@ -36,6 +36,7 @@ Component({
    */
   methods: {
     show: function () {
+      console.log(this.properties)
       this.setData({
         show: false,
         painting: {},
@@ -67,16 +68,51 @@ Component({
         dataid,
         type
       } = this.properties
-      console.log(dataid, type)
       if (dataid && type == "goods") {
         this.getAlbumDetial(dataid).then((url) => {
           this.goodsDetailDraw(app.globalData.shopInfo, url, this.data.detail)
         })
       } else if (dataid && type == "shop") {
-        this.getShopInfoDetail()
+        console.log(1)
+        this.getShopInfoDetail(dataid).then((url) => {
+          console.log('2')
+          this.shopDetailDraw(app.globalData.shopInfo, url, this.data.detail)
+        })
       } else {
         app.errorTimeOutBack('分享失败')
       }
+    },
+
+    // 用id 获取商铺详情
+    getShopInfoDetail: function (id) {
+      return new Promise((resolve, reject) => {
+        util.request({
+          url: '/store/' + id,
+          method: 'get'
+        }).then((res) => {
+          if (res.code == 200 && res.msg == "请求成功") {
+            this.setData({
+              detail: res.data
+            })
+            util.request({
+              url: 'store/share',
+              data: {
+                id
+              },
+              responseType: 'arraybuffer'
+            }).then((result) => {
+              wx.hideLoading()
+              wx.showLoading({
+                title: '获取二维码中'
+              })
+              this.send_code(result.data).then((src) => {
+                resolve(src)
+                reject(src)
+              })
+            })
+          }
+        })
+      })
     },
 
     // 用id 获商品数据 留个坑等待优化
@@ -147,13 +183,95 @@ Component({
       })
     },
 
-    // 绘制预处理函数 商品详情
-    goodsDetailDraw(shopInfo, qrCodeImage, goodDetail) {
+    // 绘制预处理函数 档口详情
+    shopDetailDraw(shopInfo, qrCodeImage, shopDetail) {
+      console.log(shopInfo, qrCodeImage, shopDetail)
+      wx.hideLoading()
       wx.showLoading({
         title: '绘制分享图片中',
         mask: true
       })
-      console.log('e', this.data)
+      this.setData({
+        painting: {
+          width: 340,
+          height: 560,
+          clear: true,
+          views: [{
+            type: 'image',
+            url: '/static/images/canvasTool/ShareBg1.png',
+            top: 0,
+            left: 0,
+            width: 340,
+            height: 560
+          },{
+            type: 'image',
+            url: qrCodeImage,
+            top: 50,
+            left: 140,
+            width: 60,
+            height: 60
+          },{
+            type: 'image',
+            url: '/static/images/canvasTool/img_bg.png',
+            top: 0,
+            left: 0,
+            width: 340,
+            height: 560
+          }, {
+            type: 'image',
+            url: qrCodeImage,
+            top: 215,
+            left: 50,
+            width: 240,
+            height: 240
+          }, {
+            type: 'text',
+            content: "关注我  新品抢先看",
+            fontSize: 16,
+            color: '#fff',
+            textAlign: 'left',
+            top: 178,
+            left: 170 - 9 * 16 / 2,
+            bolder: true
+          }, {
+            type: 'text',
+            content: shopDetail.storeName,
+            fontSize: 16,
+            color: '#3D3D3D',
+            textAlign: 'left',
+            top: 130,
+            left: 170 - shopDetail.storeName.length * 16 / 2,
+            bolder: true
+          }, {
+            type: 'text',
+            content: "长按识别二维码，进店看上新",
+            fontSize: 16,
+            color: '#3d3d3d',
+            textAlign: 'left',
+            top: 465,
+            left: 170 - 13 * 16 / 2,
+            bolder: true
+          }, {
+            type: 'text',
+            content: '播款-好客多',
+            fontSize: 13,
+            color: '#fff',
+            textAlign: 'left',
+            top: 525,
+            left: 170 - 6 * 13 / 2,
+            bolder: true
+          } ]
+        }
+      })
+    },
+
+    // 绘制预处理函数 商品详情
+    goodsDetailDraw(shopInfo, qrCodeImage, goodDetail) {
+      wx.hideLoading()
+      wx.showLoading({
+        title: '绘制分享图片中',
+        mask: true
+      })
       this.setData({
         painting: {
           width: 340,
@@ -168,7 +286,6 @@ Component({
               height: 560
             }, {
               type: 'image',
-              // url: shopInfo.storeVo.storeLogo,
               url: qrCodeImage,
               top: 20,
               left: 20,
@@ -255,19 +372,6 @@ Component({
               width: 125
             }
           ]
-        }
-      })
-    },
-
-    // 绘制预处理函数 店铺分享
-    shopDetailDraw() {
-      wx.showLoading({
-        title: '绘制分享图片中',
-        mask: true
-      })
-      this.setData({
-        painting: {
-
         }
       })
     },

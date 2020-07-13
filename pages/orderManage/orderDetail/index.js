@@ -7,7 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    order: {},
+    options: {},
+    id: ''
   },
 
   checkIn(e) {
@@ -22,9 +24,9 @@ Page({
           console.log(item.route)
           if (item.route == "pages/orderManage/orderManageMain/index") {
             let {
-              orderList
+              order
             } = item.data
-            orderList.forEach(tab => {
+            order.forEach(tab => {
               tab.forEach(i => {
                 if (i.orderId == this.data.options.id) {
                   i.orderStatus = 60
@@ -32,7 +34,7 @@ Page({
               })
             })
             item.setData({
-              orderList
+              order
             })
           }
         })
@@ -49,48 +51,60 @@ Page({
       }
     })
   },
-  onLoad: function (options) {
-    var that = this
-    let orderId = options.id
+
+  getDetail(options) {
+    let that = this
     util.request({
-      url: 'order/getOrderInfo/' + orderId,
+      url: 'order/getOrderInfo/' + options.id,
       method: 'get'
     }).then(res => {
-      let data = res.data
-      console.log(data)
-      data.createTime = data.createTime.replace('T', ' ')
-      that.setData({
-        orderDetailList: res.data,
-        status: res.data,
-        options: options
-      })
-      console.log('订单详情列表', res.data)
+      if (res.code == 200) {
+        let data = res.data
+        data.createTime = data.createTime.replace('T', ' ')
+        that.setData({
+          order: res.data,
+          options: options
+        })
+      } else {
+        app.noIconToast('获取订单失败')
+      }
     })
   },
 
-  onReady: function () {
-
+  returnBack(e) {
+    let {
+      options
+    } = e.detail
+    this.getDetail(options)
   },
 
-
+  onLoad: function (options) {
+    this.setData({
+      id: options.id
+    })
+    let preCheck = this.selectComponent('#sharePreDeal')
+    if (options.type == "toCus") {
+      preCheck.init(options).then((res) => {
+        if (res.type == false) return
+        this.getDetail(options)
+      })
+    } else {
+      this.getDetail(options)
+    }
+  },
+  onReady: function () {},
   onShow: function () {},
   onHide: function () {},
   onUnload: function () {},
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh()
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  onReachBottom: function () {},
+  onShareAppMessage: function (e) {
+    console.log(this.data)
+    return {
+      title: "xxx订单",
+      path: 'pages/orderManage/orderDetail/orderDetail?id=' + this.data.id + "&type=toCus"
+    }
   }
 })

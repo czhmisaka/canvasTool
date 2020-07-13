@@ -1,90 +1,43 @@
-.wholeScreen {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.3);
-}
-
-.share-image {
-    position: fixed;
-    width: 680rpx;
-    margin-left: -340rpx;
-    height: 1120rpx;
-    left: 50%;
-    /* margin-top: 20px; */
-    bottom: 181rpx;
-    border-radius: 12rpx;
-    /* 这个可能设计上有点问题，目前是 定高定宽 16/9 */
-}
-
-.bottomTitle {
-    text-align: center;
-    width: 460rpx;
-    height: 56rpx;
-    line-height: 56rpx;
-    background-color: #21373d;
-    color: white;
-    border: 16rpx;
-    font-size: 26rpx;
-    border-radius: 16rpx 16rpx 0px 0px;
-    z-index: 10;
-    margin: -40rpx auto;
-    margin-bottom: 0px;
-}
-
-.shareButtonBox {
-    position: fixed;
-    bottom: 0px;
-    width: 100vw;
-    background-color: white;
-    border-top-left-radius: 20rpx;
-    border-top-right-radius: 20rpx;
-    height: 160rpx;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-}
-
-.shareButtonBox>.button {
-    width: 120rpx;
-    height: 120rpx;
-    margin: 20rpx 60rpx;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.button>.icon {
-    width: 80rpx;
-    height: 80rpx;
-}
-
-.icon>image {
-    width: 80rpx;
-    height: 80rpx;
-    margin: 0rpx;
-
-}
-
-button {
-    margin: 0rpx;
-    padding: 0rpx;
+page {
+    height: 100%;
     box-sizing: border-box;
+}
+
+.body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.stage {
+    flex-grow: 1;
+}
+
+
+.bar {
+    height: 80rpx;
+    padding: 36rpx;
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+}
+
+.btn {
+    position: relative;
+    flex-grow: 1;
+    border: 2rpx solid grey;
+    line-height: 80rpx;
     text-align: center;
-    text-decoration: none;
-    overflow: none;
-    background-color: rgba(0,0,0,0);
-    border: none;
+    color: white;
+    font-size: 32rpx;
 }
 
-.button::after {
-    border: 0px solid rgba(0,0,0,.2);
+.btn-cancel {
+    border-top-left-radius: 40rpx;
+    border-bottom-left-radius: 40rpx;
 }
 
-.button>.word {
-    font-size: 24rpx;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    color: rgba(147, 149, 153, 1);
-    line-height: 24rpx;
+.btn-submit {
+    border-top-right-radius: 40rpx;
+    border-bottom-right-radius: 40rpx;
 }

@@ -4,13 +4,13 @@
     <image src="{{shareImage}}" wx:if="{{shareImage}}" class="share-image" bindload="finish" bindtap="eventSave" ></image>
     <canvasdrawer painting="{{painting}}" class="canvasdrawer" bind:getImage="eventGetImage" />
     <div class="shareButtonBox" wx:if="{{showTabbar}}">
-        <button class="button" open-type="share" data-id="{{dataid}}" data-type="{{type}}"
+        <!-- <button class="button" open-type="share" data-id="{{dataid}}" data-type="{{type}}"
             data-shareDetail="{{shareDetail}}">
             <div class="icon">
                 <image src="/static/images/canvasTool/ic_wx.png" />
             </div>
             <div class="word">微信</div>
-        </button>
+        </button> -->
         <button class="button" bindtap="clickToPurduceShareImage">
             <div class="icon">
                 <image src="/static/images/canvasTool/ic_schb.png" />

@@ -27,7 +27,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -142,10 +142,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 11,
 					"name": "订单详情",
-					"pathName": "pages/orderManage/orderDetail/orderDetail",
-					"query": "id=1279147521758728194",
+					"pathName": "pages/orderManage/orderDetail/index",
+					"query": "id=1281412946731208705",
 					"scene": null
 				},
 				{

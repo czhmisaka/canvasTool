@@ -10,7 +10,7 @@
     "pages/albumManage/newAlbum/index",
     "pages/albumManage/findGoods/index",
     "pages/albumManage/findGoods/GoodsDetail/index",
-    "pages/orderManage/orderDetail/orderDetail",
+    "pages/orderManage/orderDetail/index",
     "pages/Springboard/index",
     "pages/mine/myShop/index",
     "pages/mine/myShopManage/index"
@@ -53,5 +53,8 @@
     "navigationBarTitleText": "好客多",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "navigateToMiniProgramAppIdList":[
+    "wx06a1bdb123d6a27e"
+  ]
 }

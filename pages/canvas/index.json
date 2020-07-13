@@ -2,7 +2,8 @@
   "navigationBarTitleText": "分享",
   "usingComponents": {
     "canvasdrawer": "/components/canvasTool/canvasTool",
-    "shareToast":"/components/shareToast/shareToast"
+    "shareToast":"/components/shareToast/shareToast",
+    "cropper":"/components/canvasToolForFormatImage/cropper"
   },
   "component": true
 }

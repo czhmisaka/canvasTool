@@ -1,4 +1,4 @@
 <!--index.wxml-->
-<shareToast dataid="{{id}}" type="{{type}}"  id="share"></shareToast>
-
-<button bindtap="share">分享</button>
+<shareToast dataid="{{id}}" type="{{type}}" id="share"></shareToast>
+<cropper id="cropper" wx:if="{{show}}" class='wholeScreen'></cropper>
+<button bindtap="formatImage">分享</button>

@@ -1,4 +1,10 @@
 /* pages/home/index.wxss */
+
+page{
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
 .home {
     background-color: #F7F8FA;
     min-height: 100vh;

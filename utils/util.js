@@ -57,12 +57,14 @@ let request = obj => {
                 title: '系统开小差了',
                 icon: 'none',
               });
+              toLogin()
               break;
             case 500:
               return wx.showToast({
                 title: '系统开小差了',
                 icon: 'none',
               });
+              toLogin()
               break;
           }
 

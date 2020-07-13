@@ -1,2 +1,17 @@
 <!--pages/orderManage/components/sharePreDeal/sharePreDeal.wxml-->
-<text>pages/orderManage/components/sharePreDeal/sharePreDeal.wxml</text>
+
+<view class="wholeScreen" wx:if="{{close}}">
+    <view class="back">
+        <image src="/static/images/loginImages/ic_back.png" wx:if="{{type=='phone'}}"
+            data-type="check" />
+    </view>
+    <view class="logoImage {{type=='phone'?'logSizeSmall':''}}" bindtap="changeType" data-type="check">
+        <image src="/static/images/loginImages/logo_hkd_big.png" />
+    </view>
+    <button open-type="getPhoneNumber" class="buttonBox" bindgetphonenumber="login" wx:if="{{show}}">
+        <view class="icon" style="width:40rpx;height:33rpx">
+            <image src="/static/images/loginImages/ic_wx.png" />
+        </view>
+        <view class="word">微信手机号快捷登录</view>
+    </button>
+</view>

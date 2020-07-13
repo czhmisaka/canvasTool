@@ -11,12 +11,12 @@ Page({
     shopDetail: {},
     fastMsg: [],
     ShareId: '',
-    shareDetail: {}
+    shareDetail: {},
+    shareType: ''
   },
 
   // 格式化 fastMsg
   formatNum: function (data) {
-    // 格式化大数字输出
     data.forEach((item) => {
       item.num = item.num > 10000 ? item.num / 10000 > 10000 ? Math.round(item.num / 100000000) + '亿' : Math.round(item.num / 10000) + '万' : item.num
     })
@@ -30,6 +30,7 @@ Page({
       url: '/pages/albumManage/albumManageMain/index'
     });
   },
+
   // 获取 首页详情
   getShopDetail() {
     let that = this
@@ -53,6 +54,7 @@ Page({
       }
     }, 100)
   },
+
   // 获取订单数据
   getFastMsg() {
     utils.request({
@@ -66,7 +68,6 @@ Page({
         goodsNum,
         salesVolume
       } = res.data
-
       // 这里注入了假数据， 待修改
       this.formatNum([{
         num: buyerNum || 5137,
@@ -79,17 +80,33 @@ Page({
         type: '售出金额'
       }])
     })
-
   },
-  // 分享回调
+
+  // 分享回调 - 来自商品卡片
   returnBack(e) {
     this.setData({
+      shareType: 'goods',
       ShareId: e.detail.back.id,
       shareDetail: e.detail.back
     })
     wx.hideTabBar()
     this.selectComponent('#share').show()
   },
+
+  // 分享档口
+  shopShare(e) {
+    this.setData({
+      shareType: 'shop',
+      ShareId: e.currentTarget.dataset.id,
+      shareDetail: {
+        type: 'shop',
+        shopInfo: app.globalData.shopInfo
+      }
+    })
+    wx.hideTabBar()
+    this.selectComponent('#share').show()
+  },
+
   // 关闭分享
   closeShare(e) {
     wx.showTabBar()
@@ -115,7 +132,7 @@ Page({
       return {
         title: sharedetail.title,
         imageUrl: sharedetail.image,
-        path: 'pages/albumManage/newAlbum/index?id' + sharedetail.id
+        path: 'pages/albumManage/newAlbum/index?id=' + sharedetail.id
       }
     }
 

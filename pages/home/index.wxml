@@ -16,7 +16,7 @@
                 {{storeVo.storeName}}
             </view>
             <view class="word">
-                <view class="button" bindtap="shareShop">分享档口</view>
+                <view class="button" bindtap="shopShare" data-id="{{storeVo.id}}">分享档口</view>
             </view>
         </view>
         <view class="background">
@@ -45,4 +45,5 @@
     </view>
     <photoWaterFall storeId="{{storeVo.id}}" bind:returnBack="returnBack" id="fall"></photoWaterFall>
 </view>
-<shareToast style="z-index:10000" dataid="{{ShareId}}" shareDetail="{{shareDetail}}"  bind:closeShare="closeShare" type="goods" open="whatever" id="share"></shareToast>
+<shareToast style="z-index:10000" dataid="{{ShareId}}" shareDetail="{{shareDetail}}" bind:closeShare="closeShare"
+    type="{{shareType}}" open="whatever" id="share"></shareToast>

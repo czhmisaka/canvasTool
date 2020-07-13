@@ -3,6 +3,7 @@ const app = getApp()
 const util = require('../../../utils/util.js')
 let order_list = [0, 0, 0, 0, 0]
 let lock = true
+let swiperLock = false
 Page({
 
   /**
@@ -30,6 +31,8 @@ Page({
   // 切换tab页（主函数）
   switchSubtitle(e) {
     var that = this
+    if(swiperLock) return 
+    swiperLock = true
     if (e.currentTarget) {
       e = e.currentTarget.dataset.index
     }
@@ -44,6 +47,9 @@ Page({
       this.setData({
         selectType: selectType
       })
+      setTimeout(()=>{
+        swiperLock = false
+      },300)
       if (!this.data.orderList[e])
         this.getOrderList(e)
     })

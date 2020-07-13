@@ -28,6 +28,17 @@ Page({
     });
   },
 
+  // 修改头像 - 选择图片
+  changeHeadImage(e) {
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      success: function (res) {
+        const tempFilePaths = res.tempFilePaths
+      }
+    })
+  },
+
   // 修改店铺详情
   submitShopDetail(e) {
     util.request({

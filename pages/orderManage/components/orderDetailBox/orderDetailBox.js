@@ -53,7 +53,7 @@ Component({
   methods: {
     toDetail: function (e) {
       wx.navigateTo({
-        url: "../orderDetail/orderDetail?id=" + this.properties.order_Detail.orderId
+        url: "../orderDetail/index?id=" + this.properties.order_Detail.orderId
       })
     },
     timeset: function (date) {

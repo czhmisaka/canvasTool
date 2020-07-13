@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "新增档口",
-  "usingComponents": {}
+  "usingComponents": {
+    "imageFormat":"/components/canvasToolForFormatImage/cropper"
+  }
 }

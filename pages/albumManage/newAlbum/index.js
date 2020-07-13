@@ -315,7 +315,6 @@ Page({
     let {
       check
     } = e.detail
-    console.log(check)
     this.setData({
       price: check.goodsPriceAddDtos,
       goodsPriceAddDtos: check.goodsPriceAddDtos

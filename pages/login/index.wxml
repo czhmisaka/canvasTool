@@ -1,7 +1,6 @@
 <!--pages/login/index.wxml-->
 
 <view>
-
     <view class="back">
         <image src="/static/images/loginImages/ic_back.png" wx:if="{{type=='phone'}}" bindtap="changeType"
             data-type="check" />

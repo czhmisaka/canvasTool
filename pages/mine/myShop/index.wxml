@@ -5,7 +5,7 @@
         <view class="flexBox H168rpx borderBottom">
             <view class="toPhoho LH168rpx">档口头像</view>
             <view class="right LH168rpx">
-                <image class="icon120"
+                <image class="icon120" bindtap="changeHeadImage"
                     src="{{shopDetail.storeLogo?shopDetail.storeLogo:'/static/images/icon_page/img_zwtx.png'}}" />
                 <image class="iconBack" src="/static/images/icon_page/ic_xy.png" style="width: 14rpx;height: 26rpx;" />
             </view>
