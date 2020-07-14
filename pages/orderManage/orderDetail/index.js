@@ -87,7 +87,7 @@ Page({
           options: options
         })
       } else {
-        app.noIconToast('获取订单失败')
+        // app.noIconToast('获取订单失败')
       }
     })
   },
@@ -105,21 +105,7 @@ Page({
     this.setData({
       id: options.id
     })
-    let asd = wx.getLaunchOptionsSync()
-    console.log(asd)
-    wx.showToast({
-      title: JSON.stringify(asd['referrerInfo'].extraData) + ' # ' + JSON.stringify(options),
-      icon: 'none',
-      duration: 10000
-    })
     app.getQuery().then((option) => {
-      this.setData({
-        extraData: JSON.stringify(asd) + ' ################## ' + JSON.stringify(options) + " ####################### " + JSON.stringify(option.id)
-      })
-    })
-
-    app.getQuery().then((option) => {
-
       if (option != "null" && option.id) {
         let preCheck = this.selectComponent('#sharePreDeal')
         preCheck.init(option).then((res) => {

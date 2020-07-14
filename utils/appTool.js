@@ -125,6 +125,7 @@ const cleanGlobalData = async function refreshGlobalData(callback) {
 const toLoginPage = (fromPage) => {
     let page = getCurrentPages()
     let lastPage = page[page.length - 1]
+    fromPage = fromPage || '/pages/home/index'
     fromPage = fromPage.toString().replace(/[\#=]/g, ':').replace(/[\#?]/g, '@').replace(/[\#&]/g, '##')
     if (lastPage.route != 'pages/login/index') return wx.reLaunch({
         url: '/pages/login/index?fromPage=' + fromPage

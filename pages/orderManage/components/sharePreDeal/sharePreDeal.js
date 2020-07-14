@@ -46,7 +46,12 @@ Component({
         },
         type: 'noLogin'
       }).then(result => {
-        if (result.data.type == "1") {
+        wx.showToast({
+          title: JSON.stringify(result), //提示的内容,
+          icon: 'none', //图标,
+          duration: 20000, //延迟时间,
+        });
+        if (result.data && result.data.type == "1") {
           that.setData({
             close: false
           })
@@ -65,19 +70,18 @@ Component({
     },
 
     // 跳转到其他小程序
-    toOtherMiniProgram(id) {
-      console.log('aswqqw','/pages/orderDetail/orderDetail?type=toOther&id=' + id)
+    toOtherMiniProgram(e) {
       let that = this
+      let id = that.data.options.id
       wx.navigateToMiniProgram({
         appId: "wx06a1bdb123d6a27e",
         path: '/pages/orderDetail/orderDetail?type=toOther&id=' + id,
         envVersion: 'trial',
         extraData: {
           id: id,
-          type:'toOther'
+          type: 'toOther'
         },
         success(res) {
-          console.log('asdwdwd',res)
           that.setData({
             exitApp: true
           })
@@ -111,9 +115,9 @@ Component({
           options
         })
         orderId = options.id
-        // wx.showLoading({
-        //   title: '身份识别中'
-        // })
+        wx.showLoading({
+          title: '身份识别中'
+        })
         if (orderId) {
           util.request({
             url: 'order/check',
@@ -122,13 +126,13 @@ Component({
             },
             type: 'noLogin'
           }).then(res => {
-            // wx.showToast({
-            //   title: JSON.stringify(res),
-            //   icon: 'none'
-            // })
-            // wx.hideLoading()
+            wx.showToast({
+              title: JSON.stringify(res),
+              icon: 'none',
+              duration: 10000
+            })
+            wx.hideLoading()
             if (res.code == 200) {
-              console.log(res)
               if (res.data.type == 1) {
                 // if (false) {
                 this.setData({
@@ -144,7 +148,7 @@ Component({
             } else if (res.code == 4002) {
               this.toHomePage()
             } else if (res.code == 500) {
-              app.toLoginPage()
+              // app.toLoginPage()
             } else {}
           })
         } else {
