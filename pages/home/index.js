@@ -32,7 +32,7 @@ Page({
   },
 
   // 获取 首页详情
-  getShopDetail() {
+  getShopDetail() { 
     let that = this
     let times = 10
     let time = setInterval(() => {

@@ -21,9 +21,16 @@ App({
     ossEnv: {},
     refreshHome: false,
     ossEnv: {},
-    needRefresh: []
+    needRefresh: [],
+    onShowOptions: {}
   },
   ...tools,
+
+  onShow: function (options) {
+    
+    this.globalData.onShowOptions = options.query
+    // console.log('asd', this.globalData.onShowOptions)
+  },
   onLaunch: function () {
     // 检查小程序版本
     utils.checkVersion()

@@ -27,7 +27,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -143,10 +143,14 @@
 				},
 				{
 					"id": 11,
-					"name": "订单详情",
+					"name": "订单详情-从其他小程序进入",
 					"pathName": "pages/orderManage/orderDetail/index",
-					"query": "id=1281412946731208705",
-					"scene": null
+					"query": "id=1282875999909842946&type=toOther",
+					"scene": 1037,
+					"referrerInfo": {
+						"appId": "wx06a1bdb123d6a27e",
+						"extraData": "{\"id\":\"1282517844386385922\"}"
+					}
 				},
 				{
 					"id": 12,

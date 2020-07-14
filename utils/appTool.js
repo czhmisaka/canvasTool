@@ -1,5 +1,4 @@
 const config = require('../config/config.js');
-// const { promises } = require('fs');
 
 // 简化弹窗
 const noIconToast = (e) => {
@@ -28,6 +27,33 @@ const successTimeOutBack = (word, index = 1) => {
             delta: index //返回的页面数，如果 delta 大于现有页面数，则返回到首页,
         });
     }, 1500)
+}
+
+// 确定 this.globalData.onShowOptions 的返回
+const getQuery = (e) => {
+    return new Promise((res, rej) => {
+        wx.showLoading({
+            title: '获取信息中'
+        })
+        let lock = 0
+        let clock = setInterval(() => {
+            if (getApp().globalData.onShowOptions) {
+                // wx.showToast({
+                //     title: JSON.stringify(getApp().globalData.onShowOptions),
+                //     icon: 'none'
+                // })
+                res(getApp().globalData.onShowOptions)
+                wx.hideLoading()
+                clearInterval(clock)
+            } else if (lock > 20) {
+                wx.hideLoading()
+                res("null")
+                clearInterval(clock)
+            } else {
+                lock++
+            }
+        }, 100)
+    })
 }
 
 //检测是否获取到uid
@@ -62,12 +88,16 @@ const checkNeedRefresh = async function checkNeedRefresh(callback) {
             route
         } = page
         let back = false
-        this.globalData.needRefresh.forEach((item, i) => {
-            if (item.route == route) {
-                back = item.back
-                this.globalData.needRefresh.splice(i, 1)
-            }
-        })
+        if (!this.globalData.needRefresh || this.globalData.needRefresh.length == 0) {
+            back = false
+        } else {
+            this.globalData.needRefresh.forEach((item, i) => {
+                if (item.route == route) {
+                    back = item.back
+                    this.globalData.needRefresh.splice(i, 1)
+                }
+            })
+        }
         res(back)
     })
 }
@@ -92,11 +122,12 @@ const cleanGlobalData = async function refreshGlobalData(callback) {
 
 }
 
-const toLoginPage = () => {
+const toLoginPage = (fromPage) => {
     let page = getCurrentPages()
     let lastPage = page[page.length - 1]
+    fromPage = fromPage.toString().replace(/[\#=]/g, ':').replace(/[\#?]/g, '@').replace(/[\#&]/g, '##')
     if (lastPage.route != 'pages/login/index') return wx.reLaunch({
-        url: '/pages/login/index'
+        url: '/pages/login/index?fromPage=' + fromPage
     });
 }
 
@@ -121,5 +152,6 @@ module.exports = {
     cleanGlobalData,
     toLoginPage,
     noIconToast,
-    errorTimeOutBack
+    errorTimeOutBack,
+    getQuery
 }

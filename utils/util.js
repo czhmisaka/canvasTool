@@ -28,7 +28,27 @@ let getConfig = (type = "baseUrl") => {
 let request = obj => {
   obj.url = obj.url || '/'
   let baseUrl = config.api_protocal + config.api_server
-  if (!obj.responseType) {
+  if (obj.type && obj.type == "noLogin") {
+    return new Promise((resolve, reject) => {
+      if (getApp().globalData.accessToken) {
+        obj.header = {
+          'content-type': 'application/json',
+          'Authorization': getApp().globalData.accessToken
+        }
+      }
+      wx.request({
+        url: baseUrl + obj.url,
+        data: obj.data || {},
+        header: obj.header || {
+          'content-type': 'application/json',
+        },
+        method: obj.method || 'post',
+        success(res) {
+          resolve(res.data)
+        }
+      })
+    })
+  } else if (!obj.responseType) {
     return new Promise((resolve, reject) => {
       wx.request({
         url: baseUrl + obj.url,
@@ -39,16 +59,17 @@ let request = obj => {
         },
         method: obj.method || 'post',
         success(res) {
+          let fromPage = obj.fromPage
           switch (res.statusCode) {
             case 200:
               if (res.header.Authorization) {
                 resolve(res)
               }
               if (res.data.code == 403) {
-                toLogin()
+                toLogin(fromPage)
               }
               if (res.data.errno == 501) {
-                toLogin()
+                toLogin(fromPage)
               }
               resolve(res.data)
               break;
@@ -57,14 +78,14 @@ let request = obj => {
                 title: '系统开小差了',
                 icon: 'none',
               });
-              toLogin()
+              toLogin(fromPage)
               break;
             case 500:
               return wx.showToast({
                 title: '系统开小差了',
                 icon: 'none',
               });
-              toLogin()
+              toLogin(fromPage)
               break;
           }
 
@@ -72,9 +93,7 @@ let request = obj => {
         fail(err) {
           reject(err)
         },
-
       })
-
     })
   } else {
     return new Promise((resolve, reject) => {
@@ -86,7 +105,7 @@ let request = obj => {
           'Authorization': getApp().globalData.accessToken ? getApp().globalData.accessToken : ''
         },
         method: obj.method || 'post',
-        responseType: 'arraybuffer',
+        responseType: obj.responseType,
         success(res) {
           resolve(res)
         }
@@ -94,14 +113,28 @@ let request = obj => {
     })
   }
 }
-let toLogin = () => {
+
+// 跳转回登录页
+let toLogin = (fromPage) => {
+  let pageStock = getCurrentPages()
+  let page = pageStock[pageStock.length - 1]
+  let route = page.route
+  if (page.options) {
+    route = '/' + route + '?'
+    let options = JSON.stringify(page.options)
+    options = options.split('{')[1].split('}')[0].replace(/,/g, '&').replace(/:/g, '=')
+    options.split('"').forEach((item) => {
+      route += item
+    })
+  }
   try {
     getApp().cleanGlobalData()
     getApp().cleanStorage()
   } catch (e) {} finally {
-    return getApp().toLoginPage()
+    return getApp().toLoginPage(fromPage ? fromPage : route)
   }
 }
+
 let uploadPhoto = (obj, callback, msg_fail_callback) => {
   if (obj.index === obj.tmpFilePath.length) return
   const MY_NAMESPACE = '1b671a64-40d5-491e-99b0-da01ff5f3341';

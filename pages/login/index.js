@@ -15,6 +15,8 @@ Page({
     }, // 用于保存 input 输入数据
     getCodeStatus: false,
     time: '',
+    code: "",
+    fromPage: null
   },
 
 
@@ -41,54 +43,44 @@ Page({
       icon: 'none',
     });
   },
-  
+
   // 微信授权手机号登录
   loginWithWx(e) {
+    if (!this.data.code) return app.noIconToast('微信登录失败')
     this.checkFile()
     let {
       encryptedData,
       iv
     } = e.detail
-    wx.login({
-      success: function (res) {
-        utils.request({
-          url: 'login/wechat',
-          data: {
-            code: res.code,
-            iv: iv,
-            encryptedData: encryptedData
-          },
-          header: {
-            'content-type': 'application/json',
-          }
-        }).then(result => {
-          let res = result.data
-          if (res.code === 200) {
-            app.globalData.shopInfo = res.data // 留个坑 这里 没有保存 userinfo 记得检查下面那个
-            app.globalData.accessToken = result.header.Authorization // 获取token
-            app.setStorage()
-            wx.showToast({
-              title: '登录成功',
-              icon: 'success',
-              success: function () {
-                wx.switchTab({
-                  url: '/pages/home/index'
-                });
-              }
-            });
-          } else {
-            wx.showToast({
-              title: res.msg, //提示的内容,
-              icon: 'none', //图标,
-            });
-          }
-        })
+    utils.request({
+      url: 'login/wechat',
+      data: {
+        code: this.data.code,
+        iv: iv,
+        encryptedData: encryptedData
+      },
+      header: {
+        'content-type': 'application/json',
+      }
+    }).then(result => {
+      let res = result.data
+      if (res.code === 200) {
+        app.globalData.shopInfo = res.data // 留个坑 这里 没有保存 userinfo 记得检查下面那个
+        app.globalData.accessToken = result.header.Authorization // 获取token
+        app.setStorage()
+        this.toFromPage()
+      } else {
+        wx.showToast({
+          title: res.msg, //提示的内容,
+          icon: 'none', //图标,
+        });
       }
     })
   },
 
   // 使用验证码登录
   loginWithCheckCode(e) {
+    if (!this.data.code) return app.noIconToast('微信登录失败')
     let that = this
     this.checkFile()
     if (!this.checkInput()) return wx.showToast({
@@ -113,15 +105,7 @@ Page({
             app.globalData.shopInfo = res.data
             app.globalData.accessToken = result.header.Authorization // 获取token
             app.setStorage()
-            wx.showToast({
-              title: '登录成功',
-              icon: 'success',
-              success: function () {
-                wx.switchTab({
-                  url: '/pages/home/index'
-                });
-              }
-            });
+            this.toFromPage()
           } else {
             wx.showToast({
               title: res.msg, //提示的内容,
@@ -131,6 +115,20 @@ Page({
         })
       }
     })
+  },
+
+  // 登录后 返回跳转登录前的页面
+  toFromPage(e) {
+    let that = this
+    wx.showToast({
+      title: '登录成功',
+      icon: 'success',
+      success: function () {
+        wx.reLaunch({
+          url: that.data.fromPage
+        });
+      }
+    });
   },
 
   // 输入监听事件
@@ -220,7 +218,17 @@ Page({
       checkFile: !this.data.checkFile
     })
   },
+
   onLoad: function (options) {
+    console.log(options.fromPage,'asd',options.fromPage.replace(/:/g,'=').replace(/[\@]/g,'?').replace(/[\##]/g,'&'))
+    wx.login({
+      success: res => {
+        this.setData({
+          code: res.code,
+          fromPage: options.fromPage.replace(/[\#:]/g,'=').replace(/[\#@]/g,'?').replace(/[\###]/g,'&')
+        })
+      }
+    })
   },
   onReady: function () {},
   onShow: function () {},

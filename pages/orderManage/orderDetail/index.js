@@ -1,5 +1,5 @@
 const util = require("../../../utils/util")
-
+const app = getApp()
 // pages/orderDetail/orderDetail.js
 Page({
 
@@ -9,9 +9,29 @@ Page({
   data: {
     order: {},
     options: {},
-    id: ''
+    id: '',
+    msgBox: false
   },
 
+
+  // 打开备注填写接口
+  showMsgBox(e) {
+    this.setData({
+      msgBox: true
+    })
+  },
+
+  // 取消接单
+  abolish(e) {
+    // util.request({
+    //   url:"order/cancelAndRefund",
+    //   data:{}
+    // }).then((res) => {
+
+    // })
+  },
+
+  // 确认接单
   checkIn(e) {
     util.request({
       url: '/order/confirmOrder/' + this.data.options.id,
@@ -52,11 +72,12 @@ Page({
     })
   },
 
+  // 获取详情
   getDetail(options) {
     let that = this
     util.request({
       url: 'order/getOrderInfo/' + options.id,
-      method: 'get'
+      method: 'get',
     }).then(res => {
       if (res.code == 200) {
         let data = res.data
@@ -71,6 +92,7 @@ Page({
     })
   },
 
+  // 唤起回调
   returnBack(e) {
     let {
       options
@@ -78,20 +100,37 @@ Page({
     this.getDetail(options)
   },
 
+  // 进入页面加载
   onLoad: function (options) {
     this.setData({
       id: options.id
     })
-    let preCheck = this.selectComponent('#sharePreDeal')
-    if (options.type == "toCus") {
-      preCheck.init(options).then((res) => {
-        if (res.type == false) return
-        this.getDetail(options)
+    let asd = wx.getLaunchOptionsSync()
+    console.log(asd)
+    wx.showToast({
+      title: JSON.stringify(asd['referrerInfo'].extraData) + ' # ' + JSON.stringify(options),
+      icon: 'none',
+      duration: 10000
+    })
+    app.getQuery().then((option) => {
+      this.setData({
+        extraData: JSON.stringify(asd) + ' ################## ' + JSON.stringify(options) + " ####################### " + JSON.stringify(option.id)
       })
-    } else {
-      this.getDetail(options)
-    }
+    })
+
+    app.getQuery().then((option) => {
+
+      if (option != "null" && option.id) {
+        let preCheck = this.selectComponent('#sharePreDeal')
+        preCheck.init(option).then((res) => {
+          this.getDetail(option)
+        })
+      } else {
+        this.getDetail(options)
+      }
+    })
   },
+
   onReady: function () {},
   onShow: function () {},
   onHide: function () {},
@@ -101,10 +140,10 @@ Page({
   },
   onReachBottom: function () {},
   onShareAppMessage: function (e) {
-    console.log(this.data)
     return {
-      title: "xxx订单",
-      path: 'pages/orderManage/orderDetail/orderDetail?id=' + this.data.id + "&type=toCus"
+      title: this.data.order.wxNickName + '的订单',
+      imageUrl: this.data.order.goodsList[0].goodsImage,
+      path: '/pages/orderManage/orderDetail/index?id=' + this.data.order.orderId + "&type=toCus"
     }
   }
 })

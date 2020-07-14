@@ -37,10 +37,21 @@
   <view class="takeOrderTime">接单时间: {{order.receiveTime || "-"}}</view>
 </view>
 <view class="orderTabbar">
-  <view class="transmit" wx:if="{{order.orderStatus == 50}}" bindtap="checkIn">接单</view>
+  <view class="transmit" wx:if="{{order.orderStatus == 50}}" bindtap="abolish">取消</view>
+  <button open-type="share" class="transmit" bindtap="share">分享</button>
+  <view class="transmit highLight" wx:if="{{order.orderStatus == 50}}" bindtap="checkIn">接单</view>
   <view class="transmit" wx:if="{{order.orderStatus == 60}}">已确认</view>
-  <button open-type="share" class="cancel" bindtap="share">分享</button>
-  <!-- <view class="cancel" wx:if="{{state == 50}}">取消</view> -->
   <!-- <view class="relation">联系商家</view> -->
 </view>
 <sharePreDeal preDealId="{{id}}" bind:returnBack="returnBack" id="sharePreDeal"></sharePreDeal>
+<view class="wholeScreen" wx:if="{{msgBox}}">
+  <view class="bg"></view>
+  <view class="msgBox">
+    <view class="title">
+    </view>
+    <!-- <view class="msg"> -->
+    <textarea name="" class="msg" id="" cols="30" rows="10"></textarea>
+    <!-- </view> -->
+  </view>
+</view>
+{{extraData}}

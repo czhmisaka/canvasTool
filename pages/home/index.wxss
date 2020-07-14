@@ -1,6 +1,7 @@
 /* pages/home/index.wxss */
 
 page{
+    width: 100vw;
     overflow-y: scroll;
     overflow-x: hidden;
 }

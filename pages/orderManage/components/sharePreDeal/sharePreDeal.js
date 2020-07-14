@@ -11,7 +11,10 @@ Component({
   data: {
     options: {},
     show: true,
-    close: false
+    close: false,
+    navTo: 0,
+    exitApp: false,
+    code: ''
   },
   methods: {
     // 主动触发函数
@@ -26,115 +29,124 @@ Component({
 
     // 微信登录信息
     login(e) {
+      // this.toOtherMiniProgram(this.data.options.id)
+      // return 0 
       let {
         encryptedData,
         iv
       } = e.detail
-      wx.login({
-        success: function (res) {
-          console.log(res)
-          util.request({
-            url: 'order/share/auth',
-            data: {
-              code: res.code,
-              iv: iv,
-              encryptedData: encryptedData,
-              orderId
-            }
-          }).then(result => {
-            console.log(result)
-            if (res.data.type == "1") {
-              this.setData({
-                close: false
-              })
-            } else {
-              this.toOtherMiniProgram(this.options.id)
-            }
+      let that = this
+      util.request({
+        url: 'order/share/auth',
+        data: {
+          code: that.data.code,
+          iv: iv,
+          encryptedData: encryptedData,
+          orderId
+        },
+        type: 'noLogin'
+      }).then(result => {
+        if (result.data.type == "1") {
+          that.setData({
+            close: false
           })
+          that.returnBack()
+        } else {
+          that.toOtherMiniProgram(that.data.options.id)
         }
       })
+
     },
 
     showLoginToast() {
       this.setData({
-        show: true
+        navTo: 2
       })
     },
 
     // 跳转到其他小程序
     toOtherMiniProgram(id) {
-      wx.showModal({
-        title: '好客多',
-        content: '打开买家小程序查看订单',
-        showCancel: false,
-        cancelText: "否",
-        confirmText: "是",
-        confirmColor: 'skyblue',
-        success: function (res) {
-          if (res.cancel) {
-            console.log('asd')
-          } else {
-            wx.navigateToMiniProgram({
-              appId: "wx06a1bdb123d6a27e",
-              path: '/pages/orderDetail/orderDetail',
-              envVersion: 'develop',
-              extraData: {
-                orderId: id
-              },
-              success(res) {
-                wx.showToast({
-                  title: '跳转成功'
-                })
-              },
-              complete(res) {
-                console.log(res)
-              }
-            })
-          }
+      console.log('aswqqw','/pages/orderDetail/orderDetail?type=toOther&id=' + id)
+      let that = this
+      wx.navigateToMiniProgram({
+        appId: "wx06a1bdb123d6a27e",
+        path: '/pages/orderDetail/orderDetail?type=toOther&id=' + id,
+        envVersion: 'trial',
+        extraData: {
+          id: id,
+          type:'toOther'
+        },
+        success(res) {
+          console.log('asdwdwd',res)
+          that.setData({
+            exitApp: true
+          })
         }
       })
 
     },
 
+    // 打开跳转
+    showNav(num) {
+      this.setData({
+        navTo: num
+      })
+    },
+
     // 预处理 -开始
     init(options) {
+      let that = this
+      wx.login({
+        success: function (res) {
+          that.setData({
+            code: res.code
+          })
+        }
+      });
       this.setData({
-        close:true
+        close: true
       })
       return new Promise((resolve, reject) => {
         this.setData({
           options
         })
         orderId = options.id
-        wx.showLoading({
-          title: '身份识别中'
-        })
+        // wx.showLoading({
+        //   title: '身份识别中'
+        // })
         if (orderId) {
           util.request({
             url: 'order/check',
             data: {
               id: orderId
-            }
+            },
+            type: 'noLogin'
           }).then(res => {
-            wx.hideLoading()
+            // wx.showToast({
+            //   title: JSON.stringify(res),
+            //   icon: 'none'
+            // })
+            // wx.hideLoading()
             if (res.code == 200) {
+              console.log(res)
               if (res.data.type == 1) {
+                // if (false) {
                 this.setData({
                   close: false
                 })
                 resolve(res)
               } else {
-                this.toOtherMiniProgram(id)
+                this.showNav(1)
+                // this.toOtherMiniProgram(orderId)
               }
             } else if (res.code == 4001) {
               this.showLoginToast()
             } else if (res.code == 4002) {
               this.toHomePage()
             } else if (res.code == 500) {
-              app.toLogin()
-            }
+              app.toLoginPage()
+            } else {}
           })
-
         } else {
           return reject({
             type: false

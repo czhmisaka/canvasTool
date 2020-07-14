@@ -79,6 +79,8 @@ Component({
         check: back
       })
     },
+
+    // 退出
     cancel(e) {
       this.triggerEvent('cancel', {
         type: false
