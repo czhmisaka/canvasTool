@@ -104,8 +104,14 @@
 .red {
     font-size: 28rpx;
     font-family: DINAlternate-Bold, DINAlternate;
-    font-weight: 500;
+    font-weight: bolder;
     color: rgba(238, 72, 102, 1);
+    margin-left: 24rpx;
+}
+.word{
+    font-size: 28rpx;
+    font-family: DINAlternate-Bold, DINAlternate;
+    font-weight: 500;
     margin-left: 24rpx;
 }
 

@@ -1,6 +1,4 @@
 <!--pages/home/index.wxml-->
-
-
 <view class="home">
     <view class="promoter">
         <view class="detail">
@@ -9,7 +7,7 @@
                 <view class="span">切换</view>
             </view>
             <view class="headImg" style="height:52rpx"></view>
-            <view class="headImg">
+            <view class="headImg" bindtap="navTo" data-url="{{'/pages/mine/myShop/index?id='+storeVo.id}}">
                 <image src="{{storeVo.storeLogo?storeVo.storeLogo:'/static/images/icon_page/img_zwtx.png'}}" alt="" />
             </view>
             <view class="word">

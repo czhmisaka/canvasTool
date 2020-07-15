@@ -14,7 +14,7 @@ Page({
     imageList: [],
     word: '',
     goodsList: [],
-    goodsSerial: "",
+    goodsSerial: "1",
     goodsId: '',
     albumData: {},
     pageType: 0, // 0 新建 , 1 编辑 

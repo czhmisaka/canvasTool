@@ -2,7 +2,8 @@
 <view>
     <!-- <navBarCustom page-name='管理相册'>
         </navBarCustom>-->
-    <screenSliderBar wx:if="{{checkStatus}}" bind:returnBack="checkReturn" bind:cancel="checkCancel" checkData="{{checkData}}" checkStatus="{{checkStatus}}"></screenSliderBar>
+    <screenSliderBar wx:if="{{checkStatus}}" bind:returnBack="checkReturn" bind:cancel="checkCancel"
+        checkData="{{checkData}}" checkStatus="{{checkStatus}}"></screenSliderBar>
     <view class="search"><input type="text" placeholder="搜索内容"></input>
         <view class="word" bindtap="checkOpen">筛选</view>
     </view>
@@ -23,8 +24,8 @@
                 <swiper-item>
                     <view class="scroll {{checkMore[selectType.index]?'check':''}}">
                         <albumCard bind:changeCheck="changeCheck" bind:callBack="callBack" bind:returnBack="returnBack"
-                            checkindex="{{checkIndex[selectType.index][index].checkIndex}}" check="{{checkMore[selectType.index]}}"
-                            id="{{index}}" wx:for="{{data[index]}}"
+                            checkindex="{{checkIndex[selectType.index][index].checkIndex}}"
+                            check="{{checkMore[selectType.index]}}" id="{{index}}" wx:for="{{data[index]}}"
                             transitionMax="{{checkIndex[selectType.index].length}}" wx:key="*this" data="{{item}}">
                         </albumCard>
                     </view>
@@ -39,4 +40,5 @@
         <view class="button black" bindtap="sortDataByTime">分享档口 </view>
     </view>
 </view>
-<shareToast style="z-index:10000" dataid="{{ShareId}}" shareDetail="{{shareDetail}}"  bind:closeShare="closeShare" type="goods" open="whatever" id="share"></shareToast>
+<shareToast style="z-index:10000" dataid="{{ShareId}}" shareDetail="{{shareDetail}}" bind:closeShare="closeShare"
+    type="goods" open="whatever" id="share"></shareToast>

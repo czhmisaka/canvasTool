@@ -1,14 +1,36 @@
 var fileHost = ""
-const config = {
-    api_server: "wxapi.91bkw.com/photo/workbench/",
-    api_protocal: "https://",
-    fileHost: fileHost
-};
+// const config = {
+//     api_server: "wxapi.91bkw.com/photo/workbench/",
+//     api_protocal: "https://",
+//     fileHost: fileHost
+// };
+function configExchange() {
+    const envVersion = __wxConfig.envVersion
+    switch (envVersion) {
+        case 'develop':
+            return {
+                api_server: "wxapi.91bokuan.com/photo/workbench/",
+                    api_protocal: "https://",
+                    fileHost: fileHost
+            }
+            break;
+        case 'trial':
+            return {
+                api_server: "wxapi.91bokuan.com/photo/workbench/",
+                    api_protocal: "https://",
+                    fileHost: fileHost
+            }
+            break;
+        case 'release':
+            return {
+                api_server: "wxapi.91bkw.com/photo/workbench/",
+                    api_protocal: "https://",
+                    fileHost: fileHost
+            }
+    }
+}
 
-// uploadImageUrl: `${fileHost}`, //默认存在根目录，可根据需求改
-//     AccessKeySecret: '填你自己的AccessKeySecret',
-//     OSSAccessKeyId: '填你自己的 OSSAccessKeyId',
-//     timeout: 87600 //这个是上传文件时Policy的失效时间
+let config = configExchange()
 
 module.exports = {
     config: config

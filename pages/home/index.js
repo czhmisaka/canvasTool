@@ -31,8 +31,14 @@ Page({
     });
   },
 
+  navTo(e) {
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url
+    })
+  },
+
   // 获取 首页详情
-  getShopDetail() { 
+  getShopDetail() {
     let that = this
     let times = 10
     let time = setInterval(() => {

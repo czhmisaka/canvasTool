@@ -2,7 +2,7 @@
 
 <view class="ablumCard {{check?'check':''}} {{transitionMax>30?'':'transition'}}">
     <view class="icon_check" wx:if="{{check}}">
-    <!-- <view class="icon_check" wx:if="{{true}}"> -->
+        <!-- <view class="icon_check" wx:if="{{true}}"> -->
         <image src="{{'/static/images/icon_page/'+(checkindex?'ic_chose_pre.png':'ic_chose.png')}}"
             bindtap="changeCheck" />
     </view>
@@ -18,10 +18,13 @@
         </view>
     </view>
     <view class="view infoBox">
-        <span class="red">
+        <span class="red" wx:if="{{price!='未设置价格'}}">
             ￥{{price}}
         </span>
-        {{data.photoDesc}}
+        <span class="word black" wx:if="{{price=='未设置价格'}}">
+            {{price}}
+        </span>
+        {{data.goodsSerial}}{{"   "+data.photoDesc}}
     </view>
     <view class="view statusBox">
         <view class="leftBox">

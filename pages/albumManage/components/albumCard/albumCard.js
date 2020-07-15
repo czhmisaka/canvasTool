@@ -33,10 +33,9 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
     // 初始化函数
     initFn: function (e) {
-      let price = 0,
+      let price = '未设置价格',
         photoList = [],
         photoNum = 0
       let {
@@ -51,6 +50,13 @@ Component({
           })
           photoNum = data.photoImageMore.split(',').length
         }
+      }
+      if (data.goodsPriceVos && data.goodsPriceVos.length != 0) {
+        let list = data.goodsPriceVos
+        list.sort((a, b) => {
+          return a.goodsPrice - b.goodsPrice
+        })
+        price = list[0].goodsPrice
       }
       this.setData({
         photoList,

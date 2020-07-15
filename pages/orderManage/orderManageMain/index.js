@@ -17,7 +17,7 @@ Page({
       '已完成',
       '已取消'
     ],
-    typeStatus:['', 50, 60, 40, 0],
+    typeStatus: ['', 50, 60, 40, 0],
     selectType: 0,
     orderList: []
   },
@@ -31,7 +31,7 @@ Page({
   // 切换tab页（主函数）
   switchSubtitle(e) {
     var that = this
-    if(swiperLock) return 
+    if (swiperLock) return
     swiperLock = true
     if (e.currentTarget) {
       e = e.currentTarget.dataset.index
@@ -47,9 +47,9 @@ Page({
       this.setData({
         selectType: selectType
       })
-      setTimeout(()=>{
+      setTimeout(() => {
         swiperLock = false
-      },300)
+      }, 300)
       if (!this.data.orderList[e])
         this.getOrderList(e)
     })
@@ -89,7 +89,7 @@ Page({
       }
     }).then((res) => {
       wx.hideLoading()
-      if (res.data.pages-1 > order_list[index]) {
+      if (res.data.pages - 1 > order_list[index]) {
         wx.showToast({
           title: '加载成功'
         })
@@ -103,18 +103,20 @@ Page({
         this.setData({
           orderList: orderList
         })
-      }else{
+      } else {
         wx.showToast({
           title: '没有更多数据',
-          icon:'none'
+          icon: 'none'
         })
       }
       lock = true
     })
   },
 
-  refreshOrderlist(e){
-    wx.showLoading({title:'刷新中'})
+  refreshOrderlist(e) {
+    wx.showLoading({
+      title: '刷新中'
+    })
     this.getOrderList(e.currentTarget.dataset.i)
   },
 
@@ -148,11 +150,11 @@ Page({
     this.switchSubtitle(0)
     this.initOrderList()
   },
-  onLoad: function (options) {
+  onLoad: function (options) {},
+  onReady: function () {},
+  onShow: function () {
     this.initFn()
   },
-  onReady: function () {},
-  onShow: function () {},
   onHide: function () {},
   onUnload: function () {},
   onPullDownRefresh: function () {},
