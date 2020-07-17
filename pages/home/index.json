@@ -1,6 +1,6 @@
 {
   "usingComponents": {
     "photoWaterFall": "../../components/photoFall/photoFall",
-    "shareToast":"/components/shareToast/shareToast"
+    "shareToast": "/components/shareToast/shareToast"
   }
 }

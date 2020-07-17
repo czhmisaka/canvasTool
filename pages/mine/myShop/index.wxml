@@ -4,8 +4,8 @@
     <view class="itemBox">
         <view class="flexBox H168rpx borderBottom">
             <view class="toPhoho LH168rpx">档口头像</view>
-            <view class="right LH168rpx">
-                <image class="icon120" bindtap="changeHeadImage"
+            <view class="right LH168rpx" bindtap="changeImage" data-key="storeLogo">
+                <image class="icon120"
                     src="{{shopDetail.storeLogo?shopDetail.storeLogo:'/static/images/icon_page/img_zwtx.png'}}" />
                 <image class="iconBack" src="/static/images/icon_page/ic_xy.png" style="width: 14rpx;height: 26rpx;" />
             </view>
@@ -15,7 +15,8 @@
         <view class="flexBox H110rpx borderBottom">
             <view class="toPhoho LH110rpx">档口名称</view>
             <view class="right LH110rpx">
-                <input value="{{shopDetail.storeName}}" maxlength="14" placeholder="点击设置" bindinput="bindInput" data-key="storeName" />
+                <input value="{{shopDetail.storeName}}" maxlength="14" placeholder="点击设置" bindinput="bindInput"
+                    data-key="storeName" />
             </view>
         </view>
     </view>
@@ -31,8 +32,8 @@
     <view class="itemBox">
         <view class="flexBox H110rpx borderBottom">
             <view class="toPhoho LH110rpx">在线联系方式</view>
-            <view class="right LH110rpx">
-                <image class="icon40" src="/static/images/icon_page/ic_ewm@2x.png" />
+            <view class="right LH110rpx" bindtap="changeImage" data-key="storeQrcode">
+                <image class="{{shopDetail.storeQrcode?'icon80':'icon40'}}"  src="{{shopDetail.storeQrcode?shopDetail.storeQrcode:'/static/images/icon_page/ic_ewm@2x.png'}}" />
                 <image class="iconBack" src="/static/images/icon_page/ic_xy.png" style="width: 14rpx;height: 26rpx;" />
             </view>
         </view>
@@ -40,8 +41,8 @@
     <view class="itemBox">
         <view class="flexBox H110rpx">
             <view class="toPhoho LH110rpx">档口相册背景图</view>
-            <view class="right LH110rpx">
-                <image class="icon40" src="/static/images/icon_page/ic_bjt@2x.png" />
+            <view class="right LH110rpx"  bindtap="changeImage" data-key="storeBackground">
+                <image  class="{{shopDetail.storeBackground?'icon80':'icon40'}}" src="{{shopDetail.storeBackground?shopDetail.storeBackground:'/static/images/icon_page/ic_bjt@2x.png'}}" />
                 <image class="iconBack" src="/static/images/icon_page/ic_xy.png" style="width: 14rpx;height: 26rpx;" />
             </view>
         </view>
@@ -89,5 +90,14 @@
             修改
         </view>
     </view>
-
+</view>
+<imageformat id="image-cropper" wx:if="{{show}}" limit_move="true" disable_rotate="true" width="{{width}}" height="{{height}}"
+    imgSrc="{{src}}" bindload="cropperload" bindimageload="loadimage" bindtapcut="clickcut"></imageformat>
+<view class="buttonBar" wx:if="{{show}}">
+    <view class="box" bindtap="closeImageFormat">
+        <image class="icon40" src="/static/images/icon_page/ic_sc.png"></image>
+    </view>
+    <view class="box" bindtap="clickForCut">
+        <image class="icon40" src="/static/images/icon_page/ic_chose_pre.png"></image>
+    </view>
 </view>

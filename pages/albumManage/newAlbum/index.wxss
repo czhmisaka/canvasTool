@@ -101,6 +101,7 @@
 .navToBox>.right {
     float: right;
     margin-right: 34rpx;
+    text-align: right;
 }
 
 .right>.list {

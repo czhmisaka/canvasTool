@@ -3,7 +3,7 @@
   "usingComponents": {
     "canvasdrawer": "/components/canvasTool/canvasTool",
     "shareToast":"/components/shareToast/shareToast",
-    "cropper":"/components/canvasToolForFormatImage/cropper"
+    "cropper":"/components/cropper/cropper"
   },
   "component": true
 }

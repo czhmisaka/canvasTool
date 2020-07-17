@@ -31,7 +31,7 @@
                     <image src="/static/images/icon_page/ic_jian.png" />
                 </view> -->
             </view>
-            <view class="barBox barBox2" wx:for="{{priceList}}">
+            <view class="barBox barBox2 {{select!=1?'hide':''}}" wx:for="{{priceList}}">
                 <view class="left">购买</view>
                 <input type="number" class="left" value="{{item.num}}" bindinput="bindInput" data-type="num"
                     data-index="{{index}}" />

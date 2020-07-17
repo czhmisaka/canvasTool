@@ -38,11 +38,8 @@ const getQuery = (e) => {
         let lock = 0
         let clock = setInterval(() => {
             if (getApp().globalData.onShowOptions) {
-                // wx.showToast({
-                //     title: JSON.stringify(getApp().globalData.onShowOptions),
-                //     icon: 'none'
-                // })
                 res(getApp().globalData.onShowOptions)
+                getApp().globalData.onShowOptions = null
                 wx.hideLoading()
                 clearInterval(clock)
             } else if (lock > 20) {
@@ -102,6 +99,14 @@ const checkNeedRefresh = async function checkNeedRefresh(callback) {
     })
 }
 
+// 跨页面传参 辅助添加函数
+const setNeedRefresh = async function (route, back) {
+    this.globalData.needRefresh.push({
+        route,
+        back
+    })
+}
+
 // 清空缓存（待完善）
 const cleanStorage = async function cleanStorage(callback) {
 
@@ -138,13 +143,9 @@ const navTo = (url) => {
     })
 }
 
-// const uploadImage =(imageList)=>{
-//     return new Promise((resolve, reject) => {
-
-//     })
-// }
 
 module.exports = {
+    setNeedRefresh,
     checkNeedRefresh,
     successTimeOutBack,
     navTo,

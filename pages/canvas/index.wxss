@@ -1,43 +1,42 @@
-page {
+page{
     height: 100%;
     box-sizing: border-box;
-}
-
-.body {
+  }
+  .body{
     height: 100%;
     display: flex;
     flex-direction: column;
-}
-
-.stage {
+  }
+  
+  .stage{
     flex-grow: 1;
-}
-
-
-.bar {
+  }
+  
+  
+  .bar{
     height: 80rpx;
     padding: 36rpx;
     display: flex;
     flex-direction: row;
-    background-color: black;
-}
-
-.btn {
+    background-color: rgba(0,0,0,0.1);
+  }
+  
+  .btn{
     position: relative;
     flex-grow: 1;
-    border: 2rpx solid grey;
+      border: 2rpx solid grey;
     line-height: 80rpx;
     text-align: center;
-    color: white;
-    font-size: 32rpx;
-}
-
-.btn-cancel {
-    border-top-left-radius: 40rpx;
-    border-bottom-left-radius: 40rpx;
-}
-
-.btn-submit {
-    border-top-right-radius: 40rpx;
-    border-bottom-right-radius: 40rpx;
-}
+      color: white;
+     font-size: 32rpx;
+  }
+  
+  .btn-cancel{
+     border-top-left-radius: 40rpx;
+     border-bottom-left-radius: 40rpx;
+  }
+  
+  .btn-submit{
+     border-top-right-radius: 40rpx;
+     border-bottom-right-radius: 40rpx;
+  }

@@ -120,10 +120,11 @@ Page({
 
 
   onLoad: function (options) {
-    this.getShopDetail()
   },
   onReady: function () {},
   onShow: function () {
+    console.log('qweqwe',app.globalData)
+    this.getShopDetail()
     this.selectComponent('#fall').refresh()
   },
   onHide: function () {},

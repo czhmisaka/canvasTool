@@ -37,10 +37,16 @@
                 <image src="/static/images/icon_page/ic_xy.png" />
             </view>
             <view class="right red">
-                <view>
+                <view wx:if="{{price.length==1&&price[0].favorableNum==0}}">
+                    {{'一口价 '+price[0].goodsPrice+'元'}}
+                </view>
+                <view wx:if="{{price.length==1&&price[0].favorableNum!=0}}">
                     {{price[0].favorableNum+'件以上'+price[0].goodsPrice+'元'}}
                 </view>
-                <view class="list" wx:key="*this" wx:for="{{price}}" wx:if="{{index!=0}}">
+                <view wx:if="{{price.length>1}}">
+                    {{price[0].favorableNum+'件以上'+price[0].goodsPrice+'元'}}
+                </view>
+                <view class="list" wx:key="*this" wx:for="{{price}}" wx:if="{{price.length>1&&index!=0}}">
                     {{item.favorableNum+'件以上'+item.goodsPrice+'元'}}
                 </view>
             </view>

@@ -5,6 +5,14 @@
     height: 100vh;
     overflow-y: scroll;
     background: rgba(247, 248, 250, 1);
+    transition: all 0.4s;
+}
+
+
+.top {
+    z-index: 1000;
+    position: fixed;
+    top: 0px;
 }
 
 .icon120 {
@@ -19,6 +27,14 @@
     width: 40rpx;
     height: 40rpx;
     margin: 35rpx;
+    margin-right: 10rpx;
+    border-radius: 5rpx;
+}
+
+.icon80 {
+    width: 80rpx;
+    height: 80rpx;
+    margin: 15rpx;
     margin-right: 10rpx;
     border-radius: 5rpx;
 }
@@ -80,7 +96,7 @@
     justify-content: space-between;
 }
 
-.right>input{
+.right>input {
     height: 34rpx;
     line-height: 34rpx;
     text-align: right;
@@ -89,7 +105,8 @@
 
 .right>image {
     display: flex;
-    align-items: center;margin-left: 12rpx;
+    align-items: center;
+    margin-left: 12rpx;
 }
 
 .flexBox>.title {
@@ -170,3 +187,19 @@
     color: white;
     text-align: center;
 }
+
+.buttonBar {
+    position: fixed;
+    z-index: 10001;
+    top: 20px;
+    width: 100vw;
+    height: 100rpx;
+    /* background-color: white; */
+    display: flex;
+    justify-content: space-between;
+}
+.buttonBar>.box{
+    margin: 20rpx;
+}
+
+@import '/components/cropper/cropper.wxss' 

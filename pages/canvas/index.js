@@ -22,7 +22,7 @@ Page({
 
   formatImage(e) {
     this.getImage(e).then((res) => {
-      cropper = this.selectComponent('#cropper');
+      let cropper = this.selectComponent('#cropper');
       cropper.fnInit({
         imagePath: res.tempFilePaths[0], //*必填
         debug: true, //可选。是否启用调试，默认值为false。true：打印过程日志；false：关闭过程日志
@@ -36,7 +36,7 @@ Page({
       });
     })
   },
-  
+
   getImage(e) {
     return new Promise((reslove, reject) => {
       wx.chooseImage({

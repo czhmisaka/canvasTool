@@ -31,6 +31,15 @@ Component({
             isNew: this.properties.checkData.isNew
           })
         }
+        if (this.properties.checkData.type == true) {
+          this.setData({
+            select: 1
+          })
+        } else {
+          this.setData({
+            select: 0
+          })
+        }
       }
     },
     letCusCheck: {
@@ -52,28 +61,39 @@ Component({
     select: 0, //默认 一口价
     price: '',
     priceList: [],
-    isNew:false// 是否为 查看状态
+    isNew: false // 是否为 查看状态
   },
   methods: {
+
+    // 回传页面回调
     callBackToPage(e) {
       let back = {
         title: this.properties.checkData.title,
         goodsPriceAddDtos: []
       }
+      let key = true
       if (this.data.select == 0) {
         back.goodsPriceAddDtos.push({
           goodsPrice: this.data.price,
           favorableNum: 0
         })
       } else if (this.data.select == 1) {
-        this.data.priceList.forEach((res) => {
-          console.log(res, back)
+        this.data.priceList.forEach((res, index) => {
+          if (index > 0) {
+            if (res.num <= this.data.priceList[index - 1].num) {
+              key = false
+            }
+          }
           back.goodsPriceAddDtos.push({
             favorableNum: res.num,
             goodsPrice: res.price
           })
         })
       }
+      if (key == false) return wx.showToast({
+        title: '数量设置有误',
+        icon: 'none'
+      })
       this.cancel()
       this.triggerEvent('returnBack', {
         check: back
@@ -93,7 +113,7 @@ Component({
         priceList
       } = this.data
       priceList.push({
-        num: 1,
+        num: priceList[priceList.length - 1] ? priceList[priceList.length - 1].num + 1 : 0,
         price: 0
       })
       this.setData({
@@ -139,6 +159,11 @@ Component({
         value
       } = e.detail
       if (type == '一口价') {
+        if (this.data.select != 0) {
+          this.setData({
+            select: 0
+          })
+        }
         let price = util.checkFloat(value)
         this.setData({
           price: price
@@ -162,9 +187,10 @@ Component({
             priceList
           })
         }
-      } else {
+      } else if (type == 'price') {
         priceList[index][type] = util.checkFloat(value)
         this.setData({
+          price: '',
           priceList
         })
       }

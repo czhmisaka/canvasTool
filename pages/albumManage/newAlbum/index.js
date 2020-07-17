@@ -14,7 +14,7 @@ Page({
     imageList: [],
     word: '',
     goodsList: [],
-    goodsSerial: "1",
+    goodsSerial: "",
     goodsId: '',
     albumData: {},
     pageType: 0, // 0 新建 , 1 编辑 
@@ -93,6 +93,9 @@ Page({
       imageList
     } = this.data
     imageList.splice(index, 1)
+    app.setNeedRefresh('/pages/albumManage/albumManageMain/index', {
+      refresh: true
+    })
     this.setData({
       imageList
     })
@@ -150,9 +153,7 @@ Page({
       if (index < imageSrcList.length - 1)
         photoImageMore += ','
     })
-    console.log(this.data.goodsPriceAddDtos)
     if (this.data.goodsId && this.data.goodsPriceAddDtos.length < 1) return this.show('请添加价格信息')
-    console.log(this.data.goodsId)
     utils.request({
       url: '/photo/add',
       data: {
@@ -177,11 +178,8 @@ Page({
           title: '上传成功',
           icon: 'success',
           success: () => {
-            app.globalData.needRefresh.push({
-              'route': 'pages/albumManage/albumManageMain/index',
-              'back': {
-                refresh: true
-              }
+            app.setNeedRefresh('/pages/albumManage/albumManageMain/index', {
+              refresh: true
             })
             setTimeout(() => {
               wx.navigateBack({
@@ -291,7 +289,8 @@ Page({
       title: type,
       tabList: this.data.price,
       isNew: (this.data.pageType == 0),
-      priceData: this.data.albumData.goodsPriceVos
+      priceData: this.data.albumData.goodsPriceVos,
+      type: this.data.price.length > 1 ? true : false
     }
     this.setData({
       checkData,

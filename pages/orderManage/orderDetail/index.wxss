@@ -5,44 +5,52 @@ page {
 }
 
 .addressAdmin {
-  height: 160rpx;
+  width: 694rpx;
+  height: auto;
+  display: inline-block;
   background: #ffffff;
   border-radius: 8px;
   position: relative;
+  padding: 8rpx;
+  margin: 10rpx 20rpx;
+  padding-bottom: 40rpx;
+  margin-top: 20rpx;
 }
 
-.addressName {
-  display: inline-block;
-  width: 100rpx;
-  height: 45rpx;
-  font-size: 32rpx;
-  color: #3D3D3D;
-  overflow: hidden;
-  margin-top: 31rpx;
-  margin-left: 44rpx;
-  line-height: 45rpx;
-}
-
-.addressPhone {
-  display: inline-block;
-  width: 190rpx;
-  height: 45rpx;
-  font-size: 32rpx;
+.gray {
   color: #999999;
-  overflow: hidden;
-  margin-left: 12rpx;
-  line-height: 45rpx;
 }
 
-.addressDetail {
-  display: inline-block;
-  height: 40rpx;
-  font-size: 32rpx;
-  color: #3D3D3D;
-  overflow: hidden;
-  margin-left: 44rpx;
-  line-height: 40rpx;
-  width: 500rpx;
+.small {
+  font-size: 20rpx;
+}
+
+.addressAdmin>.box {
+  width: calc(100% - 48rpx);
+  height: auto;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(61, 61, 61, 1);
+  line-height: 60rpx;
+  /* margin-top: 32rpx; */
+  margin-left: 24rpx;
+}
+
+.box>.bar {
+  float: left;
+  width: 4rpx;
+  border-radius: 2rpx;
+  height: 28rpx;
+  margin: 16rpx 24rpx;
+}
+
+.box>.red {
+  background-color: red;
+}
+
+.box>.black {
+  background-color: black;
 }
 
 .amend {
@@ -116,11 +124,13 @@ page {
 .orderDetailBox {
   /* height:700rpx; */
   background: #ffffff;
-  margin-top: 20rpx;
+  border-radius: 16rpx;
+  margin: 10rpx 20rpx;
+  width: calc(100% - 40rpx);
 }
 
 .orderDetailTitle {
-  width: 208rpx;
+  width: calc(100% - 160rpx);
   overflow: hidden;
   height: 45rpx;
   margin-left: 34rpx;
@@ -153,15 +163,16 @@ page {
 .orderDetailImg {
   width: 164rpx;
   height: 164rpx;
-  margin-left: 34rpx;
-  margin-top: 32rpx;
+  margin-left: 24rpx;
+  margin-top: 24rpx;
   float: left;
+  border-radius: 16rpx;
 }
 
 .orderDetailName {
   float: left;
   height: 80rpx;
-  width: 494rpx;
+  width: 479rpx;
   margin-top: 32rpx;
   margin-left: 24rpx;
   color: #3D3D3D;
@@ -173,21 +184,26 @@ page {
 }
 
 .orderDetailPrice {
-  float: left;
+  float: right;
+  text-align: right;
   height: 40rpx;
   width: 450rpx;
   margin-top: 40rpx;
-  margin-left: 24rpx;
-  color: #EE4866;
-  margin-bottom: 50rpx;
+  margin-right: 24rpx;
+  /* color: #EE4866; */
+  margin-bottom: 24rpx;
   font-size: 28rpx;
   overflow: hidden;
 }
 
+.orderDetailPrice>.gray {
+  color: #999;
+}
+
 .orderDetailSizeBox {
-  width: 680rpx;
+  width: calc(710rpx - 48rpx);
   height: 33rpx;
-  margin-left: 34rpx;
+  margin-left: 24rpx;
   line-height: 33rpx;
   display: flex;
   justify-content: space-between;
@@ -199,9 +215,9 @@ page {
 .storeMoneyBox {
   display: flex;
   justify-content: space-between;
-  width: 680rpx;
+  width: calc(710rpx - 48rpx);
   height: 33rpx;
-  margin-left: 34rpx;
+  margin-left: 24rpx;
   margin-top: 10rpx;
   line-height: 33rpx;
   color: #3D3D3D;
@@ -248,30 +264,28 @@ page {
 
 /* 订单状态 */
 .orderStatusBox {
-  height: 200rpx;
+  height: auto;
+  display: inline-block;
   color: #3D3D3D;
   overflow: hidden;
   background: #ffffff;
-  padding-top: 24rpx;
-  padding-left: 34rpx;
-  margin-top: 20rpx;
-  margin-bottom: 20rpx;
+  margin: 10rpx 20rpx;
+  border-radius: 16rpx;
+  width: 710rpx;
+  margin-top: 5rpx;
+  padding: 8rpx 0rpx;
+  margin-bottom: 160rpx;
 }
 
-.orderNumber {
-  height: 40rpx;
-  line-height: 40rpx;
-}
-
-.placeOrderTime {
-  height: 40rpx;
-  line-height: 40rpx;
-  margin: 16rpx 0;
-}
-
-.takeOrderTime {
-  height: 40rpx;
-  line-height: 40rpx;
+.orderStatusBox>.box {
+  width: calc(100% - 48rpx);
+  height: 28rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(61, 61, 61, 1);
+  line-height: 28rpx;
+  margin: 24rpx;
 }
 
 .orderTabbar {
@@ -279,7 +293,9 @@ page {
   width: 100%;
   background: #ffffff;
   display: flex;
-  justify-self: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0rpx;
 }
 
 .cancel {
@@ -328,25 +344,53 @@ page {
 .wholeScreen>.bg {
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0, 0, 0, 0.1);
   z-index: 1000;
   position: absolute;
 }
-.wholeScreen>.msgBox{
+
+.wholeScreen>.msgBox {
   z-index: 1001;
   width: 600rpx;
   height: auto;
   display: inline-block;
 }
-.msgBox>.title{
+
+.msgBox>.title {
   width: 100%;
   height: 70rpx;
   line-height: 70rpx;
-  border-bottom: 1rpx rgba(0,0,0,0.2) solid;
+  border-bottom: 1rpx rgba(0, 0, 0, 0.2) solid;
   text-align: center;
 }
-.msgBox>.msg{
+
+.msgBox>.msg {
   padding: 40rpx;
   display: inline-block;
   margin: 10rpx;
+}
+
+.section {
+  width: 710rpx;
+  margin: 10rpx 20rpx;
+  height: auto;
+  display: inline-block;
+  background: white;
+  border-radius: 16rpx;
+}
+
+.word {
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+
+.word>.left {
+  float: left;
+  margin-left: 24rpx;
+}
+
+.word>.right {
+  float: right;
+  margin-right: 24rpx;
 }

@@ -46,11 +46,11 @@ Component({
         },
         type: 'noLogin'
       }).then(result => {
-        wx.showToast({
-          title: JSON.stringify(result), //提示的内容,
-          icon: 'none', //图标,
-          duration: 20000, //延迟时间,
-        });
+        // wx.showToast({
+        //   title: JSON.stringify(result), //提示的内容,
+        //   icon: 'none', //图标,
+        //   duration: 2000, //延迟时间,
+        // });
         if (result.data && result.data.type == "1") {
           that.setData({
             close: false
@@ -125,11 +125,6 @@ Component({
             },
             type: 'noLogin'
           }).then(res => {
-            wx.showToast({
-              title: JSON.stringify(res),
-              icon: 'none',
-              duration: 10000
-            })
             wx.hideLoading()
             if (res.code == 200) {
               if (res.data.type == 1) {

@@ -205,7 +205,7 @@ Component({
             height: 560
           },{
             type: 'image',
-            url: qrCodeImage,
+            url: shopDetail.storeLogo,
             top: 50,
             left: 140,
             width: 60,

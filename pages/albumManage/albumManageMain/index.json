@@ -1,9 +1,9 @@
 {
-  "navigationBarTitleText":"相册管理",
+  "navigationBarTitleText": "相册管理",
   "usingComponents": {
-    "navBarCustom":"/components/navBarCustom/navBarCustom",
-    "albumCard":"../components/albumCard/albumCard",
-    "screenSliderBar":"../components/screenSliderBar/screenSliderBar",
-    "shareToast":"/components/shareToast/shareToast"
+    "navBarCustom": "/components/navBarCustom/navBarCustom",
+    "albumCard": "../components/albumCard/albumCard",
+    "screenSliderBar": "../components/screenSliderBar/screenSliderBar",
+    "shareToast": "/components/shareToast/shareToast"
   }
 }

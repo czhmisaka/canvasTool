@@ -27,7 +27,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -167,10 +167,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 14,
 					"name": "访问已有档口",
 					"pathName": "pages/mine/myShop/index",
-					"query": "id=1262933820242509825",
+					"query": "id=1281407586683326465",
 					"scene": null
 				}
 			]

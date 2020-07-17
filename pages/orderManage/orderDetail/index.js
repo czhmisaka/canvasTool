@@ -39,25 +39,6 @@ Page({
       method: 'get'
     }).then((res) => {
       if (res.data.success) {
-        let pages = getCurrentPages()
-        pages.forEach(item => {
-          console.log(item.route)
-          if (item.route == "pages/orderManage/orderManageMain/index") {
-            let {
-              order
-            } = item.data
-            order.forEach(tab => {
-              tab.forEach(i => {
-                if (i.orderId == this.data.options.id) {
-                  i.orderStatus = 60
-                }
-              })
-            })
-            item.setData({
-              order
-            })
-          }
-        })
         wx.showToast({
           title: '接单成功',
           success: function () {
@@ -68,10 +49,40 @@ Page({
             }, 1000)
           }
         })
+        let pages = getCurrentPages()
+        pages.forEach(item => {
+          console.log(item.route)
+          if (item.route == "pages/orderManage/orderManageMain/index") {
+            let {
+              orderList
+            } = item.data
+            orderList.forEach(tab => {
+              tab.forEach(i => {
+                if (i.orderId == this.data.options.id) {
+                  i.orderStatus = 60
+                }
+              })
+            })
+            item.setData({
+              orderList
+            })
+          }
+        })
       }
     })
   },
+  //  取消订单
+  cancelAndRefund(e) {
+    util.request({
+      url: 'order/cancelAndRefund',
+      data: {
+        msg: '',
+        id: this.data.order.orderId
+      }
+    }).then((res) => {
 
+    })
+  },
   // 获取详情
   getDetail(options) {
     let that = this
@@ -87,7 +98,7 @@ Page({
           options: options
         })
       } else {
-        // app.noIconToast('获取订单失败')
+        app.noIconToast('获取订单失败')
       }
     })
   },

@@ -27,10 +27,14 @@ App({
   ...tools,
 
   onShow: function (options) {
-    
     this.globalData.onShowOptions = options.query
-    // console.log('asd', this.globalData.onShowOptions)
   },
+
+  onHide: function () {
+    console.log('hide')
+    wx.setStorageSync('globalData', this.globalData)
+  },
+
   onLaunch: function () {
     // 检查小程序版本
     utils.checkVersion()
@@ -97,5 +101,6 @@ App({
   getGlobalDataStorage: function () { // 缓存机制需要修改
     if (wx.getStorageSync('globalData'))
       this.globalData = wx.getStorageSync('globalData');
+    console.log(this.globalData)
   }
 })

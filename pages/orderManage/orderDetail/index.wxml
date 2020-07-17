@@ -1,10 +1,14 @@
 <!-- 收件人 -->
-<view class="addressAdmin" wx:if="{{false}}">
-  <view class="addressName"></view>
-  <view class="addressPhone"></view>
-  <view class="addressDetail"></view>
-  <view class="amend">修改</view>
-  <view class="amendcon">></view>
+<view class="addressAdmin">
+  <view class="box">
+    <view class="bar red"></view>客户：{{order.wxNickName}}
+  </view>
+  <view class="box">
+    <view class="bar black"></view>收件人：{{order.name}} <span class="gray">{{order.phone}}</span>
+  </view>
+  <view class="box">
+    <view class="bar "></view>收货地址：{{order.address}}
+  </view>
 </view>
 <!-- 商品详情 -->
 <view class="orderDetailBox">
@@ -15,33 +19,33 @@
   <view class="orderItemBox" wx:for="{{order.goodsList}}" wx:key="goodsId">
     <image class="orderDetailImg" src="{{item.goodsImage}}"></image>
     <text class="orderDetailName">{{item.goodsName}}</text>
-    <text class="orderDetailPrice">¥{{item.goodsPrice}}</text>
-    <view class="orderDetailSizeBox">
-      <text class="orderSizeColor">{{orderSizeColor}}</text>
-      <text class="orderPieceNum">{{order.goodsNum}}件</text>
+    <view class="orderDetailPrice"><span class="small"><span
+          class="gray">¥{{item.goodsPrice}}</span>*{{item.goodsNum}}=</span>¥{{item.goodsNum*item.goodsPrice}}</view>
+    <view class="orderDetailSizeBox" wx:for="{{item.orderGoodsSpecList}}" wx:key="*this">
+      <text class="orderSizeColor">{{item.specInfo}}</text>
+      <text class="orderPieceNum">{{item.goodsNum}}件</text>
     </view>
-    <view class="storeMoneyBox">
-      <text class="storeMoney">商品金额</text>
-      <text class="storePrice">¥{{item.goodsPrice}}</text>
-    </view>
-    <view class="orderTotalPriceBox">
-      <text class="orderTotalPrice">订单总价</text>
-      <text class="orderPrice">¥{{order.goodsAmount}}</text>
-    </view>
+  </view>
+</view>
+
+<view class="section">
+  <view class="word">
+    <view class="left">订单总额</view>
+    <view class="right redColor">￥{{order.orderAmount}}</view>
   </view>
 </view>
 <!-- 订单状态 -->
 <view class="orderStatusBox">
-  <view class="orderNumber">订单号: {{order.orderSn}}</view>
-  <view class="placeOrderTime">下单时间: {{time.time}}</view>
-  <view class="takeOrderTime">接单时间: {{order.receiveTime || "-"}}</view>
+  <view class="box">订单号: {{order.orderSn}}</view>
+  <view class="box">下单时间: {{order.createTime}}</view>
+  <view class="box">接单时间: {{order.receiveTime || "-"}}</view>
 </view>
 <view class="orderTabbar">
   <view class="transmit" wx:if="{{order.orderStatus == 50}}" bindtap="abolish">取消</view>
-  <button open-type="share" class="transmit" bindtap="share">分享</button>
+  <view class="transmit" wx:if="{{order.orderStatus == 60}}">快递信息</view>
+  <button open-type="share" class="transmit" bindtap="share">微信转发</button>
   <view class="transmit highLight" wx:if="{{order.orderStatus == 50}}" bindtap="checkIn">接单</view>
-  <view class="transmit" wx:if="{{order.orderStatus == 60}}">已确认</view>
-  <!-- <view class="relation">联系商家</view> -->
+  <view class="transmit highLight" wx:if="{{order.orderStatus == 60}}">标记完成</view>
 </view>
 <sharePreDeal preDealId="{{id}}" bind:returnBack="returnBack" id="sharePreDeal"></sharePreDeal>
 <view class="wholeScreen" wx:if="{{msgBox}}">

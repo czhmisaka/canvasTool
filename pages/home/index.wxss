@@ -92,6 +92,7 @@ page{
     left: 0px;
     width: 100vw;
     height: 500rpx;
+    overflow: hidden;
 }
 
 .background>.cycle {

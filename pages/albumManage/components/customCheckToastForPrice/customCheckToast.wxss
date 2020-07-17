@@ -90,6 +90,11 @@
     display: inline-block;
     line-height: 100rpx;
     border-bottom: none;
+    transition: all 0.4s;
+}
+.tabBox>.hide{
+    height:0rpx;
+    opacity: 0;
 }
 
 .barBox>.left {
