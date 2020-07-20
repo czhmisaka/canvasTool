@@ -1,4 +1,5 @@
 const utils = require('../../utils/util.js')
+const app = getApp()
 // components/photoFall/photoFall.js
 let index = 0
 let page = 1
@@ -54,6 +55,7 @@ Component({
     },
     // 去添加新相册
     toAdd: function () {
+      if (!app.globalData.isLogin) return utils.toLogin()
       wx.navigateTo({
         url: '/pages/albumManage/newAlbum/index'
       });

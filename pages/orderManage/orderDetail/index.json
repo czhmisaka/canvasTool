@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "sharePreDeal": "../components/sharePreDeal/sharePreDeal"
+    "sharePreDeal": "../components/sharePreDeal/sharePreDeal",
+    "cusSetFastMail":"../components/customSetFastMail/customSetFastMail"
   },
   "navigationBarTitleText": "订单详情"
 }

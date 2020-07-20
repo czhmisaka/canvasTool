@@ -1,6 +1,7 @@
 // pages/home/index.js
 const utils = require('../../utils/util.js')
-const app = getApp()
+const util = require('../../utils/util.js')
+let app = getApp()
 Page({
 
   /**
@@ -26,12 +27,14 @@ Page({
   },
   shareShopName() {},
   toPhotoManage() {
+    if (!app.globalData.isLogin) return util.toLogin()
     wx.navigateTo({
       url: '/pages/albumManage/albumManageMain/index'
     });
   },
 
   navTo(e) {
+    if (!app.globalData.isLogin) return util.toLogin()
     wx.navigateTo({
       url: e.currentTarget.dataset.url
     })
@@ -39,17 +42,18 @@ Page({
 
   // 获取 首页详情
   getShopDetail() {
+    app = getApp()
     let that = this
     let times = 10
     let time = setInterval(() => {
       if (app.globalData.accessToken || times < 0) {
         if (!app.globalData.shopInfo) {
           clearInterval(time)
-          return app.toLoginPage()
+          // return app.toLoginPage()
         }
         that.setData({
           shopDetail: app.globalData.shopInfo,
-          storeVo: app.globalData.shopInfo.storeVo
+          storeVo: app.globalData.shopInfo ? app.globalData.shopInfo.storeVo ? app.globalData.shopInfo.storeVo : {} : {}
         })
         setTimeout(() => {
           this.getFastMsg()
@@ -119,11 +123,9 @@ Page({
   },
 
 
-  onLoad: function (options) {
-  },
+  onLoad: function (options) {},
   onReady: function () {},
   onShow: function () {
-    console.log('qweqwe',app.globalData)
     this.getShopDetail()
     this.selectComponent('#fall').refresh()
   },

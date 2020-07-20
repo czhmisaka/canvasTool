@@ -66,10 +66,14 @@ let request = obj => {
                 resolve(res)
               }
               if (res.data.code == 403) {
-                toLogin(fromPage)
+                // toLogin(fromPage)
+                // return noLoginShowToast()
+                return 0
               }
               if (res.data.errno == 501) {
-                toLogin(fromPage)
+                // toLogin(fromPage)
+                // return noLoginShowToast()
+                return 0
               }
               resolve(res.data)
               break;
@@ -78,14 +82,12 @@ let request = obj => {
                 title: '系统开小差了',
                 icon: 'none',
               });
-              toLogin(fromPage)
               break;
             case 500:
               return wx.showToast({
                 title: '系统开小差了',
                 icon: 'none',
               });
-              toLogin(fromPage)
               break;
           }
 
@@ -112,6 +114,22 @@ let request = obj => {
       })
     })
   }
+}
+
+// 弹窗提示 登录
+let noLoginShowToast = (e) => {
+  let that = this
+  wx.showModal({
+    title: '前往登录',
+    content: '商家登录后可以使用，是否前往登录',
+    success: (res) => {
+      if (res.confirm) {
+        toLogin()
+      } else if (res.cancel) {
+
+      }
+    }
+  })
 }
 
 // 跳转回登录页
@@ -275,6 +293,8 @@ function checkFloat(value) {
 
 
 module.exports = {
+  toLogin,
+  noLoginShowToast,
   checkFloat,
   checkVersion,
   validateNumber,

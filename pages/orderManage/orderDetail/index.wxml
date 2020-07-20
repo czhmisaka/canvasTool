@@ -1,18 +1,26 @@
 <!-- 收件人 -->
 <view class="addressAdmin">
   <view class="box">
-    <view class="bar red"></view>客户：{{order.wxNickName}}
+    <view class="bar red"></view>
+    <view class="title">客户：</view>
+    <view class="word1">{{order.wxNickName}}</view>
   </view>
   <view class="box">
-    <view class="bar black"></view>收件人：{{order.name}} <span class="gray">{{order.phone}}</span>
+    <view class="bar black"></view>
+    <view class="title">
+      收件人：</view>
+    <view class="word1">{{order.name}} <span class="gray">{{order.phone}}</span></view>
   </view>
   <view class="box">
-    <view class="bar "></view>收货地址：{{order.address}}
+    <view class="bar "></view>
+    <view class='title'>
+      收货地址：</view>
+    <view class='word1'>{{order.address}}</view>
   </view>
 </view>
 <!-- 商品详情 -->
 <view class="orderDetailBox">
-  <text class="orderDetailTitle">{{order.storeName}}</text>
+  <text class="orderDetailTitle black">{{order.storeName}}</text>
   <text class="orderState">
     {{state == 0 ? '已取消' : state == 10 ? '待付款' : state == 20 ? '待发货':state == 30 ? '待收货':state == 40 ? '交易完成':state == 50 ? '已下单，待商家接单':state == 60 ? '商家已接单':''}}
   </text>
@@ -28,33 +36,56 @@
   </view>
 </view>
 
+
+<!-- 订单金额 -->
 <view class="section">
   <view class="word">
-    <view class="left">订单总额</view>
+    <view class="left black">订单总额</view>
     <view class="right redColor">￥{{order.orderAmount}}</view>
+    <view class="right icon32">
+      <image src="/static/images/icon_page/ic_xgjg.png" class="changeSizeFrom32To28" />
+    </view>
   </view>
 </view>
+
 <!-- 订单状态 -->
 <view class="orderStatusBox">
   <view class="box">订单号: {{order.orderSn}}</view>
   <view class="box">下单时间: {{order.createTime}}</view>
   <view class="box">接单时间: {{order.receiveTime || "-"}}</view>
 </view>
+
+<!-- 快递单号 -->
+<view class="section bottom180rpx">
+  <view class="title">
+    <view class="left black">
+      我的快递</view>
+    <view class="right {{!showFastBox?'blue':''}}" bindtap="chanegShowFastBox">
+      {{!showFastBox?'展开':'收起'}}
+    </view>
+  </view>
+  <view class="boxList" wx:if="{{order.expresses.length!=0}}">
+    <view wx:for="{{order.expresses}}" wx:key="*this" class="fastMailBox {{(index>1&&!showFastBox)?'hide':''}}">
+      {{'快递'+(index+1)}}{{" "+item.shippingExpressName+' '+item.shippingCode}}
+      <view class="icon32 right">
+        <image src="/static/images/icon_page/ic_xgjg.png" class="changeSizeFrom32To28" />
+      </view>
+    </view>
+  </view>
+  <view class="box" wx:else>还未添加快递</view>
+</view>
+
+<!-- 按钮 -->
 <view class="orderTabbar">
-  <view class="transmit" wx:if="{{order.orderStatus == 50}}" bindtap="abolish">取消</view>
-  <view class="transmit" wx:if="{{order.orderStatus == 60}}">快递信息</view>
+  <view class="transmit" wx:if="{{order.orderStatus == 50}}" bindtap="cancelAndRefund">取消</view>
+  <view class="transmit" wx:if="{{order.orderStatus == 60}}" bindtap="openCusFastMailMsgToast">录入快递</view>
   <button open-type="share" class="transmit" bindtap="share">微信转发</button>
   <view class="transmit highLight" wx:if="{{order.orderStatus == 50}}" bindtap="checkIn">接单</view>
-  <view class="transmit highLight" wx:if="{{order.orderStatus == 60}}">标记完成</view>
+  <view class="transmit highLight" wx:if="{{order.orderStatus == 60}}" bindtap="finish">标记完成</view>
 </view>
+
+
 <sharePreDeal preDealId="{{id}}" bind:returnBack="returnBack" id="sharePreDeal"></sharePreDeal>
-<view class="wholeScreen" wx:if="{{msgBox}}">
-  <view class="bg"></view>
-  <view class="msgBox">
-    <view class="title">
-    </view>
-    <!-- <view class="msg"> -->
-    <textarea name="" class="msg" id="" cols="30" rows="10"></textarea>
-    <!-- </view> -->
-  </view>
-</view>
+<cusSetFastMail letCusCheck="{{checkStatus}}" checkData="{{checkData}}" bind:returnFastMsg="returnFastMsg"
+  bind:cancel="cancel">
+</cusSetFastMail>

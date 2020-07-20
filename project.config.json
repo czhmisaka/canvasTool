@@ -27,7 +27,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -79,9 +79,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "我的页面",
-					"pathName": "pages/mine/index",
+					"id": 2,
+					"name": "我的消息",
+					"pathName": "pages/mine/mine/index",
 					"query": "",
 					"scene": null
 				},
@@ -171,6 +171,13 @@
 					"name": "访问已有档口",
 					"pathName": "pages/mine/myShop/index",
 					"query": "id=1281407586683326465",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "设置价格",
+					"pathName": "pages/orderManage/orderDetail/index",
+					"query": "id=1283669868020764673",
 					"scene": null
 				}
 			]

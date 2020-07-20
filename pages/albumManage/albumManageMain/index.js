@@ -299,6 +299,7 @@ Page({
   onReady: function () {},
   onShow: function () {
     app.checkNeedRefresh().then(res => {
+      console.log(res)
       if (res.refresh) {
         this.setData({
           orderList: [],

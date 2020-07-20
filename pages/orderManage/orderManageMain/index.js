@@ -153,6 +153,7 @@ Page({
   onLoad: function (options) {},
   onReady: function () {},
   onShow: function () {
+    if(!app.globalData.isLogin) return util.toLogin()
     this.initFn()
   },
   onHide: function () {},
@@ -162,5 +163,4 @@ Page({
     this.getMoreOrderList(this.data.selectType.index)
   },
   onShareAppMessage: function () {},
-  onReachBottom: function () {}
 })

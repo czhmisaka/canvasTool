@@ -33,7 +33,8 @@
         <view class="flexBox H110rpx borderBottom">
             <view class="toPhoho LH110rpx">在线联系方式</view>
             <view class="right LH110rpx" bindtap="changeImage" data-key="storeQrcode">
-                <image class="{{shopDetail.storeQrcode?'icon80':'icon40'}}"  src="{{shopDetail.storeQrcode?shopDetail.storeQrcode:'/static/images/icon_page/ic_ewm@2x.png'}}" />
+                <image class="{{shopDetail.storeQrcode?'icon80':'icon40'}}"
+                    src="{{shopDetail.storeQrcode?shopDetail.storeQrcode:'/static/images/icon_page/ic_ewm@2x.png'}}" />
                 <image class="iconBack" src="/static/images/icon_page/ic_xy.png" style="width: 14rpx;height: 26rpx;" />
             </view>
         </view>
@@ -41,8 +42,9 @@
     <view class="itemBox">
         <view class="flexBox H110rpx">
             <view class="toPhoho LH110rpx">档口相册背景图</view>
-            <view class="right LH110rpx"  bindtap="changeImage" data-key="storeBackground">
-                <image  class="{{shopDetail.storeBackground?'icon80':'icon40'}}" src="{{shopDetail.storeBackground?shopDetail.storeBackground:'/static/images/icon_page/ic_bjt@2x.png'}}" />
+            <view class="right LH110rpx" bindtap="changeImage" data-key="storeBackground">
+                <image class="{{shopDetail.storeBackground?'icon80':'icon40'}}"
+                    src="{{shopDetail.storeBackground?shopDetail.storeBackground:'/static/images/icon_page/ic_bjt@2x.png'}}" />
                 <image class="iconBack" src="/static/images/icon_page/ic_xy.png" style="width: 14rpx;height: 26rpx;" />
             </view>
         </view>
@@ -50,12 +52,12 @@
     <view class="itemBox bgNone">
         <view class="flexBox H200rpx">
             <view class="title">公告</view>
-            <textarea class="wordBox" auto-height="{{true}}" maxlength="100"
-                value="{{shopDetail.storeDesc}}"></textarea>
+            <textarea class="wordBox" auto-height="{{true}}" maxlength="100" value="{{shopDetail.storeDesc}}"
+                data-key="storeDesc" bindinput="bindInput"></textarea>
         </view>
     </view>
 
-    <view class="itemBox">
+    <!-- <view class="itemBox">
         <view class="flexBox H110rpx borderBottom">
             <view class="toPhoho LH110rpx">档口内商品颜色</view>
             <view class="right LH110rpx">
@@ -81,7 +83,7 @@
                 <image class="iconBack" src="/static/images/icon_page/ic_xy.png" style="width: 14rpx;height: 26rpx;" />
             </view>
         </view>
-    </view>
+    </view> -->
     <view class="item flexCenter" style="margin:34rpx 0rpx;">
         <view wx:if="{{btnState[shopDetail.storeState]}}" class="button" bindtap="submitEvent">
             {{btnState[shopDetail.storeState]}}
@@ -91,8 +93,9 @@
         </view>
     </view>
 </view>
-<imageformat id="image-cropper" wx:if="{{show}}" limit_move="true" disable_rotate="true" width="{{width}}" height="{{height}}"
-    imgSrc="{{src}}" bindload="cropperload" bindimageload="loadimage" bindtapcut="clickcut"></imageformat>
+<imageformat id="image-cropper" wx:if="{{show}}" limit_move="true" disable_rotate="true" width="{{width}}"
+    height="{{height}}" imgSrc="{{src}}" bindload="cropperload" bindimageload="loadimage" bindtapcut="clickcut">
+</imageformat>
 <view class="buttonBar" wx:if="{{show}}">
     <view class="box" bindtap="closeImageFormat">
         <image class="icon40" src="/static/images/icon_page/ic_sc.png"></image>

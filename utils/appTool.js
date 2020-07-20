@@ -1,4 +1,5 @@
 const config = require('../config/config.js');
+const util = require('./util.js');
 
 // 简化弹窗
 const noIconToast = (e) => {
@@ -27,6 +28,24 @@ const successTimeOutBack = (word, index = 1) => {
             delta: index //返回的页面数，如果 delta 大于现有页面数，则返回到首页,
         });
     }, 1500)
+}
+
+// 获取快递信息
+const getAllFastMailMsg = (needRefresh = false) => {
+    return new Promise((res, rej) => {
+        if (getApp().globalData.AllFastMailMsg && getApp().globalData.AllFastMailMsg.length > 1 && !needRefresh) {
+            return res(getApp().globalData.AllFastMailMsg)
+        } else {
+            console.log('asdasd')
+            util.request({
+                url: 'order/express',
+                method: 'get'
+            }).then((result) => {
+                getApp().globalData.AllFastMailMsg = result.data
+                res(result.data)
+            })
+        }
+    })
 }
 
 // 确定 this.globalData.onShowOptions 的返回
@@ -145,6 +164,7 @@ const navTo = (url) => {
 
 
 module.exports = {
+    getAllFastMailMsg,
     setNeedRefresh,
     checkNeedRefresh,
     successTimeOutBack,

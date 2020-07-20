@@ -3,7 +3,7 @@
 <view class="mine">
     <view class="promoter">
         <view class="left">
-            <image src="{{globalData.avatar||'/static/images/canvasTool/bg.png'}}" />
+            <image src="{{globalData.shopInfo.avatar||'/static/images/icon_page/img_zwtx.png'}}" />
         </view>
         <view class="left">
             {{globalData.nickname||globalData.shopInfo.phone}}

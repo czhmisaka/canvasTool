@@ -61,9 +61,10 @@ Page({
       }])
     })
   },
-
+  
 
   onLoad: function (options) {
+    if (!app.globalData.isLogin) return utils.toLogin()
     this.getCusInfo()
     this.getCusList()
   },

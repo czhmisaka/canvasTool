@@ -37,7 +37,7 @@
         <view class="button" bindtap="navTo" data-url="../newAlbum/index">添加 </view>
         <view class="button {{checkMore[selectType.index]?'black':''}}" bindtap="checkMoreStatusChange">批量选择
         </view>
-        <view class="button black" bindtap="sortDataByTime">分享档口 </view>
+        <!-- <view class="button black" bindtap="sortDataByTime">分享档口 </view> -->
     </view>
 </view>
 <shareToast style="z-index:10000" dataid="{{ShareId}}" shareDetail="{{shareDetail}}" bind:closeShare="closeShare"

@@ -1,4 +1,5 @@
 // pages/mine/index.js
+const util = require('../../../utils/util')
 const app = getApp()
 Page({
 
@@ -15,6 +16,7 @@ Page({
 
   // 通用跳转
   navTo:function(e){
+    if (!app.globalData.isLogin) return util.toLogin()
     app.navTo(e.currentTarget.dataset.url)
   },
 

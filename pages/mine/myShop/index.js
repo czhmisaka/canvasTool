@@ -60,7 +60,6 @@ Page({
 
   // 加载图片
   loadimage(e) {
-    console.log("图片加载完成", e.detail);
     formatImage = this.selectComponent("#image-cropper");
     wx.hideLoading(); //重置图片角度、缩放、位置
     formatImage.imgReset();
@@ -78,7 +77,12 @@ Page({
     let {
       shopDetail
     } = this.data
+    wx.showLoading({
+      title: '上传中',
+      mask: true
+    })
     uploadImage(e.detail.url, true).then((result) => {
+      wx.hideLoading()
       wx.showToast({
         title: '上传成功'
       })
@@ -132,7 +136,7 @@ Page({
         let {
           shopList
         } = prePage.data
-        shopList.forEach((item, index) => {
+        if (shopList) shopList.forEach((item, index) => {
           if (item.id == this.data.shopDetail.id) {
             shopList[index] = this.data.shopDetail
           }
@@ -141,7 +145,7 @@ Page({
           shopList
         })
         app.globalData.shopInfo.storeVo = this.data.shopDetail
-        console.log(app.globalData.shopInfo.storeVo)
+        app.setStorage()
         app.successTimeOutBack(res.msg)
       } else {
         wx.showToast({

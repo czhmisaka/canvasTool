@@ -1,0 +1,40 @@
+<!--pages/orderManage/components/customSetFastMail/customSetFastMail.wxml-->
+<view wx:if="{{show}}" class="mainBox {{status?'mainBox_then':''}}">
+    <view class="touchBack" bindtap="cancel"></view>
+    <view class="mainCheckBox {{status?'mainCheckBox_then':''}}">
+        <view class="title">
+            <view class="btn gray" bindtap="cancel">取消</view>
+            <view class="word">{{"请选择"+title}}</view>
+            <view class="btn" bindtap="callBackToPage">确认</view>
+        </view>
+        <view class="section" bindtap="openFastMail">
+            <view class="left">快递方式</view>
+            <view class="right icon14">
+                <image src="/static/images/icon_page/ic_xy.png" />
+            </view>
+            <view class="right">{{back.expressName}}</view>
+        </view>
+        <view class="section">
+            <view class="left">物流单号</view>
+            <view class="right icon32">
+                <image src="/static/images/icon_page/ic_wldh.png" />
+            </view>
+            <view class="right">
+                <input type="text" value="{{back.code}}" bindinput="bindInput" placeholder="请输入快递单号" />
+            </view>
+        </view>
+    </view>
+    <view class="wholeScreen Top {{showFastMail?'showWholeScreen':''}}">
+        <view class="title">
+            <view class="btn gray" bindtap="cancelFast">取消</view>
+            <view class="word">
+                <input type="text" value="{{searchWord}}" placeholder="请输入快递公司名称" bindinput="bindFastMail" />
+            </view>
+        </view>
+        <view class="scrollView">
+            <view class="section borderBottom" wx:for="{{searchList}}" wx:key="*this" data-item="{{item}}" bindtap="checkInFast">
+                <view class="left">{{item.name}}</view>
+            </view>
+        </view>
+    </view>
+</view>

@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    checkFile: true,
+    checkFile: false,
     type: 'check', // 用于控制当前页面状态 
     input: {
       phoneNumber: '',
@@ -16,12 +16,24 @@ Page({
     getCodeStatus: false,
     time: '',
     code: "",
-    fromPage: null
+    fromPage: null,
+    toast: false,
+    toastMsg: [],
+    top: 0
   },
 
+  navTo(e) {
+    wx.reLaunch({
+      url: e.currentTarget.dataset.url
+    })
+  },
 
-  // 修改当前 登录页面状态
+  // 条款弹窗控制
   changeType(e) {
+    if (e.currentTarget.dataset.type == 'phone' && !this.data.checkFile) return wx.showToast({
+      title: '请确认下方协议',
+      icon: 'none',
+    });
     this.setData({
       type: e.currentTarget.dataset.type
     })
@@ -32,57 +44,65 @@ Page({
     let {
       type
     } = e.currentTarget.dataset
-    if (type == "服务协议") {} else if (type == "隐私协议") {}
+    if (type == "服务协议") {
+      this.setData({
+        toast: true,
+
+      })
+    } else if (type == "隐私协议") {}
   },
 
-  // 检查条约是否同意
-  checkFile(e) {
-    let that = this
-    if (!that.data.checkFile) return wx.showToast({
-      title: '请确认下方协议',
-      icon: 'none',
-    });
-  },
+  // 
 
   // 微信授权手机号登录
   loginWithWx(e) {
     if (!this.data.code) return app.noIconToast('微信登录失败')
-    this.checkFile()
-    let {
-      encryptedData,
-      iv
-    } = e.detail
-    utils.request({
-      url: 'login/wechat',
-      data: {
-        code: this.data.code,
-        iv: iv,
-        encryptedData: encryptedData
-      },
-      header: {
-        'content-type': 'application/json',
-      }
-    }).then(result => {
-      let res = result.data
-      if (res.code === 200) {
-        app.globalData.shopInfo = res.data // 留个坑 这里 没有保存 userinfo 记得检查下面那个
-        app.globalData.accessToken = result.header.Authorization // 获取token
-        app.setStorage()
-        this.toFromPage()
-      } else {
-        wx.showToast({
-          title: res.msg, //提示的内容,
-          icon: 'none', //图标,
-        });
-      }
-    })
+    if (!this.data.checkFile) return wx.showToast({
+      title: '请确认下方协议',
+      icon: 'none',
+    });
+    else {
+      console.log(e)
+      let {
+        encryptedData,
+        iv
+      } = e.detail
+      utils.request({
+        url: 'login/wechat',
+        data: {
+          code: this.data.code,
+          iv: iv,
+          encryptedData: encryptedData
+        },
+        header: {
+          'content-type': 'application/json',
+        }
+      }).then(result => {
+        let res = result.data
+        if (res.code === 200) {
+          app.globalData.shopInfo = res.data // 留个坑 这里 没有保存 userinfo 记得检查下面那个
+          app.globalData.accessToken = result.header.Authorization // 获取token
+          app.globalData.isLogin = true
+          app.setStorage()
+          this.toFromPage()
+        } else {
+          wx.showToast({
+            title: res.msg, //提示的内容,
+            icon: 'none', //图标,
+          });
+        }
+      })
+    }
   },
 
   // 使用验证码登录
   loginWithCheckCode(e) {
     if (!this.data.code) return app.noIconToast('微信登录失败')
     let that = this
-    this.checkFile()
+    if (!this.data.checkFile) return wx.showToast({
+      title: '请确认下方协议',
+      icon: 'none',
+    });
     if (!this.checkInput()) return wx.showToast({
       title: '手机号和验证码不能为空',
       icon: 'none',
@@ -100,10 +120,12 @@ Page({
             'content-type': 'application/json',
           }
         }).then((result) => {
+          if (!result.data) return app.noIconToast(result.msg)
           let res = result.data
           if (res.code === 200) {
             app.globalData.shopInfo = res.data
             app.globalData.accessToken = result.header.Authorization // 获取token
+            app.globalData.isLogin = true
             app.setStorage()
             this.toFromPage()
           } else {
@@ -147,8 +169,7 @@ Page({
     if (this.data.getCodeStatus) return wx.showToast({
       title: '请不要频繁操作',
       icon: 'none',
-    });;
-    this.checkFile()
+    });
     let {
       phoneNumber
     } = this.data.input
@@ -219,13 +240,17 @@ Page({
     })
   },
 
+  // 加载函数
   onLoad: function (options) {
-    console.log(options.fromPage,'asd',options.fromPage.replace(/:/g,'=').replace(/[\@]/g,'?').replace(/[\##]/g,'&'))
+    let top = wx.getSystemInfoSync()
+    this.setData({
+      top
+    })
     wx.login({
       success: res => {
         this.setData({
           code: res.code,
-          fromPage: options.fromPage.replace(/[\#:]/g,'=').replace(/[\#@]/g,'?').replace(/[\###]/g,'&')
+          fromPage: options.fromPage ? options.fromPage.replace(/[\#:]/g, '=').replace(/[\#@]/g, '?').replace(/[\###]/g, '&') : '/pages/home/index'
         })
       }
     })
