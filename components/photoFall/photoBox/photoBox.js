@@ -32,7 +32,6 @@ Component({
 
     // 前往分享 已废弃
     toShare: function (e) {
-      console.log(this.data.photo)
       wx.navigateTo({
         url: '/pages/canvas/index?type=goods&id=' + this.data.photo.id
       })

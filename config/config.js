@@ -9,7 +9,7 @@ function configExchange() {
     switch (envVersion) {
         case 'develop':
             return {
-                api_server: "wxapi.91bkw.com/photo/workbench/",
+                api_server: "wxapi.91bokuan.com/photo/workbench/",
                 api_protocal: "https://",
                 fileHost: fileHost
                     

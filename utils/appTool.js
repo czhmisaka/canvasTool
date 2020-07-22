@@ -36,7 +36,6 @@ const getAllFastMailMsg = (needRefresh = false) => {
         if (getApp().globalData.AllFastMailMsg && getApp().globalData.AllFastMailMsg.length > 1 && !needRefresh) {
             return res(getApp().globalData.AllFastMailMsg)
         } else {
-            console.log('asdasd')
             util.request({
                 url: 'order/express',
                 method: 'get'
@@ -100,15 +99,12 @@ const checkNeedRefresh = async function checkNeedRefresh(callback) {
     return new Promise((res, rej) => {
         let pageStack = getCurrentPages()
         let page = pageStack[pageStack.length - 1]
-        let {
-            route
-        } = page
         let back = false
         if (!this.globalData.needRefresh || this.globalData.needRefresh.length == 0) {
             back = false
         } else {
             this.globalData.needRefresh.forEach((item, i) => {
-                if (item.route == route) {
+                if (item.route == page.route) {
                     back = item.back
                     this.globalData.needRefresh.splice(i, 1)
                 }
@@ -120,10 +116,17 @@ const checkNeedRefresh = async function checkNeedRefresh(callback) {
 
 // 跨页面传参 辅助添加函数
 const setNeedRefresh = async function (route, back) {
-    this.globalData.needRefresh.push({
+    if (this.globalData.needRefresh) this.globalData.needRefresh.push({
         route,
         back
     })
+    else {
+        this.globalData.needRefresh = []
+        this.globalData.needRefresh.push({
+            route,
+            back
+        })
+    }
 }
 
 // 清空缓存（待完善）

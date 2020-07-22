@@ -59,15 +59,15 @@
         </view>
     </view>
     <view class="bottomBtnList" wx:if="{{pageType===1}}">
-        <view class="button" bindtap="deleteAlbum">
+        <view class="button" bindtap="openDeleteAlbum">
             删除
         </view>
         <!-- <view class="button" bindtap="ChanegSubmit">
             编辑
         </view> -->
-        <view class="button black" bindtap="share">
+        <!-- <view class="button black" bindtap="share">
             分享
-        </view>
+        </view> -->
     </view>
 </view>
 <cusShowToast checkData="{{checkData}}" bind:returnBack="setCheck" bind:cancel="checkCancel"

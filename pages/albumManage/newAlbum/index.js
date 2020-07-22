@@ -60,6 +60,8 @@ Page({
     });
     wx.chooseImage({
       count: (20 - this.data.imageList.length) > 9 ? '9' : (20 - this.data.imageList.length),
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
       success: res => {
         let {
           imageList
@@ -93,7 +95,7 @@ Page({
       imageList
     } = this.data
     imageList.splice(index, 1)
-    app.setNeedRefresh('/pages/albumManage/albumManageMain/index', {
+    app.setNeedRefresh('pages/albumManage/albumManageMain/index', {
       refresh: true
     })
     this.setData({
@@ -111,7 +113,9 @@ Page({
       title: '请上传图片后提交',
       icon: 'none',
     });
-
+    app.setNeedRefresh('pages/albumManage/albumManageMain/index', {
+      refresh: true
+    })
     wx.showLoading({
       title: '上传中',
       mask: true,
@@ -165,7 +169,8 @@ Page({
         "photoImageMore": photoImageMore,
         "photoVedio": "",
         "photoVedioMore": "",
-        "storeId": app.globalData.shopInfo.storeVo.id
+        "storeId": app.globalData.shopInfo.storeVo.id,
+        "goodsSerial": this.data.goodsSerial
       }
     }).then(res => {
       wx.hideLoading();
@@ -188,6 +193,21 @@ Page({
             }, 1000)
           }
         });
+      }
+    })
+  },
+
+  // 打开删除弹窗
+  openDeleteAlbum: function (e) {
+    let that = this
+    wx.showModal({
+      title: '删除相册',
+      content: '确定要删除该相册？',
+      showCancel: true,
+      success: function (res) {
+        if (res.confirm) {
+          that.deleteAlbum()
+        }
       }
     })
   },

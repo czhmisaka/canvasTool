@@ -1,9 +1,16 @@
 /* pages/albumManage/alnumManageMain/index.wxss */
 
+.wholeScreen{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
 
 .search {
     width: 100%;
     height: 74rpx;
+    transition: all ease-in-out 0.4s;
+    background-color: white;
 }
 
 .search>input {
@@ -21,6 +28,15 @@
     font-size: 24rpx;
     font-family: PingFangSC-Regular, PingFang SC;
     float: left;
+    transition: all 0.3s;
+}
+
+.shortInput>input {
+    width: calc(602rpx - 4em);
+}
+.whole{
+    height: 100vh;
+    z-index: 10000000;
 }
 
 .search>.word {
@@ -32,6 +48,33 @@
     float: left;
     line-height: 28rpx;
     height: 28rpx;
+    transition: all 0.3s;overflow: hidden;
+}
+
+.search>.buttonCancel {
+    width: 4em;
+    font-size: 28rpx;
+    line-height: 54rpx;
+    height: 54rpx;
+    background-color: #21373D;
+    color: #fff;
+    text-align: center;
+    float: left;
+    margin: 20rpx 10rpx;
+    border-radius: 27rpx;
+    transition: all 0.3s;
+}
+
+.search>.show {
+    opacity: 1;
+}
+
+.search>.hidden {
+    opacity: 0;
+    width: 0rpx;
+    margin: 20rpx 0rpx;
+    font-size: 0rpx;
+    color: white;
 }
 
 .subTitle {

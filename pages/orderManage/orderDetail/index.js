@@ -132,7 +132,6 @@ Page({
         })
         let pages = getCurrentPages()
         pages.forEach(item => {
-          console.log(item.route)
           if (item.route == "pages/orderManage/orderManageMain/index") {
             let {
               orderList
@@ -171,7 +170,7 @@ Page({
       url: 'order/cancelAndRefund',
       data: {
         msg: '',
-        id: this.data.order.orderId
+        orderId: this.data.order.orderId
       }
     }).then((res) => {
       app.errorTimeOutBack('操作成功')

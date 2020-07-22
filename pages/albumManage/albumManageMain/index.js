@@ -28,9 +28,18 @@ Page({
     checkData: [], // 自定义 侧滑菜单 选项
     checkStatus: false,
     ShareId: '',
-    shareDetail: ''
+    shareDetail: '',
+    searchWord: ''
   },
   watch: {},
+
+
+  // 绑定搜索输入
+  searchBind(e) {
+    this.setData({
+      searchWord: e.detail.value
+    })
+  },
 
   // 页面切换 （滑动触发函数）
   swiperChaneg(e) {
@@ -136,6 +145,58 @@ Page({
     checkIndex[this.data.selectType.index ? this.data.selectType.index : 0][id].checkIndex = !type
     this.setData({
       checkIndex
+    })
+  },
+
+  // 批量删除
+  checkMoreToDelete(e) {
+    let that = this
+    let {
+      selectType,
+      checkIndex,
+      data
+    } = that.data
+    let idList = []
+    let showStr = ''
+    let num = 0
+    checkIndex[selectType.index].forEach((res, index) => {
+      if (res.checkIndex) {
+        idList.push(data[selectType.index][index].id)
+        if (num < 2) {
+          console.log(showStr, data[selectType.index][index])
+          showStr = showStr + data[selectType.index][index].goodsSerial
+        }
+        num++
+      }
+    })
+
+    wx.showModal({
+      content: '确定要删除' + showStr + (num > 1 ? '等 ' + num + ' 相册吗' : '吗'),
+      success(res) {
+        if (res.confirm) {
+          wx.showLoading({
+            title: '处理中',
+            mask: true
+          })
+          util.request({
+            url: 'photo/del',
+            data: idList
+          }).then(res => {
+            if (res.data) {
+              app.setNeedRefresh('pages/albumManage/albumManageMain/index', {
+                refresh: true
+              })
+              setTimeout(() => {
+                wx.hideLoading()
+                that.startFn()
+              }, 500)
+            } else {
+              app.noIconToast('删除失败')
+              wx.hideLoading()
+            }
+          })
+        }
+      }
     })
   },
 
@@ -293,13 +354,9 @@ Page({
     this.switchSubtitle(0)
   },
 
-
-  onLoad: function (options) {},
-
-  onReady: function () {},
-  onShow: function () {
+  // 页面重载函数 - 本来是应该在onshow里直接编写的，但是目前为了简便化刷新操作，故先拆分
+  startFn() {
     app.checkNeedRefresh().then(res => {
-      console.log(res)
       if (res.refresh) {
         this.setData({
           orderList: [],
@@ -323,6 +380,13 @@ Page({
         this.getCheckList()
       }
     })
+  },
+
+  onLoad: function (options) {},
+
+  onReady: function () {},
+  onShow: function () {
+    this.startFn()
   },
   onHide: function () {},
   onUnload: function () {},

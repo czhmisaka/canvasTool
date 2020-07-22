@@ -18,7 +18,7 @@ Page({
     code: "",
     fromPage: null,
     toast: false,
-    toastMsg: [],
+    toastTitle: '',
     top: 0
   },
 
@@ -39,20 +39,30 @@ Page({
     })
   },
 
-  // 显示条约
+  // 显示协议
   showConfidence(e) {
     let {
       type
     } = e.currentTarget.dataset
-    if (type == "服务协议") {
+    if (type == "服务协议" || type == "隐私协议") {
       this.setData({
         toast: true,
-
+        toastTitle: type
       })
-    } else if (type == "隐私协议") {}
+    } else if (type == 'hidden') {
+      this.setData({
+        toast: false,
+      })
+    }
   },
 
-  // 
+  // 确认协议 
+  checkConfirmConfidence(e) {
+    this.setData({
+      toast: false,
+      checkFile: true
+    })
+  },
 
   // 微信授权手机号登录
   loginWithWx(e) {
@@ -62,7 +72,6 @@ Page({
       icon: 'none',
     });
     else {
-      console.log(e)
       let {
         encryptedData,
         iv
@@ -127,11 +136,11 @@ Page({
             app.globalData.accessToken = result.header.Authorization // 获取token
             app.globalData.isLogin = true
             app.setStorage()
-            this.toFromPage()
+            that.toFromPage()
           } else {
             wx.showToast({
-              title: res.msg, //提示的内容,
-              icon: 'none', //图标,
+              title: res.msg,
+              icon: 'none',
             });
           }
         })

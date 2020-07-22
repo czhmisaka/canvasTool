@@ -98,9 +98,9 @@
 </imageformat>
 <view class="buttonBar" wx:if="{{show}}">
     <view class="box" bindtap="closeImageFormat">
-        <image class="icon40" src="/static/images/icon_page/ic_sc.png"></image>
+        <image class="icon40" src="/static/images/icon_page/ic_qx.png"></image>
     </view>
     <view class="box" bindtap="clickForCut">
-        <image class="icon40" src="/static/images/icon_page/ic_chose_pre.png"></image>
+        <image class="icon40" src="/static/images/icon_page/ic_qd.png"></image>
     </view>
 </view>

@@ -31,7 +31,6 @@ App({
   },
 
   onHide: function () {
-    console.log('hide')
     wx.setStorageSync('globalData', this.globalData)
   },
 
@@ -101,6 +100,5 @@ App({
   getGlobalDataStorage: function () { // 缓存机制需要修改
     if (wx.getStorageSync('globalData'))
       this.globalData = wx.getStorageSync('globalData');
-    console.log(this.globalData)
   }
 })

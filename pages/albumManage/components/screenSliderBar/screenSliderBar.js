@@ -119,7 +119,6 @@ Component({
         index,
         listindex
       } = e.currentTarget.dataset
-      console.log(e, index, listindex)
       tabCheckList[listindex].tabList[index].check = !tabCheckList[listindex].tabList[index].check
       this.setData({
         tabCheckList

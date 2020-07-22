@@ -181,7 +181,6 @@ Component({
             priceList
           })
         } else {
-          console.log(value)
           priceList[index][type] = value
           this.setData({
             priceList

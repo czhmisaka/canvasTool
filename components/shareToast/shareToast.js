@@ -36,7 +36,6 @@ Component({
    */
   methods: {
     show: function () {
-      console.log(this.properties)
       this.setData({
         show: false,
         painting: {},
@@ -73,9 +72,7 @@ Component({
           this.goodsDetailDraw(app.globalData.shopInfo, url, this.data.detail)
         })
       } else if (dataid && type == "shop") {
-        console.log(1)
         this.getShopInfoDetail(dataid).then((url) => {
-          console.log('2')
           this.shopDetailDraw(app.globalData.shopInfo, url, this.data.detail)
         })
       } else {
@@ -185,7 +182,6 @@ Component({
 
     // 绘制预处理函数 档口详情
     shopDetailDraw(shopInfo, qrCodeImage, shopDetail) {
-      console.log(shopInfo, qrCodeImage, shopDetail)
       wx.hideLoading()
       wx.showLoading({
         title: '绘制分享图片中',
