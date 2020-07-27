@@ -8,7 +8,7 @@
     </view>
     <view class="view photoBox" bindtap="toDetail">
         <view class="image" wx:for="{{photoList}}" wx:key="*this">
-            <image mode="aspectFill" src="{{item}}" />
+            <image mode="aspectFill" src="{{item+'?x-oss-process=image/resize,l_300'}}" />
         </view>
         <view class="right">
             {{photoNum}}图

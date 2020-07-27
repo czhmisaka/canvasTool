@@ -3,7 +3,8 @@
     <view class="touchBack" bindtap="cancel"></view>
     <view class="mainCheckBox {{status?'mainCheckBox_then':''}}">
         <view class="title">
-            <view class="btn gray" bindtap="cancel">取消</view>
+            <view class="btn gray" bindtap="cancel" wx:if="{{!notNew}}">取消</view>
+            <view class="btn gray" bindtap="delete" wx:if="{{notNew}}">删除</view>
             <view class="word">{{"请选择"+title}}</view>
             <view class="btn" bindtap="callBackToPage">确认</view>
         </view>
@@ -32,7 +33,8 @@
             </view>
         </view>
         <view class="scrollView">
-            <view class="section borderBottom" wx:for="{{searchList}}" wx:key="*this" data-item="{{item}}" bindtap="checkInFast">
+            <view class="section borderBottom" wx:for="{{searchList}}" wx:key="*this" data-item="{{item}}"
+                bindtap="checkInFast">
                 <view class="left">{{item.name}}</view>
             </view>
         </view>

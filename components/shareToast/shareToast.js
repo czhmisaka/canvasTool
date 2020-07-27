@@ -58,6 +58,23 @@ Component({
       })
     },
 
+    // 跳转云上新
+    toYSXminiProgram: function (e) {
+      let that = this
+      let id = app.globalData.shopInfo.storeVo.id
+      wx.navigateToMiniProgram({
+        appId: "wx06a1bdb123d6a27e",
+        path: '/pages/storeDetail/storeDetail?id=' + id,
+        envVersion: 'trial',
+        extraData: {
+          id: id,
+          type: 'toOther'
+        },
+        success(res) {
+        }
+      })
+    },
+
     // 点击生成海报
     clickToPurduceShareImage: function () {
       this.setData({
@@ -199,14 +216,14 @@ Component({
             left: 0,
             width: 340,
             height: 560
-          },{
+          }, {
             type: 'image',
             url: shopDetail.storeLogo,
             top: 50,
             left: 140,
             width: 60,
             height: 60
-          },{
+          }, {
             type: 'image',
             url: '/static/images/canvasTool/img_bg.png',
             top: 0,
@@ -256,7 +273,7 @@ Component({
             top: 525,
             left: 170 - 6 * 13 / 2,
             bolder: true
-          } ]
+          }]
         }
       })
     },
@@ -280,9 +297,10 @@ Component({
               left: 0,
               width: 340,
               height: 560
-            }, {
+            },
+            {
               type: 'image',
-              url: qrCodeImage,
+              url: shopInfo.storeVo.storeLogo,
               top: 20,
               left: 20,
               width: 50,

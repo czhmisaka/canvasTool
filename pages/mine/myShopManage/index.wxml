@@ -12,7 +12,7 @@
         </view>
     </view>
 
-    <view class="button_long">
+    <view class="button_long" bindtap="navTo" data-url="/pages/mine/myShop/index">
         新建档口
     </view>
 </view>

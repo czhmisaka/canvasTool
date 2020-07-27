@@ -30,6 +30,23 @@ const successTimeOutBack = (word, index = 1) => {
     }, 1500)
 }
 
+// 双重确认
+const showModal = (content, title = "") => {
+    return new Promise((res, rej) => {
+        wx.showModal({
+            title,
+            content,
+            success: (result) => {
+                if (result.confirm) {
+                    res(true)
+                } else {
+                    res(false)
+                }
+            }
+        })
+    })
+}
+
 // 获取快递信息
 const getAllFastMailMsg = (needRefresh = false) => {
     return new Promise((res, rej) => {
@@ -167,6 +184,7 @@ const navTo = (url) => {
 
 
 module.exports = {
+    showModal,
     getAllFastMailMsg,
     setNeedRefresh,
     checkNeedRefresh,

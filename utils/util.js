@@ -90,7 +90,6 @@ let request = obj => {
               });
               break;
           }
-
         },
         fail(err) {
           reject(err)

@@ -96,6 +96,35 @@ Component({
             })
           }
         })
+      } else if (type == '品类') {
+        util.request({
+          url: 'photo/goodsClass/add',
+          data: {
+            "goodsClassName": e.detail.value,
+            "id": this.properties.checkData.id,
+            "storeId": app.globalData.shopInfo.storeVo.id
+          }
+        }).then((res) => {
+          if (res.data) {
+            let {
+              checkLists
+            } = that.data
+            checkLists.push({
+              name: e.detail.value,
+              id: res.data.id,
+              check: true
+            })
+            that.setData({
+              checkLists,
+              newValue: ''
+            })
+          } else {
+            wx.showToast({
+              title: res.msg,
+              icon: 'none'
+            })
+          }
+        })
       }
     },
 

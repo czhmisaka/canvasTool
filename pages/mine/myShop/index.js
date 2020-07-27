@@ -17,7 +17,8 @@ Page({
     src: '',
     width: 250, //宽度
     height: 250, //高度
-    cropperKey: ''
+    cropperKey: '',
+    isNew: true
   },
 
   // 绑定输入
@@ -121,6 +122,39 @@ Page({
     })
   },
 
+  // 新增一个店铺
+  submitAddNewShop(e) {
+    let data = this.data.shopDetail
+    data.sellerId = this.data.data.shopInfo.id
+    util.request({
+      url: 'store/addStore',
+      data
+    }).then((res) => {
+      if (res.data) {
+        wx.showToast({
+          title: '新增成功'
+        })
+        let page = getCurrentPages()
+        let prePage = page[page.length - 2]
+        let {
+          shopList
+        } = prePage.data
+        shopList.push(res.data)
+        prePage.setData({
+          shopList
+        })
+        app.globalData.shopInfo.storeVo = res.data
+        app.setStorage()
+        app.successTimeOutBack(res.msg)
+      } else {
+        wx.showToast({
+          title: res.msg,
+          icon: 'none'
+        })
+      }
+    })
+  },
+
   // 修改店铺详情
   submitShopDetail(e) {
     util.request({
@@ -174,22 +208,22 @@ Page({
     })
   },
 
-  // 打开图片编辑
-  startFormat(e) {
-    get
-  },
 
   onLoad: function (options) {
     if (options.id) {
       this.getDetail(options.id)
       this.setData({
-        id: options.id
+        id: options.id,
+        isNew: false
       })
     } else {
       this.setData({
         isNew: true
       })
     }
+    this.setData({
+      data: app.globalData
+    })
   },
   onReady: function () {},
   onShow: function () {},

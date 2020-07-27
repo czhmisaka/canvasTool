@@ -145,7 +145,7 @@
 					"id": 11,
 					"name": "订单详情-从其他小程序进入",
 					"pathName": "pages/orderManage/orderDetail/index",
-					"query": "id=1282875999909842946&type=toOther",
+					"query": "id=1285869661275033601&type=toOther",
 					"scene": 1037,
 					"referrerInfo": {
 						"appId": "wx06a1bdb123d6a27e",
@@ -178,6 +178,13 @@
 					"name": "设置价格",
 					"pathName": "pages/orderManage/orderDetail/index",
 					"query": "id=1283669868020764673",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "新建档口",
+					"pathName": "pages/mine/myShop/index",
+					"query": "",
 					"scene": null
 				}
 			]

@@ -11,9 +11,24 @@ Component({
         let {
           checkData
         } = this.properties
-        this.setData({
-          title: this.properties.checkData.title
-        })
+        if (checkData.notNew == true) {
+          this.setData({
+            back: this.properties.checkData.fastMail,
+            title: this.properties.checkData.title,
+            notNew: true
+          })
+        } else {
+          this.setData({
+            title: this.properties.checkData.title,
+            notNew: false,
+            back: {
+              expressName: '',
+              expressCode: '',
+              code: '',
+              orderExpressId: '',
+            }
+          })
+        }
       }
     },
     letCusCheck: {
@@ -48,7 +63,8 @@ Component({
       orderExpressId: '',
     },
     searchList: [],
-    searchWord: ''
+    searchWord: '',
+    notNew: false
   },
   methods: {
     // 搜索快递 相关
@@ -90,6 +106,8 @@ Component({
       })
       reduceLock = false
     },
+
+    // 回传数据
     checkInFast(e) {
       let {
         item
@@ -99,7 +117,7 @@ Component({
         expressName: item.name,
         expressCode: item.code,
         code: back.code,
-        orderExpressId: item.id,
+        orderExpressId: this.properties.checkData.fastMail ? this.properties.checkData.fastMail.orderExpressId : ''
       }
       this.cancelFast()
       this.setData({
@@ -133,10 +151,20 @@ Component({
 
     // 唤起页面回调
     callBackToPage(e) {
-      this.cancel()
       this.triggerEvent('returnFastMsg', {
-        back: this.data.back
+        back: this.data.back,
+        type: this.data.type
       })
+      this.cancel()
+    },
+
+    // 删除
+    delete() {
+      this.triggerEvent('delete', {
+        back: this.data.back.orderExpressId,
+        type: false
+      })
+      this.cancel()
     },
 
     // 关闭组件

@@ -48,7 +48,7 @@ Page({
   preWatchImg(e) {
     wx.previewImage({
       current: e.currentTarget.dataset.url,
-      urls: this.data.imageList
+      urls: this.data.imageList   
     });
   },
 
@@ -60,7 +60,7 @@ Page({
     });
     wx.chooseImage({
       count: (20 - this.data.imageList.length) > 9 ? '9' : (20 - this.data.imageList.length),
-      sizeType: ['compressed'],
+      sizeType: ['compressed','original'],
       sourceType: ['album', 'camera'],
       success: res => {
         let {

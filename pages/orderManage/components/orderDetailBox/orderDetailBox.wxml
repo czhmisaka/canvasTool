@@ -5,11 +5,14 @@
         <image src="{{order_Detail.goodsImg[0]}}" />
     </view>
     <view class="left">
-        <view class="title">{{order_Detail.customerName?order_Detail.customerName:'未设置昵称'}}/{{order_Detail.wxNickName?order_Detail.wxNickName:'未设置微信名称'}}</view>
+        <view class="title">
+            {{order_Detail.customerName?order_Detail.customerName+' / ':''}}{{order_Detail.wxNickName?order_Detail.wxNickName:'未设置微信名称'}}
+        </view>
         <view class="time">{{time}}</view>
         <view class="bottom">
             <view class="left">{{"￥"+order_Detail.orderAmount}}</view>
-            <view class="right {{status=='已完成'?'black':''}} {{status=='已关闭'?'gray':''}} {{status=='待接单'?'red':''}}">{{status}}</view>
+            <view class="right {{status=='已完成'?'black':''}} {{status=='已关闭'?'gray':''}} {{status=='待接单'?'red':''}}">
+                {{status}}</view>
         </view>
     </view>
 </view>

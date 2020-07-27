@@ -4,7 +4,9 @@
     <view class="section">
         <view class="iamgeBox">
             <view class="image" wx:for="{{imageList}}" wx:key="*this">
-                <image mode="aspectFill" src="{{item}}" bindtap="preWatchImg" data-url="{{item}}" />
+                <image mode="aspectFill"
+                    src="{{item}}{{pageType!=0?'?x-oss-process=image/resize,m_lfit,h_200,w_200':''}}"
+                    bindtap="preWatchImg" data-url="{{item}}" />
                 <view class="icon" bindtap="delete" data-index="{{index}}" wx:if="{{pageType==0}}">
                     <image src="/static/images/icon_page/ic_sc.png" />
                 </view>

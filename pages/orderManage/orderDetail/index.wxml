@@ -21,9 +21,9 @@
 <!-- 商品详情 -->
 <view class="orderDetailBox">
   <text class="orderDetailTitle black">{{order.storeName}}</text>
-  <text class="orderState">
-    {{state == 0 ? '已取消' : state == 10 ? '待付款' : state == 20 ? '待发货':state == 30 ? '待收货':state == 40 ? '交易完成':state == 50 ? '已下单，待商家接单':state == 60 ? '商家已接单':''}}
-  </text>
+  <!-- <text class="orderState">{{state}}
+    {{order.orderStatus == 0 ? '已取消' : order.orderStatus == 10 ? '待付款' : order.orderStatus == 20 ? '待发货':order.orderStatus == 30 ? '待收货':order.orderStatus == 40 ? '交易完成':order.orderStatus == 50 ? '已下单，待商家接单':order.orderStatus == 60 ? '商家已接单':''}}
+  </text> -->
   <view class="orderItemBox" wx:for="{{order.goodsList}}" wx:key="goodsId">
     <image class="orderDetailImg" src="{{item.goodsImage}}"></image>
     <text class="orderDetailName">{{item.goodsName}}</text>
@@ -41,9 +41,12 @@
 <view class="section">
   <view class="word">
     <view class="left black">订单总额</view>
-    <view class="right redColor">￥{{order.orderAmount}}</view>
+    <view class="right redColor" wx:if="{{!priceStatus}}">￥{{order.orderAmount}}</view>
+    <input class="right" wx:if="{{priceStatus}}" value="{{price}}" bindconfirm="checkPrice" bindinput="bindPrice"
+      placeholder="请输入价格" />
     <view class="right icon32">
-      <image src="/static/images/icon_page/ic_xgjg.png" class="changeSizeFrom32To28" />
+      <image src="/static/images/icon_page/ic_xgjg.png" class="changeSizeFrom32To28"
+        wx:if="{{order.orderStatus==50&&!priceStatus}}" bindtap="changePriceStatus" />
     </view>
   </view>
 </view>
@@ -56,36 +59,38 @@
 </view>
 
 <!-- 快递单号 -->
-<view class="section bottom180rpx">
+<view class="section bottom180rpx" wx:if="{{order.orderStatus==60||order.orderStatus==40||order.orderStatus == 30}}">
   <view class="title">
     <view class="left black">
       我的快递</view>
-    <view class="right {{!showFastBox?'blue':''}}" bindtap="chanegShowFastBox">
+    <view class="right {{!showFastBox?'blue':''}}" wx:if="{{order.expresses.length>2}}" bindtap="chanegShowFastBox">
       {{!showFastBox?'展开':'收起'}}
     </view>
   </view>
-  <view class="boxList" wx:if="{{order.expresses.length!=0}}">
-    <view wx:for="{{order.expresses}}" wx:key="*this" class="fastMailBox {{(index>1&&!showFastBox)?'hide':''}}">
-      {{'快递'+(index+1)}}{{" "+item.shippingExpressName+' '+item.shippingCode}}
+  <view class="boxList">
+    <view wx:for="{{order.expresses}}" wx:key="*this" class="fastMailBox {{(index>1&&!showFastBox)?'hide':''}}"
+      bindtap="openCusFastMailMsgToast" data-index="{{item}}">
+      {{'快递'+(index+1)}}{{" "+(item.shippingExpressName||item.expressName)+' '+(item.shippingCode||item.code)}}
       <view class="icon32 right">
         <image src="/static/images/icon_page/ic_xgjg.png" class="changeSizeFrom32To28" />
       </view>
     </view>
+    <view class="fastMailBox gray" wx:if="{{order.expresses.length==0}}">还未添加快递</view>
   </view>
-  <view class="box" wx:else>还未添加快递</view>
 </view>
 
 <!-- 按钮 -->
 <view class="orderTabbar">
   <view class="transmit" wx:if="{{order.orderStatus == 50}}" bindtap="cancelAndRefund">取消</view>
-  <view class="transmit" wx:if="{{order.orderStatus == 60}}" bindtap="openCusFastMailMsgToast">录入快递</view>
+  <view class="transmit" wx:if="{{order.orderStatus == 60||order.orderStatus == 30}}" bindtap="openCusFastMailMsgToast">
+    录入快递</view>
   <button open-type="share" class="transmit" bindtap="share">微信转发</button>
   <view class="transmit highLight" wx:if="{{order.orderStatus == 50}}" bindtap="checkIn">接单</view>
-  <view class="transmit highLight" wx:if="{{order.orderStatus == 60}}" bindtap="finish">标记完成</view>
+  <view class="transmit highLight" wx:if="{{order.orderStatus == 60||order.orderStatus == 30}}" bindtap="finish">标记完成
+  </view>
 </view>
 
 
 <sharePreDeal preDealId="{{id}}" bind:returnBack="returnBack" id="sharePreDeal"></sharePreDeal>
 <cusSetFastMail letCusCheck="{{checkStatus}}" checkData="{{checkData}}" bind:returnFastMsg="returnFastMsg"
-  bind:cancel="cancel">
-</cusSetFastMail>
+  bind:cancel="cancel" bind:delete="deleteFastMail"></cusSetFastMail>

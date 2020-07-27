@@ -53,8 +53,5 @@
     "navigationBarTitleText": "好客多",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json",
-  "navigateToMiniProgramAppIdList":[
-    "wx06a1bdb123d6a27e"
-  ]
+  "sitemapLocation": "sitemap.json"
 }

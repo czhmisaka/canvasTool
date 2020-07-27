@@ -1,7 +1,7 @@
 // pages/orderManage/orderDetail/index.js
 const app = getApp()
 const util = require('../../../utils/util.js')
-let order_list = [0, 0, 0, 0, 0]
+let order_list = [1, 1, 1, 1, 1]
 let lock = true
 let swiperLock = false
 Page({
@@ -14,10 +14,11 @@ Page({
       '全部',
       '待接单',
       '已接单',
+      '待收货',
       '已完成',
       '已取消'
     ],
-    typeStatus: ['', 50, 60, 40, 0],
+    typeStatus: ['', 50, 60, 30, 40, 0],
     selectType: 0,
     orderList: []
   },
@@ -74,7 +75,8 @@ Page({
       title: '加载中'
     })
     let index = e.currentTarget.dataset.i
-    let indexList = ['', 50, 60, 40, 0];
+    let indexList = this.data.typeStatus
+    console.log(order_list[index])
     util.request({
       url: 'order/getOrders',
       data: {
@@ -89,7 +91,7 @@ Page({
       }
     }).then((res) => {
       wx.hideLoading()
-      if (res.data.pages - 1 > order_list[index]) {
+      if (res.data.pages >= order_list[index]) {
         wx.showToast({
           title: '加载成功'
         })
@@ -97,6 +99,7 @@ Page({
           orderList
         } = this.data
         order_list[index]++;
+        console.log(order_list)
         res.data.data.forEach((item) => {
           orderList[index].push(item)
         })
@@ -122,7 +125,7 @@ Page({
 
   // 获得订单信息
   getOrderList(index) {
-    let indexList = ['', 50, 60, 40, 0];
+    let indexList = this.data.typeStatus
     util.request({
       url: 'order/getOrders',
       data: {
@@ -141,6 +144,7 @@ Page({
         orderList
       } = this.data
       orderList[index] = res.data.data
+      order_list[index] = 2
       this.setData({
         orderList: orderList
       })
@@ -153,7 +157,7 @@ Page({
   onLoad: function (options) {},
   onReady: function () {},
   onShow: function () {
-    if(!app.globalData.isLogin) return util.toLogin()
+    if (!app.globalData.isLogin) return util.toLogin()
     this.initFn()
   },
   onHide: function () {},

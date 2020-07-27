@@ -81,13 +81,13 @@ Page({
       console.log(res.data)
       // 这里注入了假数据， 待修改
       this.formatNum([{
-        num: buyerNum || 5137,
+        num: buyerNum || 0,
         type: '购买人数'
       }, {
-        num: goodsNum || 11380,
+        num: goodsNum || 0,
         type: '售出件数'
       }, {
-        num: salesVolume || 624312,
+        num: salesVolume || 0,
         type: '售出金额'
       }])
     })
