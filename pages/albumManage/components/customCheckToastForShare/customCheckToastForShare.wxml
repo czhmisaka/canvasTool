@@ -1,0 +1,18 @@
+<!--pages/albumManage/components/customCheckToastForShare/customCheckToastForShare.wxml-->
+
+<view wx:if="{{show}}" class="mainBox {{status?'mainBox_then':''}}">
+    <view class="touchBack" bindtap="cancel"></view>
+    <view class="mainCheckBox {{status?'mainCheckBox_then':''}}">
+        <view class="title">
+            <view class="btn gray" bindtap="cancel">取消</view>
+            <view class="word">{{"请选择"+title}}</view>
+            <view class="btn" bindtap="callBackToPage">确认</view>
+        </view>
+        <view class="tabBox">
+            <view class="tab {{item.check?'highLight':''}}" wx:for="{{checkLists}}" wx:key="*this" bindtap="check"
+                data-index="{{index}}">
+                {{item.tab}}
+            </view>
+        </view>
+    </view>
+</view>

@@ -13,7 +13,8 @@ Component({
           order_Detail
         } = this.properties
         let status, time;
-        time = this.timeset(new Date(order_Detail.createTime))
+        // time = this.timeset(new Date(order_Detail.createTime))
+        time = order_Detail.createTime.replace('T',' ')
         switch (order_Detail.orderStatus) {
           case 0:
             status = '已取消';
@@ -28,13 +29,13 @@ Component({
             status = '待收货';
             break;
           case 40:
-            status = '交易完成';
+            status = '已完成';
             break;
           case 50:
             status = '待接单';
             break;
           case 60:
-            status = '已确认';
+            status = '已接单';
             break;
         }
         this.setData({

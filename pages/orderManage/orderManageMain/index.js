@@ -20,9 +20,55 @@ Page({
     ],
     typeStatus: ['', 50, 60, 30, 40, 0],
     selectType: 0,
-    orderList: []
+    orderList: [],
+    requestData: {
+      keyWord: "",
+      memberId: "",
+      pageNum: 0,
+      pageSize: 6,
+      sellerId: "",
+      source: "cloudPhoto",
+      status: '',
+      storeId: getApp().globalData.shopInfo ? getApp().globalData.shopInfo.storeVo.id : ''
+    },
+    searchWord: '',
+    searchShow: false
   },
   watch: {},
+
+  // 绑定搜索框 输入事件
+  bindSearch(e) {
+    this.setData({
+      searchWord: e.detail.value
+    })
+  },
+
+  // 绑定搜索框 取消事件 
+  searchCancel(e) {
+    let {
+      requestData
+    } = this.data
+    requestData.keyWord = ''
+    this.setData({
+      searchWord: '',
+      requestData,
+      orderList: [],
+    })
+    this.initFn()
+  },
+
+  // 绑定搜索框 回车搜索事件
+  searchStart(e) {
+    let {
+      requestData
+    } = this.data
+    requestData.keyWord = this.data.searchWord
+    this.setData({
+      requestData,
+      orderList: [],
+    })
+    this.initFn()
+  },
 
   // 切换tab页（滑动控制）
   swiperChaneg(e) {
@@ -76,19 +122,19 @@ Page({
     })
     let index = e.currentTarget.dataset.i
     let indexList = this.data.typeStatus
-    console.log(order_list[index])
+    let requestData = this.data.requestData
+    if (requestData.storeId) {
+      try {
+        requestData.storeId = getApp().globalData.shopInfo.storeVo.id
+      } catch (e) {
+        app.noIconToast('系统警告：' + e)
+      }
+    }
+    requestData.pageNum = order_list[index];
+    requestData.status = indexList[index]
     util.request({
       url: 'order/getOrders',
-      data: {
-        "keyWord": "",
-        "memberId": "",
-        "pageNum": order_list[index],
-        "pageSize": 6,
-        "sellerId": "",
-        "source": "cloudPhoto",
-        "status": indexList[index],
-        "storeId": app.globalData.shopInfo.storeVo.id
-      }
+      data: requestData
     }).then((res) => {
       wx.hideLoading()
       if (res.data.pages >= order_list[index]) {
@@ -117,27 +163,24 @@ Page({
   },
 
   refreshOrderlist(e) {
-    wx.showLoading({
-      title: '刷新中'
-    })
     this.getOrderList(e.currentTarget.dataset.i)
   },
 
   // 获得订单信息
   getOrderList(index) {
+    wx.showLoading({
+      title: '刷新中'
+    })
     let indexList = this.data.typeStatus
+    let {
+      requestData
+    } = this.data
+    requestData.pageNum = 0
+    requestData.status = indexList[index]
+    requestData.storeId = getApp().globalData.shopInfo.storeVo.id
     util.request({
       url: 'order/getOrders',
-      data: {
-        "keyWord": "",
-        "memberId": "",
-        "pageNum": 0,
-        "pageSize": 6,
-        "sellerId": "",
-        "source": "cloudPhoto",
-        "status": indexList[index],
-        "storeId": app.globalData.shopInfo.storeVo.id
-      }
+      data: requestData
     }).then((res) => {
       wx.hideLoading()
       let {

@@ -4,17 +4,35 @@
         </navBarCustom>-->
     <screenSliderBar wx:if="{{checkStatus}}" bind:returnBack="checkReturn" bind:cancel="checkCancel"
         checkData="{{checkData}}" checkStatus="{{checkStatus}}"></screenSliderBar>
-    <view class="search {{checkMore[selectType.index]||searchWord.length>0?'shortInput':''}} {{searchWord.length==0?'':'whole'}}">
-        <input type="text" placeholder="搜索内容" value="{{searchWord}}" bindinput="searchBind" bindconfirm="searchStart" />
-        <view class="word  {{!checkMore[selectType.index]&&searchWord.length==0?'show':'hidden'}}" bindtap="checkOpen">筛选</view>
-        <view class="buttonCancel {{checkMore[selectType.index]&&searchWord.length==0?'show':'hidden'}}" bindtap="checkMoreStatusChange">取消
+    <view
+        class="search {{checkMore[selectType.index]||searchWord.length>0?'shortInput':''}} {{searchWord.length==0?'':'whole'}}">
+        <input type="text" placeholder="{{searchWord_placeholder}}" value="{{searchWord}}" bindinput="searchBind"
+            bindconfirm="searchStart" />
+        <view class="word  {{!checkMore[selectType.index]&&searchWord.length==0?'show':'hidden'}}" bindtap="checkOpen">
+            筛选</view>
+        <view class="buttonCancel {{checkMore[selectType.index]&&searchWord.length==0?'show':'hidden'}}"
+            bindtap="checkMoreStatusChange">取消
         </view>
-         <view class="buttonCancel {{searchWord.length>0?'show':'hidden'}}" bindtap="">搜索
+        <view class="buttonCancel {{searchWord.length>0?'show':'hidden'}}" bindtap="searchStart">搜索</view>
+        <view class="searchPage">
+            <view class="section title">
+                <view class="left">历史记录</view>
+                <view class="right" bindtap="cleanSearchHistory">
+                    <image class="icon24rpx" src="/static/images/icon_page/ic_sc2.png" />
+                </view>
+            </view>
+            <view class="section">
+                <view class="tab" wx:for="{{searchHistory}}" wx:key="*this" wx:if="{{item.key}}" data-val="{{item.key}}"
+                    bindtap="linkSearch">
+                    {{item.key}}
+                </view>
+            </view>
         </view>
     </view>
     <view class="subTitle">
         <view class="moveBottombar"
-            style="{{'width:'+selectType.len*28+'rpx;margin-left:calc('+selectType.left+'px - 1em);'}}{{searchWord.length==0?'opacity:1;':'opacity:0;'}}"></view>
+            style="{{'width:'+selectType.len*28+'rpx;margin-left:calc('+selectType.left+'px - 1em);'}}{{searchWord.length==0?'opacity:1;':'opacity:0;'}}">
+        </view>
         <view class="type {{selectType.index==0?'highLight':''}}" data-index="{{0}}" bindtap="switchSubtitle"
             style="margin:0px 30rpx">全部 </view>
         <view class="type {{selectType.index==1?'highLight':''}}" data-index="{{1}}" bindtap="switchSubtitle">
@@ -42,6 +60,9 @@
         <view class="button" bindtap="navTo" data-url="../newAlbum/index" wx:if="{{!checkMore[selectType.index]}}">添加
         </view>
         <view class="button" wx:if="{{checkMore[selectType.index]}}" bindtap="checkMoreToDelete">批量删除</view>
+        <view class="button" wx:if="{{checkMore[selectType.index]&&checkMoreStatus!=0}}" bindtap="openCheckForShare">
+            {{publish[checkMoreStatus]}}
+        </view>
         <view class="button {{checkMore[selectType.index]?'black':''}}" wx:if="{{!checkMore[selectType.index]}}"
             bindtap="checkMoreStatusChange">
             批量选择
@@ -49,5 +70,8 @@
         <!-- <view class="button black" bindtap="sortDataByTime">分享档口 </view> -->
     </view>
 </view>
+
+<cusShowToast checkData="{{checkDataForShare}}" bind:returnBack="setCheckForShare" bind:cancel="checkCancelForShare"
+    letCusCheck="{{checkStatusForShare}}"></cusShowToast>
 <shareToast style="z-index:10000" dataid="{{ShareId}}" shareDetail="{{shareDetail}}" bind:closeShare="closeShare"
     type="goods" open="whatever" id="share"></shareToast>

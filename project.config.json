@@ -27,7 +27,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -137,7 +137,7 @@
 				{
 					"id": -1,
 					"name": "客户 一级页面",
-					"pathName": "pages/cus/index",
+					"pathName": "pages/cus/cusManageMain/index",
 					"query": "",
 					"scene": null
 				},
@@ -145,11 +145,11 @@
 					"id": 11,
 					"name": "订单详情-从其他小程序进入",
 					"pathName": "pages/orderManage/orderDetail/index",
-					"query": "id=1285869661275033601&type=toOther",
+					"query": "id=1286595204047966209&type=toOther",
 					"scene": 1037,
 					"referrerInfo": {
 						"appId": "wx06a1bdb123d6a27e",
-						"extraData": "{\"id\":\"1282517844386385922\"}"
+						"extraData": "{\"id\":\"1286595204047966209\"}"
 					}
 				},
 				{
@@ -184,6 +184,34 @@
 					"id": -1,
 					"name": "新建档口",
 					"pathName": "pages/mine/myShop/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 17,
+					"name": "客户详情",
+					"pathName": "pages/cus/cusDetail/index",
+					"query": "memId=1281520127082237953",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "标签管理",
+					"pathName": "pages/cus/tabManage/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "客户 标签管理页面",
+					"pathName": "pages/cus/tabManage/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 20,
+					"name": "创建标签",
+					"pathName": "pages/cus/tabDetail/index",
 					"query": "",
 					"scene": null
 				}

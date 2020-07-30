@@ -1,30 +1,48 @@
-// pages/cus/index.js
+// pages/cus/cusManageMain/index
 const app = getApp()
-const utils = require('../../utils/util.js')
+const utils = require('../../../utils/util.js')
 Page({
   data: {
     fastMsg: [],
-    cusList:[]
+    cusList: []
+  },
+  navTo(e) {
+    app.navTo(e.currentTarget.dataset.url)
+  },
+
+  // 查看 今日数据
+  toFastCusMsg(e) {
+    let {
+      msg
+    } = e.currentTarget.dataset
+    let type, labelName = msg.type
+    switch (msg.type) {
+      case '今日游客':
+        break;
+      case '今日拿货':
+        break;
+      case '今日粉丝':
+        break;
+    }
+    app.navTo('/pages/cus/cusList/index?type=' + type + '&labelName=' + labelName)
   },
 
   // 获取客户数据 // 留个坑 简化版
-  getCusList(e){
+  getCusList(e) {
     utils.request({
-      url:'/customer/list',
-      data:{
-        storeId:app.globalData.shopInfo.storeVo.id,
-        pageSize:100,
-        pageNum:0
+      url: '/customer/list',
+      data: {
+        storeId: app.globalData.shopInfo.storeVo.id,
+        pageSize: 100,
+        pageNum: 0
       }
-    }).then(res=>{
+    }).then(res => {
       res = res.data.data
-
-      res.forEach(item=>{
-        item.isBuyer=1
-        item.orderAmount = Math.floor(Math.random(1)*300+300+Math.random(1)*2000)
+      res.forEach(item => {
+        item.isBuyer = 1
       })
       this.setData({
-        cusList:res
+        cusList: res
       })
     })
   },
@@ -38,6 +56,11 @@ Page({
     this.setData({
       fastMsg: data
     })
+  },
+
+  // 查看客户详情
+  toDetail(e) {
+    app.navTo('/pages/cus/cusDetail/index?memId=' + e.currentTarget.dataset.val + '&money=' + e.currentTarget.dataset.money)
   },
 
   // 获取客户数据
@@ -61,7 +84,7 @@ Page({
       }])
     })
   },
-  
+
 
   onLoad: function (options) {
     if (!app.globalData.isLogin) return utils.toLogin()

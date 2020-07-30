@@ -1,6 +1,6 @@
 /* pages/albumManage/alnumManageMain/index.wxss */
 
-.wholeScreen{
+.wholeScreen {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
@@ -11,6 +11,7 @@
     height: 74rpx;
     transition: all ease-in-out 0.4s;
     background-color: white;
+    overflow: hidden;
 }
 
 .search>input {
@@ -31,10 +32,57 @@
     transition: all 0.3s;
 }
 
+.search>.searchPage {
+    width: 100%;
+    height: auto;
+    display: inline-block;
+}
+
+.searchPage>.section {
+    margin: 18rpx 34rpx;
+    width: calc(100% - 88rpx);
+    height: auto;
+    display: inline-block;
+}
+
+.section>.left {
+    width: auto;
+    display: inline-block;
+    float: left;
+}
+
+.section>.right {
+    width: auto;
+    display: inline-block;
+    float: right;
+}
+
+.section>.tab {
+    width: auto;
+    padding: 14rpx 32rpx;
+    margin: 0rpx 10rpx;
+    background: rgba(245, 245, 245, 1);
+    border-radius: 28rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(102, 102, 102, 1);
+    display: inline-block;
+}
+
+.searchPage>.section>.left {
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(61, 61, 61, 1);
+    line-height: 28rpx;
+}
+
 .shortInput>input {
     width: calc(602rpx - 4em);
 }
-.whole{
+
+.whole {
     height: 100vh;
     z-index: 10000000;
 }
@@ -48,7 +96,8 @@
     float: left;
     line-height: 28rpx;
     height: 28rpx;
-    transition: all 0.3s;overflow: hidden;
+    transition: all 0.3s;
+    overflow: hidden;
 }
 
 .search>.buttonCancel {
@@ -169,4 +218,9 @@
 .bottomBtnList>.black {
     background-color: #21373D;
     color: white;
+}
+
+.icon24rpx {
+    width: 24rpx;
+    height: 26rpx;
 }

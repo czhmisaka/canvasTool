@@ -108,29 +108,35 @@ Component({
           }
         })
       } else {
-        util.request({
-          url: '/photo/publish',
-          data: {
-            photoIds: [photoid],
-            labelIds: [1]
-          }
-        }).then((res) => {
-          if (res.data) {
-            that.setData({
-              publish: true
-            })
-            wx.showToast({
-              title: '发布成功',
-              icon: 'success',
-            });
-            this.callBack(true)
-          } else {
-            wx.showToast({
-              title: '发布失败',
-              icon: 'none'
-            })
+        this.triggerEvent('returnBack', {
+          back: {
+            id: photoid,
+            type: 'publish'
           }
         })
+        // util.request({
+        //   url: '/photo/publish',
+        //   data: {
+        //     photoIds: [photoid],
+        //     labelIds: [1]
+        //   }
+        // }).then((res) => {
+        //   if (res.data) {
+        //     that.setData({
+        //       publish: true
+        //     })
+        //     wx.showToast({
+        //       title: '发布成功',
+        //       icon: 'success',
+        //     });
+        //     this.callBack(true)
+        //   } else {
+        //     wx.showToast({
+        //       title: '发布失败',
+        //       icon: 'none'
+        //     })
+        //   }
+        // })
       }
     }
   }

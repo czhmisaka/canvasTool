@@ -3,7 +3,7 @@
     "pages/home/index",
     "pages/canvas/index",
     "pages/mine/mine/index",
-    "pages/cus/index",
+    "pages/cus/cusManageMain/index",
     "pages/orderManage/orderManageMain/index",
     "pages/login/index",
     "pages/albumManage/albumManageMain/index",
@@ -13,15 +13,18 @@
     "pages/orderManage/orderDetail/index",
     "pages/Springboard/index",
     "pages/mine/myShop/index",
-    "pages/mine/myShopManage/index"
+    "pages/mine/myShopManage/index",
+    "pages/cus/cusDetail/index",
+    "pages/cus/tabManage/index",
+    "pages/cus/cusList/index",
+    "pages/cus/tabDetail/index"
   ],
   "tabBar": {
     "color": "#B3B6BF",
     "position": "bottom",
     "selectedColor": "#21373D",
     "borderStyle": "black",
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/home/index",
         "iconPath": "static/images/Icon_tabBar/ic_home.png",
         "selectedIconPath": "static/images/Icon_tabBar/ic_home_pre.png",
@@ -34,7 +37,7 @@
         "text": "订单"
       },
       {
-        "pagePath": "pages/cus/index",
+        "pagePath": "pages/cus/cusManageMain/index",
         "iconPath": "static/images/Icon_tabBar/ic_kh.png",
         "selectedIconPath": "static/images/Icon_tabBar/ic_kh_pre.png",
         "text": "客户"
@@ -53,5 +56,8 @@
     "navigationBarTitleText": "好客多",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "useExtendedLib": {
+    "weui": true
+  }
 }

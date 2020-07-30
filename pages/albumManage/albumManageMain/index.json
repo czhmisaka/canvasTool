@@ -4,6 +4,7 @@
     "navBarCustom": "/components/navBarCustom/navBarCustom",
     "albumCard": "../components/albumCard/albumCard",
     "screenSliderBar": "../components/screenSliderBar/screenSliderBar",
-    "shareToast": "/components/shareToast/shareToast"
+    "shareToast": "/components/shareToast/shareToast",
+    "cusShowToast": "../components/customCheckToastForShare/customCheckToastForShare"
   }
 }

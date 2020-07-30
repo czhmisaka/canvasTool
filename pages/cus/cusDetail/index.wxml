@@ -1,0 +1,30 @@
+<!--pages/cus/cusDetail/index.wxml-->
+<view class="header">
+    <view class="left img">
+        <image class="headerImg" src="{{cusDetail.avatar?cusDetail.avatar:'/static/images/icon_page/img_zwtx.png'}}">
+        </image>
+    </view>
+    <view class="left box">
+        <view class="word fontSize32rpx">{{cusDetail.nickname}}</view>
+        <view class="word">拿货金额￥{{options.money?options.money:0}}</view>
+    </view>
+    <view class="right">
+        <view class="button" bindtap="goWatchAlbum">让看相册</view>
+    </view>
+</view>
+<view class="section">
+    <view class="left">姓名</view>
+    <view class="right">{{cusDetail.remarkName||'未填写'}}</view>
+</view>
+<view class="section">
+    <view class="left">手机号码</view>
+    <view class="right">{{cusDetail.phone||'未填写'}}</view>
+</view>
+<view class="section">
+    <view class="left">客户标签</view>
+    <view class="right">{{cusDetail.labelList.length?cusDetail.labelList:'未填写'}}</view>
+</view>
+<view class="section">
+    <view class="left">备注</view>
+    <view class="right">{{cusDetail.remark||'未填写'}}</view>
+</view>

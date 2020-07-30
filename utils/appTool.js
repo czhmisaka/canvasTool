@@ -64,6 +64,13 @@ const getAllFastMailMsg = (needRefresh = false) => {
     })
 }
 
+// 回到首页
+const toHomePage = function () {
+    wx.reLaunch({
+        url: '/pages/home/index'
+    })
+}
+
 // 确定 this.globalData.onShowOptions 的返回
 const getQuery = (e) => {
     return new Promise((res, rej) => {
@@ -146,9 +153,30 @@ const setNeedRefresh = async function (route, back) {
     }
 }
 
+// 获取搜索历史记录 Ps:相册/订单
+const getSearchHistoryStorage = async function getSearchHistoryStorage(type) {
+    if (type) {
+        return wx.getStorageSync(type)
+    }
+}
+
+// 添加历史记录
+const setSearchHistoryStorage = async function setSearchHistoryStorage(type, history = []) {
+    if (type) {
+        wx.setStorageSync(type, history)
+    }
+}
+
+// 清空搜索历史记录 Ps
+const cleanSearchHistoryStorage = async function cleanSearchHistoryStorage(type) {
+    if (type) {
+        wx.setStorageSync(type, [])
+    }
+}
+
 // 清空缓存（待完善）
 const cleanStorage = async function cleanStorage(callback) {
-
+    wx.clearStorage()
 }
 
 // 清空 globalData 数据
@@ -184,6 +212,10 @@ const navTo = (url) => {
 
 
 module.exports = {
+    toHomePage,
+    setSearchHistoryStorage,
+    cleanSearchHistoryStorage,
+    getSearchHistoryStorage,
     showModal,
     getAllFastMailMsg,
     setNeedRefresh,

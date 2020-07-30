@@ -42,7 +42,8 @@
   <view class="word">
     <view class="left black">订单总额</view>
     <view class="right redColor" wx:if="{{!priceStatus}}">￥{{order.orderAmount}}</view>
-    <input class="right" wx:if="{{priceStatus}}" value="{{price}}" bindconfirm="checkPrice" bindinput="bindPrice"
+    <view wx:if="{{priceStatus}}" bindtap="checkPrice" class="right button">修改</view>
+    <input class="right" wx:if="{{priceStatus}}" value="{{price}}" type="digit" focus="{{priceStatus}}" bindconfirm="checkPrice" bindinput="bindPrice"
       placeholder="请输入价格" />
     <view class="right icon32">
       <image src="/static/images/icon_page/ic_xgjg.png" class="changeSizeFrom32To28"

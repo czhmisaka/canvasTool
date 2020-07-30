@@ -292,7 +292,7 @@ function validateNumber(val) {
 
 function checkFloat(value) {
   if (value.split('.').length > 1 && value.split('.')[1].length) {
-    value = validateNumber(value.split('.')[0]) * 1 + '.' + validateNumber(value.split('.')[1].substr(0, 2)) * 1
+    value = validateNumber(value.split('.')[0]) * 1 + '.' + ((value.split('.')[1].substr(0, 2) * 1 || value.split('.')[1].substr(0, 2) * 1 == 0) ? value.split('.')[1].substr(0, 2) : '')
   } else if (value.split('.')[1] == '') {
     value = validateNumber(value.split('.')[0]) * 1 + '.'
   } else if (!value.split('.')[1]) {

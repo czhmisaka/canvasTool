@@ -16,9 +16,27 @@
     height: 74rpx;
 }
 
+.search>.cancel {
+    position: absolute;
+    top: 26rpx;
+    right: 42rpx;
+    padding: 6rpx 24rpx;
+    border-radius: 40rpx;
+    background-color: #21373D;
+    color: white;
+    font-size: 24rpx;
+    transition: all ease-in-out 0.4s;
+    z-index: 1000;
+}
+
+.search>.hide {
+    opacity: 0;
+    right: -4em;
+}
+
 .search>input {
     width: 682rpx;
-    height: 34rpx;
+    height: 56rpx;
     margin: 20rpx auto;
     border-radius: 28rpx;
     line-height: 56rpx;

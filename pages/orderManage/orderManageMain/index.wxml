@@ -2,7 +2,11 @@
 
 <view class="wholeScreen">
     <view class="search">
-        <input type="text" placeholder="搜索内容"></input>
+        <input type="text" value="{{searchWord}}" bindinput="bindSearch" bindconfirm="searchStart" placeholder="搜索内容"
+            maxlength="14"></input>
+        <view class="cancel {{searchWord.length>0?'':'hide'}}" bindtap="searchCancel">
+            取消
+        </view>
     </view>
     <view class="subTitle">
         <view class="moveBottombar"
@@ -19,7 +23,8 @@
                 <swiper-item class="swiper">
                     <scroll-view class="scroll" scroll-y height="100%" bindscrolltolower="getMoreOrderList"
                         bindscrolltoupper="refreshOrderlist" data-i="{{selectType.index}}">
-                        <view class="noOrder" wx:if="{{!orderList[selectType.index]||orderList[selectType.index].length==0}}">
+                        <view class="noOrder"
+                            wx:if="{{!orderList[selectType.index]||orderList[selectType.index].length==0}}">
                             您还没有相关订单哦~
                         </view>
                         <order order_Detail="{{item}}" wx:key="*this" wx:for="{{orderList[selectType.index]}}"

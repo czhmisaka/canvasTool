@@ -1,0 +1,68 @@
+/* pages/cus/tabManage/index.wxss */
+.wholePage {
+    width: 100vw;
+    display: inline-block;
+    min-height: calc(100vh - 190rpx);
+    background: rgba(247, 248, 250, 1);
+    height: auto;
+    padding-top: 20rpx;
+    padding-bottom: 160rpx;
+}
+
+.left {
+    float: left;
+    width: auto;
+    display: inline-block;
+    margin-left: 20rpx;
+}
+
+.right {
+    float: right;
+    width: auto;
+    display: inline-block;
+    margin-right: 20rpx;
+}
+
+.section {
+    width: calc(100vw - 20rpx);
+    margin: 0 10rpx;
+    margin-bottom: 20rpx;
+    height: 112rpx;
+    line-height: 112rpx;
+    background-color: white;
+    border-radius: 8rpx;
+}
+
+.section>.left {
+    color: #3D3D3D;
+    font-size: 32rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+}
+
+.section>.right {
+    color: #999999;
+}
+
+.icon {
+    width: 12rpx;
+    height: 24rpx;
+}
+
+
+.button {
+    position: fixed;
+    bottom: 48rpx;
+    width: 560rpx;
+    left: 50%;
+    margin-left: -280rpx;
+    height: 80rpx;
+    background: rgba(33, 55, 61, 1);
+    border-radius: 46rpx;
+    font-size: 32rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+    line-height: 80rpx;
+    letter-spacing: 2rpx;
+    text-align: center;
+}

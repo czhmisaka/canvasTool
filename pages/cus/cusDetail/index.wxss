@@ -1,0 +1,89 @@
+/* pages/cus/cusDetail/index.wxss */
+
+.whole {
+    width: 100vw;
+    height: 100vh;
+}
+
+.header {
+    width: 100vw;
+    height: 232rpx;
+    overflow: hidden;
+    background-color: #21373D;
+    line-height: 232rpx;
+}
+
+.left {
+    float: left;
+    width: auto;
+    display: inline-block;
+}
+
+.right {
+    float: right;
+    width: auto;
+    display: inline-block;
+}
+
+.header>.left {
+    height: 232rpx;
+}
+
+.header>.right {
+    height: 232rpx;
+}
+
+.header .headerImg {
+    width: 120rpx;
+    height: 120rpx;
+    margin: 56rpx 34rpx;
+    border-radius: 50%;
+}
+
+.header .box {
+    margin: 74rpx -10rpx;
+    width: 300rpx;
+    height: 84rpx;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.header .word {
+    line-height: 42rpx;
+    color: white;
+    font-size: 24rpx;
+}
+
+.header .button {
+    margin: 92rpx 34rpx;
+    text-align: center;
+    width: 160rpx;
+    height: 48rpx;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 28rpx;
+    font-size: 24srpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: bolder;
+    color: rgba(33, 55, 61, 1);
+    line-height: 48rpx;
+}
+
+.header .fontSize32rpx {
+    font-size: 32rpx;
+}
+
+.section {
+    width: calc(100vw - 68rpx);
+    margin: 0 34rpx;
+    height: 112rpx;
+    border-bottom: 1rpx rgb(230, 230, 230) solid;
+    line-height: 112rpx;
+}
+
+.section>.left {
+    font-weight: bolder;
+    color: #3D3D3D;
+    font-size: 32rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+}

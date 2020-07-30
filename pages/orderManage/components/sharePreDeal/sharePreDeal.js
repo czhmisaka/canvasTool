@@ -140,7 +140,7 @@ Component({
             } else if (res.code == 4001) {
               this.showLoginToast()
             } else if (res.code == 4002) {
-              this.toHomePage()
+              app.toHomePage()
             } else if (res.code == 500) {
               // app.toLoginPage()
             } else {}

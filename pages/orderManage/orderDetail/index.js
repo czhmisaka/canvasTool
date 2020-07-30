@@ -45,8 +45,16 @@ Page({
 
   // 确认提交订单
   checkPrice(e) {
-    app.showModal('确认价格').then(result => {
-      if (!result) return 0;
+    app.showModal('确认价格为：' + this.data.price).then(result => {
+      wx.showLoading({
+        title: '处理中'
+      })
+      if (!result) {
+        this.setData({
+          priceStatus: false,
+        })
+        return wx.hideLoading();
+      }
       util.request({
         url: 'order/modifyOrderPrice',
         data: {
@@ -54,6 +62,7 @@ Page({
           orderId: this.data.order.orderId
         }
       }).then(res => {
+        wx.hideLoading()
         let {
           order
         } = this.data
@@ -100,7 +109,17 @@ Page({
     }).then(res => {
       if (res.code == 200) {
         app.noIconToast('删除成功')
-        this.reFresh()
+        let {
+          order
+        } = this.data
+        order.expresses.forEach((item, index) => {
+          if (item.id == e.detail.back) {
+            order.expresses.splice(index, 1);
+          }
+        })
+        this.setData({
+          order
+        })
       } else {
         app.noIconToast('删除失败')
       }
