@@ -57,13 +57,13 @@
         </swiper>
     </view>
     <view class="bottomBtnList" wx:if="{{searchWord.length==0}}">
-        <view class="button" bindtap="navTo" data-url="../newAlbum/index" wx:if="{{!checkMore[selectType.index]}}">添加
+        <view class="button mid_Botton" bindtap="navTo" data-url="../newAlbum/index" wx:if="{{!checkMore[selectType.index]}}">添加
         </view>
-        <view class="button" wx:if="{{checkMore[selectType.index]}}" bindtap="checkMoreToDelete">批量删除</view>
-        <view class="button" wx:if="{{checkMore[selectType.index]&&checkMoreStatus!=0}}" bindtap="openCheckForShare">
+        <view class="button mid_Botton" wx:if="{{checkMore[selectType.index]}}" bindtap="checkMoreToDelete">批量删除</view>
+        <view class="button mid_Botton" wx:if="{{checkMore[selectType.index]&&checkMoreStatus!=0}}" bindtap="openCheckForShare">
             {{publish[checkMoreStatus]}}
         </view>
-        <view class="button {{checkMore[selectType.index]?'black':''}}" wx:if="{{!checkMore[selectType.index]}}"
+        <view class="button mid_Botton {{checkMore[selectType.index]?'black':''}}" wx:if="{{!checkMore[selectType.index]}}"
             bindtap="checkMoreStatusChange">
             批量选择
         </view>

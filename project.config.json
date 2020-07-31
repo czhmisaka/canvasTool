@@ -27,7 +27,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -213,6 +213,13 @@
 					"name": "创建标签",
 					"pathName": "pages/cus/tabDetail/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": 21,
+					"name": "搜索并添加用户到标签",
+					"pathName": "pages/cus/AddCusToTab/index",
+					"query": "labelId=2",
 					"scene": null
 				}
 			]

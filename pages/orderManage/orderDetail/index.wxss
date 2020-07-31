@@ -37,6 +37,9 @@ page {
   display: inline-block;
 }
 
+.addressAdmin>.marginTop10rpx{
+  margin-top: 10rpx;
+}
 .box>.title {
   width: 6em;
   float: left;
@@ -408,6 +411,15 @@ page {
   text-align: right;
 }
 
+.section .paymentMessage {
+  line-height: 42rpx;
+  padding: 32rpx;
+  padding-top: 0rpx;
+  color: #999;
+  font-size: 24rpx;
+  text-indent: 2em;
+}
+
 .section>.boxList {
   width: calc(100% - 48rpx);
   margin: 0rpx 24rpx;
@@ -438,8 +450,8 @@ page {
   float: right;
 }
 
-.bottom180rpx {
-  margin-bottom: 180rpx;
+.bottom120rpx {
+  margin-bottom: 120rpx;
 }
 
 .black {

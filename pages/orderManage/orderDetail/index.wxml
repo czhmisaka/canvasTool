@@ -11,7 +11,7 @@
       收件人：</view>
     <view class="word1">{{order.name}} <span class="gray">{{order.phone}}</span></view>
   </view>
-  <view class="box">
+  <view class="box marginTop10rpx">
     <view class="bar "></view>
     <view class='title'>
       收货地址：</view>
@@ -52,6 +52,14 @@
   </view>
 </view>
 
+<!-- 用户备注 -->
+<view class="section">
+  <view class="word">
+    <view class="left black">订单备注</view>
+    <view class="right paymentMessage">{{order.paymentMessage}}</view>
+  </view>
+</view>
+
 <!-- 订单状态 -->
 <view class="orderStatusBox">
   <view class="box">订单号: {{order.orderSn}}</view>
@@ -60,7 +68,7 @@
 </view>
 
 <!-- 快递单号 -->
-<view class="section bottom180rpx" wx:if="{{order.orderStatus==60||order.orderStatus==40||order.orderStatus == 30}}">
+<view class="section" wx:if="{{order.orderStatus==60||order.orderStatus==40||order.orderStatus == 30}}">
   <view class="title">
     <view class="left black">
       我的快递</view>
@@ -80,6 +88,8 @@
   </view>
 </view>
 
+<view class="section bottom120rpx">
+</view>
 <!-- 按钮 -->
 <view class="orderTabbar">
   <view class="transmit" wx:if="{{order.orderStatus == 50}}" bindtap="cancelAndRefund">取消</view>

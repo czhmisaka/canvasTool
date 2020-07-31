@@ -8,7 +8,8 @@ Page({
   data: {
     cusList: [],
     options: {},
-    isRefresh: false
+    isRefresh: false,
+    canAdd: false
   },
 
   // 查看客户详情
@@ -16,8 +17,16 @@ Page({
     app.navTo('/pages/cus/cusDetail/index?memId=' + e.currentTarget.dataset.val + '&money=' + e.currentTarget.dataset.money)
   },
 
+  // 去添加客户到这个标签中
+  toAddCusToTab(e) {
+    app.navTo('/pages/cus/AddCusToTab/index?labelId=' + this.data.options.id)
+  },
+
   // 获取今日数据
   getTodayCus() {
+    this.setData({
+      canAdd: false
+    })
     if (lock) return;
     lock = true
     wx.showLoading({
@@ -35,7 +44,7 @@ Page({
       wx.hideLoading()
       lock = false
       if (res.code == 200) {
-        if (res.data && res.data.data.length == 0) return app.noIconToast('暂时还没有客户，点击按钮可以添加')
+        if (res.data && res.data.data.length == 0) return app.noIconToast('暂时还没有客户')
         if (res.data && pageNum + 1 > res.data.pages) return app.noIconToast('已经到底啦')
         let {
           cusList
@@ -49,7 +58,7 @@ Page({
         })
         this.setData({
           cusList,
-          isRefresh: false
+          isRefresh: false,
         })
         pageNum++
       } else {
@@ -62,6 +71,9 @@ Page({
   getCusList(e) {
     if (lock) return;
     lock = true
+    this.setData({
+       canAdd: true
+    })
     wx.showLoading({
       title: '加载中',
       mask: true
@@ -93,7 +105,7 @@ Page({
         pageNum++
         this.setData({
           cusList,
-          isRefresh: false
+          isRefresh: false,
         })
       } else {
         app.noIconToast('获取客户列表失败')
@@ -106,7 +118,8 @@ Page({
       title: options.labelName
     })
     this.setData({
-      options
+      options,
+      canAdd: true
     })
     pageNum = 0
     if (this.data.options.type)
@@ -116,7 +129,14 @@ Page({
   },
   onReady: function () {},
   onShow: function () {
-
+    pageNum = 0
+    this.setData({
+      isRefresh: true
+    })
+    if (this.data.options.type)
+      this.getTodayCus()
+    else
+      this.getCusList()
   },
   onHide: function () {},
   onUnload: function () {},

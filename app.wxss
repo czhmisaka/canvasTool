@@ -1,1 +1,5 @@
-@import '/miniprogram_npm/weui-miniprogram/weui-wxss/dist/style/weui.wxss';
+/* @import '/miniprogram_npm/weui-miniprogram/weui-wxss/dist/style/weui.wxss'; */
+
+view {
+    font-family: PingFangSC-Regular, PingFang SC;
+}

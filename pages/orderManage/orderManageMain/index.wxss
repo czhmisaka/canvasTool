@@ -18,7 +18,7 @@
 
 .search>.cancel {
     position: absolute;
-    top: 26rpx;
+    top: 24rpx;
     right: 42rpx;
     padding: 6rpx 24rpx;
     border-radius: 40rpx;

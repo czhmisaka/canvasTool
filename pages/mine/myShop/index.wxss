@@ -201,5 +201,12 @@
 .buttonBar>.box{
     margin: 20rpx;
 }
+.longBotton{
+    width: 560rpx;
+    background-color: #21373D;
+    color: white;
+    position: fixed;
+    bottom: 40rpx;
+}
 
 @import '/components/cropper/cropper.wxss' 

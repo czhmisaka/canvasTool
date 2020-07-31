@@ -224,3 +224,7 @@
     width: 24rpx;
     height: 26rpx;
 }
+
+.bottomBtnList>.mid_Botton{
+    width:280rpx;
+}

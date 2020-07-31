@@ -18,7 +18,7 @@
         </view>
     </view>
     <view class="buttonBox {{ani?'hide':''}}">
-        <view class="button" bindtap="reset">取消筛选</view>
+        <view class="button" bindtap="reset">重置</view>
         <view class="button highLight" bindtap="callBackToPage">确认</view>
     </view>
 </view>

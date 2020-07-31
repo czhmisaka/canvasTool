@@ -77,10 +77,10 @@ Page({
         dataa = res
       }
     })
-    if (!e.type && e.type != publish) {
+    if (!e.type || e.type != 'publish') {
       this.setData({
         checkDataForShare: {
-          title: '设置标签',
+          title: '对谁可见',
           tabList: dataa.tabList,
           photoIds: idList
         },
@@ -89,7 +89,7 @@ Page({
     } else {
       this.setData({
         checkDataForShare: {
-          title: '设置标签',
+          title: '对谁可见  ',
           tabList: dataa.tabList,
           photoIds: [e.id]
         },

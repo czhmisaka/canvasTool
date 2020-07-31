@@ -53,7 +53,7 @@
         <view class="flexBox H200rpx">
             <view class="title">公告</view>
             <textarea class="wordBox" auto-height="{{true}}" maxlength="100" value="{{shopDetail.storeDesc}}"
-                data-key="storeDesc" bindinput="bindInput"></textarea>
+                data-key="storeDesc" placeholder="请输入档口公告...示例：3件起批，宝宝们看中款式可自助下单" placeholder-style="font-size:24rpx;" bindinput="bindInput"></textarea>
         </view>
     </view>
 
@@ -91,8 +91,8 @@
         <view class="button" bindtap="submitShopDetail" wx:if="{{!isNew}}">
             修改
         </view>
-        <view class="button" bindtap="submitAddNewShop" wx:if="{{isNew}}">
-            新增店铺
+        <view class="button longBotton" bindtap="submitAddNewShop" wx:if="{{isNew}}">
+            完成
         </view>
     </view>
 </view>

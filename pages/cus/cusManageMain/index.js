@@ -18,12 +18,16 @@ Page({
     let type, labelName = msg.type
     switch (msg.type) {
       case '今日游客':
+        type = 'getNum'
         break;
       case '今日拿货':
+        type = 'getTodayOrderUser'
         break;
       case '今日粉丝':
+        type = 'getTodayFans'
         break;
     }
+    if (type == "getNum") return
     app.navTo('/pages/cus/cusList/index?type=' + type + '&labelName=' + labelName)
   },
 

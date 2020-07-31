@@ -17,14 +17,16 @@
     "pages/cus/cusDetail/index",
     "pages/cus/tabManage/index",
     "pages/cus/cusList/index",
-    "pages/cus/tabDetail/index"
+    "pages/cus/tabDetail/index",
+    "pages/cus/AddCusToTab/index"
   ],
   "tabBar": {
     "color": "#B3B6BF",
     "position": "bottom",
     "selectedColor": "#21373D",
     "borderStyle": "black",
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/home/index",
         "iconPath": "static/images/Icon_tabBar/ic_home.png",
         "selectedIconPath": "static/images/Icon_tabBar/ic_home_pre.png",

@@ -22,7 +22,12 @@
 </view>
 <view class="section">
     <view class="left">客户标签</view>
-    <view class="right">{{cusDetail.labelList.length?cusDetail.labelList:'未填写'}}</view>
+    <view class="right" wx:for="{{cusDetail.labelList}}" wx:key="*this">
+        {{index!=cusDetail.labelList.length-1?',':''}}{{item.labelName}}
+    </view>
+    <view class="right" wx:if="{{cusDetail.labelList==0}}">
+        暂无标签
+    </view>
 </view>
 <view class="section">
     <view class="left">备注</view>

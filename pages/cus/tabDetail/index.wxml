@@ -1,16 +1,10 @@
 <!--pages/cus/tabDetail/index.wxml-->
-
-
-<view class="page">
-    <view class="page__hd">
-        <view class="page__title">Slideview</view>
-        <view class="page__desc">左滑操作</view>
+<view class='page'>
+    <view class="section">
+        <input type="text" class="input" value="{{value}}" bindinput="bindInput" bindconfirm="createTabAndNavToNext"
+            placeholder="请输入标签名称" />
     </view>
-    <view class="page__bd">
-        <view class="weui-cells">
-            <mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap">
-                <mp-cell value="左滑可以删除" footer="说明文字"></mp-cell>
-            </mp-slideview>
-        </view>
+    <view class="button" wx:if="{{!options.type}}" bindtap="createTabAndNavToNext">
+        添加标签
     </view>
 </view>

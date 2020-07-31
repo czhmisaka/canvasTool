@@ -1,0 +1,30 @@
+<!--pages/cus/AddCusToTab/index.wxml-->
+
+<view class="cus">
+    <view class="whiteBg">
+        <view class="search">
+            <input type="text" placeholder="搜索客户" value="{{searchValue}}" bindconfirm="searchStart"
+                bindinput="searchInput">
+            </input>
+        </view>
+    </view>
+    <view class="cusList">
+        <view class="cusDetail {{isRefresh?'hide':''}}" style="{{'transition:all '+0.1*index+'s'}}" wx:for="{{cusList}}"
+            wx:key="*this" bindtap="checkIn" data-checkIn="{{index}}">
+            <view class="left">
+                <image src="{{item.avatar}}" />
+            </view>
+            <view class="left">
+                <view class="name">{{item.nickname||'该用户暂未设置昵称'}}/{{item.remarkName||'暂无备注'}}</view>
+                <view class="word">{{'拿货:'+'￥'+item.orderAmount}}</view>
+            </view>
+            <view class="right">
+                <image src="{{item.check?'/static/images/icon_page/ic_chose_pre.png':''}}" style="width: 40rpx;height: 40rpx;" />
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="button" bindtap="addCusToTab">
+    添加客户
+</view>

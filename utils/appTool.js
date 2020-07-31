@@ -2,11 +2,11 @@ const config = require('../config/config.js');
 const util = require('./util.js');
 
 // 简化弹窗
-const noIconToast = (e) => {
+const noIconToast = (e, type = "none") => {
     wx.hideLoading()
     wx.showToast({
         title: e,
-        icon: 'none'
+        icon: type
     })
 }
 

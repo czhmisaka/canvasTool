@@ -1,4 +1,4 @@
-/* pages/cus/cusManageMain/index.wxss */
+/* pages/cus/AddCusToTab/index.wxss */
 
 .cus {
     background-color: #F7F8FA;
@@ -118,10 +118,9 @@
 
 .cusList {
     width: 100%;
-    height: calc(100vh - 414rpx);
+    height: auto;
     display: inline-block;
-    background-color: white;
-    overflow-y: scroll;
+    background-color: white;    
 }
 
 .cusList>.cusDetail {
@@ -176,4 +175,22 @@
 }
 .cusDetail>.right>image{
     margin-top: 69rpx;
+}
+
+.button {
+    position: fixed;
+    bottom: 48rpx;
+    width: 560rpx;
+    left: 50%;
+    margin-left: -280rpx;
+    height: 80rpx;
+    background: rgba(33, 55, 61, 1);
+    border-radius: 46rpx;
+    font-size: 32rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+    line-height: 80rpx;
+    letter-spacing: 2rpx;
+    text-align: center;
 }

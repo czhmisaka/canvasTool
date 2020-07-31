@@ -1,13 +1,19 @@
-<!--pages/cus/tabManage/index.wxml-->
 <view class="wholePage">
-    <view class="section" wx:for="{{tabList}}" bindtap="toTabDetail" data-val="{{item}}">
-        <view class="left">{{item.labelName}}</view>
-        <view class="right">
-            <image class="icon" src="/static/images/icon_page/ic_xy.png"></image>
-        </view>
-        <view class="right">{{item.num}}</view>
+    <view class="weui-cells" wx:for="{{tabList}}" bindtap="toTabDetail" data-val="{{item}}"
+        wx:if="{{item.id>4}}">
+        <mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" data-tabIndex="{{index}}"
+            data-tabItem="{{item}}">
+            <view class="section">
+                <view class="left">{{item.labelName}}</view>
+                <view class="right">
+                    <image class="icon" src="/static/images/icon_page/ic_xy.png"></image>
+                </view>
+                <view class="right">{{item.num}}</view>
+            </view>
+        </mp-slideview>
     </view>
 </view>
-<view class="button" wx:if="{{!options.type}}" bindtap="navTo">
+
+<view class="button" wx:if="{{!options.type}}" bindtap="toNewTab">
     添加标签
 </view>

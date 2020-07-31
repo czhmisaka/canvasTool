@@ -1,1 +1,45 @@
-/* pages/cus/tabDetail/index.wxss */
+.page {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background: rgba(247, 248, 250, 1);
+}
+
+.section {
+    width: 100vw;
+    margin-bottom: 56rpx;
+    height: 110rpx;
+    line-height: 110rpx;
+    background-color: white;
+    border-radius: 8rpx;
+}
+
+.input {
+    width: calc(100vw - 68rpx);
+    margin: 0 34rpx;
+    height: 110rpx;
+    line-height: 110rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(153, 153, 153, 1);
+}
+
+.button {
+    position: relative;
+    width: 560rpx;
+    left: 50%;
+    margin-left: -280rpx;
+    height: 80rpx;
+    background: rgba(33, 55, 61, 1);
+    border-radius: 46rpx;
+    font-size: 32rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+    line-height: 80rpx;
+    letter-spacing: 2rpx;
+    text-align: center;
+}
