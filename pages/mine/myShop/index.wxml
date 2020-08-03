@@ -52,7 +52,7 @@
     <view class="itemBox bgNone">
         <view class="flexBox H200rpx">
             <view class="title">公告</view>
-            <textarea class="wordBox" auto-height="{{true}}" maxlength="100" value="{{shopDetail.storeDesc}}"
+            <textarea class="wordBox" wx:if="{{!show}}" auto-height="{{true}}" maxlength="100" value="{{shopDetail.storeDesc}}"
                 data-key="storeDesc" placeholder="请输入档口公告...示例：3件起批，宝宝们看中款式可自助下单" placeholder-style="font-size:24rpx;" bindinput="bindInput"></textarea>
         </view>
     </view>

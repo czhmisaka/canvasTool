@@ -78,7 +78,6 @@ Page({
         goodsNum,
         salesVolume
       } = res.data
-      console.log(res.data)
       // 这里注入了假数据， 待修改
       this.formatNum([{
         num: buyerNum || 0,

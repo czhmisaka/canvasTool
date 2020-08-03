@@ -72,7 +72,7 @@ Page({
     if (lock) return;
     lock = true
     this.setData({
-       canAdd: true
+      canAdd: this.data.options.hasOwnProperty('canAdd') ? this.data.options.canAdd : true
     })
     wx.showLoading({
       title: '加载中',
@@ -117,9 +117,16 @@ Page({
     wx.setNavigationBarTitle({
       title: options.labelName
     })
+    if (options.canAdd) {
+      if (options.canAdd == 'true') {
+        options.canAdd = true
+      } else {
+        options.canAdd = false
+      }
+    }
     this.setData({
       options,
-      canAdd: true
+      canAdd: options.canAdd ? options.canAdd : true
     })
     pageNum = 0
     if (this.data.options.type)

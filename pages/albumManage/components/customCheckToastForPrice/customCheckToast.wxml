@@ -14,7 +14,7 @@
                         bindtap='changeSelect' data-select="0" />
                 </view>
                 <view class="left word">一口价</view>
-                <view class='right' wx:if="{{false}}">{{'￥'+checkLists}}</view>
+                <view class='right' wx:if="{{false}}">{{'￥'+price}}</view>
                 <input type="number" type="text" class="right" wx:else value="{{price}}" bindinput="bindInput"
                     data-type="一口价" />
             </view>

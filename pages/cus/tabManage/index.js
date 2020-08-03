@@ -14,7 +14,7 @@ Page({
       id,
       labelName
     } = e.currentTarget.dataset.val
-    app.navTo('/pages/cus/cusList/index?id=' + id + '&labelName=' + labelName)
+    app.navTo('/pages/cus/cusList/index?id=' + id + '&labelName=' + labelName + '&canAdd=' + (id > 4 ? 'true' : 'false'))
   },
 
   // 前往新建标签

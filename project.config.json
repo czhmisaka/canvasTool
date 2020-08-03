@@ -27,7 +27,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -220,6 +220,13 @@
 					"name": "搜索并添加用户到标签",
 					"pathName": "pages/cus/AddCusToTab/index",
 					"query": "labelId=2",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "搜索商品",
+					"pathName": "pages/albumManage/findGoods/index",
+					"query": "",
 					"scene": null
 				}
 			]

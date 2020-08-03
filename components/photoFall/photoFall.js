@@ -130,7 +130,9 @@ Component({
           leftLine,
           rightLine
         })
-        that.compareAndFix()
+        setTimeout(() => {
+          that.compareAndFix()
+        }, 100)
       })
     }
   }

@@ -12,6 +12,7 @@
     height: auto;
     display: inline-block;
     margin-bottom: -10rpx;
+    margin-top: -1rpx;
 }
 .bottom{
     position: absolute;

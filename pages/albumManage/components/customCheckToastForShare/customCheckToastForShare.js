@@ -49,7 +49,6 @@ Component({
           back.id.push(res.id)
         }
       })
-      console.log(back)
       util.request({
         url: '/photo/publish',
         data: {

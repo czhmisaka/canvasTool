@@ -8,8 +8,8 @@ Component({
       observer: function (e) {
         let checkLists = []
         let priceList = []
-        if (this.properties.checkData.goodsPriceAddDtos && this.properties.checkData.goodsPriceAddDtos.length > 0) {
-          this.properties.checkData.goodsPriceAddDtos.forEach(res => {
+        if (this.properties.checkData.tabList && this.properties.checkData.tabList.length > 0) {
+          this.properties.checkData.tabList.forEach(res => {
             priceList.push({
               num: res.favorableNum,
               price: res.goodsPrice
@@ -19,11 +19,11 @@ Component({
             priceList
           })
         }
-        if (!this.data.priceList) {
-          checkLists = this.properties.checkData.tabList
+        // if (!this.data.priceList) {
+        if (this.properties.checkData.tabList&&this.properties.checkData.tabList.length==1) {
           this.setData({
             title: this.properties.checkData.title,
-            checkLists,
+            price:this.properties.checkData.tabList[0].goodsPrice
           })
         }
         if (this.properties.checkData.isNew) {
@@ -95,6 +95,16 @@ Component({
         icon: 'none'
       })
       this.cancel()
+      this.setData({
+        show: false,
+        status: false,
+        title: '',
+        checkLists: [],
+        select: 0, //默认 一口价
+        price: '',
+        priceList: [],
+        isNew: false // 是否为 查看状态
+      })
       this.triggerEvent('returnBack', {
         check: back
       })

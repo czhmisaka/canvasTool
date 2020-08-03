@@ -145,7 +145,6 @@ Page({
           orderList
         } = this.data
         order_list[index]++;
-        console.log(order_list)
         res.data.data.forEach((item) => {
           orderList[index].push(item)
         })

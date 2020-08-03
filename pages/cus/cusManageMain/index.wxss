@@ -118,10 +118,15 @@
 
 .cusList {
     width: 100%;
-    height: calc(100vh - 414rpx);
     display: inline-block;
     background-color: white;
+    height: auto;
+}
+
+.scroll {
+    width: 100vw;
     overflow-y: scroll;
+    height: calc(100vh - 48px);
 }
 
 .cusList>.cusDetail {
@@ -168,12 +173,14 @@
     margin-top: 16rpx;
     margin-left: 24rpx;
 }
-.cusDetail>.right{
+
+.cusDetail>.right {
     height: 100%;
     line-height: 100%;
     margin-right: 0px;
     float: right;
 }
-.cusDetail>.right>image{
+
+.cusDetail>.right>image {
     margin-top: 69rpx;
 }

@@ -7,23 +7,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-      globalData:app.globalData
+    globalData: getApp().globalData
   },
 
-  toLogin:function(){
-    wx.redirectTo({ url: '/pages/login/index' });
+  toLogin: function () {
+    wx.redirectTo({
+      url: '/pages/login/index'
+    });
   },
 
   // 通用跳转
-  navTo:function(e){
+  navTo: function (e) {
     if (!app.globalData.isLogin) return util.toLogin()
     app.navTo(e.currentTarget.dataset.url)
   },
 
-  onLoad: function (options) {
-  },
+  onLoad: function (options) {},
   onReady: function () {},
-  onShow: function () {},
+  onShow: function () {
+    this.setData({
+      globalData: getApp().globalData
+    })
+  },
   onHide: function () {},
   onUnload: function () {},
   onPullDownRefresh: function () {},

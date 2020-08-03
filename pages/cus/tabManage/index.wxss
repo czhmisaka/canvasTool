@@ -31,8 +31,13 @@
     height: 110rpx;
     line-height: 100rpx;
     border-radius: 8rpx;
-    border: none;
+    border: none inherit;
+    border-bottom: 0rpx rgba(0, 0, 0, 0) solid;
     background-color: rgba(0, 0, 0, 0);
+}
+
+.weui-cells::before {
+    border-top: 0rpx rgba(0, 0, 0, 0) solid;
 }
 
 .weui-cells .weui-slidecell {
@@ -41,11 +46,16 @@
 }
 
 .section {
-    width: calc(100vw - 54rpx);
+    width: calc(100vw - 64rpx);
     height: 112rpx;
     line-height: 112rpx;
     background-color: white;
     border-radius: 8rpx;
+}
+
+
+.marginLeft34rpx {
+    margin-left: 20rpx;
 }
 
 .section>.left {

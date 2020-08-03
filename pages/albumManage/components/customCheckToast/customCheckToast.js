@@ -64,6 +64,10 @@ Component({
     // 加一个新标签
     addTab(e) {
       let that = this
+      wx.showLoading({
+        title:'添加中',
+        mask:true
+      })
       let {
         type
       } = e.currentTarget.dataset
@@ -76,6 +80,7 @@ Component({
             "storeId": app.globalData.shopInfo.storeVo.id
           }
         }).then((res) => {
+          wx.hideLoading()
           if (res.data) {
             let {
               checkLists
@@ -105,6 +110,7 @@ Component({
             "storeId": app.globalData.shopInfo.storeVo.id
           }
         }).then((res) => {
+          wx.hideLoading()
           if (res.data) {
             let {
               checkLists
@@ -112,7 +118,7 @@ Component({
             checkLists.push({
               name: e.detail.value,
               id: res.data.id,
-              check: true
+              check: false
             })
             that.setData({
               checkLists,

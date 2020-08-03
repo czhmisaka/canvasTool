@@ -45,8 +45,13 @@ Page({
       res.forEach(item => {
         item.isBuyer = 1
       })
+      let cusList = []
+      res.forEach(item=>{
+        cusList.push(item)
+      })
       this.setData({
-        cusList: res
+        // cusList: res
+        cusList
       })
     })
   },

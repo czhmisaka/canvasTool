@@ -24,6 +24,9 @@ Page({
       }
     }).then((res) => {
       res = res.data
+      res.sort((a, b) => {
+        return b.goodsId - a.goodsId
+      })
       this.setData({
         goodsList: res
       })

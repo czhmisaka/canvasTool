@@ -9,6 +9,25 @@ Page({
     cusDetail: {},
   },
 
+  // 加入/取消黑名单 -- 客户
+  changeStatusInBlackList(e) {
+    wx.showLoading({
+      title: '处理中',
+      mask: true
+    })
+    util.request({
+      url: '/customer/blackList',
+      data: {
+        id: this.data.options.memId,
+        status: 0,
+        storeId: getApp().globalData.shopInfo.storeVo.id
+      }
+    }).then(res => {
+      wx.hideLoading()
+
+    })
+  },
+
   // 获得客户详细信息
   getCusDetail(e) {
     wx.showLoading({

@@ -1,6 +1,14 @@
 <view class="wholePage">
-    <view class="weui-cells" wx:for="{{tabList}}" bindtap="toTabDetail" data-val="{{item}}"
-        wx:if="{{item.id>4}}">
+    <!-- <view class="weui-cells" wx:for="{{tabList}}" bindtap="toTabDetail" data-val="{{item}}" wx:if="{{item.id<4}}">
+        <view class="section marginLeft34rpx">
+            <view class="left">{{item.labelName}}</view>
+            <view class="right">
+                <image class="icon" src="/static/images/icon_page/ic_xy.png"></image>
+            </view>
+            <view class="right">{{item.num}}</view>
+        </view>
+    </view> -->
+    <view class="weui-cells" wx:for="{{tabList}}" bindtap="toTabDetail" data-val="{{item}}" wx:if="{{item.id>4}}">
         <mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" data-tabIndex="{{index}}"
             data-tabItem="{{item}}">
             <view class="section">

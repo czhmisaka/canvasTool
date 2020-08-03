@@ -36,6 +36,9 @@ Page({
   changeImage: function (e) {
     this.getImage(e).then((res) => {
       wx.hideLoading()
+      if (!res) return this.setData({
+        show: false
+      })
       const tempFilePaths = res.tempFilePaths
       formatImage = this.selectComponent("#image-cropper");
       let width = 0;
@@ -117,6 +120,9 @@ Page({
           setTimeout(() => {
             reslove(res)
           }, 100)
+        },
+        fail: function (res) {
+          reslove(false)
         }
       })
     })

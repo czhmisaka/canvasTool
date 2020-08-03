@@ -48,6 +48,14 @@ view {
     margin: 5rpx;
 }
 
+.checkBox>.tap {
+    width: 100rpx;
+    height: 100rpx;
+    position: absolute;
+    left: 110rpx;
+    transform:translateY(-30rpx);
+}
+
 
 .logoImage {
     margin: 262rpx 215rpx;
@@ -236,7 +244,8 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked {
     line-height: 80rpx;
     font-family: PingFangSC-Regular, PingFang SC;
 }
-.context>.p{
+
+.context>.p {
     width: 100%;
     min-width: 100%;
     position: relative;
@@ -247,7 +256,8 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked {
     line-height: 44rpx;
     text-indent: 1.5em;
 }
-.context>.h{
+
+.context>.h {
     width: 100%;
     max-width: 100%;
     position: relative;
@@ -260,10 +270,16 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked {
     /* text-align: center; */
     line-height: 60rpx;
 }
-.context>.r{
+
+.context>.r {
     /* float: right; */
     text-align: right;
 }
-.context>.c{
+
+.context>.c {
     text-align: center;
+}
+
+button::after {
+    border: 0px solid rgba(0, 0, 0, 0);
 }

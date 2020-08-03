@@ -41,6 +41,7 @@ Page({
           id
         }
       }).then((res) => {
+        wx.hideLoading()
         if (res.code === 200) {
           this.goodDetailInitFn(res.data)
           this.setData({
@@ -99,7 +100,10 @@ Page({
   },
 
   // 获取自定义选择用列表
-  getCheckList(id = '') { 
+  getCheckList(id = '') {
+    wx.showLoading({
+      title: id ? '获取商品详情中' : '获取商品模板中'
+    })
     let tabCheckList = []
     util.request({
       url: 'photo/goodsAttr',
@@ -107,6 +111,7 @@ Page({
         id: app.globalData.shopInfo.storeVo.id
       }
     }).then((res) => {
+      this.getClassList(id, false)
       res.data.forEach((item) => {
         let tabList = []
         item.goodsAttrValueVos.forEach((res) => {
@@ -123,23 +128,30 @@ Page({
       this.setData({
         tabCheckList
       })
-      if (id) {
-        this.getGoodsDetailById(id)
-      }
     })
   },
 
   // 获取商品品类列表
-  getClassList(e) {
+  getClassList(id = "", type = true) {
+    if (type)
+      wx.showLoading({
+        title: '保存中',
+        mask: true
+      })
     util.request({
       url: 'photo/goodsClass',
       data: {
         id: app.globalData.shopInfo.storeVo.id
       }
     }).then((res) => {
+      if (!id || type)
+        wx.hideLoading()
       this.setData({
         classList: res.data
       })
+      if (id) {
+        this.getGoodsDetailById(id)
+      }
     })
   },
 
@@ -158,6 +170,7 @@ Page({
       this.setData({
         goodsDetail
       })
+      this.getClassList()
     } else {
       let idList = []
       tabCheckList.forEach(tab => {
@@ -171,21 +184,21 @@ Page({
             tab.word += word
           })
           // 新增判断
-          tab.tabList.forEach(res=>{
+          tab.tabList.forEach(res => {
             idList.push(res.id)
           })
-          check.id.forEach((res,index)=>{
-            if(idList.indexOf(res)==-1){
+          check.id.forEach((res, index) => {
+            if (idList.indexOf(res) == -1) {
               tab.tabList.push({
-                attrValueName:check.name[index],
-                id:res,
-                storeId:app.globalData.shopInfo.storeVo.id
+                attrValueName: check.name[index],
+                id: res,
+                storeId: app.globalData.shopInfo.storeVo.id
               })
             }
           })
         }
       })
-      
+
       this.setData({
         tabCheckList
       })
@@ -287,15 +300,20 @@ Page({
       goodsDetail,
       tabCheckList
     } = this.data
+    wx.showLoading({
+      title: '新建商品中',
+      mask: true
+    })
     util.request({
       url: 'photo/goods/addGoods',
       data: this.dealDataToGoodsDetail(tabCheckList, goodsDetail)
     }).then((res) => {
+      wx.hideLoading()
       if (res.msg != "请求成功") {
-        this.show('创建失败')
+        this.show(res.msg)
       } else {
         this.setData({
-          goodsId:res.data.id
+          goodsId: res.data.id
         })
         this.submit()
       }
@@ -355,7 +373,6 @@ Page({
       })
       this.getCheckList()
     }
-    this.getClassList()
   },
   onReady: function () {},
   onShow: function () {},
