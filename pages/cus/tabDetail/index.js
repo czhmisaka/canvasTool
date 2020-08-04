@@ -1,9 +1,6 @@
 // pages/cus/tabDetail/index.js
 const app = getApp()
 const util = require('../../../utils/util.js')
-const {
-  WxApiRoot
-} = require('../../../config/api.js')
 Page({
 
   /**

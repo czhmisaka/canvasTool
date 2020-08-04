@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "mp-searchbar": "/components/searchbar/searchbar"
+  },
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50
+}

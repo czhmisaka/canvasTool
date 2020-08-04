@@ -19,7 +19,7 @@ Page({
 
   // 去添加客户到这个标签中
   toAddCusToTab(e) {
-    app.navTo('/pages/cus/AddCusToTab/index?labelId=' + this.data.options.id)
+    app.navTo('/pages/cus/AddCusToTab/index?labelId=' + this.data.options.id + '&canAdd=true')
   },
 
   // 获取今日数据

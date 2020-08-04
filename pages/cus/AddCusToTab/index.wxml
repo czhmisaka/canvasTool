@@ -25,6 +25,6 @@
     </view>
 </view>
 
-<view class="button" bindtap="addCusToTab">
+<view class="button" bindtap="addCusToTab" wx:if="{{canAdd}}">
     添加客户
 </view>

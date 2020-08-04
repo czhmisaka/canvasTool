@@ -108,7 +108,8 @@
     color: rgba(238, 72, 102, 1);
     margin-left: 24rpx;
 }
-.word{
+
+.word {
     font-size: 28rpx;
     font-family: DINAlternate-Bold, DINAlternate;
     font-weight: 500;
@@ -142,4 +143,17 @@
     padding: 0rpx 32rpx;
     margin: 16rpx 24rpx;
     float: right;
+}
+
+.word_tab {
+    float: left;
+    margin-right: 1em;
+}
+
+.overFlowHidden {
+    max-width: 480rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 30rpx;  
 }

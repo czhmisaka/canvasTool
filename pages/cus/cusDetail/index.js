@@ -19,12 +19,22 @@ Page({
       url: '/customer/blackList',
       data: {
         id: this.data.options.memId,
-        status: 0,
+        status: this.data.cusDetail.isBlack ? 0 : 1,
         storeId: getApp().globalData.shopInfo.storeVo.id
       }
     }).then(res => {
       wx.hideLoading()
-
+      if (res.code == 200) {
+        let {
+          cusDetail
+        } = this.data
+        cusDetail.isBlack = !cusDetail.isBlack
+        this.setData({
+          cusDetail
+        })
+      } else {
+        app.noIconToast('修改失败')
+      }
     })
   },
 

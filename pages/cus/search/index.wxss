@@ -1,43 +1,4 @@
-/* pages/cus/AddCusToTab/index.wxss */
-
-.cus {
-    background-color: #F7F8FA;
-    font-family: "PingFangSC-Regular,PingFang SC";
-    min-height: 100vh;
-    overflow: hidden;
-}
-
-.whiteBg {
-    width: 100%;
-    display: inline-block;
-    height: auto;
-    /* padding-bottom: 20rpx; */
-    background-color: white;
-}
-
-.search {
-    width: 100%;
-    height: 96rpx;
-    display: flex;
-    justify-content: center;
-}
-
-.search>input {
-    width: calc(602rpx - 4em);
-    height: 54rpx;
-    margin: 20rpx calc(74rpx - 2em);
-    /* margin-left: 34rpx; */
-    border-radius: 28rpx;
-    text-align: center;
-    padding-left: 1em;
-    padding-right: 1em;
-    background-color: #F0F0F0;
-    font-weight: 400;
-    color: rgba(153, 153, 153, 1);
-    font-size: 24rpx;
-    font-family: PingFangSC-Regular, PingFang SC;
-    float: left;
-}
+/* pages/cus/search/index.wxss */
 
 .icon {
     width: 28rpx;
@@ -57,17 +18,6 @@
 .icon>image {
     width: 100%;
     height: 100%;
-}
-
-.search>.word {
-    margin: 34rpx 24rpx;
-    font-size: 28rpx;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    color: rgba(33, 55, 61, 1);
-    float: left;
-    line-height: 28rpx;
-    height: 28rpx;
 }
 
 
@@ -118,9 +68,9 @@
 
 .cusList {
     width: 100%;
-    height: auto;
     display: inline-block;
-    background-color: white;    
+    background-color: white;
+    padding-bottom: 160rpx;
 }
 
 .cusList>.cusDetail {
@@ -167,13 +117,20 @@
     margin-top: 16rpx;
     margin-left: 24rpx;
 }
-.cusDetail>.right{
+
+.cusDetail>.right {
     height: 100%;
     line-height: 100%;
     margin-right: 0px;
     float: right;
 }
-.cusDetail>.right>image{
+
+.cusList>.hide{
+    transform: translateX(-10px);
+    opacity: 0;
+}
+
+.cusDetail>.right>image {
     margin-top: 69rpx;
 }
 

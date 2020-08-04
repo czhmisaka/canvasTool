@@ -18,7 +18,8 @@
     "pages/cus/tabManage/index",
     "pages/cus/cusList/index",
     "pages/cus/tabDetail/index",
-    "pages/cus/AddCusToTab/index"
+    "pages/cus/AddCusToTab/index",
+    "pages/cus/search/index"
   ],
   "tabBar": {
     "color": "#B3B6BF",

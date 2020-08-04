@@ -7,11 +7,16 @@ Page({
   data: {
     cusList: [],
     options: {},
-    isRefresh: false
+    isRefresh: false,
+    canAdd: false
   },
 
   // 改变选择状态 
   checkIn(e) {
+    console.log(e)
+    if(!this.data.canAdd){
+      return app.navTo('/pages/cus/cusDetail/index?memId=' + e.currentTarget.dataset.val + '&money=' + e.currentTarget.dataset.money)
+    }
     let {
       cusList
     } = this.data
@@ -39,10 +44,10 @@ Page({
         memberIds,
         storeId: getApp().globalData.shopInfo.storeVo.id
       }
-    }).then(res=>{
-      if(res.code==200){
+    }).then(res => {
+      if (res.code == 200) {
         app.successTimeOutBack('添加成功')
-      }else{  
+      } else {
         app.noIconToast('添加失败')
       }
     })
@@ -59,6 +64,7 @@ Page({
     util.request({
       url: '/customer/list',
       data: {
+        keyword: '',
         pageNum,
         pageSize: 10,
         storeId: getApp().globalData.shopInfo.storeVo.id
@@ -91,14 +97,22 @@ Page({
     })
   },
 
+  // 获取搜索内容
+  searchStart(e) {
+    this.setData({
+      searchWord: e.detail.value
+    })
+  },
+
   onLoad: function (options) {
     wx.setNavigationBarTitle({
       title: '添加客户'
     })
     this.setData({
-      options
+      options,
+      canAdd: options.canAdd ? options.canAdd == 'true' : false
     })
-    pageNum = 0
+    pageNum = 1
     if (this.data.options.type)
       this.getTodayCus()
     else
@@ -111,7 +125,7 @@ Page({
   onHide: function () {},
   onUnload: function () {},
   onPullDownRefresh: function () {
-    pageNum = 0
+    pageNum = 1
     this.setData({
       isRefresh: true
     })

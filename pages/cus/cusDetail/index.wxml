@@ -9,7 +9,7 @@
         <view class="word">拿货金额￥{{options.money?options.money:0}}</view>
     </view>
     <view class="right">
-        <view class="button" bindtap="changeStatusInBlackList">让看相册</view>
+        <view class="button" bindtap="changeStatusInBlackList">{{cusDetail.isBlack?'让看相册':'不让看相册'}}</view>
     </view>
 </view>
 <view class="section">
