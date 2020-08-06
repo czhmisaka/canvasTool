@@ -1,6 +1,9 @@
 // pages/orderManage/components/customSetFastMail/customSetFastMail.js
 
 const util = require('../../../../utils/util.js')
+const {
+  WxApiRoot
+} = require('../../../../config/api.js')
 const app = getApp()
 let reduceLock = false
 Component({
@@ -112,21 +115,40 @@ Component({
       let {
         item
       } = e.currentTarget.dataset
-      let back = this.data
+      let {
+        back
+      } = this.data
       back = {
         expressName: item.name,
         expressCode: item.code,
         code: back.code,
-        orderExpressId: this.properties.checkData.fastMail ? this.properties.checkData.fastMail.orderExpressId : ''
+        orderExpressId: this.properties.checkData.fastMail ? this.properties.checkData.fastMail.orderExpressId : '',
       }
       this.cancelFast()
       this.setData({
-        back: back
+        back
       })
     },
     // 搜索快递 相关
 
-
+    // 唤起摄像头录入
+    scanCodeForMail() {
+      let that = this
+      wx.scanCode({
+        scanType: ['barCode', 'qrCode', 'datamatrix', 'pdf417'],
+        success: function (res) {
+          if (res.result) {
+            let {
+              back
+            } = that.data
+            back.code = res.result
+            that.setData({
+              back
+            })
+          }
+        }
+      })
+    },
 
     // 绑定输入
     bindInput(e) {

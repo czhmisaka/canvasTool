@@ -45,11 +45,16 @@ Component({
         photoList.push(data.photoImage)
         if (data.photoImageMore != '') {
           data.photoImageMore.split(',').forEach((item, index) => {
-            if (index < 3 && index != 0)
+            if (index < 3 && index != 0) {
               photoList.push(item)
+            }
           })
           photoNum = data.photoImageMore.split(',').length
         }
+        photoList.forEach((item, i) => {
+          if (item[0] != 'h')
+            photoList[i] = getApp().getCdnEnv()+item
+        })
       }
       if (data.goodsPriceVos && data.goodsPriceVos.length != 0) {
         let list = data.goodsPriceVos

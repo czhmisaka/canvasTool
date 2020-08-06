@@ -1,4 +1,4 @@
-const config = require('../config/config.js');
+const {config} = require('../config/config.js');
 const util = require('./util.js');
 
 // 简化弹窗
@@ -45,6 +45,11 @@ const showModal = (content, title = "") => {
             }
         })
     })
+}
+
+// 获取 图片拼接地址
+const getCdnEnv = () => {
+    return config.cdn
 }
 
 // 获取快递信息
@@ -212,6 +217,7 @@ const navTo = (url) => {
 
 
 module.exports = {
+    getCdnEnv,
     toHomePage,
     setSearchHistoryStorage,
     cleanSearchHistoryStorage,

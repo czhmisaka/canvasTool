@@ -26,14 +26,9 @@ const getEnv = () => {
 
 const checkEnv = function () {
   return new Promise((resolve, reject) => {
-    // getEnv().then(env=>{
-    //   resolve(env)
-    // })
-    // let env = getApp().globalData.ossEnv
     if (!env.host) {
       let times = 0
       let timer = setInterval(() => {
-        // let env = getApp().globalData.ossEnv
         if (env.host) {
           let res = env
           resolve(res)
@@ -65,7 +60,7 @@ const clearEnv = () => {
  *@param - successc:成功回调
  *@param - failc:失败回调
  */
-const uploadFile = (filePath, clear = false) => {
+const uploadFile = (filePath, clear = false, fullPath = false) => {
   return new Promise((resolve, reject) => {
     getEnv().then((res) => {
       if (!filePath || filePath.length < 9) {
@@ -76,7 +71,8 @@ const uploadFile = (filePath, clear = false) => {
         })
         return;
       }
-      const aliyunFileKey = res.dir + new Date().getTime() + Math.floor(Math.random() * 150) + '.png';
+      const fileType = '.' + filePath.split('.')[filePath.split('.').length - 1]
+      const aliyunFileKey = res.dir + new Date().getTime() + Math.floor(Math.random() * 150) + fileType;
       const aliyunServerURL = res.host;
       const accessid = res.accessId;
       wx.uploadFile({
@@ -94,10 +90,13 @@ const uploadFile = (filePath, clear = false) => {
           if (res.statusCode != 200) {
             reject();
           }
-          if(clear){
+          if (clear) {
             clearEnv()
           }
-          resolve(aliyunServerURL + '/' + aliyunFileKey)
+          if (fullPath)
+            resolve(aliyunServerURL + '/' + aliyunFileKey) // 全路径上传
+          else
+            resolve(aliyunFileKey) // 残路径上传
         },
         fail: function (err) {
           err.wxaddinfo = aliyunServerURL;

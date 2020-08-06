@@ -8,13 +8,14 @@ Page({
     cusList: [],
     options: {},
     isRefresh: false,
-    canAdd: false
+    canAdd: false,
+    keyword: ''
   },
 
   // 改变选择状态 
   checkIn(e) {
     console.log(e)
-    if(!this.data.canAdd){
+    if (!this.data.canAdd) {
       return app.navTo('/pages/cus/cusDetail/index?memId=' + e.currentTarget.dataset.val + '&money=' + e.currentTarget.dataset.money)
     }
     let {
@@ -64,7 +65,7 @@ Page({
     util.request({
       url: '/customer/list',
       data: {
-        keyword: '',
+        keyword: this.data.keyword,
         pageNum,
         pageSize: 10,
         storeId: getApp().globalData.shopInfo.storeVo.id
@@ -100,14 +101,28 @@ Page({
   // 获取搜索内容
   searchStart(e) {
     this.setData({
-      searchWord: e.detail.value
+      keyword: e.detail.value
     })
+    pageNum = 1
+    this.setData({
+      isRefresh: true
+    })
+    this.getCusList()
   },
 
   onLoad: function (options) {
-    wx.setNavigationBarTitle({
-      title: '添加客户'
-    })
+    if (options.search) {
+      this.setData({
+        keyword:options.search
+      })
+      wx.setNavigationBarTitle({
+        title: '检索客户'
+      })
+    } else {
+      wx.setNavigationBarTitle({
+        title: '检索客户'
+      })
+    }
     this.setData({
       options,
       canAdd: options.canAdd ? options.canAdd == 'true' : false
@@ -119,9 +134,7 @@ Page({
       this.getCusList()
   },
   onReady: function () {},
-  onShow: function () {
-
-  },
+  onShow: function () {},
   onHide: function () {},
   onUnload: function () {},
   onPullDownRefresh: function () {

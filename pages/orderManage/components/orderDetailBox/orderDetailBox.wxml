@@ -2,7 +2,7 @@
 
 <view class="order" bindtap="toDetail" wx:if="{{TaskType!=''?order_Detail.orderStatus==TaskType:true}}">
     <view class="left">
-        <image src="{{order_Detail.goodsImg[0]}}" />
+        <image src="{{order_Detail.goodsImg[0][0]!='h'?cdn+order_Detail.goodsImg[0]:order_Detail.goodsImg[0]}}" />
     </view>
     <view class="left">
         <view class="title">

@@ -48,7 +48,7 @@ Component({
   },
 
   data: {
-
+    cdn:getApp().getCdnEnv()
   },
 
   methods: {

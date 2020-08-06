@@ -1,4 +1,8 @@
 // components/photoFall/photoBox/photoBox.js
+const {
+  config
+} = require('../../../config/config.js')
+
 Component({
   /**
    * 组件的属性列表
@@ -22,21 +26,14 @@ Component({
     show: false,
     number: 0,
     price: '',
-    whatever: false
+    whatever: false,
+    cdn:config.cdn
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-
-    // 前往分享 已废弃
-    toShare: function (e) {
-      wx.navigateTo({
-        url: '/pages/canvas/index?type=goods&id=' + this.data.photo.id
-      })
-    },
-
     // 调起通用分享接口
     share(e) {
       this.triggerEvent('returnBack', {
@@ -80,7 +77,7 @@ Component({
         that.setData({
           show: true
         })
-      }, this.properties.index * 100)
+      }, this.properties.index * 50)
     },
     toDetail: function (e) {
       wx.navigateTo({

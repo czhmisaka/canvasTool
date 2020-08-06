@@ -3,7 +3,7 @@
 <view class="cus">
     <view class="whiteBg">
         <view class="search">
-            <input type="text" placeholder="搜索客户" value="{{searchValue}}" bindconfirm="searchStart"
+            <input type="text" placeholder="搜索客户" value="{{keyword}}" bindconfirm="searchStart"
                 bindinput="searchInput">
             </input>
         </view>

@@ -46,7 +46,7 @@ Page({
         item.isBuyer = 1
       })
       let cusList = []
-      res.forEach(item=>{
+      res.forEach(item => {
         cusList.push(item)
       })
       this.setData({
@@ -92,6 +92,11 @@ Page({
         type: '今日粉丝'
       }])
     })
+  },
+
+  // 前往搜索
+  searchStart(e) {
+    app.navTo('/pages/cus/AddCusToTab/index?canAdd=false&search=' + e.detail.value)
   },
 
 

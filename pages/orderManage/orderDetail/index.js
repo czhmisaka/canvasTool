@@ -17,7 +17,8 @@ Page({
     fastMailMsg: {},
     showFastBox: false,
     priceStatus: false,
-    price: 0
+    price: 0,
+    cdn: app.getCdnEnv()
   },
 
 
@@ -135,6 +136,7 @@ Page({
       fastMailMsg: back
     })
     if (!back.expressName) return 0;
+    if (!back.code) return 0;
     wx.showLoading({
       mask: true
     })
@@ -257,6 +259,8 @@ Page({
               })
             }
           })
+        }else{
+          app.noIconToast(res.msg)
         }
       })
     })

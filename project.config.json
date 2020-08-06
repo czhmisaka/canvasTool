@@ -235,6 +235,13 @@
 					"pathName": "pages/cus/search/index",
 					"query": "search=c",
 					"scene": null
+				},
+				{
+					"id": 24,
+					"name": "搜索客户-仅供查看信息",
+					"pathName": "pages/cus/AddCusToTab/index",
+					"query": "search=c&canAdd=false",
+					"scene": null
 				}
 			]
 		}

@@ -15,7 +15,7 @@
     margin-bottom: 20rpx;
 }
 
-.iamgeBox {
+.imageBox {
     width: calc(100% - 4rpx);
     height: auto;
     margin: 0rpx auto;
@@ -25,7 +25,7 @@
     overflow-y: auto;
 }
 
-.iamgeBox>.image {
+.imageBox>.image {
     width: 160rpx;
     height: 160rpx;
     margin: 32rpx;
@@ -39,13 +39,39 @@
     height: 100%;
 }
 
+.image>video {
+    border-radius: 8rpx;
+    width: 100%;
+    height: 100%;
+}
+
+.image>.wholeScreenVideo {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0rpx;
+    left: 0rpx;
+    z-index: 10000;
+}
+
 .image>.icon {
     position: relative;
     width: 32rpx;
     height: 32rpx;
     margin-left: 144rpx;
     margin-top: -186rpx;
+}
 
+.image>.duration {
+    position: absolute;
+    height: 32rpx;
+    margin-left: 10rpx;
+    margin-top: -54rpx;
+    color: white;
+    font-size: 20rpx;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 20rpx;
+    padding: 0rpx 20rpx;
 }
 
 .wordBox {
@@ -64,6 +90,7 @@
     /* color: rgba(153, 153, 153, 1); */
     color: #666;
     line-height: 40rpx;
+    z-index: 0;
 }
 
 .textarea-show {
@@ -157,6 +184,6 @@
     color: white;
 }
 
-.bottomBtnList>.longBotton{
-    width:560rpx;
+.bottomBtnList>.longBotton {
+    width: 560rpx;
 }

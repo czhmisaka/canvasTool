@@ -25,7 +25,7 @@
     {{order.orderStatus == 0 ? '已取消' : order.orderStatus == 10 ? '待付款' : order.orderStatus == 20 ? '待发货':order.orderStatus == 30 ? '待收货':order.orderStatus == 40 ? '交易完成':order.orderStatus == 50 ? '已下单，待商家接单':order.orderStatus == 60 ? '商家已接单':''}}
   </text> -->
   <view class="orderItemBox" wx:for="{{order.goodsList}}" wx:key="goodsId">
-    <image class="orderDetailImg" src="{{item.goodsImage}}"></image>
+    <image class="orderDetailImg" src="{{item.goodsImage[0]!='h'?cdn+item.goodsImage:item.goodsImage}}"></image>
     <text class="orderDetailName">{{item.goodsName}}</text>
     <view class="orderDetailPrice"><span class="small"><span
           class="gray">¥{{item.goodsPrice}}</span>*{{item.goodsNum}}=</span>¥{{item.goodsNum*item.goodsPrice}}</view>
@@ -43,8 +43,8 @@
     <view class="left black">订单总额</view>
     <view class="right redColor" wx:if="{{!priceStatus}}">￥{{order.orderAmount}}</view>
     <view wx:if="{{priceStatus}}" bindtap="checkPrice" class="right button">修改</view>
-    <input class="right" wx:if="{{priceStatus}}" value="{{price}}" type="digit" focus="{{priceStatus}}" bindconfirm="checkPrice" bindinput="bindPrice"
-      placeholder="请输入价格" />
+    <input class="right" wx:if="{{priceStatus}}" value="{{price}}" type="digit" focus="{{priceStatus}}"
+      bindconfirm="checkPrice" bindinput="bindPrice" placeholder="请输入价格" />
     <view class="right icon32">
       <image src="/static/images/icon_page/ic_xgjg.png" class="changeSizeFrom32To28"
         wx:if="{{order.orderStatus==50&&!priceStatus}}" bindtap="changePriceStatus" />

@@ -1,7 +1,7 @@
 // components/shareToast/shareToast.js
 const util = require('../../utils/util.js')
+const config = require('../../config/config.js')
 const app = getApp()
-
 Component({
   /**
    * 组件的属性列表
@@ -28,7 +28,8 @@ Component({
     shareImage: '',
     data: {},
     detail: {},
-    showTabbar: true
+    showTabbar: true,
+    cdn: config.config.cdn
   },
 
   /**
@@ -70,8 +71,7 @@ Component({
           id: id,
           type: 'toOther'
         },
-        success(res) {
-        }
+        success(res) {}
       })
     },
 
@@ -264,16 +264,7 @@ Component({
             top: 465,
             left: 170 - 13 * 16 / 2,
             bolder: true
-          }, {
-            type: 'text',
-            content: '播款-好客多',
-            fontSize: 13,
-            color: '#fff',
-            textAlign: 'left',
-            top: 525,
-            left: 170 - 6 * 13 / 2,
-            bolder: true
-          }]
+          }, ]
         }
       })
     },
@@ -326,7 +317,7 @@ Component({
             },
             {
               type: 'image',
-              url: goodDetail.photoImage,
+              url: (goodDetail.photoImage[0] != 'h' ? this.data.cdn : '') + goodDetail.photoImage,
               top: 90,
               left: 20,
               width: 300,

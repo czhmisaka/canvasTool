@@ -2,9 +2,12 @@
 <view class="photo {{show?'':'gray'}}">
     <view class="{{show?'show':'hidden'}}">
         <view class="imageBox">
-            <image class="image" mode="widthFix" bindtap="toDetail" src="{{photo.photoImage+'?x-oss-process=image/resize,l_300'}}"
-                wx:if="{{photo.photoImage}}" bindload="loadOver" />
-            <video class="widthFix" src="{{photo.photoVedio}}" wx:if="{{photo.photoVedio}}" />
+            <image class="image" mode="widthFix" bindtap="toDetail"
+                src="{{(photo.photoImage[0]!='h'?cdn:'')+photo.photoImage+'?x-oss-process=image/resize,l_300'}}"
+                wx:if="{{photo.photoImage&&!photo.photoVedio}}" bindload="loadOver" />
+            <video class="widthFix" show-fullscreen-btn="{{false}}" show-play-btn="{{false}}" controls="{{false}}" show-center-play-btn="{{false}}"
+                src="{{(photo.photoVedio!='h'?cdn:'')+photo.photoVedio}}" object-fit='fill'
+                wx:if="{{photo.photoVedio}}"  bindtap="toDetail" bindplay="loadOver" muted="{{true}}" autoplay="{{true}}" />
             <view class="info">
                 <view class="icon" wx:if="{{!photo.photoImage}}">
                     <image class="image" src="/static/images/icon_page/ic_sp.png" />

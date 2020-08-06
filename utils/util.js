@@ -44,6 +44,7 @@ let request = obj => {
         },
         method: obj.method || 'post',
         success(res) {
+          console.log('asd', res)
           resolve(res.data)
         }
       })
@@ -147,54 +148,12 @@ let toLogin = (fromPage) => {
   try {
     getApp().cleanGlobalData()
     getApp().cleanStorage()
-  } catch (e) {} finally {
+  } catch (e) {
+    getApp().noIconToast('清楚缓存失败:' + e)
+  } finally {
     return getApp().toLoginPage(fromPage ? fromPage : route)
   }
 }
-
-let uploadPhoto = (obj, callback, msg_fail_callback) => {
-  if (obj.index === obj.tmpFilePath.length) return
-  const MY_NAMESPACE = '1b671a64-40d5-491e-99b0-da01ff5f3341';
-  let fileName = uuidv5(get_random() + obj.uid + Date.now().toString(), MY_NAMESPACE);
-  //获取文件后缀
-  let fileExt = obj.tmpFilePath[obj.index].replace(/.+\./, "");
-  let key = obj.catalog + '/messages' + '/' + obj.roomId + '/' + obj.uid + '/' + fileName + '.' + fileExt
-  cos.postObject({
-    Bucket: config.bucket,
-    Region: config.region,
-    Key: key,
-    FilePath: obj.tmpFilePath[obj.index], // wx.chooseImage 选择文件得到的 tmpFilePath
-  }, function (err, data) {
-    if (err) return msg_fail_callback && msg_fail_callback(obj.msg_list[obj.index])
-    callback && callback('https://' + data.Location, obj.msg_list[obj.index])
-    obj.index = obj.index + 1
-    uploadPhoto(obj, callback)
-  })
-}
-let myUploadFile = obj => {
-  obj.url = obj.url || '/'
-  let baseUrl = config.api_protocal + config.api_server // 'https://match-dev.new-talk.cn'
-  return new Promise((resolve, reject) => {
-    wx.uploadFile({
-      url: baseUrl + obj.url,
-      filePath: obj.filePath,
-      header: {
-        'Content-Type': 'multipart/form-data',
-        // 'Authorization': wx.getStorageSync("access_token"),  //如果需要token的话要传
-        'token': getApp().globalData.accessToken ? getApp().globalData.accessToken.Token : ''
-      },
-      name: obj.name || 'file',
-      formData: obj.formData || {},
-      success(res) {
-        resolve(res)
-      },
-      fail(err) {
-        reject(err)
-      }
-    })
-  })
-};
-
 
 let handleNewsNum = (num, app) => {
   if (num < 0) return
@@ -310,11 +269,9 @@ module.exports = {
   validateNumber,
   get_random,
   request,
-  myUploadFile,
   getTouchData,
   formatTime,
   handleNewsNum,
-  uploadPhoto,
   formatTime: formatTime,
   cartesianProductOf,
   getConfig

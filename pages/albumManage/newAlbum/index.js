@@ -3,6 +3,9 @@
 const uploadImage = require('../../../utils/js/uploadImg.js');
 const utils = require('../../../utils/util.js');
 const util = require('../../../utils/util.js');
+const {
+  config
+} = require('../../../config/config.js');
 const app = getApp()
 let times = 0
 Page({
@@ -11,6 +14,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    cdn: config.cdn,
     imageList: [],
     word: '',
     goodsList: [],
@@ -30,7 +34,9 @@ Page({
       title: '',
       tabList: []
     }, // 自定义组件 显示数据
-
+    isVideo: false,
+    videoDetail: [],
+    wholePlay: false
   },
 
   // 绑定输入
@@ -48,8 +54,15 @@ Page({
   preWatchImg(e) {
     wx.previewImage({
       current: e.currentTarget.dataset.url,
-      urls: this.data.imageList   
+      urls: this.data.isVideo ? [this.data.videoDetail.thumbTempFilePath] : this.data.imageList
     });
+  },
+
+  // 预览视频
+  toWholePlay(e) {
+    this.setData({
+      wholePlay: true
+    })
   },
 
   // 选择图片
@@ -58,30 +71,42 @@ Page({
       title: '暂时不支持修改',
       icon: 'none',
     });
-    wx.chooseImage({
+    wx.chooseMedia({
       count: (20 - this.data.imageList.length) > 9 ? '9' : (20 - this.data.imageList.length),
-      sizeType: ['compressed','original'],
+      sizeType: ['compressed', 'original'],
+      mediaType: this.data.imageList.length != 0 ? ['image'] : ['image', 'video'],
       sourceType: ['album', 'camera'],
+      maxDuration: 30,
       success: res => {
-        let {
-          imageList
-        } = this.data
-        res.tempFilePaths.forEach(item => {
-          if (imageList.length < 20) {
-            imageList.push(item)
-          } else {
-            this.setData({
-              imageList
-            })
-            return wx.showToast({
-              title: '最多上传20张图哦',
-              icon: 'none',
-            });
-          }
-        })
-        this.setData({
-          imageList
-        })
+        console.log(res)
+        if (res.type == "image") {
+          let {
+            imageList
+          } = this.data
+          res.tempFiles.forEach(item => {
+            if (imageList.length < 20) {
+              imageList.push(item.tempFilePath)
+            } else {
+              this.setData({
+                imageList
+              })
+              return wx.showToast({
+                title: '最多上传20张图哦',
+                icon: 'none',
+              });
+            }
+          })
+          this.setData({
+            imageList
+          })
+        } else if (res.type == "video") {
+          let videoDetail = res.tempFiles[0]
+          videoDetail.duration = Math.round(videoDetail.duration, 4) + ' s'
+          this.setData({
+            videoDetail,
+            isVideo: true
+          })
+        }
       }
     });
   },
@@ -103,25 +128,44 @@ Page({
     })
   },
 
+  // 删除视频
+  deleteVideo: function (e) {
+    this.setData({
+      videoDetail: {},
+      isVideo: false
+    })
+  },
+
   // 上传图片预处理 -- 新建
   submit: function (e) {
     let that = this
     let {
-      imageList
+      imageList,
+      videoDetail
     } = that.data
-    if (imageList.length == 0) return wx.showToast({
-      title: '请上传图片后提交',
-      icon: 'none',
-    });
-    app.setNeedRefresh('pages/albumManage/albumManageMain/index', {
-      refresh: true
-    })
-    wx.showLoading({
-      title: '上传中',
-      mask: true,
-      success: res => {}
-    });
-    that.upload(imageList)
+    if (imageList.length == 0) {
+      if (!videoDetail.duration) return app.noIconToast('请选择照片或者视频后提交')
+      else {
+        app.setNeedRefresh('pages/albumManage/albumManageMain/index', {
+          refresh: true
+        })
+        wx.showLoading({
+          title: '上传中',
+          mask: true
+        });
+        that.upload([videoDetail.thumbTempFilePath, videoDetail.tempFilePath])
+      }
+    } else {
+      app.setNeedRefresh('pages/albumManage/albumManageMain/index', {
+        refresh: true
+      })
+      wx.showLoading({
+        title: '上传中',
+        mask: true,
+        success: res => {}
+      });
+      that.upload(imageList)
+    }
   },
 
   // 上传图片
@@ -157,21 +201,26 @@ Page({
       if (index < imageSrcList.length - 1)
         photoImageMore += ','
     })
+    let data = {
+      "contentType": 0,
+      "goodsId": this.data.goodsId,
+      "goodsPriceAddDtos": this.data.goodsPriceAddDtos,
+      "photoDesc": this.data.word,
+      "photoImage": imageSrcList[0],
+      "photoImageMore": photoImageMore,
+      "photoVedio": "",
+      "photoVedioMore": "",
+      "storeId": app.globalData.shopInfo.storeVo.id,
+      "goodsSerial": this.data.goodsSerial
+    }
+    if (this.data.isVideo) {
+      data.photoImageMore = []
+      data.photoVedio = imageSrcList[1]
+    }
     if (this.data.goodsId && this.data.goodsPriceAddDtos.length < 1) return this.show('请添加价格信息')
     utils.request({
       url: '/photo/add',
-      data: {
-        "contentType": 0,
-        "goodsId": this.data.goodsId,
-        "goodsPriceAddDtos": this.data.goodsPriceAddDtos,
-        "photoDesc": this.data.word,
-        "photoImage": imageSrcList[0],
-        "photoImageMore": photoImageMore,
-        "photoVedio": "",
-        "photoVedioMore": "",
-        "storeId": app.globalData.shopInfo.storeVo.id,
-        "goodsSerial": this.data.goodsSerial
-      }
+      data
     }).then(res => {
       wx.hideLoading();
       if (res.data) {
@@ -246,23 +295,40 @@ Page({
   // 图片相册处理
   imageAlbumInitFn: function (data) {
     let price = []
+    let imageList = []
+    let videoDetail = {}
+    let isVideo = false
+    if (data.photoVedio) {
+      videoDetail.thumbTempFilePath = (data.photoImage[0] != 'h' ? this.data.cdn : '') + data.photoImage
+      videoDetail.tempFilePath = (data.photoVedio[0] != 'h' ? this.data.cdn : '') + data.photoVedio
+      isVideo = true
+    } else {
+      data.photoImageMore.split(',').forEach(item => {
+        if (item[0] != 'h')
+          imageList.push(getApp().getCdnEnv() + item)
+        else
+          imageList.push(item)
+      })
+    }
     data.goodsPriceVos.forEach(item => {
       price.push(item)
     })
     price = price.sort((a, b) => {
       return a.goodsPrice - b.goodsPrice
     })
+    wx.setNavigationBarTitle({
+      title: '查看相册'
+    })
     this.setData({
+      isVideo,
       albumData: data,
       goodsSerial: data.goodsSerial,
-      imageList: data.photoImageMore.split(','),
+      imageList,
       word: data.photoDesc,
-      price
+      price,
+      videoDetail
     })
   },
-
-  // 视频相册处理
-  videoAlbumInitFn: function (data) {},
 
   // 获取相册详情
   getAlbumDetial: function (id) {

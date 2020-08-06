@@ -85,7 +85,7 @@ Page({
       title: '上传中',
       mask: true
     })
-    uploadImage(e.detail.url, true).then((result) => {
+    uploadImage(e.detail.url, true, true).then((result) => {
       wx.hideLoading()
       wx.showToast({
         title: '上传成功'

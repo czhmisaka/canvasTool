@@ -1,12 +1,4 @@
 <!--pages/cropper/cropper-sample.wxml-->
 <view class='body'>
 
-    <cropper id='cropper' class='stage'></cropper>
-
-    <view class='bar'>
-        <view class='btn btn-cancel ripple' bindtap='fnCancel'>取消</view>
-        <view class='btn btn-submit ripple' bindtap='fnSubmit'>确定</view>
-        <button class='btn btn-submit ripple' bindtap="formatImage"></button>
-    </view>
-
 </view>

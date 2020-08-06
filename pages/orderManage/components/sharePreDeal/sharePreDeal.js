@@ -29,8 +29,6 @@ Component({
 
     // 微信登录信息
     login(e) {
-      // this.toOtherMiniProgram(this.data.options.id)
-      // return 0 
       let {
         encryptedData,
         iv
@@ -46,15 +44,11 @@ Component({
         },
         type: 'noLogin'
       }).then(result => {
-        // wx.showToast({
-        //   title: JSON.stringify(result), //提示的内容,
-        //   icon: 'none', //图标,
-        //   duration: 2000, //延迟时间,
-        // });
         if (result.data && result.data.type == "1") {
           that.setData({
             close: false
           })
+          util.noLoginShowToast()
           that.returnBack()
         } else {
           that.toOtherMiniProgram(that.data.options.id)

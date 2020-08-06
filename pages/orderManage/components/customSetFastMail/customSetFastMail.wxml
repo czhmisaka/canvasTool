@@ -17,7 +17,7 @@
         </view>
         <view class="section">
             <view class="left">物流单号</view>
-            <view class="right icon32">
+            <view class="right icon32" bindtap="scanCodeForMail">
                 <image src="/static/images/icon_page/ic_wldh.png" />
             </view>
             <view class="right">
