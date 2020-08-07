@@ -3,7 +3,7 @@
     <view class="{{show?'show':'hidden'}}">
         <view class="imageBox">
             <image class="image" mode="widthFix" bindtap="toDetail"
-                src="{{(photo.photoImage[0]!='h'?cdn:'')+photo.photoImage+'?x-oss-process=image/resize,l_300'}}"
+                src="{{(photo.photoImage[0]!='h'?cdn:'')+photo.photoImage+'?x-oss-process=image/resize,l_600'}}"
                 wx:if="{{photo.photoImage&&!photo.photoVedio}}" bindload="loadOver" />
             <video class="widthFix" show-fullscreen-btn="{{false}}" show-play-btn="{{false}}" controls="{{false}}" show-center-play-btn="{{false}}"
                 src="{{(photo.photoVedio!='h'?cdn:'')+photo.photoVedio}}" object-fit='fill'

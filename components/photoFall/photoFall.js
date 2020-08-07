@@ -56,9 +56,7 @@ Component({
     // 去添加新相册
     toAdd: function () {
       if (!app.globalData.isLogin) return utils.toLogin()
-      wx.navigateTo({
-        url: '/pages/albumManage/newAlbum/index'
-      });
+      app.navTo('/pages/albumManage/newAlbum/index');
     },
 
     // 分享用 回调函数
@@ -72,8 +70,8 @@ Component({
       if (!finish) return wx.showToast({
         title: '再滑也没有啦！',
         icon: 'none',
-        duration: 2000,
-        mask: true,
+        duration: 1000,
+        mask: false,
       });
       this.getPhotoList(page)
     },
@@ -88,7 +86,7 @@ Component({
           data: {
             storeId: this.properties.storeId,
             pageNum: num,
-            pageSize: 6
+            pageSize: 12
           }
         }).then((res) => {
           if (res.data.pages === page)
@@ -132,7 +130,7 @@ Component({
         })
         setTimeout(() => {
           that.compareAndFix()
-        }, 100)
+        }, 160)
       })
     }
   }

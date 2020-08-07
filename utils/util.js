@@ -28,6 +28,7 @@ let getConfig = (type = "baseUrl") => {
 let request = obj => {
   obj.url = obj.url || '/'
   let baseUrl = config.api_protocal + config.api_server
+  let setRequest = new getApp().setRequest(obj)
   if (obj.type && obj.type == "noLogin") {
     return new Promise((resolve, reject) => {
       if (getApp().globalData.accessToken) {

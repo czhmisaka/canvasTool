@@ -352,9 +352,7 @@ Page({
       title: '暂时不支持修改',
       icon: 'none',
     });
-    wx.navigateTo({
-      url: e.currentTarget.dataset.url
-    });
+    app.navTo(e.currentTarget.dataset.url);
   },
 
   // 通用弹窗提示

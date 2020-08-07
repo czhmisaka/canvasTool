@@ -14,7 +14,7 @@ Component({
         } = this.properties
         let status, time;
         // time = this.timeset(new Date(order_Detail.createTime))
-        time = order_Detail.createTime.replace('T',' ')
+        time = order_Detail.createTime.replace('T', ' ')
         switch (order_Detail.orderStatus) {
           case 0:
             status = '已取消';
@@ -48,14 +48,12 @@ Component({
   },
 
   data: {
-    cdn:getApp().getCdnEnv()
+    cdn: getApp().getCdnEnv()
   },
 
   methods: {
     toDetail: function (e) {
-      wx.navigateTo({
-        url: "../orderDetail/index?id=" + this.properties.order_Detail.orderId
-      })
+      getApp().navTo("../orderDetail/index?id=" + this.properties.order_Detail.orderId)
     },
     timeset: function (date) {
       return util.formatTime(date)

@@ -84,9 +84,7 @@ Component({
 
     // 前往详情
     toDetail: function (e) {
-      wx.navigateTo({
-        url: '/pages/albumManage/newAlbum/index?id=' + this.properties.data.id
-      });
+      getApp().navTo('/pages/albumManage/newAlbum/index?id=' + this.properties.data.id);
     },
 
     // 选择函数

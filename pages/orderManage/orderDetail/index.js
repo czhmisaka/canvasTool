@@ -98,7 +98,7 @@ Page({
   // 展开和收起快递
   chanegShowFastBox(e) {
     this.setData({
-      showFastBox: true
+      showFastBox: !this.data.showFastBox
     })
   },
 
@@ -236,7 +236,7 @@ Page({
         data: {},
         method: 'get'
       }).then((res) => {
-        if (res.data.success) {
+        if (res.data && res.data.success) {
           wx.showToast({
             title: '接单成功'
           })
@@ -259,7 +259,7 @@ Page({
               })
             }
           })
-        }else{
+        } else {
           app.noIconToast(res.msg)
         }
       })

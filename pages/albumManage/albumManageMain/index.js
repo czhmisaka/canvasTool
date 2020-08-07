@@ -284,9 +284,7 @@ Page({
     if (query) {
       url = url + query
     }
-    wx.navigateTo({
-      url: url
-    });
+    app.navTo(url)
   },
 
   // 批量选择 -状态切换

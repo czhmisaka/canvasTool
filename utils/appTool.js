@@ -209,6 +209,8 @@ const toLoginPage = (fromPage) => {
     });
 }
 
+
+// 通用跳转函数
 const navTo = (url) => {
     wx.navigateTo({
         url

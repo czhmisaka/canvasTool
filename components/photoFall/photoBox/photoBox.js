@@ -80,9 +80,7 @@ Component({
       }, this.properties.index * 50)
     },
     toDetail: function (e) {
-      wx.navigateTo({
-        url: '/pages/albumManage/newAlbum/index?id=' + this.properties.photo.id
-      });
+      getApp().navTo('/pages/albumManage/newAlbum/index?id=' + this.properties.photo.id);
     }
   }
 })

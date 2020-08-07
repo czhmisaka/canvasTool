@@ -1,5 +1,6 @@
 const utils = require('utils/util.js')
 const tools = require('utils/appTool.js')
+const dataWork = require('utils/dataWork/dataWork.js')
 const {
   config
 } = require('config/config.js')
@@ -22,12 +23,18 @@ App({
     refreshHome: false,
     ossEnv: {},
     needRefresh: [],
-    onShowOptions: {}
+    onShowOptions: {},
+    dataWorkHistory: []
   },
+
+  ...dataWork,
   ...tools,
 
   onShow: function (options) {
     this.globalData.onShowOptions = options.query
+    setTimeout(() => {
+      this.setSceneWhenMPStart(options)
+    }, 1000)
   },
 
   onHide: function () {

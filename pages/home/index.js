@@ -28,16 +28,12 @@ Page({
   shareShopName() {},
   toPhotoManage() {
     if (!app.globalData.isLogin) return util.toLogin()
-    wx.navigateTo({
-      url: '/pages/albumManage/albumManageMain/index'
-    });
+    app.navTo('/pages/albumManage/albumManageMain/index');
   },
 
   navTo(e) {
     if (!app.globalData.isLogin) return util.toLogin()
-    wx.navigateTo({
-      url: e.currentTarget.dataset.url
-    })
+    app.navTo( e.currentTarget.dataset.url)
   },
 
   // 获取 首页详情

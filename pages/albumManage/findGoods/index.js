@@ -35,9 +35,7 @@ Page({
 
   // 通用跳转
   navTo(e) {
-    wx.navigateTo({
-      url: e.currentTarget.dataset.url
-    });
+    app.navTo( e.currentTarget.dataset.url);
   },
 
   onLoad: function (options) {
