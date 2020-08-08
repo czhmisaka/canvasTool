@@ -37,6 +37,7 @@ Page({
   },
 
   onLoad: function (options) {
+    let setPageLife = new getApp().setPageLife()
     this.getShopList()
   },
   onReady: function () {},

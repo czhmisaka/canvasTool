@@ -33,7 +33,7 @@ Page({
 
   navTo(e) {
     if (!app.globalData.isLogin) return util.toLogin()
-    app.navTo( e.currentTarget.dataset.url)
+    app.navTo(e.currentTarget.dataset.url)
   },
 
   // 获取 首页详情
@@ -119,7 +119,9 @@ Page({
   },
 
 
-  onLoad: function (options) {},
+  onLoad: function (options) {
+    let setPageLife = new getApp().setPageLife()
+  },
   onReady: function () {},
   onShow: function () {
     this.getShopDetail()

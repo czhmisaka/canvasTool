@@ -85,6 +85,7 @@ Page({
   },
 
   onLoad: function (options) {
+    let setPageLife = new getApp().setPageLife()
     wx.setNavigationBarTitle({
       title: '标签管理'
     })

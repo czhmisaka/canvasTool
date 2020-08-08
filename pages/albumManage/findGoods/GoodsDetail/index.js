@@ -360,6 +360,7 @@ Page({
 
 
   onLoad: function (options) {
+    let setPageLife = new getApp().setPageLife()
     if (options.id) {
       this.setData({
         goodsId: options.id

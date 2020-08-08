@@ -196,7 +196,8 @@ Page({
     this.switchSubtitle(0)
     this.initOrderList()
   },
-  onLoad: function (options) {},
+  onLoad: function (options) {
+    let setPageLife = new getApp().setPageLife()},
   onReady: function () {},
   onShow: function () {
     if (!app.globalData.isLogin) return util.toLogin()

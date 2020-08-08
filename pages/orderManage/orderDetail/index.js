@@ -340,6 +340,7 @@ Page({
 
   // 进入页面加载
   onLoad: function (options) {
+    let setPageLife = new getApp().setPageLife()
     this.setData({
       id: options.id,
       _options: options

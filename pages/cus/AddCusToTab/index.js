@@ -111,6 +111,7 @@ Page({
   },
 
   onLoad: function (options) {
+    let setPageLife = new getApp().setPageLife()
     if (options.search) {
       this.setData({
         keyword:options.search

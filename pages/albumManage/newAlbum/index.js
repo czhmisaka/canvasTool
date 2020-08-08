@@ -411,6 +411,7 @@ Page({
   },
 
   onLoad: function (options) {
+    let setPageLife = new getApp().setPageLife()
     // 判断页面状态
     if (options.id) {
       this.getAlbumDetial(options.id)

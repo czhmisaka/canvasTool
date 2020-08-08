@@ -101,6 +101,7 @@ Page({
 
 
   onLoad: function (options) {
+    let setPageLife = new getApp().setPageLife()
     if (!app.globalData.isLogin) return utils.toLogin()
     this.getCusInfo()
     this.getCusList()

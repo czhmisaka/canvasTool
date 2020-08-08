@@ -251,6 +251,7 @@ Page({
 
   // 加载函数
   onLoad: function (options) {
+    let setPageLife = new getApp().setPageLife()
     let top = wx.getSystemInfoSync()
     this.setData({
       top

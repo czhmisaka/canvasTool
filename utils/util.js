@@ -28,9 +28,9 @@ let getConfig = (type = "baseUrl") => {
 let request = obj => {
   obj.url = obj.url || '/'
   let baseUrl = config.api_protocal + config.api_server
-  let setRequest = new getApp().setRequest(obj)
   if (obj.type && obj.type == "noLogin") {
     return new Promise((resolve, reject) => {
+      let setRequest = new getApp().setRequest(obj)
       if (getApp().globalData.accessToken) {
         obj.header = {
           'content-type': 'application/json',
@@ -45,12 +45,13 @@ let request = obj => {
         },
         method: obj.method || 'post',
         success(res) {
-          console.log('asd', res)
+          setRequest.success(res)
           resolve(res.data)
         }
       })
     })
   } else if (!obj.responseType) {
+    let setRequest = new getApp().setRequest(obj)
     return new Promise((resolve, reject) => {
       wx.request({
         url: baseUrl + obj.url,
@@ -64,6 +65,7 @@ let request = obj => {
           let fromPage = obj.fromPage
           switch (res.statusCode) {
             case 200:
+              setRequest.success(res) // 埋点用 
               if (res.header.Authorization) {
                 resolve(res)
               }
@@ -80,12 +82,14 @@ let request = obj => {
               resolve(res.data)
               break;
             case 503:
+              setRequest.fail(res) // 埋点用 
               return wx.showToast({
                 title: '系统开小差了',
                 icon: 'none',
               });
               break;
             case 500:
+              setRequest.fail(res) // 埋点用 
               return wx.showToast({
                 title: '系统开小差了',
                 icon: 'none',
@@ -100,6 +104,7 @@ let request = obj => {
     })
   } else {
     return new Promise((resolve, reject) => {
+      let setRequest = new getApp().setRequest(obj)
       wx.request({
         url: baseUrl + obj.url,
         data: obj.data || {},
@@ -110,6 +115,7 @@ let request = obj => {
         method: obj.method || 'post',
         responseType: obj.responseType,
         success(res) {
+          setRequest.success(res)
           resolve(res)
         }
       })

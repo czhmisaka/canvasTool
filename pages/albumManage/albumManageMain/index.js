@@ -591,7 +591,8 @@ Page({
     })
   },
 
-  onLoad: function (options) {},
+  onLoad: function (options) {
+    let setPageLife = new getApp().setPageLife()},
 
   onReady: function () {},
   onShow: function () {

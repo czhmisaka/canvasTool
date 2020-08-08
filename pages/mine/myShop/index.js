@@ -216,6 +216,7 @@ Page({
 
 
   onLoad: function (options) {
+    let setPageLife = new getApp().setPageLife()
     if (options.id) {
       this.getDetail(options.id)
       this.setData({

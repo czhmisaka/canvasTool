@@ -22,7 +22,8 @@ Page({
     app.navTo(e.currentTarget.dataset.url)
   },
 
-  onLoad: function (options) {},
+  onLoad: function (options) {
+    let setPageLife = new getApp().setPageLife()},
   onReady: function () {},
   onShow: function () {
     this.setData({

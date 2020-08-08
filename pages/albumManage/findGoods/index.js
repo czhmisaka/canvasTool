@@ -39,6 +39,7 @@ Page({
   },
 
   onLoad: function (options) {
+    let setPageLife = new getApp().setPageLife()
     this.searchStart()
   },
   onReady: function () {},
