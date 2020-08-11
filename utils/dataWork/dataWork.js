@@ -7,7 +7,7 @@ const util = require('../util.js')
 /// 一些配置项
 
 // 控制台输出/调试用
-const canConsole = true
+const canConsole = false
 // 是否保存信息到缓存中（防止漏上传等）
 const canSaveHistory = true
 // 绑定事件列表
@@ -179,15 +179,15 @@ const setAllEvent = function (page) {
     // return 0
     // let self = new Object 
     // let self = page
-    for (let item in page) {
-        if (item[0] != '_' && (typeof page[item] === 'function')) {
-            console.log(page[item].arguments,456)
-            page[item] = function(){
-                page[item]
-                console.log('asd',item)
-            }
-        }
-    }
+    // for (let item in page) {
+    //     if (item[0] != '_' && (typeof page[item] === 'function')) {
+    //         console.log(page[item].arguments,456)
+    //         page[item] = function(){
+    //             page[item]
+    //             console.log('asd',item)
+    //         }
+    //     }
+    // }
     // for (let item in page) {
     //     page[item] = self[item]
     // }

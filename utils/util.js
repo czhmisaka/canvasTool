@@ -53,53 +53,56 @@ let request = obj => {
   } else if (!obj.responseType) {
     let setRequest = new getApp().setRequest(obj)
     return new Promise((resolve, reject) => {
-      wx.request({
-        url: baseUrl + obj.url,
-        data: obj.data || {},
-        header: obj.header || {
-          'content-type': 'application/json',
-          'Authorization': getApp().globalData.accessToken ? getApp().globalData.accessToken : ''
-        },
-        method: obj.method || 'post',
-        success(res) {
-          let fromPage = obj.fromPage
-          switch (res.statusCode) {
-            case 200:
-              setRequest.success(res) // 埋点用 
-              if (res.header.Authorization) {
-                resolve(res)
-              }
-              if (res.data.code == 403) {
-                // toLogin(fromPage)
-                // return noLoginShowToast()
-                return 0
-              }
-              if (res.data.errno == 501) {
-                // toLogin(fromPage)
-                // return noLoginShowToast()
-                return 0
-              }
-              resolve(res.data)
-              break;
-            case 503:
-              setRequest.fail(res) // 埋点用 
-              return wx.showToast({
-                title: '系统开小差了',
-                icon: 'none',
-              });
-              break;
-            case 500:
-              setRequest.fail(res) // 埋点用 
-              return wx.showToast({
-                title: '系统开小差了',
-                icon: 'none',
-              });
-              break;
-          }
-        },
-        fail(err) {
-          reject(err)
-        },
+      getApp().getKeyFromGlobalData('accessToken').then(token => {
+        if (!token) return getApp().noIconToast('未登录')
+        wx.request({
+          url: baseUrl + obj.url,
+          data: obj.data || {},
+          header: obj.header || {
+            'content-type': 'application/json',
+            'Authorization': token ? token : ''
+          },
+          method: obj.method || 'post',
+          success(res) {
+            let fromPage = obj.fromPage
+            switch (res.statusCode) {
+              case 200:
+                setRequest.success(res) // 埋点用 
+                if (res.header.Authorization) {
+                  resolve(res)
+                }
+                if (res.data.code == 403) {
+                  // toLogin(fromPage)
+                  // return noLoginShowToast()
+                  return 0
+                }
+                if (res.data.errno == 501) {
+                  // toLogin(fromPage)
+                  // return noLoginShowToast()
+                  return 0
+                }
+                resolve(res.data)
+                break;
+              case 503:
+                setRequest.fail(res) // 埋点用 
+                return wx.showToast({
+                  title: '系统开小差了',
+                  icon: 'none',
+                });
+                break;
+              case 500:
+                setRequest.fail(res) // 埋点用 
+                return wx.showToast({
+                  title: '系统开小差了',
+                  icon: 'none',
+                });
+                break;
+            }
+          },
+          fail(err) {
+            reject(err)
+          },
+        })
       })
     })
   } else {

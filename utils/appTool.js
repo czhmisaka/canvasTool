@@ -1,4 +1,6 @@
-const {config} = require('../config/config.js');
+const {
+    config
+} = require('../config/config.js');
 const util = require('./util.js');
 
 // 简化弹窗
@@ -99,6 +101,29 @@ const getQuery = (e) => {
         }, 100)
     })
 }
+
+const getKeyFromGlobalData = (key) => {
+    return new Promise((res, rej) => {
+        wx.showLoading({
+            title: '获取信息中'
+        })
+        let lock = 0
+        let clock = setInterval(() => {
+            if (getApp().globalData && getApp().globalData[key]) {
+                res(getApp().globalData[key])
+                wx.hideLoading()
+                clearInterval(clock)
+            } else if (lock > 20) {
+                wx.hideLoading()
+                res("null")
+                clearInterval(clock)
+            } else {
+                lock++
+            }
+        }, 100)
+    })
+}
+
 
 //检测是否获取到uid
 const checkoutUidStatus = async function checkoutUidStatus(callback, loginStatus = true) {
@@ -237,5 +262,6 @@ module.exports = {
     toLoginPage,
     noIconToast,
     errorTimeOutBack,
-    getQuery
+    getQuery,
+    getKeyFromGlobalData
 }
