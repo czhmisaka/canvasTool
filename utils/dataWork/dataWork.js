@@ -126,6 +126,7 @@ const setPageLife = function () {
     let pageStock = getCurrentPages()
     let page = pageStock[pageStock.length - 1]
     let id = setPageVisitTime(page)
+    setAllEvent(page)
     let isClose = false
     self.data = {
         title: '页面访问时间记录',
@@ -171,6 +172,38 @@ const setNormal = async function (obj) {
         obj: obj.data
     }
     writeData(data)
+}
+
+// 全页面内函数使用记录
+const setAllEvent = function (page) {
+    // return 0
+    // let self = new Object 
+    // let self = page
+    for (let item in page) {
+        if (item[0] != '_' && (typeof page[item] === 'function')) {
+            console.log(page[item].arguments,456)
+            page[item] = function(){
+                page[item]
+                console.log('asd',item)
+            }
+        }
+    }
+    // for (let item in page) {
+    //     page[item] = self[item]
+    // }
+    // page.bindEventBack = (item) => {
+    //     console.log(item)
+    // }
+    // return self
+}
+
+const bindMethod = function (func, ) {
+    // return 
+}
+
+// 获取用户系统信息
+const setUserPhoneInfo = function () {
+    
 }
 
 // 页面访问次数记录

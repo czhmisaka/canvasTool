@@ -142,7 +142,6 @@ Page({
         path: 'pages/albumManage/newAlbum/index?id=' + sharedetail.id
       }
     }
-
   },
   onReachBottom: function () {
     this.selectComponent('#fall').getMore()
