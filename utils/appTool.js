@@ -81,18 +81,13 @@ const toHomePage = function () {
 // 确定 this.globalData.onShowOptions 的返回
 const getQuery = (e) => {
     return new Promise((res, rej) => {
-        wx.showLoading({
-            title: '获取信息中'
-        })
         let lock = 0
         let clock = setInterval(() => {
             if (getApp().globalData.onShowOptions) {
                 res(getApp().globalData.onShowOptions)
                 getApp().globalData.onShowOptions = null
-                wx.hideLoading()
                 clearInterval(clock)
             } else if (lock > 20) {
-                wx.hideLoading()
                 res("null")
                 clearInterval(clock)
             } else {
@@ -104,9 +99,6 @@ const getQuery = (e) => {
 
 const getKeyFromGlobalData = (key) => {
     return new Promise((res, rej) => {
-        wx.showLoading({
-            title: '获取信息中'
-        })
         let lock = 0
         let clock = setInterval(() => {
             if (getApp().globalData && getApp().globalData[key]) {

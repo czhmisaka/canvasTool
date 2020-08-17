@@ -9,15 +9,16 @@ function configExchange() {
     switch (envVersion) {
         case 'develop':
             return {
-                api_server: "wxapi.91bokuan.com/photo/workbench/",
-                    api_protocal: "https://",
+                api_protocal: "https://",
                     fileHost: fileHost,
-                    cdn: 'https://yunshentechoss.oss-cn-hangzhou.aliyuncs.com/',
 
-                // api_server: "wxapi.91bkw.com/photo/workbench/",
-                // api_protocal: "https://",
-                // fileHost: fileHost,
-                // cdn:'http://cdn.91bkw.com/'
+                    // api_server: "wxapi.91bokuan.com/photo/workbench/",
+                    // cdn: 'https://yunshentechoss.oss-cn-hangzhou.aliyuncs.com/',
+                    cdn: 'https://yunshentechprodoss.oss-cn-hangzhou.aliyuncs.com/', // 正式服
+                    api_server: "wxapi.91bkw.com/photo/workbench/",
+                    //     api_protocal: "https://",
+                    //     fileHost: fileHost,
+                    //     cdn: 'http://cdn.91bkw.com/'
             }
             break;
         case 'trial':
@@ -25,7 +26,8 @@ function configExchange() {
                 api_server: "wxapi.91bkw.com/photo/workbench/",
                     api_protocal: "https://",
                     fileHost: fileHost,
-                    cdn: 'http://cdn.91bkw.com/'
+                    // cdn: 'http://cdn.91bkw.com/',
+                    cdn: 'https://yunshentechprodoss.oss-cn-hangzhou.aliyuncs.com/',
             }
             // return {
             //     api_server: "wxapi.91bokuan.com/photo/workbench/",
@@ -39,7 +41,8 @@ function configExchange() {
                 api_server: "wxapi.91bkw.com/photo/workbench/",
                     api_protocal: "https://",
                     fileHost: fileHost,
-                    cdn: 'http://cdn.91bkw.com/'
+                    // cdn: 'http://cdn.91bkw.com/',
+                    cdn: 'https://yunshentechprodoss.oss-cn-hangzhou.aliyuncs.com/'
             }
     }
 }

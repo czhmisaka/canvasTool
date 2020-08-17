@@ -50,7 +50,6 @@ Page({
         cusList.push(item)
       })
       this.setData({
-        // cusList: res
         cusList
       })
     })

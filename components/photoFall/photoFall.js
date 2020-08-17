@@ -41,17 +41,7 @@ Component({
   methods: {
     // 刷新
     refresh: function () {
-      this.setData({
-        leftLine: [],
-        rightLine: [],
-        line: [],
-        data: [],
-      })
-      index = 0
-      page = 1
-      open = true
-      finish = true
-      this.getPhotoList()
+      this.getPhotoList(0,true)
     },
     // 去添加新相册
     toAdd: function () {
@@ -76,19 +66,33 @@ Component({
       this.getPhotoList(page)
     },
     // 数据获取
-    getPhotoList: function (num) {
+    getPhotoList: function (num, isRefresh = false) {
       if (!open) return;
       if (!finish) return;
-      if (this.properties.storeId) {
+      getApp().getKeyFromGlobalData('shopInfo').then((shopInfo) => {
+        if(shopInfo==='null') return getApp().noIconToast('未能获取店铺信息')
         open = false
         utils.request({
           url: '/photo/list',
           data: {
-            storeId: this.properties.storeId,
+            storeId: shopInfo.storeVo.id,
             pageNum: num,
             pageSize: 12
           }
         }).then((res) => {
+          if (isRefresh) {
+            this.setData({
+              leftLine: [],
+              rightLine: [],
+              line: [],
+              data: [],
+            })
+            index = 0
+            page = 1
+            open = true
+            finish = true
+          }
+          if (res.code != 200) return getApp().noIconToast(res.msg)
           if (res.data.pages === page)
             finish = false
           page++
@@ -103,7 +107,7 @@ Component({
           })
           this.compareAndFix()
         })
-      }
+      })
     },
     // 比对左右高度并填充数据
     compareAndFix: function (e) {
@@ -130,7 +134,7 @@ Component({
         })
         setTimeout(() => {
           that.compareAndFix()
-        }, 160)
+        }, 200)
       })
     }
   }

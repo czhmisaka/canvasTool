@@ -72,9 +72,9 @@ let request = obj => {
                   resolve(res)
                 }
                 if (res.data.code == 403) {
-                  // toLogin(fromPage)
+                  toLogin(fromPage)
                   // return noLoginShowToast()
-                  return 0
+                  // return 0
                 }
                 if (res.data.errno == 501) {
                   // toLogin(fromPage)

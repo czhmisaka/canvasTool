@@ -317,7 +317,7 @@ Component({
             },
             {
               type: 'image',
-              url: (goodDetail.photoImage[0] != 'h' ? this.data.cdn : '') + goodDetail.photoImage,
+              url: (goodDetail.photoImage[0] != 'h' ? this.data.cdn : '') + goodDetail.photoImage+'?x-oss-process=image/resize,m_pad,w_640,h_600',
               top: 90,
               left: 20,
               width: 300,
@@ -355,7 +355,7 @@ Component({
             },
             {
               type: 'text',
-              content: goodDetail.goodsPriceVos.length > 0 ? '￥' + goodDetail.goodsPriceVos[0].goodsPrice : '暂无',
+              content: goodDetail.goodsPriceVos.length > 0 ? '￥' + goodDetail.goodsPriceVos[0].goodsPrice : '',
               fontSize: 20,
               color: '#EE4866',
               textAlign: 'left',

@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "订单管理",
+  "navigationBarTitleText": "订单",
   "usingComponents": {
     "order":"../components/orderDetailBox/orderDetailBox"
   }

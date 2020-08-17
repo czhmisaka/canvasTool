@@ -67,7 +67,8 @@ Page({
       url: '/order/getSellSituation',
       data: {
         storeId: this.data.storeVo.id
-      }
+      },
+      type:'noLogin'
     }).then((res) => {
       let {
         buyerNum,
