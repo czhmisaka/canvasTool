@@ -163,11 +163,11 @@
     width: 200rpx;
     height: 80rpx;
     text-align: center;
-    color: #21373D;
+    color: rgba(52,62,223,1);
     border-radius: 44rpx;
     line-height: 80rpx;
     margin: 10rpx;
-    border: 1rpx #21373D solid;
+    border: 1rpx rgba(52,62,223,1) solid;
 }
 
 .bottomBtnList>.longButton {
@@ -180,7 +180,7 @@
 }
 
 .bottomBtnList>.black {
-    background-color: #21373D;
+    background-color: rgba(52,62,223,1);
     color: white;
 }
 

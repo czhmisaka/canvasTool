@@ -6,19 +6,20 @@
                 <image src="/static/images/icon_page/ic_qh.png" />
                 <view class="span">切换</view>
             </view>
-            <view class="headImg" style="height:52rpx"></view>
+            <view class="box" style="height:62rpx"></view>
             <view class="headImg" bindtap="navTo" data-url="{{'/pages/mine/myShop/index?id='+storeVo.id}}">
                 <image src="{{storeVo.storeLogo?storeVo.storeLogo:'/static/images/icon_page/img_zwtx.png'}}" alt="" />
             </view>
             <view class="word">
                 {{storeVo.storeName}}
             </view>
-            <view class="word">
+            <view class="word" wx:if="{{false}}">
                 <view class="button" bindtap="shopShare" data-id="{{storeVo.id}}">分享档口</view>
             </view>
         </view>
         <view class="background">
-            <view class="cycle"></view>
+            <image src="/static/images/icon_page/img_home_bj.png" />
+            <!-- <view class="cycle"></view> -->
         </view>
     </view>
     <view class="flexBox" style="margin-top:0rpx">

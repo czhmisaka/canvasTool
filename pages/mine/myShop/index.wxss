@@ -69,7 +69,7 @@
 
 .MsgBox>.Number {
     font-family: "DINAlternate-Bold,DINAlternate";
-    color: #21373D;
+    color: rgba(52,62,223,1);
     font-weight: bold;
     font-size: 36rpx;
 }
@@ -203,7 +203,7 @@
 }
 .longBotton{
     width: 560rpx;
-    background-color: #21373D;
+    background-color: rgba(52,62,223,1);
     color: white;
     position: fixed;
     bottom: 40rpx;

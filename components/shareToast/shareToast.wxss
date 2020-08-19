@@ -36,7 +36,7 @@ image,
     width: 460rpx;
     height: 56rpx;
     line-height: 56rpx;
-    background-color: #21373d;
+    background-color: rgba(52,62,223,1);
     color: white;
     border: 16rpx;
     font-size: 26rpx;

@@ -9,7 +9,7 @@
     width: 100vw;
     height: 232rpx;
     overflow: hidden;
-    background-color: #21373D;
+    background-color: rgba(52,62,223,1);
     line-height: 232rpx;
 }
 

@@ -22,7 +22,7 @@
     right: 42rpx;
     padding: 6rpx 24rpx;
     border-radius: 40rpx;
-    background-color: #21373D;
+    background-color: rgba(52,62,223,1);
     color: white;
     font-size: 24rpx;
     transition: all ease-in-out 0.4s;
@@ -70,13 +70,13 @@
 }
 
 .subTitle>.highLight {
-    color: #21373D;
+    color: rgba(52,62,223,1);
     font-weight: bolder;
 }
 
 .subTitle>.moveBottombar {
     position: absolute;
-    border-bottom: 4rpx #21373D solid;
+    border-bottom: 4rpx rgba(52,62,223,1) solid;
     z-index: 1;
     transition: all 0.4s;
     height: 82rpx;

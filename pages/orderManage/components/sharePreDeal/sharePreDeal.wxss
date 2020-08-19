@@ -22,7 +22,7 @@
     width: 560rpx;
     height: 92rpx;
     border-radius: 46rpx;
-    border: 1px #21373D solid;
+    border: 1px rgba(52,62,223,1) solid;
     display: flex;
     justify-content: center;
     line-height: 92rpx;

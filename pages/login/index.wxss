@@ -5,7 +5,7 @@ button {
 }
 
 view {
-    color: #21373D;
+    color: rgba(52,62,223,1);
     font-size: 32rpx;
     font-weight: 400;
 }
@@ -38,7 +38,7 @@ view {
 }
 
 .checkBox>.icon>image {
-    border: 1rpx #21373D solid;
+    border: 1rpx rgba(52,62,223,1) solid;
     border-radius: 12rpx;
 }
 
@@ -81,7 +81,7 @@ view {
     width: 560rpx;
     height: 92rpx;
     border-radius: 46rpx;
-    border: 1px #21373D solid;
+    border: 1px rgba(52,62,223,1) solid;
     display: flex;
     justify-content: center;
     line-height: 92rpx;
@@ -113,16 +113,16 @@ view {
 }
 
 checkbox .wx-checkbox-input {
-    border: 2rpx #21373D solid;
+    border: 2rpx rgba(52,62,223,1) solid;
     border-radius: 4rpx;
     width: 24rpx;
     height: 24rpx;
 }
 
 checkbox .wx-checkbox-input.wx-checkbox-input-checked {
-    background: #21373D;
+    background: rgba(52,62,223,1);
     color: #fff;
-    border: 2rpx #21373D solid;
+    border: 2rpx rgba(52,62,223,1) solid;
 }
 
 .checkBox>.word {
@@ -131,7 +131,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked {
 }
 
 .checkBox>.word>.span {
-    color: #21373D;
+    color: rgba(52,62,223,1);
 }
 
 .inputBox {
@@ -157,8 +157,8 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked {
     height: 56rpx;
     line-height: 56rpx;
     border-radius: 28rpx;
-    color: #21373D;
-    border: 1rpx #21373D solid;
+    color: rgba(52,62,223,1);
+    border: 1rpx rgba(52,62,223,1) solid;
     font-size: 24rpx;
     text-align: center;
     margin-top: 18rpx;
@@ -171,7 +171,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked {
 }
 
 .mainColorBg {
-    background-color: #21373D;
+    background-color: rgba(52,62,223,1);
     color: white;
 }
 
@@ -237,7 +237,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked {
     border-radius: 40rpx;
     margin: 10rpx auto;
     border-radius: 40rpx;
-    background-color: #21373D;
+    background-color: rgba(52,62,223,1);
     text-align: center;
     font-size: 32rpx;
     color: #fff;

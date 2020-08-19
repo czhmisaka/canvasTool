@@ -59,7 +59,7 @@
 
 .MsgBox>.Number {
     font-family: "DINAlternate-Bold,DINAlternate";
-    color: #21373D;
+    color: rgba(52,62,223,1);
     font-weight: bold;
     font-size: 36rpx;
 }

@@ -90,7 +90,7 @@
 }
 
 .tabList>.highLight{
-    background-color: #21373D;
+    background-color: rgba(52,62,223,1);
     color: white;
 }
 
@@ -112,12 +112,12 @@
     height: 80rpx;
     margin: 10rpx;
     border-radius: 40rpx;
-    border: 1rpx #21373d solid;
+    border: 1rpx rgba(52,62,223,1) solid;
     line-height: 80rpx;
     text-align: center;
 }
 .buttonBox>.highLight{
-    background-color: #21373d;
+    background-color: rgba(52,62,223,1);
     color: white;
 }
 .hide{
