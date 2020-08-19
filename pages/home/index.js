@@ -68,22 +68,17 @@ Page({
       data: {
         storeId: this.data.storeVo.id
       },
-      type:'noLogin'
+      type: 'noLogin'
     }).then((res) => {
-      let {
-        buyerNum,
-        goodsNum,
-        salesVolume
-      } = res.data
       // 这里注入了假数据， 待修改
       this.formatNum([{
-        num: buyerNum || 0,
+        num: res.data ? res.data.buyerNum || 0 : 0,
         type: '购买人数'
       }, {
-        num: goodsNum || 0,
+        num: res.data ? res.data.goodsNum || 0 : 0,
         type: '售出件数'
       }, {
-        num: salesVolume || 0,
+        num: res.data ? res.data.salesVolume || 0 : 0,
         type: '售出金额'
       }])
     })

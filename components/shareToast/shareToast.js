@@ -317,7 +317,7 @@ Component({
             },
             {
               type: 'image',
-              url: (goodDetail.photoImage[0] != 'h' ? this.data.cdn : '') + goodDetail.photoImage+'?x-oss-process=image/resize,m_pad,w_640,h_600',
+              url: (goodDetail.photoImage[0] != 'h' ? this.data.cdn : '') + goodDetail.photoImage+'?x-oss-process=image/resize,m_pad,w_640,h_580',
               top: 90,
               left: 20,
               width: 300,
