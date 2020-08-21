@@ -105,7 +105,7 @@
     font-size: 28rpx;
     font-family: DINAlternate-Bold, DINAlternate;
     font-weight: bolder;
-    color: rgba(238, 72, 102, 1);
+    color: #F57171;
     margin-left: 24rpx;
 }
 
@@ -129,31 +129,59 @@
     float: left;
 }
 
-.shareBtn {
+.actButton {
     width: auto;
     height: 56rpx;
     border-radius: 28rpx;
-    border: 1px solid rgba(33, 55, 61, 1);
+    border: 1px solid rgba(52, 62, 223, 1);
     display: inline-block;
     line-height: 56rpx;
     font-size: 28rpx;
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
-    color: rgba(33, 55, 61, 1);
+    color: rgba(52, 62, 223, 1);
     padding: 0rpx 32rpx;
-    margin: 16rpx 24rpx;
+    margin: 16rpx 20rpx;
+    margin-left: 0rpx;
+    float: right;
+}
+
+.shareBtn {
+    width: auto;
+    height: 56rpx;
+    border-radius: 28rpx;
+    border: 1px solid rgba(52, 62, 223, 1);
+    background-color: rgba(52, 62, 223, 1);
+    display: inline-block;
+    line-height: 56rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: white;
+    padding: 0rpx 32rpx;
+    margin: 16rpx 20rpx;
+    margin-left: 0rpx;
     float: right;
 }
 
 .word_tab {
     float: left;
     margin-right: 1em;
+    font-size: 24rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(255, 141, 77, 1);
+    height: 36rpx;
+    padding: 0em 10rpx;
+    background: rgba(255, 243, 237, 1);
+    border-radius: 18px;
 }
 
 .overFlowHidden {
-    max-width: 480rpx;
+    max-width: 300rpx;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    height: 30rpx;  
+    height: 36rpx;
+    line-height: 36rpx;
 }

@@ -42,7 +42,7 @@
     font-size: 32rpx;
     font-family: PingFangSC-Medium, PingFang SC;
     font-weight: 900;
-    color: rgba(33, 55, 61, 1);
+    color: rgba(52,62,223,1);
     line-height: 270rpx;
     text-indent: 30rpx;
 }

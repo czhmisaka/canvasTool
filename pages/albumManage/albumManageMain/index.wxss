@@ -8,18 +8,18 @@
 
 .search {
     width: 100%;
-    height: 74rpx;
+    height: 94rpx;
     transition: all ease-in-out 0.4s;
     background-color: white;
     overflow: hidden;
 }
 
 .search>input {
-    width: calc(602rpx - 2em);
-    height: 54rpx;
+    width: calc(602rpx - 3.7em);
+    height: 64rpx;
     margin: 20rpx 0px;
     margin-left: 34rpx;
-    border-radius: 28rpx;
+    border-radius: 34rpx;
     text-align: left;
     padding-left: 1em;
     padding-right: 1em;
@@ -88,29 +88,35 @@
 }
 
 .search>.word {
-    margin: 34rpx 24rpx;
+    margin: 20rpx;
     font-size: 28rpx;
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
-    color: rgba(33, 55, 61, 1);
+    color: rgba(52, 62, 223, 1);
+    border: 1rpx rgba(52, 62, 223, 1) solid;
+    border-radius: 34rpx;
     float: left;
     line-height: 28rpx;
     height: 28rpx;
     transition: all 0.3s;
     overflow: hidden;
+    width: 100rpx;
+    height: 64rpx;
+    line-height: 64rpx;
+    text-align: center;
 }
 
 .search>.buttonCancel {
     width: 4em;
     font-size: 28rpx;
-    line-height: 54rpx;
-    height: 54rpx;
-    background-color: rgba(52,62,223,1);
+    line-height: 64rpx;
+    height: 64rpx;
+    background-color: rgba(52, 62, 223, 1);
     color: #fff;
     text-align: center;
     float: left;
     margin: 20rpx 10rpx;
-    border-radius: 27rpx;
+    border-radius: 32rpx;
     transition: all 0.3s;
 }
 
@@ -129,7 +135,7 @@
 .subTitle {
     background-color: white;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     width: calc(100% - 68rpx);
     margin: 0px 34rpx;
     height: 87rpx;
@@ -149,7 +155,7 @@
 }
 
 .subTitle>.highLight {
-    color: rgba(52,62,223,1);
+    color: rgba(52, 62, 223, 1);
     font-weight: bolder;
 }
 
@@ -157,10 +163,11 @@
     position: absolute;
     /* border-bottom: 4rpx rgba(52,62,223,1) solid; */
     z-index: 1;
+    left: 34rpx;
     transition: all 0.4s;
     margin-top: 82rpx;
     height: 4rpx;
-    background-color: rgba(52,62,223,1);
+    background-color: rgba(52, 62, 223, 1);
     border-radius: 2rpx;
 }
 
@@ -207,16 +214,16 @@
     width: 200rpx;
     height: 80rpx;
     text-align: center;
-    color: rgba(52,62,223,1);
+    color: rgba(52, 62, 223, 1);
     border-radius: 44rpx;
     line-height: 80rpx;
     margin: 10rpx;
-    border: 1rpx rgba(52,62,223,1) solid;
+    border: 1rpx rgba(52, 62, 223, 1) solid;
     transition: all 0.4s;
 }
 
 .bottomBtnList>.black {
-    background-color: rgba(52,62,223,1);
+    background-color: rgba(52, 62, 223, 1);
     color: white;
 }
 
@@ -225,6 +232,13 @@
     height: 26rpx;
 }
 
-.bottomBtnList>.mid_Botton{
-    width:280rpx;
+.bottomBtnList>.mid_Botton {
+    width: 280rpx;
+}
+
+.span_num {
+    color: #F57171;
+    font-size: 24rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
 }

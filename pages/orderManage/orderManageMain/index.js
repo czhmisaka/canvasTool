@@ -11,14 +11,12 @@ Page({
    */
   data: {
     typeList: [
-      '全部',
       '待接单',
       '待发货',
-      '待收货',
       '已完成',
       '已取消'
     ],
-    typeStatus: ['', 50, 60, 30, 40, 0],
+    typeStatus: [ 50, 60, 40, 0],
     selectType: 0,
     orderList: [],
     requestData: {

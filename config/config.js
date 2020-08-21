@@ -11,11 +11,11 @@ function configExchange() {
             return {
                 api_protocal: "https://",
                     fileHost: fileHost,
+                    api_server: "wxapi.91bokuan.com/photo/workbench/",
+                    cdn: 'https://yunshentechoss.oss-cn-hangzhou.aliyuncs.com/',
 
-                    // api_server: "wxapi.91bokuan.com/photo/workbench/",
-                    // cdn: 'https://yunshentechoss.oss-cn-hangzhou.aliyuncs.com/',
-                    cdn: 'https://yunshentechprodoss.oss-cn-hangzhou.aliyuncs.com/', // 正式服
-                    api_server: "wxapi.91bkw.com/photo/workbench/",
+                    // cdn: 'https://yunshentechprodoss.oss-cn-hangzhou.aliyuncs.com/', // 正式服
+                    // api_server: "wxapi.91bkw.com/photo/workbench/",
                     //     api_protocal: "https://",
                     //     fileHost: fileHost,
                     //     cdn: 'http://cdn.91bkw.com/'

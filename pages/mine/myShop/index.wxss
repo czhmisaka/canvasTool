@@ -169,7 +169,7 @@
     width: 270rpx;
     height: 80rpx;
     border-radius: 49rpx;
-    border: 1rpx solid rgba(33, 55, 61, 1);
+    border: 1rpx solid rgba(52,62,223,1);
     line-height: 80rpx;
     text-align: center;
     margin: 0px 20rpx;
@@ -181,7 +181,7 @@
     margin: 0rpx 95rpx;
     width: 560rpx;
     height: 80rpx;
-    background: rgba(33, 55, 61, 1);
+    background: rgba(52,62,223,1);
     border-radius: 40rpx;
     line-height: 80rpx;
     color: white;

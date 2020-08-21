@@ -33,12 +33,14 @@
         <view class="moveBottombar"
             style="{{'width:'+selectType.len*28+'rpx;margin-left:calc('+selectType.left+'px - 1em);'}}{{searchWord.length==0?'opacity:1;':'opacity:0;'}}">
         </view>
-        <view class="type {{selectType.index==0?'highLight':''}}" data-index="{{0}}" bindtap="switchSubtitle"
+        <view class="type {{selectType.index==index?'highLight':''}}" data-index="{{index}}" bindtap="switchSubtitle"
+            style="margin:0px 30rpx" wx:for="{{typeList}}" wx:key="*this">{{item}}</view>
+        <!-- <view class="type {{selectType.index==0?'highLight':''}}" data-index="{{0}}" bindtap="switchSubtitle"
             style="margin:0px 30rpx">全部 </view>
         <view class="type {{selectType.index==1?'highLight':''}}" data-index="{{1}}" bindtap="switchSubtitle">
             未发布<span class="red"> {{}}</span></view>
         <view class="type {{selectType.index==2?'highLight':''}}" data-index="{{2}}" bindtap="switchSubtitle">已发布
-        </view>
+    </view> -->
     </view>
     <view class="orderBox">
         <swiper current="{{selectType.index}}" bindchange="swiperChaneg" indicator-dots="{{false}}" autoplay="{{false}}"
@@ -57,14 +59,16 @@
         </swiper>
     </view>
     <view class="bottomBtnList" wx:if="{{searchWord.length==0}}">
-        <view class="button mid_Botton" bindtap="navTo" data-url="../newAlbum/index" wx:if="{{!checkMore[selectType.index]}}">添加
+        <view class="button mid_Botton" bindtap="navTo" data-url="../newAlbum/index"
+            wx:if="{{!checkMore[selectType.index]}}">添加
         </view>
         <view class="button mid_Botton" wx:if="{{checkMore[selectType.index]}}" bindtap="checkMoreToDelete">批量删除</view>
-        <view class="button mid_Botton" wx:if="{{checkMore[selectType.index]&&checkMoreStatus!=0}}" bindtap="openCheckForShare">
+        <view class="button mid_Botton" wx:if="{{checkMore[selectType.index]&&checkMoreStatus!=0}}"
+            bindtap="openCheckForShare">
             {{publish[checkMoreStatus]}}
         </view>
-        <view class="button mid_Botton {{checkMore[selectType.index]?'black':''}}" wx:if="{{!checkMore[selectType.index]}}"
-            bindtap="checkMoreStatusChange">
+        <view class="button mid_Botton {{checkMore[selectType.index]?'black':''}}"
+            wx:if="{{!checkMore[selectType.index]}}" bindtap="checkMoreStatusChange">
             批量选择
         </view>
         <!-- <view class="button black" bindtap="sortDataByTime">分享档口 </view> -->

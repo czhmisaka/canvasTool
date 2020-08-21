@@ -106,7 +106,7 @@
 .bottom>.price {
     float: right;
     margin: 20rpx 22rpx;
-    color: #EE4866;
+    color: #F57171;
     font-size: 28rpx;
     font-family: PingFangSC-Semibold, PingFang SC;
     font-weight: 600;

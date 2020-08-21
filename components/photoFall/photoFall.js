@@ -5,6 +5,7 @@ let index = 0
 let page = 1
 let open = true
 let finish = true
+let isLeft = true
 Component({
   /**
    * 组件的属性列表
@@ -124,8 +125,13 @@ Component({
       query.exec(function (res) {
         if (res[0].height < res[1].height) {
           leftLine.push(data[index])
+          isLeft = true
+        }else if(!isLeft){
+          leftLine.push(data[index])
+          isLeft = true
         } else {
           rightLine.push(data[index])
+          isLeft = false
         }
         index++;
         that.setData({

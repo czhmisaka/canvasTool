@@ -1,4 +1,7 @@
 // pages/login/index.js
+const {
+  config
+} = require('../../config/config.js');
 const app = getApp()
 const utils = require('../../utils/util.js')
 let time = 60 // 倒计时
@@ -76,6 +79,9 @@ Page({
         encryptedData,
         iv
       } = e.detail
+      wx.showLoading({
+        title: '请稍等'
+      })
       utils.request({
         url: 'login/wechat',
         data: {
@@ -87,6 +93,7 @@ Page({
           'content-type': 'application/json',
         }
       }).then(result => {
+        wx.hideLoading()
         let res = result.data
         if (res.code === 200) {
           app.globalData.shopInfo = res.data // 留个坑 这里 没有保存 userinfo 记得检查下面那个
@@ -155,9 +162,11 @@ Page({
       title: '登录成功',
       icon: 'success',
       success: function () {
-        wx.reLaunch({
-          url: that.data.fromPage
-        });
+        setTimeout(() => {
+          wx.reLaunch({
+            url: that.data.fromPage
+          });
+        }, 1000)
       }
     });
   },
@@ -253,6 +262,7 @@ Page({
   onLoad: function (options) {
     let setPageLife = new getApp().setPageLife()
     let top = wx.getSystemInfoSync()
+    getApp().cleanStorage()
     this.setData({
       top
     })
@@ -266,7 +276,8 @@ Page({
     })
   },
   onReady: function () {},
-  onShow: function () {},
+  onShow: function () {
+  },
   onHide: function () {},
   onUnload: function () {},
   onPullDownRefresh: function () {},

@@ -6,13 +6,20 @@
     </view>
     <view class="left">
         <view class="title">
-            {{order_Detail.customerName?order_Detail.customerName+' / ':''}}{{order_Detail.wxNickName?order_Detail.wxNickName:'未设置微信名称'}}
-        </view>
-        <view class="time">下单时间： {{time}}</view>
-        <view class="bottom">
-            <view class="left">{{"￥"+order_Detail.orderAmount}}</view>
-            <view class="right {{status=='已完成'?'black':''}} {{status=='已关闭'?'gray':''}} {{status=='待接单'?'red':''}}">
+            <view class="left">
+                {{order_Detail.customerName?order_Detail.customerName+' / ':''}}{{order_Detail.wxNickName?order_Detail.wxNickName:'未设置微信名称'}}
+            </view>
+            <view class="right {{status=='已完成'?'gray':''}} {{status=='已取消'?'gray':''}} {{status=='待接单'?'black':''}}{{(status=='待发货'||status=='部分发货')?'black':''}}">
                 {{status}}</view>
+        </view>
+        <view class='time'>
+            <view class="tag">
+            
+            </view>
+        </view>
+        <view class="bottom">
+            <view class="left time">下单时间： {{time}}</view>
+            <view class="right money">{{"￥"+order_Detail.orderAmount}}</view>
         </view>
     </view>
 </view>

@@ -36,7 +36,8 @@ Page({
     }, // 自定义组件 显示数据
     isVideo: false,
     videoDetail: [],
-    wholePlay: false
+    wholePlay: false,
+    options: null
   },
 
   // 绑定输入
@@ -78,7 +79,6 @@ Page({
       sourceType: ['album', 'camera'],
       maxDuration: 30,
       success: res => {
-        console.log(res)
         if (res.type == "image") {
           let {
             imageList
@@ -107,6 +107,9 @@ Page({
             isVideo: true
           })
         }
+      },
+      fail:res=>{
+        wx.navigateBack()
       }
     });
   },
@@ -413,6 +416,11 @@ Page({
   onLoad: function (options) {
     let setPageLife = new getApp().setPageLife()
     // 判断页面状态
+    this.setData({
+      options
+    })
+    if (options.openChoose)
+      this.chooseImg()
     if (options.id) {
       this.getAlbumDetial(options.id)
       this.setData({

@@ -28,12 +28,13 @@
     </view>
     <view class="view statusBox">
         <view class="leftBox overFlowHidden">
-            <span class="word_tab" wx:for="{{data.photoPriorityVos}}" wx:key="*this">
-                {{item.labelName}}
+            <span class="word_tab">
+                {{data.photoPriorityVos[0].labelName}}
             </span>
         </view>
         <view class="shareBtn" bindtap="eventBtn" data-type="{{publish}}" data-photoid="{{data.id}}">
-            {{publish?'分享':'发布到相册'}}
+            {{publish?'分享':'发布'}}
         </view>
+        <view class="actButton">删除</view>
     </view>
 </view>

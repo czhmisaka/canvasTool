@@ -23,20 +23,27 @@
         </view>
     </view>
     <view class="flexBox" style="margin-top:0rpx">
-        <view class="MsgBox" wx:for="{{fastMsg}}" wx:key="*this">
+        <view class="title">今日数据统计</view>
+        <view class="MsgBox {{index>0?'borderleft':''}}" wx:for="{{fastMsg}}" wx:key="*this">
             <view class="Number">{{item.num}}</view>
             <view class="word">{{item.type}}</view>
         </view>
     </view>
-    <view class="flexBox" style="height:110rpx" bindtap="toPhotoManage">
-        <view class="toPhoto">
-            <image class="icon40" src="/static/images/icon_page/ic_glxc.png" />
-            <view class="word">管理相册</view>
+    <view class="flexBox" style="margin-top:0rpx" bindtap="toPhotoManage">
+        <view class="title">
+            <view class="left">商品管理</view>
+            <view class="right">
+                <view class="iconGo icon_32To28">
+                    <image src="/static/images/icon_page/ic_bakcg.png" />
+                </view>
+            </view>
         </view>
-        <view class="right">
-            <image src="/static/images/icon_page/ic_xy.png" style="width: 14rpx;height: 26rpx;" />
+        <view class="MsgBox {{index>0?'borderleft':''}}" wx:for="{{albumManageFastMsg}}" wx:key="*this">
+            <view class="Number">{{item.num}}</view>
+            <view class="word">{{item.type}}</view>
         </view>
     </view>
+    <view class="LongButton" bindtap="toCreateAlbum">发布商品</view>
     <view class="divideLine">
         <view class="bgImage">
             <image src="/static/images/icon_page/pic_zjsx.png" />

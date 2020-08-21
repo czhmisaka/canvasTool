@@ -173,7 +173,7 @@
 .bottomBtnList>.longButton {
     width: 560rpx;
     height: 80rpx;
-    background: rgba(33, 55, 61, 1);
+    background: rgba(52,62,223,1);
     border-radius: 46rpx;
     text-align: center;
     line-height: 80rpx;

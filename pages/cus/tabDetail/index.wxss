@@ -33,7 +33,7 @@
     left: 50%;
     margin-left: -280rpx;
     height: 80rpx;
-    background: rgba(33, 55, 61, 1);
+    background: rgba(52,62,223,1);
     border-radius: 46rpx;
     font-size: 32rpx;
     font-family: PingFangSC-Regular, PingFang SC;

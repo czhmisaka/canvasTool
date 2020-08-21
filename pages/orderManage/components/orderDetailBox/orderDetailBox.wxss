@@ -58,9 +58,33 @@
     height: 28rpx;
 }
 
+.title>.left {
+    float: left;
+    height: 32rpx;
+}
+
+.title>.right {
+    float: right;
+    margin-right: 24rpx;
+    font-size: 28rpx;
+}
+
 .bottom>.left {
     height: 100%;
-    color: rgba(238, 72, 102, 1);
+}
+
+.bottom>.time {
+    font-size: 24rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(153, 153, 153, 1);
+}
+
+.bottom>.money {
+    font-size: 28rpx;
+    font-family: PingFangSC-Semibold, PingFang SC;
+    font-weight: 600;
+    color: rgba(245, 113, 113, 1);
 }
 
 .bottom>.right {
@@ -69,12 +93,12 @@
     margin-right: 24rpx;
 }
 
-.right{
+.right {
     color: rgba(102, 102, 102, 1);
 }
 
 .black {
-    color: rgba(33, 55, 61, 1);
+    color: rgba(52, 62, 223, 1);
 }
 
 .gray {

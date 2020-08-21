@@ -10,10 +10,26 @@ Page({
   data: {
     storeVo: {},
     shopDetail: {},
-    fastMsg: [],
+    fastMsg: [{
+      num: '加载中',
+      type: '客户量'
+    },{
+      num: '加载中',
+      type: '商品销量'
+    },{
+      num: '加载中',
+      type: '成交额'
+    }],
     ShareId: '',
     shareDetail: {},
-    shareType: ''
+    shareType: '',
+    albumManageFastMsg: [{
+      num: '12',
+      type: '已发布'
+    }, {
+      num: '200',
+      type: '未发布'
+    }]
   },
 
   // 格式化 fastMsg
@@ -34,6 +50,11 @@ Page({
   navTo(e) {
     if (!app.globalData.isLogin) return util.toLogin()
     app.navTo(e.currentTarget.dataset.url)
+  },
+  // 创建相册
+  toCreateAlbum(e) {
+    if (!app.globalData.isLogin) return util.toLogin()
+    app.navTo('/pages/albumManage/newAlbum/index?openChoose=true')
   },
 
   // 获取 首页详情
@@ -73,13 +94,13 @@ Page({
       // 这里注入了假数据， 待修改
       this.formatNum([{
         num: res.data ? res.data.buyerNum || 0 : 0,
-        type: '购买人数'
+        type: '客户量'
       }, {
         num: res.data ? res.data.goodsNum || 0 : 0,
-        type: '售出件数'
+        type: '商品销量'
       }, {
         num: res.data ? res.data.salesVolume || 0 : 0,
-        type: '售出金额'
+        type: '成交额'
       }])
     })
   },

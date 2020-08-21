@@ -9,7 +9,7 @@
 .promoter {
     width: 750rpx;
     height: 232rpx;
-    background: rgba(33, 55, 61, 1);
+    background: rgba(52,62,223,1);
 }
 
 .promoter>.left {

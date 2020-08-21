@@ -2,6 +2,5 @@
   "usingComponents": {
     "photoWaterFall": "../../components/photoFall/photoFall",
     "shareToast": "/components/shareToast/shareToast"
-  },
-  "navigationBarTitleText": "好客多"
+  }
 }

@@ -197,8 +197,8 @@ const cleanSearchHistoryStorage = async function cleanSearchHistoryStorage(type)
 }
 
 // 清空缓存（待完善）
-const cleanStorage = async function cleanStorage(callback) {
-    wx.clearStorage()
+const cleanStorage = function cleanStorage() {
+    wx.removeStorageSync('globalData')
 }
 
 // 清空 globalData 数据

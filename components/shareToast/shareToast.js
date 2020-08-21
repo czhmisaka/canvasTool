@@ -357,7 +357,7 @@ Component({
               type: 'text',
               content: goodDetail.goodsPriceVos.length > 0 ? '￥' + goodDetail.goodsPriceVos[0].goodsPrice : '',
               fontSize: 20,
-              color: '#EE4866',
+              color: '#F57171',
               textAlign: 'left',
               top: 420,
               left: 20,

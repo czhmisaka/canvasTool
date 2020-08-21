@@ -7,9 +7,8 @@ Page({
   // 数据
   data: {
     typeList: [
-      '全部',
-      '未发布',
-      '已发布'
+      '已发布',
+      '暂存'
     ],
     selectType: 0,
     orderList: [],
@@ -23,7 +22,7 @@ Page({
       [],
       []
     ], // 记录选择用表
-    checkMore: [false, false, false], // 多选开启
+    checkMore: [false, false], // 多选开启
     checkData: [], // 自定义 侧滑菜单 选项
     checkStatus: false,
     ShareId: '',
@@ -216,6 +215,7 @@ Page({
     let node = wx.createSelectorQuery()
     node.selectAll('.type').boundingClientRect()
     node.exec((res) => {
+      console.log(res[0][e].left)
       let selectType = {
         index: e,
         len: that.data.typeList[e].length,
@@ -240,7 +240,8 @@ Page({
       title: '加载中'
     })
     let that = this
-    let photoShow = that.data.selectType.index != 0 ? that.data.selectType.index - 1 : ''
+    // let photoShow = that.data.selectType.index != 0 ? that.data.selectType.index - 1 : ''
+    let photoShow = that.data.selectType.index != 1 ? 1 : 0
     let requestData = this.data.requestData
     if (!requestData.storeId) {
       try {
@@ -592,7 +593,8 @@ Page({
   },
 
   onLoad: function (options) {
-    let setPageLife = new getApp().setPageLife()},
+    let setPageLife = new getApp().setPageLife()
+  },
 
   onReady: function () {},
   onShow: function () {
