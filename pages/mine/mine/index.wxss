@@ -4,12 +4,15 @@
     background-color: #F7F8FA;
     height: 100vh;
     font-family: "PingFangSC-Regular,PingFang SC";
+    top: 0rpx;
+    display: inline-block;
+    width: 100vw;
 }
 
 .promoter {
     width: 750rpx;
     height: 232rpx;
-    background: rgba(52,62,223,1);
+    background: rgba(52, 62, 223, 1);
 }
 
 .promoter>.left {
@@ -59,7 +62,7 @@
 
 .MsgBox>.Number {
     font-family: "DINAlternate-Bold,DINAlternate";
-    color: rgba(52,62,223,1);
+    color: rgba(52, 62, 223, 1);
     font-weight: bold;
     font-size: 36rpx;
 }

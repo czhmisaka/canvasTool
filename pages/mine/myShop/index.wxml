@@ -1,6 +1,6 @@
 <!--pages/mine/myShop/index.wxml-->
 
-<view class="wholeScreen">
+<view class="wholeScreen" wx:if="{{canDelete}}">
     <view class="itemBox">
         <view class="flexBox H168rpx borderBottom">
             <view class="toPhoho LH168rpx">档口头像</view>
@@ -52,47 +52,61 @@
     <view class="itemBox bgNone">
         <view class="flexBox H200rpx">
             <view class="title">公告</view>
-            <textarea class="wordBox" wx:if="{{!show}}" auto-height="{{true}}" maxlength="100" value="{{shopDetail.storeDesc}}"
-                data-key="storeDesc" placeholder="请输入档口公告...示例：3件起批，宝宝们看中款式可自助下单" placeholder-style="font-size:24rpx;" bindinput="bindInput"></textarea>
+            <textarea class="wordBox" wx:if="{{!show}}" auto-height="{{true}}" maxlength="100"
+                value="{{shopDetail.storeDesc}}" data-key="storeDesc" placeholder="请输入档口公告...示例：3件起批，宝宝们看中款式可自助下单"
+                placeholder-style="font-size:24rpx;" bindinput="bindInput"></textarea>
         </view>
     </view>
-
-    <!-- <view class="itemBox">
-        <view class="flexBox H110rpx borderBottom">
-            <view class="toPhoho LH110rpx">档口内商品颜色</view>
-            <view class="right LH110rpx">
-                去设置
-                <image class="iconBack" src="/static/images/icon_page/ic_xy.png" style="width: 14rpx;height: 26rpx;" />
-            </view>
-        </view>
-    </view>
-    <view class="itemBox">
-        <view class="flexBox H110rpx borderBottom">
-            <view class="toPhoho LH110rpx">档口内商品尺码</view>
-            <view class="right LH110rpx">
-                去设置
-                <image class="iconBack" src="/static/images/icon_page/ic_xy.png" style="width: 14rpx;height: 26rpx;" />
-            </view>
-        </view>
-    </view>
-    <view class="itemBox">
-        <view class="flexBox H110rpx">
-            <view class="toPhoho LH110rpx">档口内商品品类</view>
-            <view class="right LH110rpx">
-                去设置
-                <image class="iconBack" src="/static/images/icon_page/ic_xy.png" style="width: 14rpx;height: 26rpx;" />
-            </view>
-        </view>
-    </view> -->
     <view class="item flexCenter" style="margin:34rpx 0rpx;">
-        <view wx:if="{{btnState[shopDetail.storeState]}}" class="button" bindtap="submitEvent">
+        <view wx:if="{{btnState[shopDetail.storeState]&&canDelete&&!isNew}}" class="button" bindtap="submitEvent">
             {{btnState[shopDetail.storeState]}}
         </view>
-        <view class="button" bindtap="submitShopDetail" wx:if="{{!isNew}}">
-            修改
+        <view class="button {{(btnState[shopDetail.storeState]&&canDelete)?'button_highlight':'longBotton'}}"
+            bindtap="submitShopDetail" wx:if="{{!isNew}}">
+            {{canDelete?'修改':'进入我的档口'}}
         </view>
         <view class="button longBotton" bindtap="submitAddNewShop" wx:if="{{isNew}}">
             完成
+        </view>
+    </view>
+</view>
+<view class="wholeScreen noBg" wx:if="{{!canDelete}}">
+    <view class="flexBox noBg alignCenter marginTop_80rpx">
+        <image class="icon200" wx:if="{{shopDetail.storeLogo}}" bindtap="changeImage" data-key="storeLogo"
+            src="{{shopDetail.storeLogo}}" />
+        <view class="icon200" wx:else bindtap="changeImage" data-key="storeLogo">
+            头像
+            <view class="iconAdd">
+                <image src="/static/images/icon_page/ic_tjtx.png" />
+            </view>
+        </view>
+    </view>
+    <view class="flexBox noBg alignSpaceBetween inputBox marginTop_40rpx">
+        <view class="toPhoto LH110rpx">
+            <input value="{{shopDetail.storeName}}" maxlength="14" placeholder="档口名称" bindinput="bindInput"
+                data-key="storeName" />
+        </view>
+    </view>
+    <view class="flexBox noBg alignSpaceBetween inputBox marginTop_40rpx">
+        <view class="toPhoto LH110rpx">
+            <input value="{{shopDetail.marketAddress}}" maxlength="14" placeholder="所在市场" bindinput="bindInput"
+                data-key="storeName" />
+        </view>
+    </view>
+    <view class="flexBox noBg alignSpaceBetween inputBox marginTop_40rpx">
+        <view class="toPhoto LH110rpx">
+            <input value="{{shopDetail.storeAddress}}" maxlength="14" placeholder="具体地址" bindinput="bindInput"
+                data-key="storeName" />
+        </view>
+    </view>
+    <view class="flexBox H200rpx alignSpaceBetween textBox">
+        <textarea class="wordBox" wx:if="{{!show}}" auto-height="{{true}}" maxlength="100"
+            value="{{shopDetail.storeDesc}}" data-key="storeDesc" placeholder="拿货规则（选填）"
+            placeholder-style="font-size:24rpx;" bindinput="bindInput"></textarea>
+    </view>
+     <view class="item flexCenter" style="margin:34rpx 0rpx;">
+        <view class="button longBotton">
+            下一步
         </view>
     </view>
 </view>

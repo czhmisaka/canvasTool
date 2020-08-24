@@ -18,7 +18,9 @@ Page({
     width: 250, //宽度
     height: 250, //高度
     cropperKey: '',
-    isNew: true
+    isNew: true,
+    canDelete: true,
+    show: false // 图片裁剪控件
   },
 
   // 绑定输入
@@ -168,25 +170,26 @@ Page({
       data: this.data.shopDetail
     }).then((res) => {
       if (res.data) {
-        wx.showToast({
-          title: '修改成功'
-        })
         let page = getCurrentPages()
+        if (page.length == 1)
+          getApp().toHomePage()
         let prePage = page[page.length - 2]
-        let {
-          shopList
-        } = prePage.data
-        if (shopList) shopList.forEach((item, index) => {
-          if (item.id == this.data.shopDetail.id) {
-            shopList[index] = this.data.shopDetail
-          }
-        })
-        prePage.setData({
-          shopList
-        })
+        if (prePage) {
+          let {
+            shopList
+          } = prePage.data
+          if (shopList) shopList.forEach((item, index) => {
+            if (item.id == this.data.shopDetail.id) {
+              shopList[index] = this.data.shopDetail
+            }
+          })
+          prePage.setData({
+            shopList
+          })
+        }
         app.globalData.shopInfo.storeVo = this.data.shopDetail
         app.setStorage()
-        app.successTimeOutBack(res.msg)
+        app.successTimeOutBack(this.data.canDelete ? res.msg : '准备就绪')
       } else {
         wx.showToast({
           title: res.msg
@@ -214,6 +217,9 @@ Page({
     })
   },
 
+  nextStep(e) {
+    
+  },
 
   onLoad: function (options) {
     let setPageLife = new getApp().setPageLife()
@@ -226,6 +232,12 @@ Page({
     } else {
       this.setData({
         isNew: true
+      })
+    }
+    if (options.canDelete && options.canDelete == 'false') {
+      wx.hideHomeButton()
+      this.setData({
+        canDelete: false
       })
     }
     this.setData({

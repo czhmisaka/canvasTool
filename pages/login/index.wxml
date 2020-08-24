@@ -2,15 +2,16 @@
 
 <view class="{{toast?'hidden':''}}">
     <view class="back" style="{{'top:'+(top.statusBarHeight+top.fontSizeSetting)+'px'}}" wx:if="{{type=='phone'}}">
-        <image src="/static/images/loginImages/ic_backwhite.png" bindtap="changeType" data-type="check" />
+        <image src="/static/images/loginImages/ic_back.png" bindtap="changeType" data-type="check" />
+        <view class="word">返回</view>
     </view>
     <view class="back" style="{{'top:'+(top.statusBarHeight+top.fontSizeSetting)+'px'}}" wx:if="{{type=='check'}}"
         bindtap="navTo" data-url="/pages/home/index">
         <image src="/static/images/loginImages/ic_backwhite.png" bindtap="changeType" data-type="check" />
         <view class="word">暂不登录</view>
     </view>
-    <view class="bgImg">
-
+    <view class="bgImg" style="{{type=='phone'?'opacity:0':''}}">
+        <image src="{{config.cdn+config.loginImg}}" />
     </view>
 
     <!-- type == check -->
@@ -29,13 +30,13 @@
                 <view class="word">微信手机号快捷登录</view>
             </button>
         </view>
-        <view class="buttonBox" wx:if="{{type==='check'}}" bindtap="changeType" data-type="phone">
+        <view class="buttonBox" bindtap="changeType" data-type="phone">
             <view class="icon" style="width:25rpx;height:38rpx">
                 <image src="/static/images/loginImages/ic_sj.png" />
             </view>
             <view class="word">手机验证码登录</view>
         </view>
-        <view class="checkBox" wx:if="{{type=='check'}}">
+        <view class="checkBox">
             <view class="tap" bindtap="checkBoxStatus"></view>
             <view class="icon" bindtap="checkBoxStatus">
                 <image
@@ -52,12 +53,11 @@
     <!-- type == phone -->
     <view class="{{'loginBox '+(type=='phone'?'phoneInputStatus show':'hidden')}}">
         <view class="inputBox" hidden="{{type!='phone'}}">
-            <input bindinput="inputChange" placeholder-class='input_placeholder' data-type="phoneNumber"
-                placeholder="请输入手机号码" value="{{input.phoneNumber}}" />
+            <input bindinput="inputChange" data-type="phoneNumber" placeholder="请输入手机号码"
+                value="{{input.phoneNumber}}" />
         </view>
         <view class="inputBox" hidden="{{type!='phone'}}">
-            <input bindinput="inputChange" data-type="checkCode" placeholder-class='input_placeholder'
-                placeholder="请输入验证码" value="{{input.checkCode}}" />
+            <input bindinput="inputChange" data-type="checkCode" placeholder="请输入验证码" value="{{input.checkCode}}" />
             <view class="button {{getCodeStatus?'grayBg':''}}" bindtap="getCheckCode">
                 {{getCodeStatus?time+'s后尝试':'获取验证码'}}</view>
         </view>

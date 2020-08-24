@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    config,
     checkFile: false,
     type: 'check', // 用于控制当前页面状态 
     input: {
@@ -22,7 +23,7 @@ Page({
     fromPage: null,
     toast: false,
     toastTitle: '',
-    top: 0
+    top: 0,
   },
 
   navTo(e) {
@@ -94,6 +95,7 @@ Page({
         }
       }).then(result => {
         wx.hideLoading()
+        if (!result.data) return 0
         let res = result.data
         if (res.code === 200) {
           app.globalData.shopInfo = res.data // 留个坑 这里 没有保存 userinfo 记得检查下面那个
@@ -163,9 +165,13 @@ Page({
       icon: 'success',
       success: function () {
         setTimeout(() => {
+          // 目前暂时定为 每次登录后都要去 查看档口（可编辑）
+          // wx.reLaunch({
+          //   url: that.data.fromPage
+          // });
           wx.reLaunch({
-            url: that.data.fromPage
-          });
+            url: '/pages/mine/myShop/index?id=' + getApp().globalData.shopInfo.storeVo.id+'&canDelete=false'
+          })
         }, 1000)
       }
     });
@@ -276,8 +282,7 @@ Page({
     })
   },
   onReady: function () {},
-  onShow: function () {
-  },
+  onShow: function () {},
   onHide: function () {},
   onUnload: function () {},
   onPullDownRefresh: function () {},

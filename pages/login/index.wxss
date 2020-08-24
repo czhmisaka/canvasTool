@@ -7,7 +7,7 @@ button {
 
 view {
     /* color: rgba(52, 62, 223, 1); */
-    color:white;
+    color: white;
     font-size: 32rpx;
     font-weight: 400;
 }
@@ -40,12 +40,17 @@ view {
     height: 100%;
 }
 
-.bgImg{
+.bgImg {
     background-color: teal;
     position: fixed;
     width: 100vw;
     height: 100vh;
     z-index: 10;
+}
+
+.bgImg>image {
+    width: 100%;
+    height: 100%;
 }
 
 .checkBox>.icon>image {
@@ -160,7 +165,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked {
 }
 
 .checkBox>.word {
-    color: #666;
+    color: #fff;
     font-size: 24rpx;
 }
 
@@ -182,11 +187,11 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked {
     height: 88rpx;
     width: 100%;
     line-height: 88rpx;
-    color: #fff;
+    color: #666;
     font-weight: 400;
 }
 
-.input_placeholder{
+.input_placeholder {
     color: white;
 }
 

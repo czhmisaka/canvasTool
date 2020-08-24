@@ -170,7 +170,7 @@
 					"id": 14,
 					"name": "访问已有档口",
 					"pathName": "pages/mine/myShop/index",
-					"query": "id=1281407586683326465",
+					"query": "id=1296642090838528002",
 					"scene": null
 				},
 				{
@@ -241,6 +241,13 @@
 					"name": "搜索客户-仅供查看信息",
 					"pathName": "pages/cus/AddCusToTab/index",
 					"query": "search=c&canAdd=false",
+					"scene": null
+				},
+				{
+					"id": 25,
+					"name": " 编辑档口-新用户进入",
+					"pathName": "pages/mine/myShop/index",
+					"query": "id=1296715778036338690&canDelete=false",
 					"scene": null
 				}
 			]
