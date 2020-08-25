@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/czhmisaka/canvasTool#readme",
   "dependencies": {
-    "miniprogram-sm-crypto": "^0.1.2",
-    "weui-miniprogram": "^1.0.5"
+    "@antv/wx-f2": "^2.1.0",
+    "miniprogram-sm-crypto": "^0.1.2"
   }
 }

@@ -20,7 +20,8 @@ Page({
     cropperKey: '',
     isNew: true,
     canDelete: true,
-    show: false // 图片裁剪控件
+    show: false, // 图片裁剪控件
+    newCusStep: 0
   },
 
   // 绑定输入
@@ -32,6 +33,13 @@ Page({
     this.setData({
       shopDetail
     });
+  },
+
+  // 切换页面显示
+  changePage(e) {
+    this.setData({
+      newCusStep: e.currentTarget.dataset.page
+    })
   },
 
   // 修改 - 选择图片
@@ -62,6 +70,19 @@ Page({
         title: '加载中'
       })
     })
+  },
+
+  // 检查当前用户的档口是否填写完全
+  checkShopInfoInGlobalData(e) {
+    let {
+      storeVo
+    } = getApp().globalData.shopInfo
+    let key_checkList = ['storeLogo', 'storeName', 'storeAddress'],
+      back = true;
+    key_checkList.forEach((item, index) => {
+      if (storeVo[item] == '' || storeVo[item] == null || !storeVo[item]) back = false
+    })
+    return back
   },
 
   // 加载图片
@@ -208,9 +229,14 @@ Page({
         this.setData({
           shopDetail: res.data
         })
-        wx.setNavigationBarTitle({
-          title: res.data.storeName
-        })
+        if (this.data.canDelete)
+          wx.setNavigationBarTitle({
+            title: res.data.storeName
+          })
+        else
+          wx.setNavigationBarTitle({
+            title: '填写档口信息'
+          })
       } else {
         app.errorTimeOutBack('没找到这个店铺哦')
       }
@@ -218,7 +244,7 @@ Page({
   },
 
   nextStep(e) {
-    
+
   },
 
   onLoad: function (options) {

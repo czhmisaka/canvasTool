@@ -1,0 +1,49 @@
+<!--pages/dataCenter/goodsData/index.wxml-->
+
+<view class="wholeScreen">
+    <view class="flexBox" style="margin-top:0rpx">
+        <view class="title">今日数据统计<span class="gray">（实时更新）</span></view>
+        <view class="MsgBox {{index>0?'borderleft':''}}" wx:for="{{fastMsg}}" wx:key="*this">
+            <view class="Number">{{item.num}}</view>
+            <view class="word">{{item.type}}</view>
+        </view>
+    </view>
+    <view class="flexBox">
+        <view class="title">TOP5 成交客户</view>
+        <view class="topList">
+            <view class="listItem" wx:for="{{topCusList}}" wx:key="*this">
+                <view class="left">
+                    <view class="num_icon {{index%2!=1?'blueBg':'orangeBg'}}">
+                        {{index+1}}
+                    </view>
+                </view>
+                <view class="contentLeft">
+                    <view class="headImg">
+                        <image src="{{item.headImg?item.headImg:'/static/images/canvasTool/bg.png'}}" />
+                    </view>
+                </view>
+                <view class="contentLeft">
+                    <view class="name">{{item.userName?item.userName:'姓名/微信昵称'}}</view>
+                    <view class="content">
+                        <span class="word">拿货￥{{item.money||1000}}</span>
+                        <span class="word">件数{{item.goodsNum||200}}</span>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="flexBox">
+        <view class="title">
+            访客趋势
+        </view>
+        <view class="chart">
+            <ff class="f2-chart" onInit="{{onInitChart0}}" />
+        </view>
+        <view class="chart" style="height:500rpx">
+            <ff class="f2-chart" onInit="{{onInitChart1}}"></ff>
+        </view>
+        <view class="chart" style="height:500rpx">
+            <ff class="f2-chart" onInit="{{onInitChart2}}"></ff>
+        </view>
+    </view>
+</view>

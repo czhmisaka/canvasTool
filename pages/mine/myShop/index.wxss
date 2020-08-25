@@ -37,7 +37,7 @@
     width: 48rpx;
     height: 48rpx;
     position: absolute;
-    margin: -54px 75px;
+    margin: -50px 80px;
 }
 
 .iconAdd>image {
@@ -200,7 +200,9 @@
     width: 270rpx;
     height: 80rpx;
     border-radius: 49rpx;
-    border: 1rpx solid rgba(52, 62, 223, 1);
+    background: rgba(228, 230, 255, 1);
+    color: rgba(52, 62, 223, 1);
+    border: 1rpx solid rgba(52, 62, 223, 0);
     line-height: 80rpx;
     text-align: center;
     margin: 0px 20rpx;
@@ -258,7 +260,7 @@
 
 .textBox>.wordBox {
     width: 600rpx;
-    font-size: 28px;
+    font-size: 28rpx;
 }
 
 .inputBox {
@@ -289,6 +291,20 @@
 
 .marginTop_40rpx {
     margin-top: 40rpx;
+}
+
+.noBorderRaidus {
+    border-radius: 0rpx;
+}
+
+.borderRaidus_20 {
+    border-radius: 20rpx;
+}
+
+.inBottom{
+    width: 750rpx;
+    position: absolute;
+    bottom: 0rpx;
 }
 
 @import '/components/cropper/cropper.wxss'

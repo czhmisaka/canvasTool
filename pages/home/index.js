@@ -41,6 +41,7 @@ Page({
       fastMsg: data
     })
   },
+  
   shareShopName() {},
   toPhotoManage() {
     if (!app.globalData.isLogin) return util.toLogin()

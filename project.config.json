@@ -6,15 +6,15 @@
 	"setting": {
 		"urlCheck": true,
 		"es6": true,
-		"enhance": false,
+		"enhance": true,
 		"postcss": true,
 		"preloadBackgroundData": false,
-		"minified": false,
+		"minified": true,
 		"newFeature": true,
 		"coverView": true,
-		"nodeModules": false,
+		"nodeModules": true,
 		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
+		"showShadowRootInWxmlPanel": false,
 		"scopeDataCheck": false,
 		"uglifyFileName": false,
 		"checkInvalidKey": true,
@@ -27,11 +27,11 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.11.1",
+	"libVersion": "2.12.1",
 	"appid": "wx6cd16b87ee4f586a",
 	"projectname": "%E6%92%AD%E6%AC%BE-%E5%A5%BD%E5%AE%A2%E5%A4%9A",
 	"debugOptions": {
@@ -170,7 +170,7 @@
 					"id": 14,
 					"name": "访问已有档口",
 					"pathName": "pages/mine/myShop/index",
-					"query": "id=1296642090838528002",
+					"query": "id=1296715778036338690",
 					"scene": null
 				},
 				{
@@ -248,6 +248,20 @@
 					"name": " 编辑档口-新用户进入",
 					"pathName": "pages/mine/myShop/index",
 					"query": "id=1296715778036338690&canDelete=false",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "数据中心 - 客户数据",
+					"pathName": "pages/dataCenter/cusData/index",
+					"query": "id=1296715778036338690",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "数据中心 - 商品数据",
+					"pathName": "pages/dataCenter/goodsData/index",
+					"query": "id=1296715778036338690",
 					"scene": null
 				}
 			]

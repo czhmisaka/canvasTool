@@ -165,17 +165,33 @@ Page({
       icon: 'success',
       success: function () {
         setTimeout(() => {
-          // 目前暂时定为 每次登录后都要去 查看档口（可编辑）
-          // wx.reLaunch({
-          //   url: that.data.fromPage
-          // });
-          wx.reLaunch({
-            url: '/pages/mine/myShop/index?id=' + getApp().globalData.shopInfo.storeVo.id+'&canDelete=false'
-          })
+          // 目前暂时定为 每次登录后都检查 档口的信息，若未填写完全 则 跳转到查看档口（可编辑）
+          if (that.checkShopInfoInGlobalData())
+            wx.reLaunch({
+              url: that.data.fromPage
+            });
+          else
+            wx.reLaunch({
+              url: '/pages/mine/myShop/index?id=' + getApp().globalData.shopInfo.storeVo.id + '&canDelete=false'
+            })
         }, 1000)
       }
     });
   },
+
+  // 检查当前用户的档口是否填写完全
+  checkShopInfoInGlobalData(e) {
+    let {
+      storeVo
+    } = getApp().globalData.shopInfo
+    let key_checkList = ['storeLogo', 'storeName', 'storeAddress'],
+      back = true;
+    key_checkList.forEach((item, index) => {
+      if (storeVo[item] == '' || storeVo[item] == null || !storeVo[item]) back = false
+    })
+    return back
+  },
+
 
   // 输入监听事件
   inputChange(e) {

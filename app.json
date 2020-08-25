@@ -11,7 +11,6 @@
     "pages/albumManage/findGoods/index",
     "pages/albumManage/findGoods/GoodsDetail/index",
     "pages/orderManage/orderDetail/index",
-    "pages/Springboard/index",
     "pages/mine/myShop/index",
     "pages/mine/myShopManage/index",
     "pages/cus/cusDetail/index",
@@ -19,7 +18,9 @@
     "pages/cus/cusList/index",
     "pages/cus/tabDetail/index",
     "pages/cus/AddCusToTab/index",
-    "pages/cus/search/index"
+    "pages/cus/search/index",
+    "pages/dataCenter/cusData/index",
+    "pages/dataCenter/goodsData/index"
   ],
   "tabBar": {
     "color": "#B3B6BF",
@@ -61,6 +62,5 @@
   },
   "sitemapLocation": "sitemap.json",
   "useExtendedLib": {
-    "weui": true
   }
 }
