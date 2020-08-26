@@ -9,6 +9,38 @@
   min-height: 100vh;
 }
 
+.timeCheckBox {
+  z-index: 10;
+  width: calc(100% - 40rpx);
+  margin: 20rpx;
+  height: auto;
+  border-radius: 16rpx;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.timeCheckBox>.item {
+  width: 120rpx;
+  height: 48rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 24rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  line-height: 48rpx;
+  text-align: center;
+  color: rgba(102, 102, 102, 1);
+  margin: 0rpx 10rpx;
+  transition: all 0.3s;
+}
+
+.timeCheckBox>.highLight {
+  color: rgba(255, 255, 255, 1);
+  background: rgba(52, 62, 223, 1);
+}
+
 .flexBox {
   z-index: 10;
   background-color: #fff;
@@ -87,6 +119,11 @@
   line-height: 110rpx;
   margin-right: 35rpx;
   transform: scale(1.5，1)
+}
+
+.flexBox>.tabBar{
+  width: 100%;
+  
 }
 
 .flexBox>.topList {

@@ -14,6 +14,22 @@ Page({
       type: '拿货'
     }],
     topCusList: [{}, {}, {}, {}, {}],
+    timeCheckList: [{
+      tab: '昨日',
+      endTime: '',
+      startTime: '',
+      check: false
+    }, {
+      tab: '近7天',
+      endTime: '',
+      startTime: '',
+      check: false
+    }, {
+      tab: '近30天',
+      endTime: '',
+      startTime: '',
+      check: false
+    }],
     onInitChart0(F2, config) {
       const chart = new F2.Chart(config);
       const data = [{
@@ -240,6 +256,21 @@ Page({
   // 获取top5成交客户
   getTop5Cus(e) {
 
+  },
+
+  // 时间划分 
+  getTimeCheckList(e) {
+    let {
+      timeCheckList
+    } = this.data
+    let date = new Date()
+    const today = date.getFullYear() + (date.getMonth() + 1) + date.getDate()
+    timeCheckList.forEach(item => {
+      item.endTime = today
+    })
+    this.setData({
+      timeCheckList
+    })
   },
 
   // 格式化 fastMsg

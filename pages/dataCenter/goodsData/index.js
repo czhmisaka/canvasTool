@@ -11,6 +11,22 @@ Page({
       type: '成交金额'
     }],
     topGoodsList: [],
+    timeCheckList: [{
+      tab: '昨日',
+      endTime: '',
+      startTime: '',
+      check: true
+    }, {
+      tab: '近7天',
+      endTime: '',
+      startTime: '',
+      check: false
+    }, {
+      tab: '近30天',
+      endTime: '',
+      startTime: '',
+      check: false
+    }],
     onInitChart0(F2, config) {
       const chart = new F2.Chart(config);
       const data = [{
@@ -78,6 +94,47 @@ Page({
     },
   },
 
+  // 时间划分 
+  getTimeCheckList(e) {
+    let {
+      timeCheckList
+    } = this.data
+    let date = new Date()
+    const today = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+    date.setTime(date.getTime() - 24 * 3600 * 1000)
+    const yesterday = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+    date.setTime(date.getTime() - 6 * 24 * 3600 * 1000)
+    const lastWeek = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+    date.setTime(date.getTime() - 23 * 24 * 3600 * 1000)
+    const lastMonth = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+    timeCheckList.forEach(item => {
+      item.endTime = today
+    })
+    timeCheckList[0].startTime = yesterday
+    timeCheckList[1].startTime = lastWeek
+    timeCheckList[2].startTime = lastMonth
+    this.setData({
+      timeCheckList
+    })
+  },
+
+  // 修改当前所选时间
+  changeTime(e) {
+    let {
+      timeCheckList
+    } = this.data
+    timeCheckList.forEach(item => {
+      if (item.tab == e.currentTarget.dataset.tab) {
+        item.check = true
+      } else {
+        item.check = false
+      }
+    })
+    this.setData({
+      timeCheckList
+    })
+  },
+
   // 获取top5成交客户
   getTop5Cus(e) {
     let topGoodsList = []
@@ -89,6 +146,30 @@ Page({
     this.setData({
       topGoodsList
     })
+  },
+
+  // 获取今日商品数据
+  getTodayGoodsData(e) {
+
+  },
+
+  // 获取图表数据
+  getChartsData(e) {
+    let data = {
+      endTime: "",
+      startTime: "",
+      storeId: this.data.storeId
+    }
+    this.data.timeCheckList.forEach(item => {
+      if (item.check) {
+        data.startTime = item.startTime
+        data.endTime = item.endTime
+      }
+    })
+    util.request({
+      url: '/customer/goods/trend',
+      data
+    }).then(res => {})
   },
 
   // 格式化 fastMsg
@@ -106,6 +187,32 @@ Page({
 
   },
 
+  // 获取今日商品信息数据
+  getFastMsg() {
+    let data = {
+      endTime: "",
+      startTime: "",
+      storeId: this.data.storeId
+    }
+    this.data.timeCheckList.forEach(item => {
+      if (item.tab == "昨日") {
+        data.startTime = item.startTime
+        data.endTime = item.endTime
+      }
+    })
+    util.request({
+      url: '/order/getSellSituation',
+      data
+    }).then((res) => {
+      this.formatNum([{
+        num: res.data ? res.data.goodsNum || 0 : 0,
+        type: '卖出件数'
+      }, {
+        num: res.data ? res.data.salesVolume || 0 : 0,
+        type: '成交金额'
+      }])
+    })
+  },
 
   onLoad: function (options) {
     let setPageLife = new getApp().setPageLife()
@@ -113,12 +220,15 @@ Page({
       options,
       storeId: options.id || getApp().globalData.shopInfo.storeVo.id
     })
+    this.getTimeCheckList()
+    this.getChartsData()
+    this.getFastMsg()
   },
   onReady: function () {},
   onShow: function () {
-    setTimeout(()=>{
+    setTimeout(() => {
       this.getTop5Cus()
-    },1000)
+    }, 1000)
   },
   onHide: function () {},
   onUnload: function () {},

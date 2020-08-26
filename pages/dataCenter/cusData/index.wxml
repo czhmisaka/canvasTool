@@ -8,6 +8,11 @@
             <view class="word">{{item.type}}</view>
         </view>
     </view>
+    <view class="timeCheckBox">
+        <view class="item {{item.check?'highLight':''}}" wx:for="{{timeCheckList}}" wx:key="*this">
+            {{item.tab}}
+        </view>
+    </view>
     <view class="flexBox">
         <view class="title">TOP5 成交客户</view>
         <view class="topList">

@@ -20,7 +20,8 @@
     "pages/cus/AddCusToTab/index",
     "pages/cus/search/index",
     "pages/dataCenter/cusData/index",
-    "pages/dataCenter/goodsData/index"
+    "pages/dataCenter/goodsData/index",
+    "pages/dataCenter/inComeData/index"
   ],
   "tabBar": {
     "color": "#B3B6BF",
@@ -61,6 +62,5 @@
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
-  "useExtendedLib": {
-  }
+  "useExtendedLib": {}
 }

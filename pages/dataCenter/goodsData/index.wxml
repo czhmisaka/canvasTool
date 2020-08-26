@@ -8,14 +8,21 @@
             <view class="word">{{item.type}}</view>
         </view>
     </view>
+    <view class="timeCheckBox">
+        <view class="item {{item.check?'highLight':''}}" wx:for="{{timeCheckList}}" wx:key="*this" bindtap="changeTime" data-tab="{{item.tab}}">
+            {{item.tab}}
+        </view>
+    </view>
     <view class="flexBox">
-        <view class="title">TOP5 成交商品</view>
+        <view class="title">TOP5 成交商品</view>    
+        <view class="tabBar">
+            <view class="tab" wx:for="{{tabBarList}}" wx:key="*this" bindtap="changeTime" data="{{item.time}}">
+                {{item.tap}}
+            </view>
+        </view>
         <view class="topList">
             <view class="listItem" wx:for="{{topGoodsList}}" wx:key="*this">
                 <view class="left">
-                    <view class="num_icon {{index%2!=1?'blueBg':'orangeBg'}}">
-                        {{index+1}}
-                    </view>
                 </view>
                 <view class="contentLeft">
                     <view class="headImg">

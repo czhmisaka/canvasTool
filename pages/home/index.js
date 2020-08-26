@@ -118,7 +118,7 @@ Page({
       }, {
         num: res.data ? res.data.salesVolume || 0 : 0,
         type: '成交额',
-        url: '/pages/dataCenter/cusData/index'
+        url: '/pages/dataCenter/inComeData/index'
       }])
     })
   },
