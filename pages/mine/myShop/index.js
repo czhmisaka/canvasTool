@@ -40,6 +40,18 @@ Page({
     this.setData({
       newCusStep: e.currentTarget.dataset.page
     })
+    switch (e.currentTarget.dataset.page) {
+      case '0':
+        wx.setNavigationBarTitle({
+          title: '填写档口信息'
+        })
+        break;
+      case '1':
+        wx.setNavigationBarTitle({
+          title: '添加联系方式'
+        })
+        break;
+    }
   },
 
   // 修改 - 选择图片
@@ -70,19 +82,6 @@ Page({
         title: '加载中'
       })
     })
-  },
-
-  // 检查当前用户的档口是否填写完全
-  checkShopInfoInGlobalData(e) {
-    let {
-      storeVo
-    } = getApp().globalData.shopInfo
-    let key_checkList = ['storeLogo', 'storeName', 'storeAddress'],
-      back = true;
-    key_checkList.forEach((item, index) => {
-      if (storeVo[item] == '' || storeVo[item] == null || !storeVo[item]) back = false
-    })
-    return back
   },
 
   // 加载图片
@@ -184,39 +183,55 @@ Page({
     })
   },
 
+  // 检查档口必填数据 是否完成
+  checkShopInfoInGlobalData(e){
+    let 
+      storeVo
+     = this.data.shopDetail
+    let key_checkList = ['storeLogo', 'storeName', 'storeAddress'],
+      back = true;
+    key_checkList.forEach((item, index) => {
+      if (storeVo[item] == '' || storeVo[item] == null || !storeVo[item]) back = false
+    })
+    return back
+  },
+
   // 修改店铺详情
   submitShopDetail(e) {
-    util.request({
-      url: 'store/update',
-      data: this.data.shopDetail
-    }).then((res) => {
-      if (res.data) {
-        let page = getCurrentPages()
-        if (page.length == 1)
-          getApp().toHomePage()
-        let prePage = page[page.length - 2]
-        if (prePage) {
-          let {
-            shopList
-          } = prePage.data
-          if (shopList) shopList.forEach((item, index) => {
-            if (item.id == this.data.shopDetail.id) {
-              shopList[index] = this.data.shopDetail
-            }
-          })
-          prePage.setData({
-            shopList
+    if (this.checkShopInfoInGlobalData())
+      util.request({
+        url: 'store/update',
+        data: this.data.shopDetail
+      }).then((res) => {
+        if (res.data) {
+          let page = getCurrentPages()
+          if (page.length == 1)
+            getApp().toHomePage()
+          let prePage = page[page.length - 2]
+          if (prePage) {
+            let {
+              shopList
+            } = prePage.data
+            if (shopList) shopList.forEach((item, index) => {
+              if (item.id == this.data.shopDetail.id) {
+                shopList[index] = this.data.shopDetail
+              }
+            })
+            prePage.setData({
+              shopList
+            })
+          }
+          app.globalData.shopInfo.storeVo = this.data.shopDetail
+          app.setStorage()
+          app.successTimeOutBack(this.data.canDelete ? res.msg : '准备就绪')
+        } else {
+          wx.showToast({
+            title: res.msg
           })
         }
-        app.globalData.shopInfo.storeVo = this.data.shopDetail
-        app.setStorage()
-        app.successTimeOutBack(this.data.canDelete ? res.msg : '准备就绪')
-      } else {
-        wx.showToast({
-          title: res.msg
-        })
-      }
-    })
+      })
+    else
+      app.noIconToast('请至少填写档口名称，头像和所在市场')
   },
 
   // 获取档口详情
@@ -241,10 +256,6 @@ Page({
         app.errorTimeOutBack('没找到这个店铺哦')
       }
     })
-  },
-
-  nextStep(e) {
-
   },
 
   onLoad: function (options) {

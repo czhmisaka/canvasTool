@@ -16,7 +16,7 @@
 
     <!-- type == check -->
     <view class="{{'loginBox '+(type=='check'?'show':'hidden')}}">
-        <view class="buttonBox {{(type==='check'&&checkFile)?'hightLight_Button':''}}">
+        <view class="buttonBox {{(type==='check'&&checkFile)?'hightLight_Button':'hightLight_Button'}}">
             <button wx:if="{{type==='check'&&!checkFile}}" bindtap="loginWithWx">
                 <view class="icon" style="width:40rpx;height:33rpx;">
                     <image src="/static/images/loginImages/ic_wx.png" />

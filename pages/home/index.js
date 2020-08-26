@@ -13,10 +13,10 @@ Page({
     fastMsg: [{
       num: '加载中',
       type: '客户量'
-    },{
+    }, {
       num: '加载中',
       type: '商品销量'
-    },{
+    }, {
       num: '加载中',
       type: '成交额'
     }],
@@ -41,14 +41,28 @@ Page({
       fastMsg: data
     })
   },
-  
-  shareShopName() {},
+
+  //  预览档口
+  toYSXminiProgram() {
+    let id = app.globalData.shopInfo.storeVo.id
+    wx.navigateToMiniProgram({
+      appId: "wx06a1bdb123d6a27e",
+      path: '/pages/storeDetail/storeDetail?id=' + id,
+      envVersion: 'trial',
+      extraData: {
+        id: id,
+        type: 'toOther'
+      },
+      success(res) {}
+    })
+  },
   toPhotoManage() {
     if (!app.globalData.isLogin) return util.toLogin()
     app.navTo('/pages/albumManage/albumManageMain/index');
   },
 
   navTo(e) {
+    if(!e.currentTarget.dataset.url) return 0;
     if (!app.globalData.isLogin) return util.toLogin()
     app.navTo(e.currentTarget.dataset.url)
   },
@@ -95,13 +109,16 @@ Page({
       // 这里注入了假数据， 待修改
       this.formatNum([{
         num: res.data ? res.data.buyerNum || 0 : 0,
-        type: '客户量'
+        type: '客户量',
+        url: '/pages/dataCenter/cusData/index'
       }, {
         num: res.data ? res.data.goodsNum || 0 : 0,
-        type: '商品销量'
+        type: '商品销量',
+        url: '/pages/dataCenter/goodsData/index'
       }, {
         num: res.data ? res.data.salesVolume || 0 : 0,
-        type: '成交额'
+        type: '成交额',
+        url: '/pages/dataCenter/cusData/index'
       }])
     })
   },
@@ -147,7 +164,13 @@ Page({
   },
   onHide: function () {},
   onUnload: function () {},
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () {
+    // 下拉刷新
+    this.selectComponent('#fall').refresh()
+    setTimeout(() => {
+      wx.stopPullDownRefresh()
+    }, 1000)
+  },
   onReachBottom: function () {},
   onShareAppMessage: function (e) {
     if (e.target && e.target.dataset.type == "goods") {

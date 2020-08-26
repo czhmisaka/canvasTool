@@ -1,5 +1,6 @@
 {
   "usingComponents": {
       "ff": "@antv/wx-f2"
-  }
+  },
+  "navigationBarTitleText": "商品销量"
 }

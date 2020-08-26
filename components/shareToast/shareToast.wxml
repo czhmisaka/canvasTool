@@ -4,7 +4,9 @@
     <image src="{{shareImage}}" wx:if="{{shareImage}}" class="share-image" bindload="finish" bindtap="eventSave">
     </image>
     <canvasdrawer painting="{{painting}}" class="canvasdrawer" bind:getImage="eventGetImage" />
-    <div class="shareButtonBox" wx:if="{{showTabbar}}">
+    <!-- <div class="shareButtonBox" wx:if="{{showTabbar}}"> -->
+    <!-- 这边代码屏蔽的原因在于修改了档口的分享方式 2020年8月25日 17点57分 -->
+    <div class="shareButtonBox" wx:if="{{false}}">
         <!-- <button class="button" open-type="share" data-id="{{dataid}}" data-type="{{type}}"
             data-shareDetail="{{shareDetail}}">
             <div class="icon">

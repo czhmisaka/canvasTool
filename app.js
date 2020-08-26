@@ -107,5 +107,24 @@ App({
   getGlobalDataStorage: function () { // 缓存机制需要修改
     if (wx.getStorageSync('globalData'))
       this.globalData = wx.getStorageSync('globalData');
-  }
+    else{
+      wx.reLaunch({
+        url:'/pages/login/index'
+      })
+    }
+  },
+
+  // 检查当前用户的档口是否填写完全
+  checkShopInfoInGlobalData(e) {
+    let {
+      storeVo
+    } = this.globalData.shopInfo
+    console.log(this.globalData)
+    let key_checkList = ['storeLogo', 'storeName', 'storeAddress'],
+      back = true;
+    key_checkList.forEach((item, index) => {
+      if (storeVo[item] == '' || storeVo[item] == null || !storeVo[item]) back = false
+    })
+    return back
+  },
 })

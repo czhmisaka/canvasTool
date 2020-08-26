@@ -42,7 +42,11 @@ Component({
   methods: {
     // 刷新
     refresh: function () {
+      page = 0
+      finish = true
+      open = true
       this.getPhotoList(0,true)
+      console.log('asd')
     },
     // 去添加新相册
     toAdd: function () {
@@ -64,6 +68,7 @@ Component({
         duration: 1000,
         mask: false,
       });
+      page++
       this.getPhotoList(page)
     },
     // 数据获取
@@ -71,7 +76,8 @@ Component({
       if (!open) return;
       if (!finish) return;
       getApp().getKeyFromGlobalData('shopInfo').then((shopInfo) => {
-        if(shopInfo==='null') return getApp().noIconToast('未能获取店铺信息')
+        // if(shopInfo==='null') return getApp().noIconToast('未能获取店铺信息')
+        if(shopInfo == 'null') return 0;
         open = false
         utils.request({
           url: '/photo/list',

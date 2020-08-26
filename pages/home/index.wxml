@@ -10,6 +10,10 @@
             <view class="headImg" bindtap="navTo" data-url="{{'/pages/mine/myShop/index?id='+storeVo.id}}">
                 <image src="{{storeVo.storeLogo?storeVo.storeLogo:'/static/images/icon_page/img_zwtx.png'}}" alt="" />
             </view>
+            <view class="actionSection">
+                <view class="item orange" bindtap="shopShare" data-id="{{storeVo.id}}">分享</view>
+                <view class="item" bindtap="toYSXminiProgram">预览</view>
+            </view>
             <view class="word">
                 {{storeVo.storeName}}
             </view>
@@ -24,7 +28,7 @@
     </view>
     <view class="flexBox" style="margin-top:0rpx">
         <view class="title">今日数据统计</view>
-        <view class="MsgBox {{index>0?'borderleft':''}}" wx:for="{{fastMsg}}" wx:key="*this">
+        <view class="MsgBox {{index>0?'borderleft':''}}" wx:for="{{fastMsg}}" wx:key="*this" bindtap="navTo" data-url="{{item.url}}">
             <view class="Number">{{item.num}}</view>
             <view class="word">{{item.type}}</view>
         </view>

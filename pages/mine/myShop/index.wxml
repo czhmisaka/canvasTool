@@ -102,25 +102,25 @@
             src="{{shopDetail.storeLogo}}" />
         <view class="icon200" wx:else bindtap="changeImage" data-key="storeLogo">
             头像
-            <view class="iconAdd">
-                <image src="/static/images/icon_page/ic_tjtx.png" />
-            </view>
+        </view>
+        <view class="iconAdd">
+            <image src="/static/images/icon_page/ic_tjtx.png" />
         </view>
     </view>
     <view class="flexBox noBg alignSpaceBetween inputBox marginTop_40rpx">
-        <view class="toPhoto LH110rpx">
+        <view class="toPhoto LH110rpx width100">
             <input value="{{shopDetail.storeName}}" maxlength="14" placeholder="档口名称" bindinput="bindInput"
                 data-key="storeName" />
         </view>
     </view>
     <view class="flexBox noBg alignSpaceBetween inputBox marginTop_40rpx">
-        <view class="toPhoto LH110rpx">
+        <view class="toPhoto LH110rpx width100">
             <input value="{{shopDetail.provinceId}}" maxlength="14" placeholder="所在市场" bindinput="bindInput"
                 data-key="provinceId" />
         </view>
     </view>
     <view class="flexBox noBg alignSpaceBetween inputBox marginTop_40rpx">
-        <view class="toPhoto LH110rpx">
+        <view class="toPhoto LH110rpx width100">
             <input value="{{shopDetail.storeAddress}}" maxlength="14" placeholder="具体地址" bindinput="bindInput"
                 data-key="storeAddress" />
         </view>
@@ -138,23 +138,23 @@
 </view>
 <view class="wholeScreen noBg" wx:if="{{!canDelete&&newCusStep==1}}">
     <view class="flexBox noBg alignCenter marginTop_80rpx">
-        <image class="icon200" wx:if="{{shopDetail.storeQrcode}}" bindtap="changeImage" data-key="storeQrcode"
-            src="{{shopDetail.storeQrcode}}" />
+        <image class="icon200 noBorderRaidus" wx:if="{{shopDetail.storeQrcode}}" bindtap="changeImage"
+            data-key="storeQrcode" src="{{shopDetail.storeQrcode}}" />
         <view class="icon200 noBorderRaidus" wx:else bindtap="changeImage" data-key="storeQrcode">
             微信二维码
-            <view class="iconAdd">
-                <image src="/static/images/icon_page/ic_tjtx.png" />
-            </view>
+        </view>
+        <view class="iconAdd">
+            <image src="/static/images/icon_page/ic_tjtx.png" />
         </view>
     </view>
     <view class="flexBox noBg alignSpaceBetween inputBox marginTop_40rpx">
-        <view class="toPhoto LH110rpx">
+        <view class="toPhoto LH110rpx width100">
             <input value="{{shopDetail.storeWechat}}" maxlength="14" placeholder="微信号" bindinput="bindInput"
                 data-key="storeWechat" />
         </view>
     </view>
     <view class="flexBox noBg alignSpaceBetween inputBox marginTop_40rpx">
-        <view class="toPhoto LH110rpx">
+        <view class="toPhoto LH110rpx width100">
             <input value="{{shopDetail.storeTel}}" maxlength="14" placeholder="手机号码" bindinput="bindInput"
                 data-key="storeTel" />
         </view>
@@ -163,7 +163,7 @@
         <view class="button" bindtap="changePage" data-page="0">
             上一步
         </view>
-        <view class="button" bindtap="submitShopDetail">
+        <view class="button button_highlight" bindtap="submitShopDetail">
             完成
         </view>
     </view>

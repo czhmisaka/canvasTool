@@ -42,6 +42,34 @@ page {
     float: right;
 }
 
+.detail>.actionSection {
+    width: 126rpx;
+    height: 136rpx;
+    position: absolute;
+    right: 0rpx;
+}
+
+.actionSection>.item {
+    height: 56rpx;
+    width: 126rpx;
+    border-top-left-radius: 28rpx;
+    border-bottom-left-radius: 28rpx;
+    background-color: white;
+    color: rgba(52, 62, 223, 1);
+    text-align: center;
+    text-indent: 4rpx;
+    line-height: 56rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+}
+
+.actionSection>.orange {
+    background-color: rgba(255, 141, 77, 1);
+    color: white;
+    margin-bottom: 20rpx;
+}
+
 .detail>.change>image {
     width: 28rpx;
     height: 28rpx;
@@ -254,7 +282,7 @@ page {
     height: 32rpx;
 }
 
-.icon_32To28{
+.icon_32To28 {
     margin-top: -2rpx;
 }
 

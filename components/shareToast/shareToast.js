@@ -48,6 +48,8 @@ Component({
       this.setData({
         show: true
       })
+      // 直接触发分享事件
+      this.clickToPurduceShareImage()
     },
 
     hide: function () {

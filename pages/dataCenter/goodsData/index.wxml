@@ -2,16 +2,16 @@
 
 <view class="wholeScreen">
     <view class="flexBox" style="margin-top:0rpx">
-        <view class="title">今日数据统计<span class="gray">（实时更新）</span></view>
+        <view class="title">今日商品数据<span class="gray">（实时更新）</span></view>
         <view class="MsgBox {{index>0?'borderleft':''}}" wx:for="{{fastMsg}}" wx:key="*this">
             <view class="Number">{{item.num}}</view>
             <view class="word">{{item.type}}</view>
         </view>
     </view>
     <view class="flexBox">
-        <view class="title">TOP5 成交客户</view>
+        <view class="title">TOP5 成交商品</view>
         <view class="topList">
-            <view class="listItem" wx:for="{{topCusList}}" wx:key="*this">
+            <view class="listItem" wx:for="{{topGoodsList}}" wx:key="*this">
                 <view class="left">
                     <view class="num_icon {{index%2!=1?'blueBg':'orangeBg'}}">
                         {{index+1}}
@@ -36,14 +36,8 @@
         <view class="title">
             访客趋势
         </view>
-        <view class="chart">
+        <view class="chart" style="height:400rpx">
             <ff class="f2-chart" onInit="{{onInitChart0}}" />
-        </view>
-        <view class="chart" style="height:500rpx">
-            <ff class="f2-chart" onInit="{{onInitChart1}}"></ff>
-        </view>
-        <view class="chart" style="height:500rpx">
-            <ff class="f2-chart" onInit="{{onInitChart2}}"></ff>
         </view>
     </view>
 </view>
