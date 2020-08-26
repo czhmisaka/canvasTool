@@ -263,6 +263,13 @@
 					"pathName": "pages/dataCenter/goodsData/index",
 					"query": "id=1296715778036338690",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "数据中心-成交额",
+					"pathName": "pages/dataCenter/inComeData/index",
+					"query": "id=1296715778036338690",
+					"scene": null
 				}
 			]
 		}
