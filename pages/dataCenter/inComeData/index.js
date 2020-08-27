@@ -1,4 +1,5 @@
 // pages/dataCenter/inComeData/index.js
+const wx_charts = require('../../../utils/wxCharts/index.js')
 const util = require('../../../utils/util.js')
 let app = getApp()
 Page({
@@ -9,6 +10,13 @@ Page({
     }, {
       num: '加载中',
       type: '成交金额'
+    }],
+    cusStruct: [{
+      num: '加载中',
+      type: '成交商品'
+    }, {
+      num: '加载中',
+      type: '每笔订单'
     }],
     topGoodsList: [],
     timeCheckList: [{
@@ -27,48 +35,58 @@ Page({
       startTime: '',
       check: false
     }],
+    selectTime: {},
     onInitChart0,
-    onInitChart1
   },
 
   // 时间划分 
   getTimeCheckList(e) {
-    let {
-      timeCheckList
-    } = this.data
-    let date = new Date()
-    const today = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
-    date.setTime(date.getTime() - 24 * 3600 * 1000)
-    const yesterday = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
-    date.setTime(date.getTime() - 6 * 24 * 3600 * 1000)
-    const lastWeek = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
-    date.setTime(date.getTime() - 23 * 24 * 3600 * 1000)
-    const lastMonth = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
-    timeCheckList.forEach(item => {
-      item.endTime = today
-    })
-    timeCheckList[0].startTime = yesterday
-    timeCheckList[1].startTime = lastWeek
-    timeCheckList[2].startTime = lastMonth
-    this.setData({
-      timeCheckList
+    return new Promise((res, rej) => {
+      let {
+        timeCheckList,
+        selectTime
+      } = this.data
+      let date = new Date()
+      const today = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+      date.setTime(date.getTime() - 24 * 3600 * 1000)
+      const yesterday = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+      date.setTime(date.getTime() - 6 * 24 * 3600 * 1000)
+      const lastWeek = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+      date.setTime(date.getTime() - 23 * 24 * 3600 * 1000)
+      const lastMonth = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+      timeCheckList.forEach(item => {
+        item.endTime = today
+      })
+      timeCheckList[0].startTime = yesterday
+      timeCheckList[1].startTime = lastWeek
+      timeCheckList[2].startTime = lastMonth
+      selectTime = timeCheckList[0]
+      this.setData({
+        timeCheckList,
+        selectTime
+      })
+      res()
+      rej()
     })
   },
 
   // 修改当前所选时间
   changeTime(e) {
     let {
-      timeCheckList
+      timeCheckList,
+      selectTime
     } = this.data
     timeCheckList.forEach(item => {
       if (item.tab == e.currentTarget.dataset.tab) {
         item.check = true
+        selectTime = item
       } else {
         item.check = false
       }
     })
     this.setData({
-      timeCheckList
+      timeCheckList,
+      selectTime
     })
   },
 
@@ -151,20 +169,38 @@ Page({
     })
   },
 
+  // 下单新老客构成  图表函数 
+  newOrOldCusStuct(e) {
+    let data = {
+      storeId: this.data.storeId,
+      startTime: this.data.selectTime.startTime,
+      endTime: this.data.selectTime.endTime
+    }
+    // 请求未能成功
+    util.request({
+      url: '/customer/browser/num',
+      data
+    }).then((res) => {
+
+    })
+  },
+
   onLoad: function (options) {
     let setPageLife = new getApp().setPageLife()
     this.setData({
       options,
       storeId: options.id || getApp().globalData.shopInfo.storeVo.id
     })
-    this.getTimeCheckList()
-    this.getChartsData()
-    this.getFastMsg()
+    this.getTimeCheckList().then(res => {
+      this.getChartsData()
+      this.getFastMsg()
+    })
   },
   onReady: function () {},
   onShow: function () {
     setTimeout(() => {
       this.getTop5Cus()
+      this.newOrOldCusStuct()
     }, 1000)
   },
   onHide: function () {},
@@ -239,58 +275,4 @@ function onInitChart0(F2, config) {
   chart.render();
   // 注意：需要把chart return 出来
   return chart;
-}
-
-function onInitChart1(F2, config) {
-  const data = [{
-    const: 'const',
-    type: '交通出行',
-    money: 51.39
-  }, {
-    const: 'const',
-    type: '饮食',
-    money: 356.68
-  }, {
-    const: 'const',
-    type: '生活日用',
-    money: 20.00
-  }, {
-    const: 'const',
-    type: '住房缴费',
-    money: 116.53
-  }];
-  const chart = new F2.Chart(config);
-  chart.source(data);
-  chart.coord('polar', {
-    transposed: true,
-    radius: 0.9,
-    innerRadius: 0.5
-  });
-  chart.axis(false);
-  chart.legend(false);
-  chart.tooltip(false);
-  chart.interval().position('const*money').adjust('stack').color('type', ['#1890FF', '#13C2C2', '#2FC25B', '#FACC14']);
-  chart.pieLabel({
-    sidePadding: 30,
-    activeShape: true,
-    label1: function label1(data) {
-      return {
-        text: '￥' + data.money,
-        fill: '#343434',
-        fontWeight: 'bold'
-      };
-    },
-    label2: function label2(data) {
-      return {
-        text: data.type,
-        fill: '#999'
-      };
-    }
-  });
-  chart.render();
-  return chart
-}
-
-function onInitChart2(F2, config) {
-
 }

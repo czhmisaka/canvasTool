@@ -21,7 +21,8 @@
     "pages/cus/search/index",
     "pages/dataCenter/cusData/index",
     "pages/dataCenter/goodsData/index",
-    "pages/dataCenter/inComeData/index"
+    "pages/dataCenter/inComeData/index",
+    "pages/mine/my/index"
   ],
   "tabBar": {
     "color": "#B3B6BF",

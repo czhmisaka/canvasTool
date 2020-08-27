@@ -27,7 +27,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -269,6 +269,12 @@
 					"name": "数据中心-成交额",
 					"pathName": "pages/dataCenter/inComeData/index",
 					"query": "id=1296715778036338690",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的 - 管理 个人信息",
+					"pathName": "pages/mine/my/index",
 					"scene": null
 				}
 			]

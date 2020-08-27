@@ -27,16 +27,17 @@
         <view class="title">
             下单新老客构成
         </view>
-        <view class="chart" style="height:400rpx">
-            <ff class="f2-chart" onInit="{{onInitChart1}}" />
+        <view class="chart">
+            <canvas canvas-id="ringCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
         </view>
     </view>
     <view class="flexBox">
         <view class="title">
             商品及订单的平均单价(元)
         </view>
-        <view class="chart" style="height:400rpx">
-            <ff class="f2-chart" onInit="{{onInitChart0}}" />
+        <view class="MsgBox {{index>0?'borderleft':''}}" wx:for="{{cusStruct}}" wx:key="*this">
+            <view class="Number">{{item.num}}</view>
+            <view class="word">{{item.type}}</view>
         </view>
     </view>
     <view class="flexBox">
