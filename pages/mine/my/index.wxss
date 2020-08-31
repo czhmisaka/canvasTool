@@ -1,1 +1,394 @@
 /* pages/mine/my/index.wxss */
+.wholeScreen {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    background: rgba(247, 248, 250, 1);
+    transition: all 0.4s;
+    z-index: 100;
+    transition: all 0.5s;
+}
+
+
+.top {
+    z-index: 1000;
+    position: fixed;
+    top: 0px;
+}
+
+.icon120 {
+    width: 120rpx;
+    height: 120rpx;
+    margin: 24rpx;
+    margin-right: 10rpx;
+    border-radius: 60rpx;
+}
+
+.icon200 {
+    width: 200rpx;
+    height: 200rpx;
+    border-radius: 100rpx;
+    background-color: lightgray;
+    line-height: 200rpx;
+    text-align: center;
+    color: white;
+}
+
+.iconAdd {
+    width: 48rpx;
+    height: 48rpx;
+    position: absolute;
+    margin: 80px 40px;
+}
+
+.iconAdd>image {
+    width: 100%;
+    height: 100%;
+}
+
+.icon40 {
+    width: 40rpx;
+    height: 40rpx;
+    margin: 35rpx;
+    margin-right: 10rpx;
+    border-radius: 5rpx;
+}
+
+.icon80 {
+    width: 80rpx;
+    height: 80rpx;
+    margin: 15rpx;
+    margin-right: 10rpx;
+    border-radius: 5rpx;
+}
+
+.itemBox {
+    width: 100vw;
+    height: auto;
+    display: inline-block;
+    background-color: white;
+}
+
+.cardBox {
+    width: 710rpx;
+    height: auto;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 16rpx;
+    display: inline-block;
+    margin: 20rpx;
+}
+
+.flexBox {
+    z-index: 10;
+    background-color: #fff;
+    width: calc(100% - 68rpx);
+    margin: 0rpx 34rpx;
+    border-radius: 8rpx;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.borderBottom {
+    border-bottom: 1rpx #E6E6E6 solid;
+}
+
+.flexBox>.MsgBox {
+    margin: 20rpx;
+    width: calc(33% - 40rpx);
+    text-align: center;
+}
+
+.MsgBox>.Number {
+    font-family: "DINAlternate-Bold,DINAlternate";
+    color: rgba(52, 62, 223, 1);
+    font-weight: bold;
+    font-size: 36rpx;
+}
+
+.MsgBox>.word {
+    padding-top: 16rpx;
+    color: #999999;
+    font-size: 24rpx;
+}
+
+.flexBox>.toPhoto {
+    display: flex;
+    font-weight: bolder;
+    font-weight: 900;
+    color: rgba(61, 61, 61, 1);
+    font-size: 32rpx;
+    font-family: "PingFangSC-Regular,PingFang SC";
+    /* margin-left:24rpx; */
+}
+
+.flexBox>.right {
+    transform: scale(1.5，1);
+    display: flex;
+    justify-content: space-between;
+}
+
+.toPhoto>input {
+    height: 34rpx;
+    line-height: 34rpx;
+    text-align: left;
+    margin: 32rpx 0rpx;
+    color: #999;
+    font-weight: 100;
+}
+
+.right>input {
+    height: 34rpx;
+    line-height: 34rpx;
+    text-align: right;
+    margin: 32rpx 0rpx;
+}
+
+.right>image {
+    display: flex;
+    align-items: center;
+    margin-left: 12rpx;
+}
+
+.flexBox>.title {
+    width: 100%;
+    height: 32rpx;
+    line-height: 32rpx;
+    margin: 32rpx 0rpx;
+    font-size: 32rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(61, 61, 61, 1);
+}
+
+.flexBox>.wordBox {
+    width: 682rpx;
+    height: 64rpx;
+    line-height: 32rpx;
+    overflow: hidden;
+    margin-bottom: 34rpx;
+}
+
+.iconBack {
+    margin: auto 0px;
+}
+
+.H110rpx {
+    height: 110rpx;
+}
+
+.H168rpx {
+    height: 168rpx;
+}
+
+.H200rpx {
+    height: auto;
+    min-height: 200rpx;
+    display: block;
+}
+
+.LH110rpx {
+    line-height: 108rpx;
+}
+
+.width100 {
+    width: 100%;
+}
+
+.width100>input {
+    width: 100%;
+    width: 100%;
+    height: 96rpx;
+    line-height: 96rpx;
+    margin: 0rpx;
+}
+
+.LH168rpx {
+    line-height: 168rpx;
+}
+
+.bgNone {
+    background-color: none;
+    margin: 20rpx 0rpx;
+}
+
+.flexCenter {
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    position: relative;
+    width: 270rpx;
+    height: 80rpx;
+    border-radius: 49rpx;
+    background: rgba(228, 230, 255, 1);
+    color: rgba(52, 62, 223, 1);
+    border: 1rpx solid rgba(52, 62, 223, 0);
+    line-height: 80rpx;
+    text-align: center;
+    margin: 0px 20rpx;
+}
+
+.button_long {
+    position: fixed;
+    bottom: 48rpx;
+    margin: 0rpx 95rpx;
+    width: 560rpx;
+    height: 80rpx;
+    background: rgba(52, 62, 223, 1);
+    border-radius: 40rpx;
+    line-height: 80rpx;
+    color: white;
+    text-align: center;
+}
+
+.buttonBar {
+    position: fixed;
+    z-index: 10001;
+    top: 20px;
+    width: 100vw;
+    height: 100rpx;
+    /* background-color: white; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttonBar>.box {
+    margin: 20rpx;
+}
+
+.longBotton {
+    width: 560rpx;
+    background-color: rgba(52, 62, 223, 1);
+    color: white;
+    margin: 20rpx auto;
+    font-size: 32rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+}
+
+.button_highlight {
+    color: white;
+    background: rgba(52, 62, 223, 1);
+}
+
+.button_normal {
+    color: rgba(52, 62, 223, 1);
+    background: white;
+}
+
+.textBox {
+    width: 600rpx;
+    margin: 0rpx 55rpx;
+    padding: 20rpx;
+    background: rgba(245, 245, 245, 1);
+    margin-top: 40rpx;
+}
+
+.textBox>.wordBox {
+    width: 600rpx;
+    font-size: 28rpx;
+}
+
+.inputBox {
+    width: 640rpx;
+    margin: 0rpx 55rpx;
+    border-bottom: 1rpx #e6e6e6 solid;
+}
+
+.inputBox>.toPhoho {
+    color: #999
+}
+
+.alignCenter {
+    justify-content: center;
+}
+
+.alignSpaceBetween {
+    justify-content: space-between;
+}
+
+.noBg {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.marginTop_80rpx {
+    margin-top: 80rpx;
+}
+
+.marginTop_40rpx {
+    margin-top: 40rpx;
+}
+
+.noBorderRaidus {
+    border-radius: 0rpx;
+}
+
+.borderRaidus_20 {
+    border-radius: 20rpx;
+}
+
+.inBottom {
+    width: 750rpx;
+    position: absolute;
+    bottom: 0rpx;
+}
+
+.button_small {
+    width: 172rpx;
+    height: 56rpx;
+    border-radius: 32rpx;
+    line-height: 56rpx;
+    border: 1px solid rgba(52, 62, 223, 1);
+    font-size: 24rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(52, 62, 223, 1);
+    text-align: center;
+    margin: 14rpx 20rpx;
+}
+
+.hide {
+    opacity: 0;
+    z-index: 0;
+    height: 0px;
+}
+
+.input {
+    width: 646rpx;
+    height: 88rpx;
+    background: rgba(250, 250, 250, 1);
+    border-radius: 16rpx;
+    line-height: 88rpx;
+    margin: 20rpx auto;
+}
+.cardBox>.longBotton{
+    margin-top: 40rpx;
+}
+
+.cardBox>.word {
+    width: 100%;
+    line-height: 124rpx;
+    font-size: 32rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(61, 61, 61, 1);
+    padding: 0rpx 32rpx;
+}
+
+.input>input {
+    height: 88rpx;
+    line-height: 88rpx;
+    text-indent: 20rpx;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+@import '/components/cropper/cropper.wxss'

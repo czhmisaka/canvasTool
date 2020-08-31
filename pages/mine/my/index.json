@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "我的账号",
+  "component": true,
+  "usingComponents": {
+    "imageformat": "/components/cropper/cropper"
+  }
 }

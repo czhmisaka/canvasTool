@@ -161,7 +161,7 @@ Page({
       url: 'order/updateExpress',
       data
     }).then(res => {
-      if (res.data && res.data.success) {
+      if (res.data && res.data.createTime) {
         let {
           order
         } = this.data

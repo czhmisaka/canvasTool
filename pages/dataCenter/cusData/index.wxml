@@ -9,13 +9,19 @@
         </view>
     </view>
     <view class="timeCheckBox">
-        <view class="item {{item.check?'highLight':''}}" wx:for="{{timeCheckList}}" wx:key="*this">
+        <view class="item {{item.check?'highLight':''}}" wx:for="{{timeCheckList}}" wx:key="*this" bindtap="changeTime"
+            data-tab="{{item.tab}}">
             {{item.tab}}
         </view>
     </view>
     <view class="flexBox">
         <view class="title">TOP5 成交客户</view>
         <view class="topList">
+            <view class="listItem" wx:if="{{topCusList.length == 0||!topCusList}}">
+                <view class="contentLeft">
+                       暂无下过单的客户
+                </view>
+            </view>
             <view class="listItem" wx:for="{{topCusList}}" wx:key="*this">
                 <view class="left">
                     <view class="num_icon {{index%2!=1?'blueBg':'orangeBg'}}">
@@ -42,13 +48,23 @@
             访客趋势
         </view>
         <view class="chart">
-            <ff class="f2-chart" onInit="{{onInitChart0}}" />
+            <ff class="f2-chart" id="tend" onInit="{{onInitChart0}}" />
         </view>
-        <view class="chart" style="height:500rpx">
-            <ff class="f2-chart" onInit="{{onInitChart1}}"></ff>
+    </view>
+    <view class="flexBox">
+        <view class="title">
+            新老客构成
         </view>
-        <view class="chart" style="height:500rpx">
-            <ff class="f2-chart" onInit="{{onInitChart2}}"></ff>
+        <view class="chart">
+            <canvas canvas-id="cusStruct" class="canvas" bindtouchstart="touchHandler"></canvas>
+        </view>
+    </view>
+    <view class="flexBox">
+        <view class="title">
+            客户地区分布(Top5)
+        </view>
+        <view class="chart" style="height:600rpx">
+            <ff class="f2-chart" id="area" onInit="{{onInitChart2}}"></ff>
         </view>
     </view>
 </view>

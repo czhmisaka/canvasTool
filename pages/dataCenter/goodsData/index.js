@@ -10,6 +10,11 @@ Page({
       num: '加载中',
       type: '成交金额'
     }],
+    tabBarList: [
+      'TOP5浏览榜',
+      'TOP5销量榜'
+    ],
+    tabCheckIndex: 0,
     topGoodsList: [],
     timeCheckList: [{
       tab: '昨日',
@@ -96,25 +101,29 @@ Page({
 
   // 时间划分 
   getTimeCheckList(e) {
-    let {
-      timeCheckList
-    } = this.data
-    let date = new Date()
-    const today = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
-    date.setTime(date.getTime() - 24 * 3600 * 1000)
-    const yesterday = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
-    date.setTime(date.getTime() - 6 * 24 * 3600 * 1000)
-    const lastWeek = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
-    date.setTime(date.getTime() - 23 * 24 * 3600 * 1000)
-    const lastMonth = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
-    timeCheckList.forEach(item => {
-      item.endTime = today
-    })
-    timeCheckList[0].startTime = yesterday
-    timeCheckList[1].startTime = lastWeek
-    timeCheckList[2].startTime = lastMonth
-    this.setData({
-      timeCheckList
+    return new Promise((res, rej) => {
+      let {
+        timeCheckList,
+        selectTime
+      } = this.data
+      let date = new Date()
+      const today = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + date.getDate()
+      date.setTime(date.getTime() - 24 * 3600 * 1000)
+      const yesterday = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + date.getDate()
+      date.setTime(date.getTime() - 6 * 24 * 3600 * 1000)
+      const lastWeek = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + date.getDate()
+      date.setTime(date.getTime() - 23 * 24 * 3600 * 1000)
+      const lastMonth = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + date.getDate()
+      timeCheckList.forEach(item => {
+        item.endTime = today
+      })
+      timeCheckList[0].startTime = yesterday
+      timeCheckList[1].startTime = lastWeek
+      timeCheckList[2].startTime = lastMonth
+      this.setData({
+        timeCheckList
+      })
+      res(this.data.storeId)
     })
   },
 
@@ -135,36 +144,46 @@ Page({
     })
   },
 
-  // 获取top5成交客户
-  getTop5Cus(e) {
-    let topGoodsList = []
-    topGoodsList.push({})
-    topGoodsList.push({})
-    topGoodsList.push({})
-    topGoodsList.push({})
-    topGoodsList.push({})
+  // 修改当前所选tab
+  changeTab(e) {
+    let {
+      tab,
+      index
+    } = e.currentTarget.dataset
     this.setData({
-      topGoodsList
+      tabCheckIndex: index
     })
   },
 
-  // 获取今日商品数据
-  getTodayGoodsData(e) {
 
-  },
-
-  // 获取图表数据
-  getChartsData(e) {
-    let data = {
-      endTime: "",
-      startTime: "",
-      storeId: this.data.storeId
-    }
+  // 在data 中拼入时间
+  addTime(data) {
     this.data.timeCheckList.forEach(item => {
       if (item.check) {
         data.startTime = item.startTime
         data.endTime = item.endTime
       }
+    })
+    return data
+  },
+
+  // 获取今日商品数据
+  getTodayGoodsData(e) {
+    let data = this.addTime({
+      storeId: this.data.storeId
+    })
+    util.request({
+      url: '/customer/top',
+      data
+    }).then(res => {
+
+    })
+  },
+
+  // 获取图表数据
+  getChartsData(e) {
+    let data = this.addTime({
+      storeId: this.data.storeId
     })
     util.request({
       url: '/customer/goods/trend',
@@ -180,11 +199,6 @@ Page({
     this.setData({
       fastMsg: data
     })
-  },
-
-  // 获取客户数据
-  getCusNumToday(e) {
-
   },
 
   // 获取今日商品信息数据
@@ -214,25 +228,37 @@ Page({
     })
   },
 
+  // 加载图表数据
+  initFn() {
+    this.getTimeCheckList().then(res => {
+      this.getChartsData()
+      this.getTodayGoodsData()
+    })
+  },
+
+
   onLoad: function (options) {
     let setPageLife = new getApp().setPageLife()
     this.setData({
       options,
       storeId: options.id || getApp().globalData.shopInfo.storeVo.id
     })
-    this.getTimeCheckList()
-    this.getChartsData()
     this.getFastMsg()
   },
   onReady: function () {},
   onShow: function () {
     setTimeout(() => {
-      this.getTop5Cus()
-    }, 1000)
+      this.initFn()
+    }, 500)
   },
   onHide: function () {},
   onUnload: function () {},
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () {
+    this.initFn()
+    setTimeout(() => {
+      wx.stopPullDownRefresh()
+    }, 500)
+  },
   onReachBottom: function () {},
   onShareAppMessage: function () {}
 })

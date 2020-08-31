@@ -10,7 +10,8 @@
         </view>
     </view> -->
 
-    <view class="flexBox" style="height:110rpx;margin-top:20rpx" bindtap="navTo" data-url="/pages/mine/myShopManage/index">
+    <view class="flexBox" style="height:110rpx;margin-top:20rpx" bindtap="navTo"
+        data-url="/pages/mine/myShopManage/index">
         <view class="toPhoto">
             <image class="icon40" src="/static/images/icon_page/ic_dpgl.png" />
             <view class="word">档口管理</view>
@@ -19,8 +20,7 @@
             <image src="/static/images/icon_page/ic_xy.png" style="width: 14rpx;height: 26rpx;" />
         </view>
     </view>
-
-    <view class="flexBox" style="height:110rpx" bindtap="toPhotoManage">
+    <view class="flexBox" style="height:110rpx" bindtap="navTo" data-url="/pages/mine/my/index">
         <view class="toPhoto">
             <image class="icon40" src="/static/images/icon_page/ic_wdzh.png" />
             <view class="word">我的账号</view>

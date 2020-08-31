@@ -23,7 +23,7 @@
                 </view>
                 <view class="word">微信手机号快捷登录</view>
             </button>
-            <button open-type="getPhoneNumber" wx:if="{{type==='check'&&checkFile}}" bindgetphonenumber="loginWithWx">
+            <button open-type="getPhoneNumber" lang="zh_CN" wx:if="{{type==='check'&&checkFile}}" bindgetphonenumber="loginWithWx">
                 <view class="icon" style="width:40rpx;height:33rpx">
                     <image src="/static/images/loginImages/ic_wx.png" />
                 </view>
@@ -997,7 +997,6 @@
             <view class="p"> 5、我们负责处理个人信息安全的责任部门、联络方式及投诉渠道发生变化；
             </view>
             <view class="p"> 6、个人信息安全影响评估报告表明存在高风险。
-
             </view>
             <view class="h"> 九、如何联系我们
             </view>

@@ -213,9 +213,23 @@ const cleanGlobalData = async function refreshGlobalData(callback) {
             }
         }
     });
-
 }
 
+// 获取登录 code
+const getWxCode = () => {
+    return new Promise((res, rej) => {
+        wx.login({
+            success: code => {
+                res(code)
+            },
+            fail: code => {
+                rej(code)
+            }
+        })
+    })
+}
+
+// 去登录页面 --- 会清空登录数据
 const toLoginPage = (fromPage) => {
     let page = getCurrentPages()
     let lastPage = page[page.length - 1]
@@ -237,6 +251,7 @@ const navTo = (url) => {
 
 
 module.exports = {
+    getWxCode,
     getCdnEnv,
     toHomePage,
     setSearchHistoryStorage,

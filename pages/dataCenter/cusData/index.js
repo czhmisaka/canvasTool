@@ -1,6 +1,40 @@
 // pages/dataCenter/cusData/index.js
+const wxCharts = require('../../../utils/wxCharts/index.js')
 const util = require('../../../utils/util.js')
 let app = getApp()
+let cusStruct = new wxCharts({
+  animation: true,
+  canvasId: 'cusStruct',
+  type: 'ring',
+  extra: {
+    ringWidth: 25,
+    pie: {
+      offsetAngle: -45
+    }
+  },
+  series: [{
+    name: '新客户',
+    data: 15,
+    stroke: true,
+    format: (e, item) => {
+      return item.name + ' : ' + e * 100 + '%'
+    }
+  }, {
+    name: '老客户',
+    data: 35,
+    stroke: false,
+    format: (e, item) => {
+      return item.name + ' : ' + e * 100 + '%'
+    }
+  }],
+  disablePieStroke: true,
+  width: 335,
+  height: 200,
+  dataLabel: true,
+  legend: false,
+  background: '#f5f5f5',
+  padding: 0
+});
 Page({
   data: {
     fastMsg: [{
@@ -18,7 +52,7 @@ Page({
       tab: '昨日',
       endTime: '',
       startTime: '',
-      check: false
+      check: true
     }, {
       tab: '近7天',
       endTime: '',
@@ -32,244 +66,221 @@ Page({
     }],
     onInitChart0(F2, config) {
       const chart = new F2.Chart(config);
-      const data = [{
-          value: 63.4,
-          city: 'New York',
-          date: '2011-10-01'
-        },
-        {
-          value: 62.7,
-          city: 'Alaska',
-          date: '2011-10-01'
-        },
-        {
-          value: 72.2,
-          city: 'Austin',
-          date: '2011-10-01'
-        },
-        {
-          value: 58,
-          city: 'New York',
-          date: '2011-10-02'
-        },
-        {
-          value: 59.9,
-          city: 'Alaska',
-          date: '2011-10-02'
-        },
-        {
-          value: 67.7,
-          city: 'Austin',
-          date: '2011-10-02'
-        },
-        {
-          value: 53.3,
-          city: 'New York',
-          date: '2011-10-03'
-        },
-        {
-          value: 59.1,
-          city: 'Alaska',
-          date: '2011-10-03'
-        },
-        {
-          value: 69.4,
-          city: 'Austin',
-          date: '2011-10-03'
-        },
-      ];
+      const data = [];
+      data.push({
+        value: 1 * 3 + Math.random(10) * 100,
+        date: (1900 + 1) + '-12-10',
+        type: '当日访客'
+      })
       chart.source(data, {
         date: {
-          range: [0, 1],
           type: 'timeCat',
-          mask: 'MM-DD'
+          mask: 'YYYY-MM-DD'
         },
         value: {
-          max: 300,
           tickCount: 4
         }
       });
-      chart.area().position('date*value').color('city').adjust('stack');
-      chart.line().position('date*value').color('city').adjust('stack');
+      chart.area().position('date*value').color('type').adjust('stack');
+      chart.line().position('date*value').color('type').adjust('stack');
       chart.render();
-      // 注意：需要把chart return 出来
       return chart;
     },
-    onInitChart1(F2, config) {
-      const data = [{
-        const: 'const',
-        type: '交通出行',
-        money: 51.39
-      }, {
-        const: 'const',
-        type: '饮食',
-        money: 356.68
-      }, {
-        const: 'const',
-        type: '生活日用',
-        money: 20.00
-      }, {
-        const: 'const',
-        type: '住房缴费',
-        money: 116.53
-      }];
-      const chart = new F2.Chart(config)
-      chart.source(data);
-      chart.coord('polar', {
-        transposed: true,
-        radius: 0.9,
-        innerRadius: 0.5
-      });
-      chart.axis(false);
-      chart.legend(false);
-      chart.tooltip(false);
-      chart.interval().position('const*money').adjust('stack').color('type', ['#1890FF', '#13C2C2', '#2FC25B', '#FACC14']);
-      chart.render();
-      return chart
-    },
     onInitChart2(F2, config) {
-      const data = [{
-        country: 'Europe',
-        year: '1750',
-        value: 163,
-        percent: 0.24511278195488723
-      }, {
-        country: 'Asia',
-        year: '1750',
-        value: 502,
-        percent: 0.7548872180451128
-      }, {
-        country: 'Europe',
-        year: '1800',
-        value: 203,
-        percent: 0.24224343675417662
-      }, {
-        country: 'Asia',
-        year: '1800',
-        value: 635,
-        percent: 0.7577565632458234
-      }, {
-        country: 'Europe',
-        year: '1850',
-        value: 276,
-        percent: 0.2543778801843318
-      }, {
-        country: 'Asia',
-        year: '1850',
-        value: 809,
-        percent: 0.7456221198156682
-      }, {
-        country: 'Europe',
-        year: '1900',
-        value: 408,
-        percent: 0.3011070110701107
-      }, {
-        country: 'Asia',
-        year: '1900',
-        value: 947,
-        percent: 0.6988929889298893
-      }, {
-        country: 'Europe',
-        year: '1950',
-        value: 547,
-        percent: 0.2806567470497691
-      }, {
-        country: 'Asia',
-        year: '1950',
-        value: 1402,
-        percent: 0.7193432529502309
-      }, {
-        country: 'Europe',
-        year: '1999',
-        value: 729,
-        percent: 0.16708686683474674
-      }, {
-        country: 'Asia',
-        year: '1999',
-        value: 3634,
-        percent: 0.8329131331652533
-      }, {
-        country: 'Europe',
-        year: '2050',
-        value: 628,
-        percent: 0.10651289009497965
-      }, {
-        country: 'Asia',
-        year: '2050',
-        value: 5268,
-        percent: 0.8934871099050203
-      }, {
-        country: 'Europe',
-        year: '2100',
-        value: 828,
-        percent: 0.10227272727272728
-      }, {
-        country: 'Asia',
-        year: '2100',
-        value: 7268,
-        percent: 0.8977272727272727
-      }];
+      let data = []
+      for (let i = 0; i < 100; i++) {
+        data.push({
+          area: '其他' + i,
+          percent: i,
+        })
+      }
       const chart = new F2.Chart(config);
       chart.source(data, {
         percent: {
           min: 0,
           formatter: function formatter(val) {
-            return (val * 100).toFixed(0) + '%';
+            return (val * 100).toFixed(1) + '%';
           }
         }
       });
-      chart.tooltip({
-        custom: true, // 自定义 tooltip 内容框
-        onChange: function onChange(obj) {
-          const legend = chart.get('legendController').legends.top[0];
-          const tooltipItems = obj.items;
-          const legendItems = legend.items;
-          const map = {};
-          legendItems.forEach(function (item) {
-            map[item.name] = _.clone(item);
-          });
-          tooltipItems.forEach(function (item) {
-            const name = item.name;
-            const value = item.value;
-            if (map[name]) {
-              map[name].value = value;
-            }
-          });
-          legend.setItems(_.values(map));
-        },
-        onHide: function onHide() {
-          const legend = chart.get('legendController').legends.top[0];
-          legend.setItems(chart.getLegendItems().country);
-        }
-      });
-      chart.interval()
-        .position('year*percent')
-        .color('country')
-        .adjust('stack');
+      chart.interval().position('area*percent').color('area').adjust('stack');
       chart.render();
-
       return chart
     },
 
   },
 
-  // 获取top5成交客户
-  getTop5Cus(e) {
-
-  },
-
   // 时间划分 
   getTimeCheckList(e) {
+    return new Promise((res, rej) => {
+      let {
+        timeCheckList,
+        selectTime
+      } = this.data
+      let date = new Date()
+      const today = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate())
+      date.setTime(date.getTime() - 24 * 3600 * 1000)
+      const yesterday = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate())
+      date.setTime(date.getTime() - 6 * 24 * 3600 * 1000)
+      const lastWeek = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate())
+      date.setTime(date.getTime() - 23 * 24 * 3600 * 1000)
+      const lastMonth = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate())
+      timeCheckList.forEach(item => {
+        item.endTime = today
+      })
+      timeCheckList[0].startTime = yesterday
+      timeCheckList[1].startTime = lastWeek
+      timeCheckList[2].startTime = lastMonth
+      this.setData({
+        timeCheckList
+      })
+      res(this.data.storeId)
+    })
+  },
+
+  // 修改当前所选时间
+  changeTime(e) {
     let {
       timeCheckList
     } = this.data
-    let date = new Date()
-    const today = date.getFullYear() + (date.getMonth() + 1) + date.getDate()
     timeCheckList.forEach(item => {
-      item.endTime = today
+      if (item.tab == e.currentTarget.dataset.tab) {
+        item.check = true
+      } else {
+        item.check = false
+      }
     })
     this.setData({
       timeCheckList
+    })
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    setTimeout(() => {
+      this.initFn()
+    }, 500)
+    setTimeout(() => {
+      wx.hideLoading()
+    }, 1500)
+  },
+
+  // 在data 中拼入时间
+  addTime(data) {
+    this.data.timeCheckList.forEach(item => {
+      if (item.check) {
+        data.startTime = item.startTime
+        data.endTime = item.endTime
+      }
+    })
+    return data
+  },
+
+  // 获取top5成交客户
+  getTop5Cus(e) {
+    let data = this.addTime({
+      storeId: this.data.storeId
+    })
+    util.request({
+      url: '/customer/orderData',
+      data
+    }).then(res => {
+      if (res.code != 200) return app.noIconToast(res.msg)
+      this.setData({
+        topCusList: res.data
+      })
+    })
+  },
+
+  // 获取粉丝城市分布
+  getCusCityData(e) {
+    let data = this.addTime({
+      storeId: this.data.storeId
+    })
+    util.request({
+      url: '/customer/browser/city',
+      data
+    }).then(res => {
+      if (res.code != 200) return app.noIconToast(res.msg)
+      let Sdata = []
+      res.data.forEach(item => {
+        Sdata.push({
+          area: item.city || '其他',
+          percent: item.percent,
+        })
+      })
+      Sdata.sort((a, b) => {
+        return -a.percent + b.percent
+      })
+      let salesTrend = this.selectComponent('#area');
+      salesTrend.chart.changeData(Sdata.slice(0, 5))
+    })
+  },
+
+  // 访客趋势
+  getVisitTendData(e) {
+    let data = this.addTime({
+      storeId: this.data.storeId
+    })
+    util.request({
+      url: '/customer/user/trend',
+      data
+    }).then(res => {
+      if (res.code != 200) return app.noIconToast(res.msg)
+      let Sdata = []
+      res.data.forEach(item => {
+        Sdata.push({
+          value: item.num,
+          date: item.days,
+          type: '当日访客'
+        })
+      })
+      let salesTrend = this.selectComponent('#tend');
+      salesTrend.chart.changeData(Sdata)
+    })
+  },
+
+  // 新老客 构成
+  getCusStructData(e) {
+    let data = this.addTime({
+      storeId: this.data.storeId
+    })
+    util.request({
+      url: '/customer/browser/num',
+      data
+    }).then(res => {
+      if (res.code != 200) return app.noIconToast(res.msg)
+      let series = []
+      if (res.data.newBrowser == 0 && res.data.oldBrowser == 0)
+        series = [{
+          name: '暂无',
+          data: 1,
+          stroke: true,
+          format: (e, item) => {
+            return "暂无下单客户"
+          }
+        }]
+      else {
+        series.push({
+          name: '新客户',
+          data: res.data.newBrowser || 1,
+          stroke: true,
+          format: (e, item) => {
+            return item.name + ' : ' + e * 100 + '%'
+          }
+        })
+        series.push({
+          name: '老客户',
+          data: res.data.oldBrowser || 1,
+          stroke: true,
+          format: (e, item) => {
+            return item.name + ' : ' + e * 100 + '%'
+          }
+        })
+      }
+      cusStruct.updateData({
+        series
+      });
     })
   },
 
@@ -285,9 +296,35 @@ Page({
 
   // 获取客户数据
   getCusNumToday(e) {
-
+    util.request({
+      url: '/customer/getNum',
+      data: {
+        id: this.data.storeId
+      }
+    }).then((res) => {
+      this.formatNum([{
+        num: res.data ? res.data.total || 0 : 0,
+        type: '总数'
+      }, {
+        num: res.data ? res.data.fansNum || 0 : 0,
+        type: '新增'
+      }, {
+        num: res.data ? res.data.buyNum || 0 : 0,
+        type: '拿货'
+      }])
+    })
   },
 
+  // 更新 图表数据等
+  initFn(e) {
+    this.getTimeCheckList().then(res => {
+      this.getCusNumToday()
+      this.getCusCityData()
+      this.getTop5Cus()
+      this.getVisitTendData()
+      this.getCusStructData()
+    })
+  },
 
   onLoad: function (options) {
     let setPageLife = new getApp().setPageLife()
@@ -297,10 +334,17 @@ Page({
     })
   },
   onReady: function () {},
-  onShow: function () {},
+  onShow: function () {
+    this.initFn()
+  },
   onHide: function () {},
   onUnload: function () {},
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () {
+    this.initFn()
+    setTimeout(() => {
+      wx.stopPullDownRefresh()
+    }, 500)
+  },
   onReachBottom: function () {},
   onShareAppMessage: function () {}
 })

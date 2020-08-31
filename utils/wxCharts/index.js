@@ -328,7 +328,7 @@ function getSeriesDataItem(series, index) {
             var seriesItem = {};
             seriesItem.color = item.color;
             seriesItem.name = item.name;
-            seriesItem.data = item.format ? item.format(item.data[index]) : item.data[index];
+            seriesItem.data = item.format ? item.format(item) : item.data[index];
             data.push(seriesItem);
         }
     });
@@ -598,7 +598,7 @@ function getPieTextMaxLength(series) {
     series = getPieDataPoints(series);
     var maxLength = 0;
     series.forEach(function (item) {
-        var text = item.format ? item.format(+item._proportion_.toFixed(2)) : util.toFixed(item._proportion_ * 100) + '%';
+        var text = item.format ? item.format(+item._proportion_.toFixed(2),item) : util.toFixed(item._proportion_ * 100) + '%';
         maxLength = Math.max(maxLength, measureText(text));
     });
 
@@ -814,7 +814,7 @@ function drawPointText(points, series, config, context) {
     context.setFillStyle('#666666');
     points.forEach(function (item, index) {
         if (item !== null) {
-            var formatVal = series.format ? series.format(data[index]) : data[index];
+            var formatVal = series.format ? series.format(data[index],item) : data[index];
             context.fillText(formatVal, item.x - measureText(formatVal) / 2, item.y - 2);
         }
     });
@@ -854,7 +854,7 @@ function drawPieText(series, opts, config, context, radius, center) {
 
     var seriesConvert = series.map(function (item) {
         var arc = 2 * Math.PI - (item._start_ + 2 * Math.PI * item._proportion_ / 2);
-        var text = item.format ? item.format(+item._proportion_.toFixed(2)) : util.toFixed(item._proportion_ * 100) + '%';
+        var text = item.format ? item.format(+item._proportion_.toFixed(2),item) : util.toFixed(item._proportion_ * 100) + '%';
         var color = item.color;
         return { arc: arc, text: text, color: color };
     });

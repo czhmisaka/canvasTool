@@ -1,5 +1,5 @@
 <!--components/photoFall/photoBox/photoBox.wxml-->
-<view class="photo {{show?'':'gray'}}">
+<view class="photo {{show?'':'gray'}}" wx:if="{{hasData}}">
     <view class="{{show?'show':'hidden'}}">
         <view class="imageBox">
             <image class="image" mode="widthFix" bindtap="toDetail"

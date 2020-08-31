@@ -33,7 +33,7 @@ Page({
       tab: '近30天',
       endTime: '',
       startTime: '',
-      check: false
+      check:false
     }],
     selectTime: {},
     onInitChart0,
@@ -47,26 +47,25 @@ Page({
         selectTime
       } = this.data
       let date = new Date()
-      const today = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+      const today = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + date.getDate()
       date.setTime(date.getTime() - 24 * 3600 * 1000)
-      const yesterday = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+      const yesterday = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + date.getDate()
       date.setTime(date.getTime() - 6 * 24 * 3600 * 1000)
-      const lastWeek = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+      const lastWeek = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + date.getDate()
       date.setTime(date.getTime() - 23 * 24 * 3600 * 1000)
-      const lastMonth = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+      const lastMonth = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + date.getDate()
       timeCheckList.forEach(item => {
         item.endTime = today
       })
       timeCheckList[0].startTime = yesterday
       timeCheckList[1].startTime = lastWeek
       timeCheckList[2].startTime = lastMonth
-      selectTime = timeCheckList[0]
+      selectTime = timeCheckList[2]
       this.setData({
         timeCheckList,
         selectTime
       })
-      res()
-      rej()
+      res(this.data.storeId)
     })
   },
 
@@ -111,16 +110,10 @@ Page({
   // 获取图表数据
   getChartsData(e) {
     let data = {
-      endTime: "",
-      startTime: "",
+      endTime: this.data.selectTime.startTime,
+      startTime: this.data.selectTime.endTime,
       storeId: this.data.storeId
     }
-    this.data.timeCheckList.forEach(item => {
-      if (item.check) {
-        data.startTime = item.startTime
-        data.endTime = item.endTime
-      }
-    })
     util.request({
       url: '/customer/goods/trend',
       data

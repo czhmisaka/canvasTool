@@ -24,31 +24,38 @@ Page({
     shareDetail: {},
     shareType: '',
     albumManageFastMsg: [{
-      num: '12',
+      num: '加载中',
       type: '已发布'
     }, {
-      num: '200',
+      num: '加载中',
       type: '未发布'
     }]
   },
 
   // 格式化 fastMsg
-  formatNum: function (data) {
+  formatNum: function (data, index = 0) {
     data.forEach((item) => {
       item.num = item.num > 10000 ? item.num / 10000 > 10000 ? item.num / (10000 * 10000) > 10000 ? item.num / (10000 * 10000 * 10000) > 10000 ? Math.round(item.num / 100000000 / 100000000) + '兆' : Math.round(item.num / 100000000 / 10000) + '万亿' : Math.round(item.num / 100000000) + '亿' : Math.round(item.num / 10000) + '万' : item.num
     })
-    this.setData({
-      fastMsg: data
-    })
+    if (index == 0)
+      this.setData({
+        fastMsg: data
+      })
+    else if (index == 1)
+      this.setData({
+        albumManageFastMsg: data
+      })
+
   },
 
   //  预览档口
   toYSXminiProgram() {
     let id = app.globalData.shopInfo.storeVo.id
+    const envVersion = __wxConfig.envVersion
     wx.navigateToMiniProgram({
       appId: "wx06a1bdb123d6a27e",
       path: '/pages/storeDetail/storeDetail?id=' + id,
-      envVersion: 'trial',
+      envVersion: envVersion,
       extraData: {
         id: id,
         type: 'toOther'
@@ -62,7 +69,7 @@ Page({
   },
 
   navTo(e) {
-    if(!e.currentTarget.dataset.url) return 0;
+    if (!e.currentTarget.dataset.url) return 0;
     if (!app.globalData.isLogin) return util.toLogin()
     app.navTo(e.currentTarget.dataset.url)
   },
@@ -100,6 +107,20 @@ Page({
   // 获取订单数据
   getFastMsg() {
     utils.request({
+      url: '/customer/getNum',
+      data: {
+        id: this.data.storeVo.id
+      }
+    }).then(ress => {
+      this.formatNum([{
+        num: ress.data ? (ress.data.total - ress.data.noPublishNum) || 0 : 0,
+        type: '已发布'
+      }, {
+        num: ress.data ? ress.data.noPublishNum || 0 : 0,
+        type: '未发布'
+      }], '1')
+    })
+    utils.request({
       url: '/order/getSellSituation',
       data: {
         storeId: this.data.storeVo.id
@@ -110,15 +131,15 @@ Page({
       this.formatNum([{
         num: res.data ? res.data.buyerNum || 0 : 0,
         type: '客户量',
-        url: '/pages/dataCenter/cusData/index'
+        url: '/pages/dataCenter/cusData/index?id=' + getApp().globalData.shopInfo.storeVo.id
       }, {
         num: res.data ? res.data.goodsNum || 0 : 0,
         type: '商品销量',
-        url: '/pages/dataCenter/goodsData/index'
+        url: '/pages/dataCenter/goodsData/index?id=' + getApp().globalData.shopInfo.storeVo.id
       }, {
         num: res.data ? res.data.salesVolume || 0 : 0,
         type: '成交额',
-        url: '/pages/dataCenter/inComeData/index'
+        url: '/pages/dataCenter/inComeData/index?id=' + getApp().globalData.shopInfo.storeVo.id
       }])
     })
   },
@@ -167,6 +188,7 @@ Page({
   onPullDownRefresh: function () {
     // 下拉刷新
     this.selectComponent('#fall').refresh()
+    this.getShopDetail()
     setTimeout(() => {
       wx.stopPullDownRefresh()
     }, 1000)

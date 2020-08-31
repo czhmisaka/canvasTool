@@ -46,7 +46,6 @@ Component({
       finish = true
       open = true
       this.getPhotoList(0,true)
-      console.log('asd')
     },
     // 去添加新相册
     toAdd: function () {

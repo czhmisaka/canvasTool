@@ -23,11 +23,12 @@ Component({
    * 组件的初始数据
    */
   data: {
+    hasData: true,
     show: false,
     number: 0,
     price: '',
     whatever: false,
-    cdn:config.cdn
+    cdn: config.cdn
   },
 
   /**
@@ -62,6 +63,11 @@ Component({
 
     // 获取图片数据
     getNumber: function () {
+      if (!this.properties.photo) {
+        return this.setData({
+          hasData: false
+        })
+      }
       if (this.properties.photo.photoImageMore) {
         let number = this.properties.photo.photoImageMore.split(',')
         this.setData({
@@ -77,7 +83,7 @@ Component({
         that.setData({
           show: true
         })
-      }, this.properties.index * 50)
+      }, this.properties.index * 100)
     },
     toDetail: function (e) {
       getApp().navTo('/pages/albumManage/newAlbum/index?id=' + this.properties.photo.id);
