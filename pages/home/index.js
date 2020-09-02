@@ -107,13 +107,11 @@ Page({
   // 获取订单数据
   getFastMsg() {
     utils.request({
-      url: '/customer/getNum',
-      data: {
-        id: this.data.storeVo.id
-      }
+      url: '/photo/getPhotoNum/' + this.data.storeVo.id,
+      method: 'get'
     }).then(ress => {
       this.formatNum([{
-        num: ress.data ? (ress.data.total - ress.data.noPublishNum) || 0 : 0,
+        num: ress.data ? ress.data.publishNum || 0 : 0,
         type: '已发布'
       }, {
         num: ress.data ? ress.data.noPublishNum || 0 : 0,

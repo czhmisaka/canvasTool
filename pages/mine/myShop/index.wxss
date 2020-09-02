@@ -112,6 +112,13 @@
     /* margin-left:24rpx; */
 }
 
+.picker {
+    font-weight: 100;
+    color: rgba(61, 61, 61, 0.5);
+    font-size: 32rpx;
+    font-family: "PingFangSC-Regular,PingFang SC";
+}
+
 .flexBox>.right {
     transform: scale(1.5，1);
     display: flex;
@@ -179,6 +186,7 @@
 
 .LH110rpx {
     line-height: 108rpx;
+    height: 108rpx;
 }
 
 .width100 {
@@ -188,8 +196,8 @@
 .width100>input {
     width: 100%;
     width: 100%;
-    height: 96rpx;
-    line-height: 96rpx;
+    height: 108rpx;
+    line-height: 108rpx;
     margin: 0rpx;
 }
 
@@ -228,16 +236,19 @@
 .button_long {
     position: fixed;
     bottom: 48rpx;
-    margin: 0rpx 95rpx;
-    width: 560rpx;
-    height: 80rpx;
+    margin: 0rpx 0rpx;
+    width: 640rpx;
+    height: 88rpx;
     background: rgba(52, 62, 223, 1);
-    border-radius: 40rpx;
+    border-radius: 46rpx;
     line-height: 80rpx;
     color: white;
     text-align: center;
 }
-
+.hiden{
+    opacity: 0;
+    width: 0rpx;
+}
 .buttonBar {
     position: fixed;
     z-index: 10001;

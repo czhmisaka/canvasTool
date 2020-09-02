@@ -170,7 +170,7 @@
 					"id": 14,
 					"name": "访问已有档口",
 					"pathName": "pages/mine/myShop/index",
-					"query": "id=1296715778036338690",
+					"query": "id=1299193347373535233",
 					"scene": null
 				},
 				{
@@ -251,30 +251,38 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 26,
 					"name": "数据中心 - 客户数据",
 					"pathName": "pages/dataCenter/cusData/index",
-					"query": "id=1296715778036338690",
+					"query": "id=1299193347373535233",
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 27,
 					"name": "数据中心 - 商品数据",
 					"pathName": "pages/dataCenter/goodsData/index",
-					"query": "id=1296715778036338690",
+					"query": "id=1299193347373535233",
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "数据中心-成交额",
+					"id": 28,
+					"name": "数据中心 - 成交额",
 					"pathName": "pages/dataCenter/inComeData/index",
-					"query": "id=1296715778036338690",
+					"query": "id=1299193347373535233",
 					"scene": null
 				},
 				{
 					"id": -1,
 					"name": "我的 - 管理 个人信息",
 					"pathName": "pages/mine/my/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 30,
+					"name": "我的 -- 档口编辑页面 -- 新用户首次进入",
+					"pathName": "pages/mine/myShop/index",
+					"query": "id=1299193347373535233&canDelete=false",
 					"scene": null
 				}
 			]

@@ -2,5 +2,6 @@
   "usingComponents": {
     "ff": "@antv/wx-f2"
   },
-  "navigationBarTitleText": "成交额"
+  "navigationBarTitleText": "成交额",
+  "enablePullDownRefresh": true
 }

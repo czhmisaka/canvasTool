@@ -77,7 +77,7 @@
   min-height: 300rpx;
 }
 
-.chart>canvas{
+.chart>canvas {
   width: 670rpx;
   min-height: 400rpx;
 }

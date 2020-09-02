@@ -118,6 +118,7 @@ Page({
         selectTime
       } = this.data
       let date = new Date()
+      date.setTime(date.getTime() + 24 * 3600 * 1000)
       const today = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate())
       date.setTime(date.getTime() - 24 * 3600 * 1000)
       const yesterday = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate())
@@ -261,22 +262,24 @@ Page({
           }
         }]
       else {
-        series.push({
-          name: '新客户',
-          data: res.data.newBrowser || 1,
-          stroke: true,
-          format: (e, item) => {
-            return item.name + ' : ' + e * 100 + '%'
-          }
-        })
-        series.push({
-          name: '老客户',
-          data: res.data.oldBrowser || 1,
-          stroke: true,
-          format: (e, item) => {
-            return item.name + ' : ' + e * 100 + '%'
-          }
-        })
+        if (res.data.newBrowser)
+          series.push({
+            name: '新客户',
+            data: res.data.newBrowser,
+            stroke: true,
+            format: (e, item) => {
+              return item.name + ' : ' + e * 100 + '%'
+            }
+          })
+        if (res.data.oldBrowser)
+          series.push({
+            name: '老客户',
+            data: res.data.oldBrowser || 1,
+            stroke: true,
+            format: (e, item) => {
+              return item.name + ' : ' + e * 100 + '%'
+            }
+          })
       }
       cusStruct.updateData({
         series

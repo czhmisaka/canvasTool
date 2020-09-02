@@ -48,6 +48,7 @@ Component({
 
     // 设置价格
     setPrice: function () {
+      if (!this.properties.photo) return;
       let {
         goodsPriceVos
       } = this.properties.photo

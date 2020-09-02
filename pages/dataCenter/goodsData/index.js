@@ -14,6 +14,7 @@ Page({
       'TOP5浏览榜',
       'TOP5销量榜'
     ],
+    unSortData: [],
     tabCheckIndex: 0,
     topGoodsList: [],
     timeCheckList: [{
@@ -35,66 +36,25 @@ Page({
     onInitChart0(F2, config) {
       const chart = new F2.Chart(config);
       const data = [{
-          value: 63.4,
-          city: 'New York',
-          date: '2011-10-01'
-        },
-        {
-          value: 62.7,
-          city: 'Alaska',
-          date: '2011-10-01'
-        },
-        {
-          value: 72.2,
-          city: 'Austin',
-          date: '2011-10-01'
-        },
-        {
-          value: 58,
-          city: 'New York',
-          date: '2011-10-02'
-        },
-        {
-          value: 59.9,
-          city: 'Alaska',
-          date: '2011-10-02'
-        },
-        {
-          value: 67.7,
-          city: 'Austin',
-          date: '2011-10-02'
-        },
-        {
-          value: 53.3,
-          city: 'New York',
-          date: '2011-10-03'
-        },
-        {
-          value: 59.1,
-          city: 'Alaska',
-          date: '2011-10-03'
-        },
-        {
-          value: 69.4,
-          city: 'Austin',
-          date: '2011-10-03'
-        },
-      ];
+        value: 63.4,
+        type: '当日销量',
+        date: '2011-10-01'
+      }];
       chart.source(data, {
         date: {
-          range: [0, 1],
           type: 'timeCat',
-          mask: 'MM-DD'
+          mask: 'YYYY-MM-DD'
         },
         value: {
-          max: 300,
+          formatter(e) {
+            return e.toFixed(3)
+          },
           tickCount: 4
         }
       });
-      chart.area().position('date*value').color('city').adjust('stack');
-      chart.line().position('date*value').color('city').adjust('stack');
+      chart.area().position('date*value').color('type').adjust('stack');
+      chart.line().position('date*value').color('type').adjust('stack');
       chart.render();
-      // 注意：需要把chart return 出来
       return chart;
     },
   },
@@ -107,13 +67,14 @@ Page({
         selectTime
       } = this.data
       let date = new Date()
-      const today = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + date.getDate()
+      date.setTime(date.getTime() + 24 * 3600 * 1000)
+      const today = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate())
       date.setTime(date.getTime() - 24 * 3600 * 1000)
-      const yesterday = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + date.getDate()
+      const yesterday = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate())
       date.setTime(date.getTime() - 6 * 24 * 3600 * 1000)
-      const lastWeek = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + date.getDate()
+      const lastWeek = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate())
       date.setTime(date.getTime() - 23 * 24 * 3600 * 1000)
-      const lastMonth = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + date.getDate()
+      const lastMonth = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate())
       timeCheckList.forEach(item => {
         item.endTime = today
       })
@@ -142,6 +103,14 @@ Page({
     this.setData({
       timeCheckList
     })
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    this.initFn()
+    setTimeout(() => {
+      wx.hideLoading()
+    }, 1000)
   },
 
   // 修改当前所选tab
@@ -153,6 +122,9 @@ Page({
     this.setData({
       tabCheckIndex: index
     })
+    setTimeout(() => {
+      this.changeSortTypeForTodayGoodsDate()
+    }, 200)
   },
 
 
@@ -176,7 +148,41 @@ Page({
       url: '/customer/top',
       data
     }).then(res => {
+      if (res.code != 200) return app.noIconToast(res.msg)
+      let data = res.data
+      data.forEach((item) => {
+        item.salePercent = (item.salePercent * 100).toFixed(1)
+      })
+      this.setData({
+        unSortData: data
+      })
+      this.changeSortTypeForTodayGoodsDate(res.data)
+    })
+  },
 
+  // 修改 今日商品 top 排序
+  changeSortTypeForTodayGoodsDate(data) {
+    if (!data) {
+      data = this.data.unSortData
+    }
+    let index = this.data.tabCheckIndex
+    switch (index) {
+      case 0:
+        data.sort((a, b) => {
+          return b.num - a.num
+        })
+        break;
+      case 1:
+        data.sort((a, b) => {
+          return b.saleNum - a.saleNum
+        })
+        break;
+    }
+    data.forEach((item) => {
+      item.price = this.formatNum_forOne(item.price)
+    })
+    this.setData({
+      topGoodsList: data.slice(0, 5)
     })
   },
 
@@ -188,7 +194,19 @@ Page({
     util.request({
       url: '/customer/goods/trend',
       data
-    }).then(res => {})
+    }).then(res => {
+      if (res.code != 200) return app.noIconToast(res.msg)
+      let Sdata = [];
+      res.data.forEach(item => {
+        Sdata.push({
+          value: item.num,
+          date: item.days,
+          type: '当日销量'
+        })
+      })
+      let salesTrend = this.selectComponent('#tend');
+      salesTrend.chart.changeData(Sdata)
+    })
   },
 
   // 格式化 fastMsg
@@ -199,6 +217,10 @@ Page({
     this.setData({
       fastMsg: data
     })
+  },
+
+  formatNum_forOne(num) {
+    return num > 10000 ? num / 10000 > 10000 ? num / (10000 * 10000) > 10000 ? num / (10000 * 10000 * 10000) > 10000 ? Math.round(item.num / 100000000 / 100000000) + '兆' : Math.round(item.num / 100000000 / 10000) + '万亿' : Math.round(num / 100000000) + '亿' : Math.round(num / 10000) + '万' : num
   },
 
   // 获取今日商品信息数据

@@ -1,9 +1,49 @@
 // pages/dataCenter/inComeData/index.js
+const wxCharts = require('../../../utils/wxCharts/index.js')
 const wx_charts = require('../../../utils/wxCharts/index.js')
 const util = require('../../../utils/util.js')
 let app = getApp()
+let cusStruct = new wxCharts({
+  animation: true,
+  canvasId: 'cusStruct',
+  type: 'ring',
+  extra: {
+    ringWidth: 25,
+    pie: {
+      offsetAngle: -45
+    }
+  },
+  series: [{
+    name: '新客户',
+    data: 15,
+    stroke: true,
+    format: (e, item) => {
+      return item.name + ' : ' + e * 100 + '%'
+    }
+  }, {
+    name: '老客户',
+    data: 35,
+    stroke: false,
+    format: (e, item) => {
+      return item.name + ' : ' + e * 100 + '%'
+    }
+  }],
+  disablePieStroke: true,
+  width: 335,
+  height: 200,
+  dataLabel: true,
+  legend: false,
+  background: '#f5f5f5',
+  padding: 0
+});
+let pieChart0 = null
+let pieChart1 = null
+let pieChart_0 = null
+let pieChart_1 = null
+
 Page({
   data: {
+    chartView: false,
     fastMsg: [{
       num: '加载中',
       type: '卖出件数'
@@ -33,10 +73,21 @@ Page({
       tab: '近30天',
       endTime: '',
       startTime: '',
-      check:false
+      check: false
     }],
     selectTime: {},
     onInitChart0,
+  },
+  // 开关预览显示
+  open(e) {
+    this.setData({
+      chartView: true
+    })
+  },
+  close(e) {
+    this.setData({
+      chartView: false
+    })
   },
 
   // 时间划分 
@@ -47,23 +98,21 @@ Page({
         selectTime
       } = this.data
       let date = new Date()
-      const today = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + date.getDate()
+      const today = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate())
       date.setTime(date.getTime() - 24 * 3600 * 1000)
-      const yesterday = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + date.getDate()
+      const yesterday = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate())
       date.setTime(date.getTime() - 6 * 24 * 3600 * 1000)
-      const lastWeek = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + date.getDate()
+      const lastWeek = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate())
       date.setTime(date.getTime() - 23 * 24 * 3600 * 1000)
-      const lastMonth = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + date.getDate()
+      const lastMonth = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate())
       timeCheckList.forEach(item => {
         item.endTime = today
       })
       timeCheckList[0].startTime = yesterday
       timeCheckList[1].startTime = lastWeek
       timeCheckList[2].startTime = lastMonth
-      selectTime = timeCheckList[2]
       this.setData({
-        timeCheckList,
-        selectTime
+        timeCheckList
       })
       res(this.data.storeId)
     })
@@ -72,21 +121,39 @@ Page({
   // 修改当前所选时间
   changeTime(e) {
     let {
-      timeCheckList,
-      selectTime
+      timeCheckList
     } = this.data
     timeCheckList.forEach(item => {
       if (item.tab == e.currentTarget.dataset.tab) {
         item.check = true
-        selectTime = item
       } else {
         item.check = false
       }
     })
     this.setData({
-      timeCheckList,
-      selectTime
+      timeCheckList
     })
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    setTimeout(() => {
+      this.initFn()
+    }, 500)
+    setTimeout(() => {
+      wx.hideLoading()
+    }, 1500)
+  },
+
+  // 在data 中拼入时间
+  addTime(data) {
+    this.data.timeCheckList.forEach(item => {
+      if (item.check) {
+        data.startTime = item.startTime
+        data.endTime = item.endTime
+      }
+    })
+    return data
   },
 
   // 获取top5成交客户
@@ -109,15 +176,25 @@ Page({
 
   // 获取图表数据
   getChartsData(e) {
-    let data = {
-      endTime: this.data.selectTime.startTime,
-      startTime: this.data.selectTime.endTime,
+    let data = this.addTime({
       storeId: this.data.storeId
-    }
+    })
     util.request({
-      url: '/customer/goods/trend',
+      url: '/customer/sale/trend',
       data
-    }).then(res => {})
+    }).then(res => {
+      if (res.code != 200) return app.noIconToast(res.msg)
+      let Sdata = [];
+      res.data.forEach(item => {
+        Sdata.push({
+          value: item.price,
+          date: item.days,
+          type: '当日销售额'
+        })
+      })
+      let salesTrend = this.selectComponent('#tend');
+      salesTrend.chart.changeData(Sdata)
+    })
   },
 
   // 格式化 fastMsg
@@ -130,28 +207,70 @@ Page({
     })
   },
 
-  // 获取客户数据
-  getCusNumToday(e) {
-
+  // 格式化销售数据
+  formatNum_Avg(data) {
+    data.forEach((item) => {
+      item.num = item.num > 10000 ? item.num / 10000 > 10000 ? item.num / (10000 * 10000) > 10000 ? item.num / (10000 * 10000 * 10000) > 10000 ? Math.round(item.num / 100000000 / 100000000) + '兆' : Math.round(item.num / 100000000 / 10000) + '万亿' : Math.round(item.num / 100000000) + '亿' : Math.round(item.num / 10000) + '万' : item.num
+    })
+    this.setData({
+      cusStruct: data
+    })
   },
 
+
+  // 新老客 构成
+  getCusStructData(e) {
+    let data = this.addTime({
+      storeId: this.data.storeId
+    })
+    util.request({
+      url: '/customer/browser/num',
+      data
+    }).then(res => {
+      if (res.code != 200) return app.noIconToast(res.msg)
+      let series = []
+      if (res.data.newBrowser == 0 && res.data.oldBrowser == 0)
+        series = [{
+          name: '暂无',
+          data: 1,
+          stroke: true,
+          format: (e, item) => {
+            return "暂无下单客户"
+          }
+        }]
+      else {
+        series.push({
+          name: '新客户',
+          data: res.data.newBrowser || 1,
+          stroke: true,
+          format: (e, item) => {
+            return item.name + ' : ' + e * 100 + '%'
+          }
+        })
+        series.push({
+          name: '老客户',
+          data: res.data.oldBrowser || 1,
+          stroke: true,
+          format: (e, item) => {
+            return item.name + ' : ' + e * 100 + '%'
+          }
+        })
+      }
+      cusStruct.updateData({
+        series
+      });
+    })
+  },
   // 获取今日商品信息数据
   getFastMsg() {
-    let data = {
-      endTime: "",
-      startTime: "",
+    let data = this.addTime({
       storeId: this.data.storeId
-    }
-    this.data.timeCheckList.forEach(item => {
-      if (item.tab == "昨日") {
-        data.startTime = item.startTime
-        data.endTime = item.endTime
-      }
-    })
+    }, '昨日')
     util.request({
       url: '/order/getSellSituation',
       data
     }).then((res) => {
+      if (res.code != 200) return app.noIconToast(res.msg)
       this.formatNum([{
         num: res.data ? res.data.goodsNum || 0 : 0,
         type: '卖出件数'
@@ -159,22 +278,84 @@ Page({
         num: res.data ? res.data.salesVolume || 0 : 0,
         type: '成交金额'
       }])
+      this.formatNum_Avg([{
+        num: res.data ? res.data.goodsAvg || 0 : 0,
+        type: '成交商品'
+      }, {
+        num: res.data ? res.data.orderAvg || 0 : 0,
+        type: '每笔订单'
+      }])
     })
   },
 
-  // 下单新老客构成  图表函数 
-  newOrOldCusStuct(e) {
-    let data = {
-      storeId: this.data.storeId,
-      startTime: this.data.selectTime.startTime,
-      endTime: this.data.selectTime.endTime
-    }
-    // 请求未能成功
+  // 下单 商品 品类分布图
+  getGoodsCategoryDistribution(e) {
+    let data = this.addTime({
+      storeId: this.data.storeId
+    })
     util.request({
-      url: '/customer/browser/num',
+      url: '/customer/class',
       data
-    }).then((res) => {
+    }).then(res => {
+      if (res.code != 200) return app.noIconToast(res.msg)
+      let series1 = [],
+        series2 = []
+      res.data.forEach(item => {
+        series1.push({
+          name: item.gcName + item.count,
+          data: item.count,
+        })
+        series2.push({
+          name: item.gcName + '￥' + (item.price > 10000 ? item.price / 10000 > 10000 ? item.price / (10000 * 10000) > 10000 ? item.price / (10000 * 10000 * 10000) > 10000 ? Math.round(item.num / 100000000 / 100000000) + '兆' : Math.round(item.price / 100000000 / 10000) + '万亿' : Math.round(item.price / 100000000) + '亿' : Math.round(item.price / 10000) + '万' : item.price),
+          data: item.price,
+        })
+      })
+      pieChart0 = new wxCharts({
+        animation: true,
+        canvasId: 'pieCanvas0',
+        type: 'pie',
+        series: series1,
+        width: 137.5,
+        height: 200,
+        dataLabel: false,
+      });
+      pieChart1 = new wxCharts({
+        animation: true,
+        canvasId: 'pieCanvas1',
+        type: 'pie',
+        series: series2,
+        width: 137.5,
+        height: 200,
+        dataLabel: false,
+      });
+      pieChart_0 = new wxCharts({
+        animation: true,
+        canvasId: 'pieCanvas_0',
+        type: 'pie',
+        series: series1,
+        width: 300,
+        height: 300,
+        dataLabel: true,
+      });
+      pieChart_1 = new wxCharts({
+        animation: true,
+        canvasId: 'pieCanvas_1',
+        type: 'pie',
+        series: series2,
+        width: 300,
+        height: 300,
+        dataLabel: true,
+      });
+    })
+  },
 
+
+  initFn(e) {
+    this.getTimeCheckList().then(res => {
+      this.getChartsData()
+      this.getFastMsg()
+      this.getGoodsCategoryDistribution()
+      this.getCusStructData()
     })
   },
 
@@ -184,21 +365,19 @@ Page({
       options,
       storeId: options.id || getApp().globalData.shopInfo.storeVo.id
     })
-    this.getTimeCheckList().then(res => {
-      this.getChartsData()
-      this.getFastMsg()
-    })
   },
   onReady: function () {},
   onShow: function () {
-    setTimeout(() => {
-      this.getTop5Cus()
-      this.newOrOldCusStuct()
-    }, 1000)
+    this.initFn()
   },
   onHide: function () {},
   onUnload: function () {},
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () {
+    this.initFn()
+    setTimeout(() => {
+      wx.stopPullDownRefresh()
+    }, 500)
+  },
   onReachBottom: function () {},
   onShareAppMessage: function () {}
 })
@@ -207,51 +386,10 @@ Page({
 function onInitChart0(F2, config) {
   const chart = new F2.Chart(config);
   const data = [{
-      value: 63.4,
-      city: 'New York',
-      date: '2011-10-01'
-    },
-    {
-      value: 62.7,
-      city: 'Alaska',
-      date: '2011-10-01'
-    },
-    {
-      value: 72.2,
-      city: 'Austin',
-      date: '2011-10-01'
-    },
-    {
-      value: 58,
-      city: 'New York',
-      date: '2011-10-02'
-    },
-    {
-      value: 59.9,
-      city: 'Alaska',
-      date: '2011-10-02'
-    },
-    {
-      value: 67.7,
-      city: 'Austin',
-      date: '2011-10-02'
-    },
-    {
-      value: 53.3,
-      city: 'New York',
-      date: '2011-10-03'
-    },
-    {
-      value: 59.1,
-      city: 'Alaska',
-      date: '2011-10-03'
-    },
-    {
-      value: 69.4,
-      city: 'Austin',
-      date: '2011-10-03'
-    },
-  ];
+    value: 63.4,
+    type: 'New York',
+    date: '2011-10-01'
+  }];
   chart.source(data, {
     date: {
       range: [0, 1],
@@ -259,12 +397,14 @@ function onInitChart0(F2, config) {
       mask: 'MM-DD'
     },
     value: {
-      max: 300,
+      formatter(e) {
+        return e.toFixed(1)
+      },
       tickCount: 4
     }
   });
-  chart.area().position('date*value').color('city').adjust('stack');
-  chart.line().position('date*value').color('city').adjust('stack');
+  chart.area().position('date*value').color('type').adjust('stack');
+  chart.line().position('date*value').color('type').adjust('stack');
   chart.render();
   // 注意：需要把chart return 出来
   return chart;
