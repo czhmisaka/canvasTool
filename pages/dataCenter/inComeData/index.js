@@ -77,6 +77,7 @@ Page({
     }],
     selectTime: {},
     onInitChart0,
+    onInitChart2,
   },
   // 开关预览显示
   open(e) {
@@ -156,6 +157,31 @@ Page({
     return data
   },
 
+// 获取客户城市分布
+getCusCityData(e) {
+  let data = this.addTime({
+    storeId: this.data.storeId
+  })
+  util.request({
+    url: '/customer/city',
+    data
+  }).then(res => {
+    if (res.code != 200) return app.noIconToast(res.msg)
+    let Sdata = []
+    res.data.forEach(item => {
+      Sdata.push({
+        area: item.city || '其他',
+        percent: item.percent,
+      })
+    })
+    Sdata.sort((a, b) => {
+      return -a.percent + b.percent
+    })
+    let salesTrend = this.selectComponent('#area');
+    salesTrend.chart.changeData(Sdata.slice(0, 5))
+  })
+},
+
   // 获取top5成交客户
   getTop5Cus(e) {
     let topGoodsList = []
@@ -167,11 +193,6 @@ Page({
     this.setData({
       topGoodsList
     })
-  },
-
-  // 获取今日商品数据
-  getTodayGoodsData(e) {
-
   },
 
   // 获取图表数据
@@ -302,7 +323,7 @@ Page({
         series2 = []
       res.data.forEach(item => {
         series1.push({
-          name: item.gcName + item.count,
+          name: item.gcName + item.count+'件',
           data: item.count,
         })
         series2.push({
@@ -356,6 +377,7 @@ Page({
       this.getFastMsg()
       this.getGoodsCategoryDistribution()
       this.getCusStructData()
+      this.getCusCityData()
     })
   },
 
@@ -408,4 +430,26 @@ function onInitChart0(F2, config) {
   chart.render();
   // 注意：需要把chart return 出来
   return chart;
+}
+
+function onInitChart2(F2, config) {
+  let data = []
+  for (let i = 0; i < 5; i++) {
+    data.push({
+      area: '其他' + i,
+      percent: i,
+    })
+  }
+  const chart = new F2.Chart(config);
+  chart.source(data, {
+    percent: {
+      min: 0,
+      formatter: function formatter(val) {
+        return (val * 100).toFixed(1) + '%';
+      }
+    }
+  });
+  chart.interval().position('area*percent').color('area').adjust('stack');
+  chart.render();
+  return chart
 }

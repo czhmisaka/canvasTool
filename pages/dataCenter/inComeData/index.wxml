@@ -57,8 +57,8 @@
         <view class="title">
             成交地区分布
         </view>
-        <view class="chart" style="height:400rpx">
-            <ff class="f2-chart" onInit="{{onInitChart0}}" />
+        <view class="chart" style="height:600rpx">
+            <ff class="f2-chart" id="area" onInit="{{onInitChart2}}"></ff>
         </view>
     </view>
 </view>
