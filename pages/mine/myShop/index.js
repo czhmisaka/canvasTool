@@ -316,7 +316,8 @@ Page({
       mask: true
     })
     util.request({
-      url: '/store/getStoreMarketList'
+      url: '/store/getStoreMarketList',
+      type:'noLogin'
     }).then(res => {
       wx.hideLoading()
       if (res.code != '200') return getApp().noIconToast(res.msg)

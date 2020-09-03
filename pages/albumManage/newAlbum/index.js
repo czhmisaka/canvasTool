@@ -108,7 +108,7 @@ Page({
           })
         }
       },
-      fail:res=>{
+      fail: res => {
         wx.navigateBack()
       }
     });
@@ -214,7 +214,9 @@ Page({
       "photoVedio": "",
       "photoVedioMore": "",
       "storeId": app.globalData.shopInfo.storeVo.id,
-      "goodsSerial": this.data.goodsSerial
+      "goodsSerial": this.data.goodsSerial,
+      "goodsAddDto":this.data.albumData.goodsAddDto,
+      "labelIds":this.data.albumData.labelIds||[]
     }
     if (this.data.isVideo) {
       data.photoImageMore = []
@@ -222,7 +224,8 @@ Page({
     }
     if (this.data.goodsId && this.data.goodsPriceAddDtos.length < 1) return this.show('请添加价格信息')
     utils.request({
-      url: '/photo/add',
+      url: '/photo/savePhoto',
+      // url:'photo/add',
       data
     }).then(res => {
       wx.hideLoading();
@@ -258,6 +261,9 @@ Page({
       showCancel: true,
       success: function (res) {
         if (res.confirm) {
+          app.setNeedRefresh('/pages/albumManage/albumManageMain/index', {
+            refresh: true
+          })
           that.deleteAlbum()
         }
       }
@@ -411,6 +417,18 @@ Page({
       price: check.goodsPriceAddDtos,
       goodsPriceAddDtos: check.goodsPriceAddDtos
     })
+  },
+
+  // 绑定商品组件的输入
+  setGoodsAddDto(e) {
+    let {
+      albumData
+    } = this.data
+    albumData.goodsAddDto = e.detail
+    this.setData({
+      albumData
+    })
+    console.log(albumData)
   },
 
   onLoad: function (options) {

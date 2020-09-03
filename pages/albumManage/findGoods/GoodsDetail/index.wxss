@@ -3,7 +3,7 @@
 .body {
     background-color: #F7F8FA;
     width: 100vw;
-    height: 100vh;
+    height: auto;
 }
 
 .section {
@@ -14,7 +14,19 @@
     margin-bottom: -10rpx;
     margin-top: -1rpx;
 }
-.bottom{
+
+.section>.title {
+    font-size: 36rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: bolder;
+    color: #3D3D3D;
+    line-height: 36rpx;
+    margin: 0rpx 32rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+}
+
+.bottom {
     position: absolute;
     bottom: 0px;
 }
@@ -102,16 +114,16 @@
     width: 560rpx;
     height: 80rpx;
     text-align: center;
-    color: rgba(52,62,223,1);
+    color: rgba(52, 62, 223, 1);
     border-radius: 44rpx;
     line-height: 80rpx;
     margin: 10rpx;
-    border: 1rpx rgba(52,62,223,1) solid;
+    border: 1rpx rgba(52, 62, 223, 1) solid;
     transition: all 0.4s;
     margin-bottom: 48rpx;
 }
 
 .bottomBtnList>.black {
-    background-color: rgba(52,62,223,1);
+    background-color: rgba(52, 62, 223, 1);
     color: white;
 }

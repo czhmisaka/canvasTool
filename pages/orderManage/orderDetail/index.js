@@ -15,7 +15,6 @@ Page({
     checkData: {},
     checkStatus: false,
     fastMailMsg: {},
-    showFastBox: false,
     priceStatus: false,
     price: 0,
     cdn: app.getCdnEnv()
@@ -95,12 +94,6 @@ Page({
     }, 50)
   },
 
-  // 展开和收起快递
-  chanegShowFastBox(e) {
-    this.setData({
-      showFastBox: !this.data.showFastBox
-    })
-  },
 
   // 自定义组件 快递设置 删除快递
   deleteFastMail(e) {
@@ -268,7 +261,7 @@ Page({
 
   // 标记完成
   finish(e) {
-    app.showModal('确定完成订单？').then(res => {
+    app.showModal(this.data.order.expresses.length == 0 ? '还未添加快递信息哦，确定提交完成订单吗？' : '确定完成订单？').then(res => {
       if (!res) return 0;
       util.request({
         url: '/order/completeOrder/' + this.data.order.orderId,

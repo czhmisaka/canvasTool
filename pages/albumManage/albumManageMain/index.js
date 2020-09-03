@@ -567,6 +567,7 @@ Page({
   // 页面重载函数 - 本来是应该在onshow里直接编写的，但是目前为了简便化刷新操作，故先拆分
   startFn() {
     app.checkNeedRefresh().then(res => {
+      console.log(res)
       if (res.refresh) {
         this.setData({
           orderList: [],
@@ -587,6 +588,8 @@ Page({
         this.getCheckList()
       } else {
         this.initFn()
+        this.getAblum()
+        // 权宜之计
         this.getCheckList()
       }
     })

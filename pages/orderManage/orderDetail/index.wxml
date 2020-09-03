@@ -1,23 +1,45 @@
 <!-- 收件人 -->
 <view class="addressAdmin">
-  <view class="box">
-    <view class="bar red"></view>
-    <view class="title">客户：</view>
-    <view class="word1">{{order.wxNickName}}</view>
+  <view class="box" style="margin:24rpx 0rpx 20rpx 24rpx">
+    <view class="icon80">
+      <image src="/static/images/canvasTool/bg.png" />
+    </view>
+    <view class="title">{{order.wxNickName}}</view>
+    <view class="button right">立即联系</view>
   </view>
-  <view class="box">
-    <view class="bar black"></view>
-    <view class="title">
-      收件人：</view>
-    <view class="word1">{{order.name}} <span class="gray">{{order.phone}}</span></view>
-  </view>
-  <view class="box marginTop10rpx">
-    <view class="bar "></view>
-    <view class='title'>
-      收货地址：</view>
-    <view class='word1'>{{order.address}}</view>
+  <view class="box" style="margin:20rpx 0rp 20rpx 24rpx">
+    <view class="icon80 orangeBg">
+      收
+    </view>
+    <view class="flexBox_topAndBottom">
+      <view class="item32">{{order.name}} <span class="gray">{{order.phone}}</span></view>
+      <view class="item28">{{order.address}}</view>
+    </view>
   </view>
 </view>
+
+
+<!-- 快递单号 -->
+<view class="section" wx:if="{{order.orderStatus==60||order.orderStatus==40||order.orderStatus == 30}}">
+  <view class="title">
+    <view class="left black">
+      我的快递
+    </view>
+    <view class="right" wx:if="{{order.expresses.length>5}}">滑动下方区域可查看更多</view>
+  </view>
+  <view class="boxList">
+    <view wx:for="{{order.expresses}}" wx:key="*this" class="fastMailBox" bindtap="openCusFastMailMsgToast"
+      data-index="{{item}}">
+      {{'快递'+(index+1)}}{{" "+(item.shippingExpressName||item.expressName)+' '+(item.shippingCode||item.code)}}
+      <view class="icon32 right">
+        <image src="/static/images/icon_page/ic_xgjg.png" class="changeSizeFrom32To28" />
+      </view>
+    </view>
+    <view class="fastMailBox gray" wx:if="{{order.expresses.length==0}}">还未添加快递</view>
+  </view>
+</view>
+
+
 <!-- 商品详情 -->
 <view class="orderDetailBox">
   <text class="orderDetailTitle black">{{order.storeName}}</text>
@@ -50,15 +72,13 @@
         wx:if="{{order.orderStatus==50&&!priceStatus}}" bindtap="changePriceStatus" />
     </view>
   </view>
-</view>
-
-<!-- 用户备注 -->
-<view class="section">
+  <!-- 用户备注 -->
   <view class="word">
     <view class="left black">订单备注</view>
     <view class="right paymentMessage">{{order.paymentMessage}}</view>
   </view>
 </view>
+
 
 <!-- 订单状态 -->
 <view class="orderStatusBox">
@@ -67,38 +87,19 @@
   <view class="box">接单时间: {{order.receiveTime || "-"}}</view>
 </view>
 
-<!-- 快递单号 -->
-<view class="section" wx:if="{{order.orderStatus==60||order.orderStatus==40||order.orderStatus == 30}}">
-  <view class="title">
-    <view class="left black">
-      我的快递</view>
-    <view class="right {{!showFastBox?'blue':''}}" wx:if="{{order.expresses.length>2}}" bindtap="chanegShowFastBox">
-      {{!showFastBox?'展开':'收起'}}
-    </view>
-  </view>
-  <view class="boxList">
-    <view wx:for="{{order.expresses}}" wx:key="*this" class="fastMailBox {{(index>1&&!showFastBox)?'hide':''}}"
-      bindtap="openCusFastMailMsgToast" data-index="{{item}}">
-      {{'快递'+(index+1)}}{{" "+(item.shippingExpressName||item.expressName)+' '+(item.shippingCode||item.code)}}
-      <view class="icon32 right">
-        <image src="/static/images/icon_page/ic_xgjg.png" class="changeSizeFrom32To28" />
-      </view>
-    </view>
-    <view class="fastMailBox gray" wx:if="{{order.expresses.length==0}}">还未添加快递</view>
-  </view>
-</view>
 
 <view class="section bottom120rpx">
 </view>
 <!-- 按钮 -->
-<view class="orderTabbar">
+<view class="orderTabbar" wx:if="{{order.orderStatus != 40}}">
   <view class="transmit" wx:if="{{order.orderStatus == 50}}" bindtap="cancelAndRefund">取消</view>
-  <view class="transmit" wx:if="{{order.orderStatus == 60||order.orderStatus == 30}}" bindtap="openCusFastMailMsgToast">
-    录入快递</view>
-  <button open-type="share" class="transmit" bindtap="share">微信转发</button>
-  <view class="transmit highLight" wx:if="{{order.orderStatus == 50}}" bindtap="checkIn">接单</view>
-  <view class="transmit highLight" wx:if="{{order.orderStatus == 60||order.orderStatus == 30}}" bindtap="finish">标记完成
+  <view class="transmit" wx:if="{{order.orderStatus == 60||order.orderStatus == 30}}" bindtap="finish">全部发完
   </view>
+  <view class="transmit highLight" wx:if="{{order.orderStatus == 60||order.orderStatus == 30}}"
+    bindtap="openCusFastMailMsgToast">
+    去发货</view>
+  <!-- <button open-type="share" class="transmit" bindtap="share">微信转发</button> -->
+  <view class="transmit highLight" wx:if="{{order.orderStatus == 50}}" bindtap="checkIn">接单</view>
 </view>
 
 

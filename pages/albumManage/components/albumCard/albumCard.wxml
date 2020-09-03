@@ -28,7 +28,7 @@
     </view>
     <view class="view statusBox">
         <view class="leftBox overFlowHidden">
-            <span class="word_tab">
+            <span class="word_tab" wx:if="{{data.photoPriorityVos[0].labelName}}">
                 {{data.photoPriorityVos[0].labelName}}
             </span>
         </view>

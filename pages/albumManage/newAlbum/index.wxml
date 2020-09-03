@@ -3,29 +3,22 @@
 <view class="wholeScreen">
     <view class="section">
         <view class="imageBox" wx:if="{{!isVideo}}">
-            <view class="image" wx:for="{{imageList}}" wx:key="*this">
-                <image mode="aspectFill"
-                    src="{{item}}{{pageType!=0?'?x-oss-process=image/resize,m_lfit,h_200,w_200':''}}"
-                    bindtap="preWatchImg" data-url="{{item}}" />
-                <view class="icon" bindtap="delete" data-index="{{index}}" wx:if="{{pageType==0}}">
-                    <image src="/static/images/icon_page/ic_sc.png" />
+            <view class="scroll_x">
+                <view class="image" wx:for="{{imageList}}" wx:key="*this">
+                    <image mode="aspectFill"
+                        src="{{item}}{{pageType!=0?'?x-oss-process=image/resize,m_lfit,h_200,w_200':''}}"
+                        bindtap="preWatchImg" data-url="{{item}}" />
+                    <view class="icon" bindtap="delete" data-index="{{index}}" wx:if="{{pageType==0}}">
+                        <image src="/static/images/icon_page/ic_sc.png" />
+                    </view>
                 </view>
-            </view>
-            <view class="image add" wx:if="{{imageList.length<20&&pageType==0}}" bindtap="chooseImg">
-                <image src="/static/images/icon_page/ic_tjtpsp.png" />
+                <view class="image add" wx:if="{{imageList.length<20&&pageType==0}}" bindtap="chooseImg">
+                    <image src="/static/images/icon_page/ic_tjtpsp.png" />
+                </view>
             </view>
         </view>
         <view class="imageBox" wx:if="{{isVideo}}">
-            <!-- <view class="image">
-                <image mode="aspectFill"
-                    src="{{videoDetail.thumbTempFilePath}}{{pageType!=0?'?x-oss-process=image/resize,m_lfit,h_200,w_200':''}}"
-                    bindtap="preWatchImg" data-url="{{item}}" />
-                <view class="duration">
-                    视频封面
-                </view>
-            </view> -->
             <view class="image">
-                <!-- class="{{wholePlay?'wholeScreenVideo':''}}" -->
                 <video src="{{videoDetail.tempFilePath}}" object-fit='fill' bindtap="toWholePlay" muted="{{true}}"
                     autoplay="{{true}}" />
                 <view class="duration">
@@ -42,9 +35,10 @@
             </textarea>
             <view class="textarea-show" wx:else>{{word}}</view>
         </view>
+        <view class="border_bottom"></view>
     </view>
 
-    <view class="section">
+    <!-- <view class="section">
         <view class="navToBox" bindtap="navTo" data-url="../findGoods/index">
             <view class="left">关联商品</view>
             <view class="right icon">
@@ -52,8 +46,10 @@
             </view>
             <view class="right gray">{{goodsSerial}}</view>
         </view>
-    </view>
-    <view class="section" style="margin-bottom:160rpx" wx:if="{{goodsSerial}}" bindtap="letCusCheck" data-type="价格">
+        <view class="border_bottom"></view>
+    </view> -->
+
+    <view class="section" bindtap="letCusCheck" data-type="价格">
         <view class="navToBox">
             <view class="left">设置价格</view>
             <view class="right icon">
@@ -74,11 +70,25 @@
                 </view>
             </view>
         </view>
+        <view class="border_bottom"></view>
     </view>
+    <view class="section" style="margin-bottom:20rpx" bindtap="letCusCheck" data-type="价格">
+        <view class="navToBox">
+            <view class="left">谁可以看</view>
+            <view class="right icon">
+                <image src="/static/images/icon_page/ic_xy.png" />
+            </view>
+            <view class="right red">
+
+            </view>
+        </view>
+    </view>
+
+    <goodsDetail options="{{options}}" goodsDetail="{{albumData.goodsAddDto}}" bind:setGoodsAddDto="setGoodsAddDto"></goodsDetail>
 
     <view class="bottomBtnList" wx:if="{{pageType===0}}">
         <view class="longButton black" bindtap="submit">
-            上传到相册
+            保存
         </view>
     </view>
     <view class="bottomBtnList" wx:if="{{pageType===1}}">

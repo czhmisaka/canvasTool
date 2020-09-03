@@ -31,18 +31,88 @@ page {
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
   color: rgba(61, 61, 61, 1);
-  line-height: 60rpx;
+  line-height: 80rpx;
   margin-left: 24rpx;
   display: inline-block;
 }
 
-.addressAdmin>.marginTop10rpx{
+.addressAdmin>.marginTop10rpx {
   margin-top: -10rpx;
   margin-bottom: 0rpx;
 }
+
+.box>.icon80 {
+  float: left;
+  margin-right: 16rpx;
+}
+
+.box>.right {
+  float: right;
+  background: #FF8D4D;
+  border-radius: 32rpx;
+  height: 56rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 56rpx;
+  width: 160rpx;
+  text-align: center;
+  margin: 12rpx 0rpx;
+}
+
+.orangeBg {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FF8D4D;
+  line-height: 80rpx;
+  text-align: center;
+  background: #FFF3ED;
+}
+
+.box>.flexBox_topAndBottom {
+  display: flex;
+  flex-flow: column;
+}
+
+.flexBox_topAndBottom>.item32 {
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #3D3D3D;
+  line-height: 40rpx;
+}
+
+.flexBox_topAndBottom>.item28 {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999999;
+  line-height: 24rpx;
+  margin-bottom: 20rpx;
+  margin-top: 10rpx;
+}
+
+.icon80 {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  overflow: hidden;
+}
+
+.icon80>image {
+  width: 100%;
+  height: 100%;
+}
+
 .box>.title {
   width: 6em;
   float: left;
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #3D3D3D;
 }
 
 .box>.word1 {
@@ -339,12 +409,14 @@ page {
   margin-top: 24rpx;
   margin-right: 34rpx;
   margin-left: 20rpx;
-  border: 1rpx rgba(61, 61, 61, 1) solid;
+  /* border: 1rpx rgba(61, 61, 61, 1) solid; */
+  background: #E4E6FF;
+  color: #343EDF;
 }
 
 .highLight {
   color: #FFFFFF;
-  background: rgba(61, 61, 61, 1);
+  background: #343EDF;
 }
 
 .wholeScreen {
@@ -407,14 +479,17 @@ page {
 
 .section>.title>.right {
   float: right;
-  width: 6em;
+  width: 15em;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999999;
   text-align: right;
 }
 
 .section .paymentMessage {
   line-height: 42rpx;
   padding: 32rpx;
-  padding-top: 0rpx;
   color: #999;
   font-size: 24rpx;
   text-indent: 2em;
@@ -423,6 +498,8 @@ page {
 .section>.boxList {
   width: calc(100% - 48rpx);
   margin: 0rpx 24rpx;
+  max-height: 380rpx;
+  overflow-y: scroll;
 }
 
 .boxList>.fastMailBox {
@@ -488,7 +565,7 @@ page {
 .word>.button {
   padding: 10rpx 24rpx;
   color: white;
-  background-color: rgba(52,62,223,1);
+  background-color: rgba(52, 62, 223, 1);
   width: auto;
   height: 28rpx;
   line-height: 28rpx;
