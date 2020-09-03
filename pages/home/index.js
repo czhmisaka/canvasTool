@@ -114,8 +114,8 @@ Page({
         num: ress.data ? ress.data.publishNum || 0 : 0,
         type: '已发布'
       }, {
-        num: ress.data ? ress.data.noPublishNum || 0 : 0,
-        type: '未发布'
+        num: ress.data ? ress.data.unPublishNum || 0 : 0,
+        type: '暂存'
       }], '1')
     })
     utils.request({

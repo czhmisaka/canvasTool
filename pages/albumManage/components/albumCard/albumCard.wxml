@@ -1,6 +1,6 @@
 <!--pages/albumManage/components/albumCard/albumCard.wxml-->
 
-<view class="ablumCard {{check?'check':''}} {{transitionMax>30?'':'transition'}}">
+<view class="ablumCard {{check?'check':''}} {{transitionMax>30?'':'transition'}}" wx:if="{{!isDelete}}">
     <view class="icon_check" wx:if="{{check}}">
         <!-- <view class="icon_check" wx:if="{{true}}"> -->
         <image src="{{'/static/images/icon_page/'+(checkindex?'ic_chose_pre.png':'ic_chose.png')}}"
@@ -35,6 +35,6 @@
         <view class="shareBtn" bindtap="eventBtn" data-type="{{publish}}" data-photoid="{{data.id}}">
             {{publish?'分享':'发布'}}
         </view>
-        <view class="actButton">删除</view>
+        <view class="actButton"  bindtap="delete">删除</view>
     </view>
 </view>

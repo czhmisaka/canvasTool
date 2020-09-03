@@ -100,7 +100,7 @@ const uploadFile = (filePath, clear = false, fullPath = false) => {
         },
         fail: function (err) {
           err.wxaddinfo = aliyunServerURL;
-          failc(err);
+          reject(err);
         },
       })
     })

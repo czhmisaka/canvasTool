@@ -37,15 +37,46 @@ Page({
     isVideo: false,
     videoDetail: [],
     wholePlay: false,
-    options: null
+    options: null,
+    checkDataForShare: {},
+    checkStatusForShare: false,
+    checkData2: []
+  },
+
+
+  // 获取自定义组件使用的 参数
+  getCheckList(e) {
+    let checkData2 = []
+    util.request({
+      url: '/customer/label/allList',
+      data: {
+        id: app.globalData.shopInfo.storeVo.id
+      }
+    }).then(result => {
+      let tab = {
+        title: "对谁可见",
+        tabList: []
+      }
+      result.data.forEach((item, index) => {
+        tab.tabList.push({
+          tab: item.labelName,
+          id: item.id,
+          check: false
+        })
+      })
+      checkData2.push(tab)
+      this.setData({
+        checkData2,
+      })
+    })
   },
 
   // 绑定输入
   typing: function (e) {
-    if (this.data.pageType != 0) return wx.showToast({
-      title: '暂时不支持修改',
-      icon: 'none',
-    });
+    // if (this.data.pageType != 0) return wx.showToast({
+    //   title: '暂时不支持修改',
+    //   icon: 'none',
+    // });
     this.setData({
       word: e.detail.value
     })
@@ -68,10 +99,10 @@ Page({
 
   // 选择图片
   chooseImg: function (e) {
-    if (this.data.pageType != 0) return wx.showToast({
-      title: '暂时不支持修改',
-      icon: 'none',
-    });
+    // if (this.data.pageType != 0) return wx.showToast({
+    //   title: '暂时不支持修改',
+    //   icon: 'none',
+    // });
     wx.chooseMedia({
       count: (20 - this.data.imageList.length) > 9 ? '9' : (20 - this.data.imageList.length),
       sizeType: ['compressed', 'original'],
@@ -156,7 +187,7 @@ Page({
           title: '上传中',
           mask: true
         });
-        that.upload([videoDetail.thumbTempFilePath, videoDetail.tempFilePath])
+        that.upload([videoDetail.thumbTempFilePath, videoDetail.tempFilePath], [], e.currentTarget.dataset.photoshow)
       }
     } else {
       app.setNeedRefresh('pages/albumManage/albumManageMain/index', {
@@ -167,12 +198,12 @@ Page({
         mask: true,
         success: res => {}
       });
-      that.upload(imageList)
+      that.upload(imageList, [], e.currentTarget.dataset.photoshow)
     }
   },
 
   // 上传图片
-  upload(imageList, imageSrcList = []) {
+  upload(imageList, imageSrcList = [], photoShow) {
     let that = this
     if (imageSrcList == []) {
       imageList.forEach(() => {
@@ -180,24 +211,37 @@ Page({
       })
     }
     let clear = (times == imageList.length - 1)
-    uploadImage(imageList[times], clear).then((result) => {
-      wx.hideLoading();
+    if (imageList[times].slice(0, 10) != "http://tmp") {
       times++
+      imageSrcList[times - 1] = imageList[times - 1]
       wx.showLoading({
         title: times + '/' + imageList.length
       })
-      imageSrcList[times - 1] = result
       if (times == imageList.length) {
         times = 0
-        that.addPhoto(imageSrcList)
+        that.addPhoto(imageSrcList, photoShow)
       } else {
-        that.upload(imageList, imageSrcList)
+        that.upload(imageList, imageSrcList, photoShow)
       }
-    })
+    } else
+      uploadImage(imageList[times], clear).then((result) => {
+        wx.hideLoading();
+        times++
+        wx.showLoading({
+          title: times + '/' + imageList.length
+        })
+        imageSrcList[times - 1] = result
+        if (times == imageList.length) {
+          times = 0
+          that.addPhoto(imageSrcList, photoShow)
+        } else {
+          that.upload(imageList, imageSrcList, photoShow)
+        }
+      })
   },
 
   // 提交请求 -需要上传完图片后操作
-  addPhoto: function (imageSrcList) {
+  addPhoto: function (imageSrcList, photoShow) {
     let photoImageMore = ''
     imageSrcList.forEach((item, index) => {
       photoImageMore += item
@@ -215,8 +259,9 @@ Page({
       "photoVedioMore": "",
       "storeId": app.globalData.shopInfo.storeVo.id,
       "goodsSerial": this.data.goodsSerial,
-      "goodsAddDto":this.data.albumData.goodsAddDto,
-      "labelIds":this.data.albumData.labelIds||[]
+      "goodsAddDto": this.data.albumData.goodsAddDto,
+      "labelIds": this.data.albumData.labelIds || [],
+      "photoShow": photoShow
     }
     if (this.data.isVideo) {
       data.photoImageMore = []
@@ -224,7 +269,7 @@ Page({
     }
     if (this.data.goodsId && this.data.goodsPriceAddDtos.length < 1) return this.show('请添加价格信息')
     utils.request({
-      url: '/photo/savePhoto',
+      url: '/photo/' + (this.data.pageType != 0 ? 'updatePhoto' : 'savePhoto'),
       // url:'photo/add',
       data
     }).then(res => {
@@ -251,6 +296,8 @@ Page({
       }
     })
   },
+
+  // 修改
 
   // 打开删除弹窗
   openDeleteAlbum: function (e) {
@@ -307,6 +354,7 @@ Page({
     let imageList = []
     let videoDetail = {}
     let isVideo = false
+    let labelIds = []
     if (data.photoVedio) {
       videoDetail.thumbTempFilePath = (data.photoImage[0] != 'h' ? this.data.cdn : '') + data.photoImage
       videoDetail.tempFilePath = (data.photoVedio[0] != 'h' ? this.data.cdn : '') + data.photoVedio
@@ -322,6 +370,10 @@ Page({
     data.goodsPriceVos.forEach(item => {
       price.push(item)
     })
+    data.photoPriorityVos.forEach(item => {
+      labelIds.push(item.labelId)
+    })
+    data.labelIds = labelIds
     price = price.sort((a, b) => {
       return a.goodsPrice - b.goodsPrice
     })
@@ -350,6 +402,7 @@ Page({
       method: 'get'
     }).then((res) => {
       if (res.data.photoImage) {
+        res.data.goodsAddDto = res.data.goodsVo
         this.imageAlbumInitFn(res.data)
       }
     })
@@ -374,7 +427,7 @@ Page({
 
   // 调起自定义选择
   letCusCheck(e) {
-    if (this.data.pageType == 1) return this.show('编辑功能未开放')
+    // if (this.data.pageType == 1) return this.show('编辑功能未开放')
     let {
       type
     } = e.currentTarget.dataset
@@ -425,11 +478,78 @@ Page({
       albumData
     } = this.data
     albumData.goodsAddDto = e.detail
+    albumData.goodsVo = e.detail
     this.setData({
       albumData
     })
-    console.log(albumData)
   },
+
+  // 自定义组件 分享 发布选择 打开
+  openCusShareToast(e) {
+    let {
+      albumData
+    } = this.data
+    let dataa = {}
+    let {
+      labelIds
+    } = albumData
+    this.data.checkData2.forEach((res) => {
+      if (res.title == "对谁可见") {
+        dataa = res
+      }
+    })
+    if (labelIds && labelIds.length > 0) {
+      dataa.tabList.forEach(index => {
+        index.check = false
+      })
+      labelIds.forEach(item => {
+        dataa.tabList.forEach(index => {
+          if (index.id == item) {
+            index.check = true
+          }
+        })
+      })
+    }
+    this.setData({
+      checkDataForShare: {
+        title: '对谁可见',
+        tabList: dataa.tabList,
+        photoIds: null
+      },
+      checkStatusForShare: true
+    })
+  },
+
+  // 自定义组件 分享 发布选择 回调
+  checkCancelForShare(e) {
+    setTimeout(() => {
+      this.setData({
+        checkStatusForShare: false
+      })
+    }, 100)
+  },
+
+
+  // 自定义组件 分享 发布选择 返回
+  setCheckForShare(e) {
+    let {
+      albumData
+    } = this.data
+    let photoPriorityVos = []
+    let labelIds = e.detail.check.id
+    e.detail.check.name.forEach((item, index) => {
+      photoPriorityVos.push({
+        labelId: e.detail.check.id[index],
+        labelName: item
+      })
+    })
+    albumData.photoPriorityVos = photoPriorityVos
+    albumData.labelIds = labelIds
+    this.setData({
+      albumData
+    })
+  },
+
 
   onLoad: function (options) {
     let setPageLife = new getApp().setPageLife()
@@ -451,7 +571,9 @@ Page({
     }
   },
   onReady: function () {},
-  onShow: function () {},
+  onShow: function () {
+    this.getCheckList()
+  },
   onHide: function () {},
   onUnload: function () {},
   onPullDownRefresh: function () {},

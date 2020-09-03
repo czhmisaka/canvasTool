@@ -2,6 +2,7 @@
     "navigationBarTitleText": "添加新的内容",
     "usingComponents": {
         "cusShowToast": "../components/customCheckToastForPrice/customCheckToast",
-        "goodsDetail":"../findGoods/GoodsDetail/index"
+        "goodsDetail": "../findGoods/GoodsDetail/index",
+        "cusShowShareToast": "../components/customCheckToastForShare/customCheckToastForShare"
     }
 }

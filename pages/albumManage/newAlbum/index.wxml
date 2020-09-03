@@ -12,7 +12,7 @@
                         <image src="/static/images/icon_page/ic_sc.png" />
                     </view>
                 </view>
-                <view class="image add" wx:if="{{imageList.length<20&&pageType==0}}" bindtap="chooseImg">
+                <view class="image add" wx:if="{{imageList.length<20}}" bindtap="chooseImg">
                     <image src="/static/images/icon_page/ic_tjtpsp.png" />
                 </view>
             </view>
@@ -72,36 +72,45 @@
         </view>
         <view class="border_bottom"></view>
     </view>
-    <view class="section" style="margin-bottom:20rpx" bindtap="letCusCheck" data-type="价格">
+    <view class="section" style="margin-bottom:20rpx" bindtap="openCusShareToast">
         <view class="navToBox">
             <view class="left">谁可以看</view>
             <view class="right icon">
                 <image src="/static/images/icon_page/ic_xy.png" />
             </view>
             <view class="right red">
-
+                <view style="float:right;margin:0rpx 0.2em;font-size:24rpx;color:gray"
+                    wx:for="{{albumData.photoPriorityVos}}" wx:key="*this">
+                    {{item.labelName}}
+                </view>
             </view>
         </view>
     </view>
 
-    <goodsDetail options="{{options}}" goodsDetail="{{albumData.goodsAddDto}}" bind:setGoodsAddDto="setGoodsAddDto"></goodsDetail>
+    <goodsDetail options="{{options}}" goodsDetail="{{albumData.goodsAddDto}}" bind:setGoodsAddDto="setGoodsAddDto">
+    </goodsDetail>
 
     <view class="bottomBtnList" wx:if="{{pageType===0}}">
-        <view class="longButton black" bindtap="submit">
-            保存
+        <view class="button"  bindtap="submit"  data-photoShow="0">
+            暂存
+        </view>
+        <view class="button longButton" bindtap="submit" data-photoShow="1">
+            完成
         </view>
     </view>
     <view class="bottomBtnList" wx:if="{{pageType===1}}">
-        <view class="button longBotton" bindtap="openDeleteAlbum">
+        <view class="button normalButton" bindtap="openDeleteAlbum">
             删除
         </view>
-        <!-- <view class="button" bindtap="ChanegSubmit">
-            编辑
-        </view> -->
+        <view class="button normalButton black" bindtap="submit"  data-photoShow="1">
+            保存
+        </view>
         <!-- <view class="button black" bindtap="share">
             分享
         </view> -->
     </view>
 </view>
+<cusShowShareToast checkData="{{checkDataForShare}}" bind:returnBack="setCheckForShare"
+    bind:cancel="checkCancelForShare" letCusCheck="{{checkStatusForShare}}"></cusShowShareToast>
 <cusShowToast checkData="{{checkData}}" bind:returnBack="setCheck" bind:cancel="checkCancel"
     letCusCheck="{{checkStatus}}"></cusShowToast>

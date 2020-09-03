@@ -164,7 +164,7 @@
 
 .bottomBtnList {
     width: 100%;
-    height: 100rpx;
+    height: 120rpx;
     position: fixed;
     bottom: 0px;
     display: flex;
@@ -177,25 +177,32 @@
     text-align: center;
     color: rgba(52, 62, 223, 1);
     border-radius: 44rpx;
-    line-height: 80rpx;
+    line-height: 88rpx;
     margin: 10rpx;
-    border: 1rpx rgba(52, 62, 223, 1) solid;
+    background: #E4E6FF;
+}
+
+.bottomBtnList>.smallButton {
+    width: 160rpx;
+    height: 88rpx;
+}
+
+.bottomBtnList>.normalButton {
+    width: 332rpx;
+    height: 88rpx;
 }
 
 .bottomBtnList>.longButton {
-    width: 560rpx;
+    width: 506rpx;
     height: 80rpx;
-    background: rgba(52, 62, 223, 1);
+    background: #343EDF;
     border-radius: 46rpx;
+    color: white;
     text-align: center;
-    line-height: 80rpx;
+    line-height: 88rpx;
 }
 
 .bottomBtnList>.black {
     background-color: rgba(52, 62, 223, 1);
     color: white;
-}
-
-.bottomBtnList>.longBotton {
-    width: 560rpx;
 }

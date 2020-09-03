@@ -49,23 +49,29 @@ Component({
           back.id.push(res.id)
         }
       })
-      util.request({
-        url: '/photo/publish',
-        data: {
-          labelIds: back.id,
-          photoIds: this.properties.checkData.photoIds
-        }
-      }).then(res => {
-        if (res.code)
-          getApp().noIconToast('修改成功')
-        else
-          getApp().noIconToast('修改失败')
+      if (this.properties.checkData.photoIds)
+        util.request({
+          url: '/photo/publish',
+          data: {
+            labelIds: back.id,
+            photoIds: this.properties.checkData.photoIds
+          }
+        }).then(res => {
+          if (res.code == 200)
+            getApp().noIconToast('修改成功')
+          else
+            getApp().noIconToast('修改失败')
+          this.triggerEvent('returnBack', {
+            check: back
+          })
+          this.cancel()
+        })
+      else {
         this.triggerEvent('returnBack', {
           check: back
         })
         this.cancel()
-      })
-
+      }
     },
 
     cancel(e) {

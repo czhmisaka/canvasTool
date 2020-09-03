@@ -17,9 +17,12 @@ Page({
     fastMailMsg: {},
     priceStatus: false,
     price: 0,
-    cdn: app.getCdnEnv()
+    cdn: app.getCdnEnv(),
   },
 
+  format: (num) => {
+    return num.toFixed(2)
+  },
 
   // 打开备注填写接口
   showMsgBox(e) {
@@ -308,6 +311,9 @@ Page({
         data.createTime = data.createTime.replace('T', ' ')
         data.receiveTime = data.receiveTime ? data.receiveTime.replace('T', ' ') : ''
         let order = res.data
+        order.goodsList.forEach(item => {
+          item.totalGoodsPrice = this.format(item.goodsNum * item.goodsPrice)
+        })
         that.setData({
           order,
           options: options

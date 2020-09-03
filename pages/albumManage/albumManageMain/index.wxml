@@ -58,7 +58,7 @@
             </block>
         </swiper>
     </view>
-    <view class="bottomBtnList" wx:if="{{searchWord.length==0}}">
+    <!-- <view class="bottomBtnList" wx:if="{{searchWord.length==0}}">
         <view class="button mid_Botton" bindtap="navTo" data-url="../newAlbum/index"
             wx:if="{{!checkMore[selectType.index]}}">添加
         </view>
@@ -71,8 +71,7 @@
             wx:if="{{!checkMore[selectType.index]}}" bindtap="checkMoreStatusChange">
             批量选择
         </view>
-        <!-- <view class="button black" bindtap="sortDataByTime">分享档口 </view> -->
-    </view>
+    </view> -->
 </view>
 
 <cusShowToast checkData="{{checkDataForShare}}" bind:returnBack="setCheckForShare" bind:cancel="checkCancelForShare"

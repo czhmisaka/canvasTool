@@ -4,7 +4,20 @@ const util = require('../../../../utils/util.js');
 let clock = 0
 Component({
   properties: {
-    options: Object
+    options: Object,
+    goodsDetail: {
+      type: Object,
+      value: {},
+      observer: function (e) {
+        if (this.properties.goodsDetail) {
+          console.log('asasdad', this.properties.goodsDetail)
+          this.goodDetailInitFn(this.properties.goodsDetail)
+          this.setData({
+            goodsDetail: this.properties.goodsDetail
+          })
+        }
+      }
+    }
   },
   data: {
     goodsId: '',
@@ -31,6 +44,7 @@ Component({
       let {
         goodsDetail
       } = this.data
+      if (!goodsDetail) goodsDetail = {}
       goodsDetail.goodsSerial = e.detail.value
       this.setData({
         goodsDetail
@@ -81,24 +95,26 @@ Component({
       } = this.data
       let size = '',
         color = '';
-      goodsSpecVos.forEach(res => {
-        let {
-          goodsSpecAttrVos
-        } = res
-        goodsSpecAttrVos.forEach(item => {
-          tabCheckList.forEach((tab) => {
-            if (item.goodsAttrId == tab.id) {
-              if (tab.word.split('/').indexOf(item.goodsAttrValueName) == -1) {
-                if (tab.word.length != 0) {
-                  tab.word += '/'
+      if (goodsSpecVos)
+        goodsSpecVos.forEach(res => {
+          let {
+            goodsSpecAttrVos
+          } = res
+          if (goodsSpecAttrVos)
+            goodsSpecAttrVos.forEach(item => {
+              tabCheckList.forEach((tab) => {
+                if (item.goodsAttrId == tab.id) {
+                  if (tab.word.split('/').indexOf(item.goodsAttrValueName) == -1) {
+                    if (tab.word.length != 0) {
+                      tab.word += '/'
+                    }
+                    tab.word += item.goodsAttrValueName
+                    tab.checkIdList.push(item.goodsAttrValueId)
+                  }
                 }
-                tab.word += item.goodsAttrValueName
-                tab.checkIdList.push(item.goodsAttrValueId)
-              }
-            }
-          })
+              })
+            })
         })
-      })
       this.setData({
         size,
         color,
@@ -276,45 +292,15 @@ Component({
       }
     },
 
-    // // 提交关联
-    // submit(e) {
-    //   let pages = getCurrentPages()
-    //   pages.forEach((item, index) => {
-    //     if (item.route == "pages/albumManage/newAlbum/index") {
-    //       item.setData({
-    //         goodsSerial: this.data.goodsDetail.goodsSerial,
-    //         goodsId: this.data.goodsId
-    //       })
-    //       return wx.showToast({
-    //         title: '关联成功',
-    //         icon: 'success',
-    //         duration: 1000,
-    //         mask: true,
-    //         success: res => {
-    //           setTimeout(() => {
-    //             wx.navigateBack({
-    //               delta: pages.length - index - 1
-    //             });
-    //           }, 1000)
-    //         }
-    //       });
-    //     } else if (index == pages.length) {
-    //       this.show('关联失败，未找到正在编辑的相册')
-    //     }
-    //   })
-    // },
-
-    // 新建商品
+    // 返回商品信息
     createGoods(e) {
-      // if (!this.data.goodsDetail.goodsSerial) return this.show('货号不能为空')
-      // if (!this.data.goodsDetail.goodsClassId) return this.show('品类不能为空')
-      // this.data.tabCheckList.forEach(item => {
-      //   if (!item.word.length) return this.show(item.title + '不能为空')
-      // })
       let {
         goodsDetail,
         tabCheckList
       } = this.data
+      console.log(
+        goodsDetail,
+        tabCheckList)
       let data = this.dealDataToGoodsDetail(tabCheckList, goodsDetail)
       this.triggerEvent('setGoodsAddDto', data)
     },
@@ -362,11 +348,12 @@ Component({
 
   lifetimes: {
     attached: function () {
-      console.log(this)
+      console.log('e')
       this.setData({
         new: true
       })
       this.getCheckList()
+
     },
     detached: function () {
       // 在组件实例被从页面节点树移除时执行

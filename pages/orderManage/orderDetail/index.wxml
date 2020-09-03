@@ -2,7 +2,7 @@
 <view class="addressAdmin">
   <view class="box" style="margin:24rpx 0rpx 20rpx 24rpx">
     <view class="icon80">
-      <image src="/static/images/canvasTool/bg.png" />
+      <image src="{{order.avatar?order.avatar:'/static/images/canvasTool/bg.png'}}" />
     </view>
     <view class="title">{{order.wxNickName}}</view>
     <view class="button right">立即联系</view>
@@ -50,7 +50,7 @@
     <image class="orderDetailImg" src="{{item.goodsImage[0]!='h'?cdn+item.goodsImage:item.goodsImage}}"></image>
     <text class="orderDetailName">{{item.goodsName}}</text>
     <view class="orderDetailPrice"><span class="small"><span
-          class="gray">¥{{item.goodsPrice}}</span>*{{item.goodsNum}}=</span>¥{{item.goodsNum*item.goodsPrice}}</view>
+          class="gray">¥{{item.goodsPrice}}</span>*{{item.goodsNum}}=</span>¥{{item.totalGoodsPrice}}</view>
     <view class="orderDetailSizeBox" wx:for="{{item.orderGoodsSpecList}}" wx:key="*this">
       <text class="orderSizeColor">{{item.specInfo}}</text>
       <text class="orderPieceNum">{{item.goodsNum}}件</text>

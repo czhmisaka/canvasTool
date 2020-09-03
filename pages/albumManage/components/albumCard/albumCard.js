@@ -26,7 +26,8 @@ Component({
     price: 0,
     photoList: [],
     photoNum: 0,
-    publish: false
+    publish: false,
+    isDelete:false
   },
 
   /**
@@ -93,6 +94,23 @@ Component({
         type: this.properties.checkindex,
         id: this.properties.id
       })
+    },
+
+    // 删除当前相册
+    delete(e){
+      wx.showLoading({
+        title:'删除中',
+        mask:true
+      })
+      util.request({
+        url: 'photo/del',
+        data: [this.properties.data.id]
+      }).then(res => {
+        wx.hideLoading()
+        if (res.data) return this.setData({
+          isDelete:true
+        })
+      });
     },
 
     // 按钮事件处理

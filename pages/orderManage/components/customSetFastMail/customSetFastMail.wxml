@@ -3,26 +3,29 @@
     <view class="touchBack" bindtap="cancel"></view>
     <view class="mainCheckBox {{status?'mainCheckBox_then':''}}">
         <view class="title">
-            <view class="btn gray" bindtap="cancel" wx:if="{{!notNew}}">取消</view>
-            <view class="btn gray" bindtap="delete" wx:if="{{notNew}}">删除</view>
-            <view class="word">{{"请选择"+title}}</view>
-            <view class="btn" bindtap="callBackToPage">确认</view>
-        </view>
-        <view class="section" bindtap="openFastMail">
-            <view class="left">快递方式</view>
-            <view class="right icon14">
-                <image src="/static/images/icon_page/ic_xy.png" />
-            </view>
-            <view class="right">{{back.expressName}}</view>
+            <!-- <view class="btn gray" bindtap="cancel" wx:if="{{!notNew}}">取消</view> -->
+            <!-- <view class="btn gray" bindtap="delete" wx:if="{{notNew}}">删除</view> -->
+            <view class="word">{{(!notNew?"请选择":'')+title}}</view>
+            <!-- <view class="btn" bindtap="callBackToPage">确认</view> -->
         </view>
         <view class="section">
-            <view class="left">物流单号</view>
-            <view class="right icon32" bindtap="scanCodeForMail">
-                <image src="/static/images/icon_page/ic_wldh.png" />
-            </view>
+            <!-- <view class="left">物流单号</view> -->
             <view class="right">
                 <input type="text" value="{{back.code}}" bindinput="bindInput" placeholder="请输入快递单号" />
             </view>
+            <view class="right icon48" bindtap="scanCodeForMail">
+                <image src="/static/images/icon_page/ic_wldh.png" />
+            </view>
+        </view>
+        <view class="section" bindtap="openFastMail">
+            <view class="right" style="margin-left:24rpx">{{back.expressName||'选择快递方式'}}</view>
+            <view class="right icon14">
+                <image src="/static/images/icon_page/ic_xy.png" />
+            </view>
+        </view>
+        <view class="section flexCenter">
+            <view class="btn gray" bindtap="delete" wx:if="{{notNew}}">删除</view>
+            <view class="btn {{notNew?'':'large'}}" bindtap="callBackToPage">完成</view>
         </view>
     </view>
     <view class="wholeScreen Top {{showFastMail?'showWholeScreen':''}}">

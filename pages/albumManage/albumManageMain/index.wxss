@@ -173,19 +173,19 @@
 
 .orderBox {
     width: 100%;
-    height: calc(100vh - 276rpx);
+    height: calc(100vh - 156rpx);
     overflow-y: scroll;
     background: rgba(247, 248, 250, 1);
 }
 
 .swiper {
     width: 100%;
-    height: calc(100vh - 276rpx);
+    height: calc(100vh - 156rpx);
 }
 
 .scroll {
     width: 100%;
-    height: calc(100vh - 276rpx);
+    height: calc(100vh - 156rpx);
     overflow-y: scroll;
     transition: all ease-in-out 0.5s;
     position: absolute;
