@@ -9,7 +9,7 @@ const util = require('../util.js')
 // 控制台输出/调试用
 const canConsole = false
 // 是否保存信息到缓存中（防止漏上传等）
-const canSaveHistory = true
+const canSaveHistory = false
 // 绑定事件列表
 const eventList = {
     pageRoute: true,

@@ -42,6 +42,7 @@
     margin: 16rpx;
     float: left;
     border-radius: 8rpx;
+    min-width: 200rpx;
 }
 
 .image>image {
@@ -126,6 +127,9 @@
     height: 110rpx;
     background-color: white;
     line-height: 110rpx;
+    min-height: 110rpx;
+    height: auto;
+    display: inline-block;
 }
 
 .navToBox>.left {
@@ -173,7 +177,7 @@
 
 .bottomBtnList>.button {
     width: 200rpx;
-    height: 80rpx;
+    height: 88rpx;
     text-align: center;
     color: rgba(52, 62, 223, 1);
     border-radius: 44rpx;

@@ -93,6 +93,7 @@
   width: calc(50% - 60rpx);
   margin: 0rpx 20rpx;
   min-height: 400rpx;
+  height: 400rpx;
 }
 
 .half>canvas {
@@ -253,6 +254,7 @@
 .f2-chart {
   width: 100%;
   height: 500rpx;
+  /* z-index: -1000; */
 }
 
 .hide{

@@ -27,7 +27,7 @@ Component({
     photoList: [],
     photoNum: 0,
     publish: false,
-    isDelete:false
+    isDelete: false
   },
 
   /**
@@ -54,7 +54,7 @@ Component({
         }
         photoList.forEach((item, i) => {
           if (item[0] != 'h')
-            photoList[i] = getApp().getCdnEnv()+item
+            photoList[i] = getApp().getCdnEnv() + item
         })
       }
       if (data.goodsPriceVos && data.goodsPriceVos.length != 0) {
@@ -97,20 +97,28 @@ Component({
     },
 
     // 删除当前相册
-    delete(e){
-      wx.showLoading({
-        title:'删除中',
-        mask:true
+    delete(e) {
+      let that = this
+      wx.showModal({
+        content: '确定要删除吗',
+        success(res) {
+          if (res.confirm) {
+            wx.showLoading({
+              title: '删除中',
+              mask: true
+            })
+            util.request({
+              url: 'photo/del',
+              data: [that.properties.data.id]
+            }).then(res => {
+              wx.hideLoading()
+              if (res.data) return that.setData({
+                isDelete: true
+              })
+            });
+          }
+        }
       })
-      util.request({
-        url: 'photo/del',
-        data: [this.properties.data.id]
-      }).then(res => {
-        wx.hideLoading()
-        if (res.data) return this.setData({
-          isDelete:true
-        })
-      });
     },
 
     // 按钮事件处理

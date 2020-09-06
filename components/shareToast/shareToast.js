@@ -221,10 +221,10 @@ Component({
           }, {
             type: 'image',
             url: shopDetail.storeLogo,
-            top: 50,
-            left: 140,
-            width: 60,
-            height: 60
+            top: 40,
+            left: 130,
+            width: 80,
+            height: 80
           }, {
             type: 'image',
             url: '/static/images/canvasTool/img_bg.png',

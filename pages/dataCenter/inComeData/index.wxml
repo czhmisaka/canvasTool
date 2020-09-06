@@ -1,7 +1,7 @@
 <!--pages/dataCenter/inComeData/index.wxml-->
 
 
-<view class="wholeScreen" >
+<view class="wholeScreen">
     <view class="flexBox" style="margin-top:0rpx">
         <view class="title">今日商品数据<span class="gray">（实时更新）</span></view>
         <view class="MsgBox {{index>0?'borderleft':''}}" wx:for="{{fastMsg}}" wx:key="*this">
@@ -28,8 +28,8 @@
             下单新老客构成
         </view>
         <view class="chart">
-            <canvas canvas-id="cusStruct" class="canvas"></canvas>
-        </view> 
+            <canvas canvas-id="cusStruct1" class="canvas"></canvas>
+        </view>
     </view>
     <view class="flexBox">
         <view class="title">
@@ -46,10 +46,10 @@
         </view>
         <view class="chart chatFlex">
             <view class="half">
-                <canvas canvas-id="pieCanvas0" class="canvas" ></canvas>
+                <canvas canvas-id="pieCanvas0" class="canvas" style="height:200px"></canvas>
             </view>
             <view class="half">
-                <canvas canvas-id="pieCanvas1" class="canvas" ></canvas>
+                <canvas canvas-id="pieCanvas1" class="canvas"></canvas>
             </view>
         </view>
     </view>

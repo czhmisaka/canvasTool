@@ -363,7 +363,8 @@
     line-height: 88rpx;
     margin: 20rpx auto;
 }
-.cardBox>.longBotton{
+
+.cardBox>.longBotton {
     margin-top: 40rpx;
 }
 
@@ -389,6 +390,15 @@
 
 .right {
     float: right;
+}
+
+button {
+    background-color: rgba(0, 0, 0, .0);
+    border: 0px solid rgba(0, 0, 0, .2);
+}
+
+button::after {
+    border: none;
 }
 
 @import '/components/cropper/cropper.wxss'

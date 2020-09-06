@@ -1,7 +1,5 @@
 <!--pages/albumManage/alnumManageMain/index.wxml-->
 <view class="wholeScreen">
-    <!-- <navBarCustom page-name='管理相册'>
-        </navBarCustom>-->
     <screenSliderBar wx:if="{{checkStatus}}" bind:returnBack="checkReturn" bind:cancel="checkCancel"
         checkData="{{checkData}}" checkStatus="{{checkStatus}}"></screenSliderBar>
     <view

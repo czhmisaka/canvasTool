@@ -171,6 +171,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked {
 
 .checkBox>.word>.span {
     color: rgba(52, 62, 223, 1);
+    color: #FF8D4D;
 }
 
 .inputBox {

@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1598839068673, function(require, module, exports) {
+__DEFINE__(1599210225491, function(require, module, exports) {
 
 
 /**
@@ -61,8 +61,8 @@ F2.Chart.plugins.register([Tooltip, Legend, Guide, Animation]); // 默认添加�
 require('./interaction/new/index');
 
 module.exports = F2;
-}, function(modId) {var map = {"./core":1598839068674,"./geom/":1598839068728,"./geom/adjust/":1598839068744,"./coord/polar":1598839068748,"./component/axis/circle":1598839068749,"./scale/time-cat":1598839068750,"./component/guide/arc":1598839068751,"./component/guide/html":1598839068753,"./component/guide/line":1598839068754,"./component/guide/rect":1598839068755,"./component/guide/text":1598839068756,"./component/guide/tag":1598839068757,"./component/guide/point":1598839068758,"./component/marker":1598839068759,"./plugin/tooltip":1598839068760,"./plugin/guide":1598839068764,"./plugin/legend":1598839068765,"./animation/detail":1598839068766,"./animation/animate":1598839068770,"./interaction/new/index":1598839068774}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068674, function(require, module, exports) {
+}, function(modId) {var map = {"./core":1599210225492,"./geom/":1599210225546,"./geom/adjust/":1599210225562,"./coord/polar":1599210225566,"./component/axis/circle":1599210225567,"./scale/time-cat":1599210225568,"./component/guide/arc":1599210225569,"./component/guide/html":1599210225571,"./component/guide/line":1599210225572,"./component/guide/rect":1599210225573,"./component/guide/text":1599210225574,"./component/guide/tag":1599210225575,"./component/guide/point":1599210225576,"./component/marker":1599210225577,"./plugin/tooltip":1599210225578,"./plugin/guide":1599210225582,"./plugin/legend":1599210225583,"./animation/detail":1599210225584,"./animation/animate":1599210225588,"./interaction/new/index":1599210225592}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225492, function(require, module, exports) {
 
 
 var Core = {};
@@ -86,8 +86,8 @@ Core.track = function () {
 };
 
 module.exports = Core;
-}, function(modId) { var map = {"./global":1598839068675,"./chart/chart":1598839068680,"./geom/shape/shape":1598839068698,"./graphic/index":1598839068705,"./util/common":1598839068677,"./util/helper":1598839068727}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068675, function(require, module, exports) {
+}, function(modId) { var map = {"./global":1599210225493,"./chart/chart":1599210225498,"./geom/shape/shape":1599210225516,"./graphic/index":1599210225523,"./util/common":1599210225495,"./util/helper":1599210225545}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225493, function(require, module, exports) {
 
 
 var Theme = require('./theme');
@@ -111,8 +111,8 @@ Global.setTheme = function (theme) {
 
 Global.setTheme(Theme);
 module.exports = Global;
-}, function(modId) { var map = {"./theme":1598839068676,"./util/common":1598839068677}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068676, function(require, module, exports) {
+}, function(modId) { var map = {"./theme":1599210225494,"./util/common":1599210225495}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225494, function(require, module, exports) {
 
 
 /**
@@ -191,8 +191,8 @@ var Theme = {
   _defaultAxis: defaultAxis
 };
 module.exports = Theme;
-}, function(modId) { var map = {"./util/common":1598839068677}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068677, function(require, module, exports) {
+}, function(modId) { var map = {"./util/common":1599210225495}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225495, function(require, module, exports) {
 
 
 var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
@@ -312,8 +312,8 @@ function directionEnabled(mode, dir) {
 
   return false;
 }
-}, function(modId) { var map = {"./array":1598839068678,"./dom":1598839068679}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068678, function(require, module, exports) {
+}, function(modId) { var map = {"./array":1599210225496,"./dom":1599210225497}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225496, function(require, module, exports) {
 
 
 exports.__esModule = true;
@@ -474,7 +474,7 @@ function getRange(values) {
   };
 }
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068679, function(require, module, exports) {
+__DEFINE__(1599210225497, function(require, module, exports) {
 
 
 exports.__esModule = true;
@@ -670,7 +670,7 @@ function measureText(text, font, ctx) {
   return ctx.measureText(text);
 }
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068680, function(require, module, exports) {
+__DEFINE__(1599210225498, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -1667,8 +1667,8 @@ var Chart = /*#__PURE__*/function (_Base) {
 
 Chart.plugins = Chart.initPlugins();
 module.exports = Chart;
-}, function(modId) { var map = {"./const":1598839068681,"../base":1598839068682,"./plot":1598839068684,"../util/common":1598839068677,"../coord/index":1598839068685,"../geom/base":1598839068690,"./controller/scale":1598839068699,"./controller/axis":1598839068701,"../global":1598839068675,"../graphic/index":1598839068705,"../util/helper":1598839068727}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068681, function(require, module, exports) {
+}, function(modId) { var map = {"./const":1599210225499,"../base":1599210225500,"./plot":1599210225502,"../util/common":1599210225495,"../coord/index":1599210225503,"../geom/base":1599210225508,"./controller/scale":1599210225517,"./controller/axis":1599210225519,"../global":1599210225493,"../graphic/index":1599210225523,"../util/helper":1599210225545}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225499, function(require, module, exports) {
 
 
 exports.__esModule = true;
@@ -1696,7 +1696,7 @@ exports.EVENT_CLEAR = EVENT_CLEAR;
 var EVENT_CLEAR_INNER = 'clearinner';
 exports.EVENT_CLEAR_INNER = EVENT_CLEAR_INNER;
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068682, function(require, module, exports) {
+__DEFINE__(1599210225500, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -1749,8 +1749,8 @@ var Base = /*#__PURE__*/function (_Emit) {
 }(_emit["default"]);
 
 module.exports = Base;
-}, function(modId) { var map = {"./graphic/event/emit":1598839068683,"./util/common":1598839068677}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068683, function(require, module, exports) {
+}, function(modId) { var map = {"./graphic/event/emit":1599210225501,"./util/common":1599210225495}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225501, function(require, module, exports) {
 
 
 exports.__esModule = true;
@@ -1826,8 +1826,8 @@ var EventEmit = /*#__PURE__*/function () {
 
 var _default = EventEmit;
 exports["default"] = _default;
-}, function(modId) { var map = {"../../util/common":1598839068677}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068684, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225502, function(require, module, exports) {
 
 
 var Util = require('../util/common');
@@ -1904,8 +1904,8 @@ var Plot = /*#__PURE__*/function () {
 }();
 
 module.exports = Plot;
-}, function(modId) { var map = {"../util/common":1598839068677}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068685, function(require, module, exports) {
+}, function(modId) { var map = {"../util/common":1599210225495}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225503, function(require, module, exports) {
 
 
 var Coord = require('./base');
@@ -1913,8 +1913,8 @@ var Coord = require('./base');
 require('./cartesian');
 
 module.exports = Coord;
-}, function(modId) { var map = {"./base":1598839068686,"./cartesian":1598839068689}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068686, function(require, module, exports) {
+}, function(modId) { var map = {"./base":1599210225504,"./cartesian":1599210225507}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225504, function(require, module, exports) {
 
 
 var Util = require('../util/common');
@@ -2009,8 +2009,8 @@ var Base = /*#__PURE__*/function () {
 }();
 
 module.exports = Base;
-}, function(modId) { var map = {"../util/common":1598839068677,"../graphic/util/matrix":1598839068687,"../graphic/util/vector2":1598839068688}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068687, function(require, module, exports) {
+}, function(modId) { var map = {"../util/common":1599210225495,"../graphic/util/matrix":1599210225505,"../graphic/util/vector2":1599210225506}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225505, function(require, module, exports) {
 
 
 var Matrix = {
@@ -2085,7 +2085,7 @@ var Matrix = {
 };
 module.exports = Matrix;
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068688, function(require, module, exports) {
+__DEFINE__(1599210225506, function(require, module, exports) {
 
 
 /**
@@ -2316,7 +2316,7 @@ module.exports = {
   }
 };
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068689, function(require, module, exports) {
+__DEFINE__(1599210225507, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -2385,8 +2385,8 @@ var Cartesian = /*#__PURE__*/function (_Base) {
 Base.Cartesian = Cartesian;
 Base.Rect = Cartesian;
 module.exports = Cartesian;
-}, function(modId) { var map = {"./base":1598839068686}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068690, function(require, module, exports) {
+}, function(modId) { var map = {"./base":1599210225504}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225508, function(require, module, exports) {
 
 
 var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
@@ -3363,8 +3363,8 @@ var Geom = /*#__PURE__*/function (_Base) {
 }(Base);
 
 module.exports = Geom;
-}, function(modId) { var map = {"../attr/index":1598839068691,"../util/common":1598839068677,"../base":1598839068682,"../global":1598839068675,"./shape/shape":1598839068698}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068691, function(require, module, exports) {
+}, function(modId) { var map = {"../attr/index":1599210225509,"../util/common":1599210225495,"../base":1599210225500,"../global":1599210225493,"./shape/shape":1599210225516}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225509, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -3387,8 +3387,8 @@ exports.Size = _size["default"];
 var _color = _interopRequireDefault(require("./color"));
 
 exports.Color = _color["default"];
-}, function(modId) { var map = {"./position":1598839068692,"./shape":1598839068694,"./size":1598839068695,"./color":1598839068696}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068692, function(require, module, exports) {
+}, function(modId) { var map = {"./position":1599210225510,"./shape":1599210225512,"./size":1599210225513,"./color":1599210225514}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225510, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -3504,8 +3504,8 @@ var Position = /*#__PURE__*/function (_Base) {
 
 var _default = Position;
 exports["default"] = _default;
-}, function(modId) { var map = {"./base":1598839068693}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068693, function(require, module, exports) {
+}, function(modId) { var map = {"./base":1599210225511}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225511, function(require, module, exports) {
 
 
 exports.__esModule = true;
@@ -3754,7 +3754,7 @@ var AttributeBase = /*#__PURE__*/function () {
 var _default = AttributeBase;
 exports["default"] = _default;
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068694, function(require, module, exports) {
+__DEFINE__(1599210225512, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -3796,8 +3796,8 @@ var Shape = /*#__PURE__*/function (_Base) {
 
 var _default = Shape;
 exports["default"] = _default;
-}, function(modId) { var map = {"./base":1598839068693}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068695, function(require, module, exports) {
+}, function(modId) { var map = {"./base":1599210225511}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225513, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -3827,8 +3827,8 @@ var Size = /*#__PURE__*/function (_Base) {
 
 var _default = Size;
 exports["default"] = _default;
-}, function(modId) { var map = {"./base":1598839068693}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068696, function(require, module, exports) {
+}, function(modId) { var map = {"./base":1599210225511}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225514, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -3885,8 +3885,8 @@ var Color = /*#__PURE__*/function (_Base) {
 
 var _default = Color;
 exports["default"] = _default;
-}, function(modId) { var map = {"./base":1598839068693,"./color-util":1598839068697}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068697, function(require, module, exports) {
+}, function(modId) { var map = {"./base":1599210225511,"./color-util":1599210225515}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225515, function(require, module, exports) {
 
 
 exports.__esModule = true;
@@ -4006,7 +4006,7 @@ var ColorUtil = {
 var _default = ColorUtil;
 exports["default"] = _default;
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068698, function(require, module, exports) {
+__DEFINE__(1599210225516, function(require, module, exports) {
 
 
 var Util = require('../../util/common');
@@ -4131,8 +4131,8 @@ Shape.getShapeFactory = function (factoryName) {
 };
 
 module.exports = Shape;
-}, function(modId) { var map = {"../../util/common":1598839068677,"../../global":1598839068675}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068699, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495,"../../global":1599210225493}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225517, function(require, module, exports) {
 
 
 var Util = require('../../util/common');
@@ -4427,8 +4427,8 @@ var ScaleController = /*#__PURE__*/function () {
 }();
 
 module.exports = ScaleController;
-}, function(modId) { var map = {"../../util/common":1598839068677,"../../global":1598839068675,"../../scale/":1598839068700}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068700, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495,"../../global":1599210225493,"../../scale/":1599210225518}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225518, function(require, module, exports) {
 
 
 var Scale = require('@antv/scale/lib/base');
@@ -4441,7 +4441,7 @@ require('@antv/scale/lib/category');
 
 module.exports = Scale;
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068701, function(require, module, exports) {
+__DEFINE__(1599210225519, function(require, module, exports) {
 
 
 var Util = require('../../util/common');
@@ -4841,8 +4841,8 @@ var AxisController = /*#__PURE__*/function () {
 }();
 
 module.exports = AxisController;
-}, function(modId) { var map = {"../../util/common":1598839068677,"../../component/axis/":1598839068702,"../../global":1598839068675,"../../graphic/index":1598839068705}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068702, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495,"../../component/axis/":1599210225520,"../../global":1599210225493,"../../graphic/index":1599210225523}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225520, function(require, module, exports) {
 
 
 var Abstract = require('./abstract');
@@ -4850,8 +4850,8 @@ var Abstract = require('./abstract');
 require('./line');
 
 module.exports = Abstract;
-}, function(modId) { var map = {"./abstract":1598839068703,"./line":1598839068704}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068703, function(require, module, exports) {
+}, function(modId) { var map = {"./abstract":1599210225521,"./line":1599210225522}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225521, function(require, module, exports) {
 
 
 var Util = require('../../util/common');
@@ -5075,8 +5075,8 @@ var Abastract = /*#__PURE__*/function () {
 }();
 
 module.exports = Abastract;
-}, function(modId) { var map = {"../../util/common":1598839068677,"../../global":1598839068675,"../../graphic/util/vector2":1598839068688}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068704, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495,"../../global":1599210225493,"../../graphic/util/vector2":1599210225506}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225522, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -5138,8 +5138,8 @@ var Line = /*#__PURE__*/function (_Abstract) {
 
 Abstract.Line = Line;
 module.exports = Line;
-}, function(modId) { var map = {"../../util/common":1598839068677,"./abstract":1598839068703}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068705, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495,"./abstract":1599210225521}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225523, function(require, module, exports) {
 
 
 var G = {
@@ -5169,8 +5169,8 @@ require('./shape/text');
 require('./shape/custom');
 
 module.exports = G;
-}, function(modId) { var map = {"./canvas":1598839068706,"./group":1598839068713,"./shape":1598839068710,"./util/matrix":1598839068687,"./util/vector2":1598839068688,"./shape/rect":1598839068715,"./shape/circle":1598839068716,"./shape/line":1598839068717,"./shape/polygon":1598839068719,"./shape/polyline":1598839068720,"./shape/arc":1598839068722,"./shape/sector":1598839068723,"./shape/text":1598839068724,"./shape/custom":1598839068726}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068706, function(require, module, exports) {
+}, function(modId) { var map = {"./canvas":1599210225524,"./group":1599210225531,"./shape":1599210225528,"./util/matrix":1599210225505,"./util/vector2":1599210225506,"./shape/rect":1599210225533,"./shape/circle":1599210225534,"./shape/line":1599210225535,"./shape/polygon":1599210225537,"./shape/polyline":1599210225538,"./shape/arc":1599210225540,"./shape/sector":1599210225541,"./shape/text":1599210225542,"./shape/custom":1599210225544}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225524, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -5414,8 +5414,8 @@ Util.mix(Canvas.prototype, Container, {
   }
 });
 module.exports = Canvas;
-}, function(modId) { var map = {"./event/emit":1598839068683,"./event/controller":1598839068707,"./canvas-element":1598839068708,"../util/common":1598839068677,"./container":1598839068709,"./group":1598839068713,"./util/requestAnimationFrame":1598839068714}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068707, function(require, module, exports) {
+}, function(modId) { var map = {"./event/emit":1599210225501,"./event/controller":1599210225525,"./canvas-element":1599210225526,"../util/common":1599210225495,"./container":1599210225527,"./group":1599210225531,"./util/requestAnimationFrame":1599210225532}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225525, function(require, module, exports) {
 
 
 exports.__esModule = true;
@@ -5761,8 +5761,8 @@ var EventController = /*#__PURE__*/function () {
 
 var _default = EventController;
 exports["default"] = _default;
-}, function(modId) { var map = {"../../util/dom":1598839068679,"../../util/common":1598839068677}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068708, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/dom":1599210225497,"../../util/common":1599210225495}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225526, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -5867,8 +5867,8 @@ var _default = {
   }
 };
 exports["default"] = _default;
-}, function(modId) { var map = {"./event/emit":1598839068683}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068709, function(require, module, exports) {
+}, function(modId) { var map = {"./event/emit":1599210225501}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225527, function(require, module, exports) {
 
 
 var Util = require('../util/common');
@@ -5994,8 +5994,8 @@ module.exports = {
     }
   }
 };
-}, function(modId) { var map = {"../util/common":1598839068677,"./shape":1598839068710}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068710, function(require, module, exports) {
+}, function(modId) { var map = {"../util/common":1599210225495,"./shape":1599210225528}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225528, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -6091,8 +6091,8 @@ var Shape = /*#__PURE__*/function (_Element) {
 }(Element);
 
 module.exports = Shape;
-}, function(modId) { var map = {"../util/common":1598839068677,"./element":1598839068711}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068711, function(require, module, exports) {
+}, function(modId) { var map = {"../util/common":1599210225495,"./element":1599210225529}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225529, function(require, module, exports) {
 
 
 var Util = require('../util/common');
@@ -6436,8 +6436,8 @@ var Element = /*#__PURE__*/function () {
 }();
 
 module.exports = Element;
-}, function(modId) { var map = {"../util/common":1598839068677,"./util/matrix":1598839068687,"./util/vector2":1598839068688,"./util/style-parse":1598839068712}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068712, function(require, module, exports) {
+}, function(modId) { var map = {"../util/common":1599210225495,"./util/matrix":1599210225505,"./util/vector2":1599210225506,"./util/style-parse":1599210225530}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225530, function(require, module, exports) {
 
 
 var Util = require('../../util/common');
@@ -6567,8 +6567,8 @@ module.exports = {
     return color;
   }
 };
-}, function(modId) { var map = {"../../util/common":1598839068677}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068713, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225531, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -6678,8 +6678,8 @@ Util.mix(Group.prototype, Container, {
   }
 });
 module.exports = Group;
-}, function(modId) { var map = {"../util/common":1598839068677,"./element":1598839068711,"./container":1598839068709,"./util/vector2":1598839068688}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068714, function(require, module, exports) {
+}, function(modId) { var map = {"../util/common":1599210225495,"./element":1599210225529,"./container":1599210225527,"./util/vector2":1599210225506}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225532, function(require, module, exports) {
 
 
 module.exports = {
@@ -6688,7 +6688,7 @@ module.exports = {
   }
 };
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068715, function(require, module, exports) {
+__DEFINE__(1599210225533, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -6794,8 +6794,8 @@ var Rect = /*#__PURE__*/function (_Shape) {
 
 Shape.Rect = Rect;
 module.exports = Rect;
-}, function(modId) { var map = {"../../util/common":1598839068677,"../shape":1598839068710}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068716, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495,"../shape":1599210225528}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225534, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -6858,8 +6858,8 @@ var Circle = /*#__PURE__*/function (_Shape) {
 
 Shape.Circle = Circle;
 module.exports = Circle;
-}, function(modId) { var map = {"../shape":1598839068710}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068717, function(require, module, exports) {
+}, function(modId) { var map = {"../shape":1599210225528}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225535, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -6922,8 +6922,8 @@ var Line = /*#__PURE__*/function (_Shape) {
 
 Shape.Line = Line;
 module.exports = Line;
-}, function(modId) { var map = {"../shape":1598839068710,"../util/bbox":1598839068718}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068718, function(require, module, exports) {
+}, function(modId) { var map = {"../shape":1599210225528,"../util/bbox":1599210225536}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225536, function(require, module, exports) {
 
 
 var Vector2 = require('./vector2');
@@ -7133,8 +7133,8 @@ module.exports = {
     };
   }
 };
-}, function(modId) { var map = {"./vector2":1598839068688}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068719, function(require, module, exports) {
+}, function(modId) { var map = {"./vector2":1599210225506}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225537, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -7199,8 +7199,8 @@ var Polygon = /*#__PURE__*/function (_Shape) {
 
 Shape.Polygon = Polygon;
 module.exports = Polygon;
-}, function(modId) { var map = {"../shape":1598839068710,"../util/bbox":1598839068718}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068720, function(require, module, exports) {
+}, function(modId) { var map = {"../shape":1599210225528,"../util/bbox":1599210225536}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225538, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -7323,8 +7323,8 @@ var Polyline = /*#__PURE__*/function (_Shape) {
 
 Shape.Polyline = Polyline;
 module.exports = Polyline;
-}, function(modId) { var map = {"../shape":1598839068710,"../util/smooth":1598839068721,"../util/bbox":1598839068718}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068721, function(require, module, exports) {
+}, function(modId) { var map = {"../shape":1599210225528,"../util/smooth":1599210225539,"../util/bbox":1599210225536}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225539, function(require, module, exports) {
 
 
 /**
@@ -7442,8 +7442,8 @@ function catmullRom2bezier(pointList, z, constraint) {
 module.exports = {
   smooth: catmullRom2bezier
 };
-}, function(modId) { var map = {"./vector2":1598839068688}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068722, function(require, module, exports) {
+}, function(modId) { var map = {"./vector2":1599210225506}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225540, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -7514,8 +7514,8 @@ var Arc = /*#__PURE__*/function (_Shape) {
 
 Shape.Arc = Arc;
 module.exports = Arc;
-}, function(modId) { var map = {"../shape":1598839068710,"../util/bbox":1598839068718}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068723, function(require, module, exports) {
+}, function(modId) { var map = {"../shape":1599210225528,"../util/bbox":1599210225536}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225541, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -7607,8 +7607,8 @@ var Sector = /*#__PURE__*/function (_Shape) {
 
 Shape.Sector = Sector;
 module.exports = Sector;
-}, function(modId) { var map = {"../shape":1598839068710,"../util/bbox":1598839068718}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068724, function(require, module, exports) {
+}, function(modId) { var map = {"../shape":1599210225528,"../util/bbox":1599210225536}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225542, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -7904,8 +7904,8 @@ var Text = /*#__PURE__*/function (_Shape) {
 
 Shape.Text = Text;
 module.exports = Text;
-}, function(modId) { var map = {"../../util/common":1598839068677,"../shape":1598839068710,"../util/rect":1598839068725}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068725, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495,"../shape":1599210225528,"../util/rect":1599210225543}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225543, function(require, module, exports) {
 
 
 var Rect = {
@@ -7922,7 +7922,7 @@ var Rect = {
 };
 module.exports = Rect;
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068726, function(require, module, exports) {
+__DEFINE__(1599210225544, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -7964,8 +7964,8 @@ var Custom = /*#__PURE__*/function (_Shape) {
 
 Shape.Custom = Custom;
 module.exports = Custom;
-}, function(modId) { var map = {"../shape":1598839068710}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068727, function(require, module, exports) {
+}, function(modId) { var map = {"../shape":1599210225528}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225545, function(require, module, exports) {
 
 
 exports.__esModule = true;
@@ -8021,8 +8021,8 @@ function isPointInPlot(point, plot) {
       br = plot.br;
   return x >= tl.x && x <= tr.x && y >= tl.y && y <= br.y;
 }
-}, function(modId) { var map = {"../graphic/index":1598839068705}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068728, function(require, module, exports) {
+}, function(modId) { var map = {"../graphic/index":1599210225523}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225546, function(require, module, exports) {
 
 
 var Geom = require('./base');
@@ -8042,8 +8042,8 @@ require('./polygon');
 require('./schema');
 
 module.exports = Geom;
-}, function(modId) { var map = {"./base":1598839068690,"./point":1598839068729,"./path":1598839068732,"./line":1598839068734,"./area":1598839068735,"./interval":1598839068737,"./polygon":1598839068740,"./schema":1598839068742}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068729, function(require, module, exports) {
+}, function(modId) { var map = {"./base":1599210225508,"./point":1599210225547,"./path":1599210225550,"./line":1599210225552,"./area":1599210225553,"./interval":1599210225555,"./polygon":1599210225558,"./schema":1599210225560}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225547, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -8101,8 +8101,8 @@ var Point = /*#__PURE__*/function (_Geom) {
 
 Geom.Point = Point;
 module.exports = Point;
-}, function(modId) { var map = {"../util/common":1598839068677,"./base":1598839068690,"./shape/point":1598839068730}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068730, function(require, module, exports) {
+}, function(modId) { var map = {"../util/common":1599210225495,"./base":1599210225508,"./shape/point":1599210225548}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225548, function(require, module, exports) {
 
 
 var Util = require('../../util/common');
@@ -8180,8 +8180,8 @@ Util.each(SHAPES, function (shapeType) {
   });
 });
 module.exports = Point;
-}, function(modId) { var map = {"../../util/common":1598839068677,"../../global":1598839068675,"./util":1598839068731,"./shape":1598839068698}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068731, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495,"../../global":1599210225493,"./util":1599210225549,"./shape":1599210225516}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225549, function(require, module, exports) {
 
 
 /**
@@ -8237,8 +8237,8 @@ var ShapeUtil = {
   }
 };
 module.exports = ShapeUtil;
-}, function(modId) { var map = {"../../util/common":1598839068677}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068732, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225550, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -8297,8 +8297,8 @@ var Path = /*#__PURE__*/function (_Geom) {
 
 Geom.Path = Path;
 module.exports = Path;
-}, function(modId) { var map = {"./base":1598839068690,"./shape/util":1598839068731,"../util/common":1598839068677,"./shape/line":1598839068733}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068733, function(require, module, exports) {
+}, function(modId) { var map = {"./base":1599210225508,"./shape/util":1599210225549,"../util/common":1599210225495,"./shape/line":1599210225551}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225551, function(require, module, exports) {
 
 
 var Util = require('../../util/common');
@@ -8402,8 +8402,8 @@ Util.each(SHAPES, function (shapeType) {
   });
 });
 module.exports = Line;
-}, function(modId) { var map = {"../../util/common":1598839068677,"./shape":1598839068698,"./util":1598839068731,"../../global":1598839068675}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068734, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495,"./shape":1599210225516,"./util":1599210225549,"../../global":1599210225493}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225552, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -8438,8 +8438,8 @@ var Line = /*#__PURE__*/function (_Path) {
 
 Geom.Line = Line;
 module.exports = Line;
-}, function(modId) { var map = {"./path":1598839068732,"./base":1598839068690,"./shape/line":1598839068733}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068735, function(require, module, exports) {
+}, function(modId) { var map = {"./path":1599210225550,"./base":1599210225508,"./shape/line":1599210225551}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225553, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -8506,8 +8506,8 @@ var Area = /*#__PURE__*/function (_Geom) {
 
 Geom.Area = Area;
 module.exports = Area;
-}, function(modId) { var map = {"./base":1598839068690,"./shape/util":1598839068731,"../util/common":1598839068677,"./shape/area":1598839068736}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068736, function(require, module, exports) {
+}, function(modId) { var map = {"./base":1599210225508,"./shape/util":1599210225549,"../util/common":1599210225495,"./shape/area":1599210225554}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225554, function(require, module, exports) {
 
 
 var Util = require('../../util/common');
@@ -8663,8 +8663,8 @@ Util.each(SHAPES, function (shapeType) {
   });
 });
 module.exports = Area;
-}, function(modId) { var map = {"../../util/common":1598839068677,"./shape":1598839068698,"../../graphic/util/smooth":1598839068721,"../../graphic/util/bbox":1598839068718,"../../global":1598839068675}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068737, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495,"./shape":1599210225516,"../../graphic/util/smooth":1599210225539,"../../graphic/util/bbox":1599210225536,"../../global":1599210225493}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225555, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -8727,8 +8727,8 @@ var Interval = /*#__PURE__*/function (_Geom) {
 
 Geom.Interval = Interval;
 module.exports = Interval;
-}, function(modId) { var map = {"./base":1598839068690,"../util/common":1598839068677,"./mixin/size":1598839068738,"./shape/interval":1598839068739}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068738, function(require, module, exports) {
+}, function(modId) { var map = {"./base":1599210225508,"../util/common":1599210225495,"./mixin/size":1599210225556,"./shape/interval":1599210225557}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225556, function(require, module, exports) {
 
 
 var _const = require("../../chart/const");
@@ -8863,8 +8863,8 @@ var SizeMixin = {
   }
 };
 module.exports = SizeMixin;
-}, function(modId) { var map = {"../../chart/const":1598839068681,"../../global":1598839068675,"../../util/common":1598839068677}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068739, function(require, module, exports) {
+}, function(modId) { var map = {"../../chart/const":1599210225499,"../../global":1599210225493,"../../util/common":1599210225495}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225557, function(require, module, exports) {
 
 
 var Util = require('../../util/common');
@@ -9042,8 +9042,8 @@ Shape.registerShape('interval', 'rect', {
   });
 });
 module.exports = Interval;
-}, function(modId) { var map = {"../../util/common":1598839068677,"./shape":1598839068698,"../../graphic/util/vector2":1598839068688,"../../global":1598839068675}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068740, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495,"./shape":1599210225516,"../../graphic/util/vector2":1599210225506,"../../global":1599210225493}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225558, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -9115,8 +9115,8 @@ var Polygon = /*#__PURE__*/function (_Geom) {
 
 Geom.Polygon = Polygon;
 module.exports = Polygon;
-}, function(modId) { var map = {"./base":1598839068690,"../util/common":1598839068677,"./shape/polygon":1598839068741}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068741, function(require, module, exports) {
+}, function(modId) { var map = {"./base":1599210225508,"../util/common":1599210225495,"./shape/polygon":1599210225559}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225559, function(require, module, exports) {
 
 
 var Shape = require('./shape');
@@ -9154,8 +9154,8 @@ Shape.registerShape('polygon', 'polygon', {
   }
 });
 module.exports = Polygon;
-}, function(modId) { var map = {"./shape":1598839068698,"../../util/common":1598839068677}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068742, function(require, module, exports) {
+}, function(modId) { var map = {"./shape":1599210225516,"../../util/common":1599210225495}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225560, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -9218,8 +9218,8 @@ var Schema = /*#__PURE__*/function (_Geom) {
 
 Geom.Schema = Schema;
 module.exports = Schema;
-}, function(modId) { var map = {"./base":1598839068690,"../util/common":1598839068677,"./mixin/size":1598839068738,"./shape/schema":1598839068743}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068743, function(require, module, exports) {
+}, function(modId) { var map = {"./base":1599210225508,"../util/common":1599210225495,"./mixin/size":1599210225556,"./shape/schema":1599210225561}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225561, function(require, module, exports) {
 
 
 var Shape = require('./shape');
@@ -9308,8 +9308,8 @@ Shape.registerShape('schema', 'candle', {
   }
 });
 module.exports = Schema;
-}, function(modId) { var map = {"./shape":1598839068698,"../../util/common":1598839068677}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068744, function(require, module, exports) {
+}, function(modId) { var map = {"./shape":1599210225516,"../../util/common":1599210225495}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225562, function(require, module, exports) {
 
 
 module.exports = {
@@ -9317,29 +9317,29 @@ module.exports = {
   Dodge: require('./dodge'),
   Symmetric: require('./symmetric')
 };
-}, function(modId) { var map = {"./stack":1598839068745,"./dodge":1598839068746,"./symmetric":1598839068747}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068745, function(require, module, exports) {
+}, function(modId) { var map = {"./stack":1599210225563,"./dodge":1599210225564,"./symmetric":1599210225565}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225563, function(require, module, exports) {
 
 
 var Stack = require('@antv/adjust/lib/stack');
 
 module.exports = Stack;
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068746, function(require, module, exports) {
+__DEFINE__(1599210225564, function(require, module, exports) {
 
 
 var Dodge = require('@antv/adjust/lib/dodge');
 
 module.exports = Dodge;
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068747, function(require, module, exports) {
+__DEFINE__(1599210225565, function(require, module, exports) {
 
 
 var Symmetric = require('@antv/adjust/lib/symmetric');
 
 module.exports = Symmetric;
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068748, function(require, module, exports) {
+__DEFINE__(1599210225566, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -9475,8 +9475,8 @@ var Polar = /*#__PURE__*/function (_Base) {
 
 Base.Polar = Polar;
 module.exports = Polar;
-}, function(modId) { var map = {"./base":1598839068686,"../graphic/util/vector2":1598839068688,"../graphic/util/matrix":1598839068687}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068749, function(require, module, exports) {
+}, function(modId) { var map = {"./base":1599210225504,"../graphic/util/vector2":1599210225506,"../graphic/util/matrix":1599210225505}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225567, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -9580,15 +9580,15 @@ var Circle = /*#__PURE__*/function (_Abstract) {
 
 Abstract.Circle = Circle;
 module.exports = Circle;
-}, function(modId) { var map = {"../../util/common":1598839068677,"./abstract":1598839068703}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068750, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495,"./abstract":1599210225521}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225568, function(require, module, exports) {
 
 
 var TimeCat = require('@antv/scale/lib/time-cat');
 
 module.exports = TimeCat;
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068751, function(require, module, exports) {
+__DEFINE__(1599210225569, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -9665,8 +9665,8 @@ var Arc = /*#__PURE__*/function (_GuideBase) {
 
 GuideBase.Arc = Arc;
 module.exports = Arc;
-}, function(modId) { var map = {"../../util/common":1598839068677,"./base":1598839068752}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068752, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495,"./base":1599210225570}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225570, function(require, module, exports) {
 
 
 var Util = require('../../util/common');
@@ -9795,8 +9795,8 @@ var GuideBase = /*#__PURE__*/function () {
 }();
 
 module.exports = GuideBase;
-}, function(modId) { var map = {"../../util/common":1598839068677}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068753, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225571, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -9970,8 +9970,8 @@ var Html = /*#__PURE__*/function (_GuideBase) {
 
 GuideBase.Html = Html;
 module.exports = Html;
-}, function(modId) { var map = {"../../util/common":1598839068677,"./base":1598839068752}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068754, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495,"./base":1599210225570}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225572, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -10028,8 +10028,8 @@ var Line = /*#__PURE__*/function (_GuideBase) {
 
 GuideBase.Line = Line;
 module.exports = Line;
-}, function(modId) { var map = {"../../util/common":1598839068677,"./base":1598839068752}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068755, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495,"./base":1599210225570}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225573, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -10085,8 +10085,8 @@ var Rect = /*#__PURE__*/function (_GuideBase) {
 
 GuideBase.Rect = Rect;
 module.exports = Rect;
-}, function(modId) { var map = {"../../util/common":1598839068677,"./base":1598839068752}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068756, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495,"./base":1599210225570}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225574, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -10180,8 +10180,8 @@ var Text = /*#__PURE__*/function (_GuideBase) {
 
 GuideBase.Text = Text;
 module.exports = Text;
-}, function(modId) { var map = {"../../util/common":1598839068677,"./base":1598839068752}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068757, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495,"./base":1599210225570}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225575, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -10464,8 +10464,8 @@ var Tag = /*#__PURE__*/function (_GuideBase) {
 
 GuideBase.Tag = Tag;
 module.exports = Tag;
-}, function(modId) { var map = {"../../util/common":1598839068677,"./base":1598839068752}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068758, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495,"./base":1599210225570}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225576, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -10517,8 +10517,8 @@ var Point = /*#__PURE__*/function (_GuideBase) {
 
 GuideBase.Point = Point;
 module.exports = Point;
-}, function(modId) { var map = {"../../util/common":1598839068677,"./base":1598839068752}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068759, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495,"./base":1599210225570}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225577, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -10606,8 +10606,8 @@ var Marker = /*#__PURE__*/function (_Shape) {
 }(Shape);
 
 module.exports = Marker;
-}, function(modId) { var map = {"../util/common":1598839068677,"../graphic/index":1598839068705}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068760, function(require, module, exports) {
+}, function(modId) { var map = {"../util/common":1599210225495,"../graphic/index":1599210225523}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225578, function(require, module, exports) {
 
 
 var Util = require('../util/common');
@@ -11238,8 +11238,8 @@ module.exports = {
     tooltipController.clear();
   }
 };
-}, function(modId) { var map = {"../util/common":1598839068677,"../global":1598839068675,"../component/tooltip":1598839068761,"../util/helper":1598839068727}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068761, function(require, module, exports) {
+}, function(modId) { var map = {"../util/common":1599210225495,"../global":1599210225493,"../component/tooltip":1599210225579,"../util/helper":1599210225545}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225579, function(require, module, exports) {
 
 
 var Util = require('../util/common');
@@ -11745,8 +11745,8 @@ var Tooltip = /*#__PURE__*/function () {
 }();
 
 module.exports = Tooltip;
-}, function(modId) { var map = {"../util/common":1598839068677,"./marker":1598839068759,"./list":1598839068762,"./text-box":1598839068763}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068762, function(require, module, exports) {
+}, function(modId) { var map = {"../util/common":1599210225495,"./marker":1599210225577,"./list":1599210225580,"./text-box":1599210225581}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225580, function(require, module, exports) {
 
 
 var Util = require('../util/common');
@@ -12227,8 +12227,8 @@ var List = /*#__PURE__*/function () {
 }();
 
 module.exports = List;
-}, function(modId) { var map = {"../util/common":1598839068677,"../graphic/index":1598839068705,"./marker":1598839068759}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068763, function(require, module, exports) {
+}, function(modId) { var map = {"../util/common":1599210225495,"../graphic/index":1599210225523,"./marker":1599210225577}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225581, function(require, module, exports) {
 
 
 var Util = require('../util/common');
@@ -12404,8 +12404,8 @@ var TextBox = /*#__PURE__*/function () {
 }();
 
 module.exports = TextBox;
-}, function(modId) { var map = {"../util/common":1598839068677,"../graphic/index":1598839068705}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068764, function(require, module, exports) {
+}, function(modId) { var map = {"../util/common":1599210225495,"../graphic/index":1599210225523}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225582, function(require, module, exports) {
 
 
 var Util = require('../util/common');
@@ -12685,8 +12685,8 @@ module.exports = {
     chart.get('guideController').reset();
   }
 };
-}, function(modId) { var map = {"../util/common":1598839068677,"../component/guide/base":1598839068752,"../global":1598839068675}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068765, function(require, module, exports) {
+}, function(modId) { var map = {"../util/common":1599210225495,"../component/guide/base":1599210225570,"../global":1599210225493}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225583, function(require, module, exports) {
 
 
 var Util = require('../util/common');
@@ -13197,8 +13197,8 @@ module.exports = {
     chart.set('legendRange', null);
   }
 };
-}, function(modId) { var map = {"../util/common":1598839068677,"../component/list":1598839068762,"../global":1598839068675}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068766, function(require, module, exports) {
+}, function(modId) { var map = {"../util/common":1599210225495,"../component/list":1599210225580,"../global":1599210225493}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225584, function(require, module, exports) {
 
 
 /**
@@ -13659,8 +13659,8 @@ module.exports = {
     timeline.stop();
   }
 };
-}, function(modId) { var map = {"../util/common":1598839068677,"../graphic/element":1598839068711,"../graphic/animate/timeline":1598839068767,"../graphic/animate/animator":1598839068768,"./animate":1598839068770,"./shape-action":1598839068771,"./group-action":1598839068773,"../chart/chart":1598839068680}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068767, function(require, module, exports) {
+}, function(modId) { var map = {"../util/common":1599210225495,"../graphic/element":1599210225529,"../graphic/animate/timeline":1599210225585,"../graphic/animate/animator":1599210225586,"./animate":1599210225588,"./shape-action":1599210225589,"./group-action":1599210225591,"../chart/chart":1599210225498}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225585, function(require, module, exports) {
 
 
 var _require = require('../util/requestAnimationFrame'),
@@ -13798,8 +13798,8 @@ var Timeline = /*#__PURE__*/function () {
 }();
 
 module.exports = Timeline;
-}, function(modId) { var map = {"../util/requestAnimationFrame":1598839068714}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068768, function(require, module, exports) {
+}, function(modId) { var map = {"../util/requestAnimationFrame":1599210225532}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225586, function(require, module, exports) {
 
 
 var Easing = require('./easing');
@@ -13957,8 +13957,8 @@ var Animator = /*#__PURE__*/function () {
 }();
 
 module.exports = Animator;
-}, function(modId) { var map = {"./easing":1598839068769}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068769, function(require, module, exports) {
+}, function(modId) { var map = {"./easing":1599210225587}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225587, function(require, module, exports) {
 
 
 var Easing = {
@@ -14096,7 +14096,7 @@ var Easing = {
 };
 module.exports = Easing;
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068770, function(require, module, exports) {
+__DEFINE__(1599210225588, function(require, module, exports) {
 
 
 /**
@@ -14162,8 +14162,8 @@ var Animate = {
   }
 };
 module.exports = Animate;
-}, function(modId) { var map = {"../util/common":1598839068677}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068771, function(require, module, exports) {
+}, function(modId) { var map = {"../util/common":1599210225495}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225589, function(require, module, exports) {
 
 
 /**
@@ -14235,8 +14235,8 @@ module.exports = {
   // scaleInY,
   fadeIn: fadeIn
 };
-}, function(modId) { var map = {"../util/common":1598839068677,"./util":1598839068772}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068772, function(require, module, exports) {
+}, function(modId) { var map = {"../util/common":1599210225495,"./util":1599210225590}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225590, function(require, module, exports) {
 
 
 /**
@@ -14321,8 +14321,8 @@ var Helpers = {
   }
 };
 module.exports = Helpers;
-}, function(modId) { var map = {"../graphic/index":1598839068705,"../util/common":1598839068677}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068773, function(require, module, exports) {
+}, function(modId) { var map = {"../graphic/index":1599210225523,"../util/common":1599210225495}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225591, function(require, module, exports) {
 
 
 /**
@@ -14472,8 +14472,8 @@ module.exports = {
   shapesScaleInY: shapesScaleInY,
   shapesScaleInXY: shapesScaleInXY
 };
-}, function(modId) { var map = {"./util":1598839068772,"../util/helper":1598839068727,"../graphic/index":1598839068705}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068774, function(require, module, exports) {
+}, function(modId) { var map = {"./util":1599210225590,"../util/helper":1599210225545,"../graphic/index":1599210225523}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225592, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -14488,8 +14488,8 @@ var _pinch = _interopRequireDefault(require("./pinch"));
 _register["default"].registerInteraction('pan', _pan["default"]);
 
 _register["default"].registerInteraction('pinch', _pinch["default"]);
-}, function(modId) { var map = {"../register":1598839068775,"./pan":1598839068776,"./pinch":1598839068779}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068775, function(require, module, exports) {
+}, function(modId) { var map = {"../register":1599210225593,"./pan":1599210225594,"./pinch":1599210225597}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225593, function(require, module, exports) {
 
 
 exports.__esModule = true;
@@ -14543,8 +14543,8 @@ Chart.prototype.clearInteraction = function (type) {
 
 var _default = Chart;
 exports["default"] = _default;
-}, function(modId) { var map = {"../util/common":1598839068677,"../chart/chart":1598839068680}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068776, function(require, module, exports) {
+}, function(modId) { var map = {"../util/common":1599210225495,"../chart/chart":1599210225498}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225594, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -14603,8 +14603,8 @@ var Pan = /*#__PURE__*/function (_Base) {
 
 var _default = Pan;
 exports["default"] = _default;
-}, function(modId) { var map = {"./base":1598839068777}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068777, function(require, module, exports) {
+}, function(modId) { var map = {"./base":1599210225595}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225595, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -14741,8 +14741,8 @@ var Base = /*#__PURE__*/function () {
 
 var _default = Base;
 exports["default"] = _default;
-}, function(modId) { var map = {"../../util/common":1598839068677,"./context":1598839068778}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068778, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/common":1599210225495,"./context":1599210225596}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225596, function(require, module, exports) {
 
 
 exports.__esModule = true;
@@ -15009,8 +15009,8 @@ var Context = /*#__PURE__*/function () {
 
 var _default = Context;
 exports["default"] = _default;
-}, function(modId) { var map = {"../../util/array":1598839068678,"../../chart/const":1598839068681}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1598839068779, function(require, module, exports) {
+}, function(modId) { var map = {"../../util/array":1599210225496,"../../chart/const":1599210225499}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1599210225597, function(require, module, exports) {
 
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -15085,7 +15085,7 @@ var Pinch = /*#__PURE__*/function (_Base) {
 
 var _default = Pinch;
 exports["default"] = _default;
-}, function(modId) { var map = {"./base":1598839068777,"../../util/common":1598839068677}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1598839068673);
+}, function(modId) { var map = {"./base":1599210225595,"../../util/common":1599210225495}; return __REQUIRE__(map[modId], modId); })
+return __REQUIRE__(1599210225491);
 })()
 //# sourceMappingURL=index.js.map

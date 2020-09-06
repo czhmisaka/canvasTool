@@ -11,7 +11,7 @@ Page({
    */
   data: {
     config,
-    checkFile: true,
+    checkFile: false,
     type: 'check', // 用于控制当前页面状态 
     input: {
       phoneNumber: '',

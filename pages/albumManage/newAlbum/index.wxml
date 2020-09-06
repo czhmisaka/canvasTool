@@ -30,10 +30,10 @@
             </view>
         </view>
         <view class="wordBox">
-            <textarea class="textarea" wx:if="{{pageType===0}}" placeholder="请输入商品说明" bindinput="typing"
+            <textarea class="textarea" placeholder="请输入商品说明" bindinput="typing"
                 value="{{word}}">
             </textarea>
-            <view class="textarea-show" wx:else>{{word}}</view>
+            <!-- <view class="textarea-show" wx:else>{{word}}</view> -->
         </view>
         <view class="border_bottom"></view>
     </view>
@@ -74,7 +74,7 @@
     </view>
     <view class="section" style="margin-bottom:20rpx" bindtap="openCusShareToast">
         <view class="navToBox">
-            <view class="left">谁可以看</view>
+            <view class="left">谁可以看</view>  
             <view class="right icon">
                 <image src="/static/images/icon_page/ic_xy.png" />
             </view>
@@ -91,7 +91,7 @@
     </goodsDetail>
 
     <view class="bottomBtnList" wx:if="{{pageType===0}}">
-        <view class="button"  bindtap="submit"  data-photoShow="0">
+        <view class="button" bindtap="submit" data-photoShow="0">
             暂存
         </view>
         <view class="button longButton" bindtap="submit" data-photoShow="1">
@@ -102,7 +102,10 @@
         <view class="button normalButton" bindtap="openDeleteAlbum">
             删除
         </view>
-        <view class="button normalButton black" bindtap="submit"  data-photoShow="1">
+        <view class="button" wx:if="{{albumData.photoShow == 0}}" bindtap="submit" data-photoShow="0">
+            暂存
+        </view>
+        <view class="button normalButton black" bindtap="submit" data-photoShow="1">
             保存
         </view>
         <!-- <view class="button black" bindtap="share">

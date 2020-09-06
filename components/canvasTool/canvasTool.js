@@ -149,20 +149,20 @@ Component({
         borderRadius = 0,
         deg = 0
       } = params
-      // if (borderRadius) {
-      //   this.ctx.beginPath()
-      //   this.ctx.arc(left + borderRadius, top + borderRadius, borderRadius, 0, 2 * Math.PI)
-      //   this.ctx.clip()
-      //   this.ctx.drawImage(url, left, top, width, height)
-      // } else {
-      if (deg !== 0) {
-        this.ctx.translate(left + width / 2, top + height / 2)
-        this.ctx.rotate(deg * Math.PI / 180)
-        this.ctx.drawImage(url, -width / 2, -height / 2, width, height)
-      } else {
+      if (borderRadius) {
+        this.ctx.beginPath()
+        this.ctx.arc(left + borderRadius, top + borderRadius, borderRadius, 0, 2 * Math.PI)
+        this.ctx.clip()
         this.ctx.drawImage(url, left, top, width, height)
+      } else {
+        if (deg !== 0) {
+          this.ctx.translate(left + width / 2, top + height / 2)
+          this.ctx.rotate(deg * Math.PI / 180)
+          this.ctx.drawImage(url, -width / 2, -height / 2, width, height)
+        } else {
+          this.ctx.drawImage(url, left, top, width, height)
+        }
       }
-      // }
       this.ctx.restore()
     },
     drawText(params) {

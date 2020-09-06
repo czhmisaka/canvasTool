@@ -211,7 +211,7 @@ Page({
       })
     }
     let clear = (times == imageList.length - 1)
-    if (imageList[times].slice(0, 10) != "http://tmp") {
+    if (imageList[times].slice(0, 10) != "http://tmp" && imageList[times].slice(0, 12) != "wxfile://tmp") {
       times++
       imageSrcList[times - 1] = imageList[times - 1]
       wx.showLoading({
@@ -263,17 +263,41 @@ Page({
       "labelIds": this.data.albumData.labelIds || [],
       "photoShow": photoShow
     }
+    if (this.data.pageType != 0) {
+      data.id = this.data.albumData.id
+      data.goodsAddDto.id = this.data.albumData.goodsVo&&this.data.albumData.goodsVo.id?this.data.albumData.goodsVo.id:''
+    }
     if (this.data.isVideo) {
       data.photoImageMore = []
       data.photoVedio = imageSrcList[1]
     }
     if (this.data.goodsId && this.data.goodsPriceAddDtos.length < 1) return this.show('请添加价格信息')
+    if (this.data.goodsAddDto && this.data.goodsAddDto.goodsSerial) {
+
+    }
+    // if()
+    if (photoShow == 1) {
+      if (data.goodsPriceAddDtos.length > 0 && (!data.goodsAddDto.goodsSpecAddDtos || data.goodsAddDto.goodsSpecAddDtos.length == 0)) {
+        return app.noIconToast('请完善商品信息')
+      }
+      if (data.goodsAddDto && data.goodsAddDto.goodsSerial) {
+        if (data.goodsPriceAddDtos.length == 0) {
+          return app.noIconToast('请完善商品价格信息')
+        }
+        if (data.goodsAddDto.goodsSpecAddDtos && data.goodsAddDto.goodsSpecAddDtos.length == 0) {
+          return app.noIconToast('请完善商品属性等相关信息')
+        }
+        if (data.goodsAddDto.goodsSpecVos && data.goodsAddDto.goodsSpecVos.length == 0) {
+          return app.noIconToast('请完善商品属性等相关信息')
+        }
+      }
+    }
     utils.request({
       url: '/photo/' + (this.data.pageType != 0 ? 'updatePhoto' : 'savePhoto'),
-      // url:'photo/add',
       data
     }).then(res => {
       wx.hideLoading();
+      if (res.code != 200) return app.noIconToast(res.msg)
       if (res.data) {
         this.setData({
           imageList: [],
@@ -355,6 +379,7 @@ Page({
     let videoDetail = {}
     let isVideo = false
     let labelIds = []
+    let goodsPriceAddDtos = data.goodsPriceVos || null
     if (data.photoVedio) {
       videoDetail.thumbTempFilePath = (data.photoImage[0] != 'h' ? this.data.cdn : '') + data.photoImage
       videoDetail.tempFilePath = (data.photoVedio[0] != 'h' ? this.data.cdn : '') + data.photoVedio
@@ -374,6 +399,13 @@ Page({
       labelIds.push(item.labelId)
     })
     data.labelIds = labelIds
+    if (data.labelIds.length == 0) {
+      data.photoPriorityVos.push({
+        labelId: 1,
+        labelName: '所有人'
+      })
+      data.labelIds.push(1)
+    }
     price = price.sort((a, b) => {
       return a.goodsPrice - b.goodsPrice
     })
@@ -381,6 +413,7 @@ Page({
       title: '查看相册'
     })
     this.setData({
+      goodsPriceAddDtos,
       isVideo,
       albumData: data,
       goodsSerial: data.goodsSerial,
@@ -478,7 +511,7 @@ Page({
       albumData
     } = this.data
     albumData.goodsAddDto = e.detail
-    albumData.goodsVo = e.detail
+    // albumData.goodsVo = e.detail
     this.setData({
       albumData
     })
@@ -545,6 +578,13 @@ Page({
     })
     albumData.photoPriorityVos = photoPriorityVos
     albumData.labelIds = labelIds
+    if (albumData.labelIds.length < 1) {
+      albumData.labelIds.push(1)
+      albumData.photoPriorityVos.push({
+        labelId: 1,
+        labelName: '所有人'
+      })
+    }
     this.setData({
       albumData
     })

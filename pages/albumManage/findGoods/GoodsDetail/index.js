@@ -193,6 +193,7 @@ Component({
         goodsDetail
       } = this.data
       if (check.title === "品类") {
+        if (!goodsDetail) goodsDetail = {}
         goodsDetail.goodsClassName = check.name[0]
         goodsDetail.goodsClassId = check.id[0]
         this.setData({

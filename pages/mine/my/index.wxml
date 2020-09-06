@@ -22,13 +22,16 @@
     </view> -->
     <view class="itemBox bgNone">
         <!-- <view class="flexBox H110rpx " bindtap='changeStatus' data-pageType="验证手机号"> -->
-        <view class="flexBox H110rpx ">
-            <button class="toPhoho LH110rpx" open-type="contact">手机号</button>
-            <view class="right LH110rpx">
-                <view class="word">{{userData.phone}}</view>
-                <image class="iconBack" src="/static/images/icon_page/ic_xy.png" style="width: 14rpx;height: 26rpx;" />
+        <button open-type="contact">
+            <view class="flexBox H110rpx ">
+                <view class="toPhoho LH110rpx">手机号</view>
+                <view class="right LH110rpx">
+                    <view class="word">{{userData.phone}}</view>
+                    <image class="iconBack" src="/static/images/icon_page/ic_xy.png"
+                        style="width: 14rpx;height: 26rpx;" />
+                </view>
             </view>
-        </view>
+        </button>
     </view>
     <view class="item" style="margin:34rpx 0rpx;">
         <button class="button longBotton" open-type="contact">
@@ -44,8 +47,10 @@
     <view class="cardBox">
         <view class="word">验证当前手机号：{{userData.phone}}</view>
         <view class="input">
-            <input type="number" class="left" bindinput="bindInput" placeholder="请输入验证码" data-key="code" value="{{code}}" />
-            <view class="right button_small" bindtap="getCheckCode" data-phone="{{userData.phone}}" >{{getCodeStatus?time+'s后尝试':'获取验证码'}}</view>
+            <input type="number" class="left" bindinput="bindInput" placeholder="请输入验证码" data-key="code"
+                value="{{code}}" />
+            <view class="right button_small" bindtap="getCheckCode" data-phone="{{userData.phone}}">
+                {{getCodeStatus?time+'s后尝试':'获取验证码'}}</view>
         </view>
         <view class="button longBotton" bindtap='changeStatus' data-pageType="验证新手机号">
             下一步
@@ -57,11 +62,14 @@
     <view class="cardBox">
         <view class="word">绑定新手机号</view>
         <view class="input">
-            <input type="text" class="left" bindinput="bindInputPhone" placeholder="请输入新手机号" data-key="phone" value="{{phone}}" />
+            <input type="text" class="left" bindinput="bindInputPhone" placeholder="请输入新手机号" data-key="phone"
+                value="{{phone}}" />
         </view>
         <view class="input">
-            <input type="text" class="left" bindinput="bindInput" placeholder="请输入验证码" data-key="code" value="{{code}}" />
-            <view class="right button_small" bindtap="getCheckCode" data-phone="{{phone}}" >{{getCodeStatus?time+'s后尝试':'获取验证码'}}</view>
+            <input type="text" class="left" bindinput="bindInput" placeholder="请输入验证码" data-key="code"
+                value="{{code}}" />
+            <view class="right button_small" bindtap="getCheckCode" data-phone="{{phone}}">
+                {{getCodeStatus?time+'s后尝试':'获取验证码'}}</view>
         </view>
         <button class="button longBotton" bindtap='changeStatus' data-pageType="确定">
             确定

@@ -1,11 +1,10 @@
 // pages/dataCenter/inComeData/index.js
 const wxCharts = require('../../../utils/wxCharts/index.js')
-const wx_charts = require('../../../utils/wxCharts/index.js')
 const util = require('../../../utils/util.js')
 let app = getApp()
-let cusStruct = new wxCharts({
+let cusStruct1 = new wxCharts({
   animation: true,
-  canvasId: 'cusStruct',
+  canvasId: 'cusStruct1',
   type: 'ring',
   extra: {
     ringWidth: 25,
@@ -28,18 +27,28 @@ let cusStruct = new wxCharts({
       return item.name + ' : ' + e * 100 + '%'
     }
   }],
-  disablePieStroke: true,
   width: 335,
   height: 200,
   dataLabel: true,
-  legend: false,
+  legend: true,
   background: '#f5f5f5',
-  padding: 0
 });
-let pieChart0 = null
+let pieChart0 = new wxCharts({
+  animation: true,
+  canvasId: 'pieCanvas',
+  type: 'pie',
+  series: [{
+    name: '成交量1',
+    data: 15,
+  }, {
+    name: '成交量2',
+    data: 35,
+  }],
+  width: 150,
+  height: 200,
+  dataLabel: false,
+});
 let pieChart1 = null
-let pieChart_0 = null
-let pieChart_1 = null
 
 Page({
   data: {
@@ -121,6 +130,7 @@ Page({
 
   // 修改当前所选时间
   changeTime(e) {
+    console.log('asd')
     let {
       timeCheckList
     } = this.data
@@ -157,30 +167,30 @@ Page({
     return data
   },
 
-// 获取客户城市分布
-getCusCityData(e) {
-  let data = this.addTime({
-    storeId: this.data.storeId
-  })
-  util.request({
-    url: '/customer/city',
-    data
-  }).then(res => {
-    if (res.code != 200) return app.noIconToast(res.msg)
-    let Sdata = []
-    res.data.forEach(item => {
-      Sdata.push({
-        area: item.city || '其他',
-        percent: item.percent,
+  // 获取客户城市分布
+  getCusCityData(e) {
+    let data = this.addTime({
+      storeId: this.data.storeId
+    })
+    util.request({
+      url: '/customer/city',
+      data
+    }).then(res => {
+      if (res.code != 200) return app.noIconToast(res.msg)
+      let Sdata = []
+      res.data.forEach(item => {
+        Sdata.push({
+          area: item.city || '其他',
+          percent: item.percent,
+        })
       })
+      Sdata.sort((a, b) => {
+        return -a.percent + b.percent
+      })
+      let salesTrend = this.selectComponent('#area');
+      salesTrend.chart.changeData(Sdata.slice(0, 5))
     })
-    Sdata.sort((a, b) => {
-      return -a.percent + b.percent
-    })
-    let salesTrend = this.selectComponent('#area');
-    salesTrend.chart.changeData(Sdata.slice(0, 5))
-  })
-},
+  },
 
   // 获取top5成交客户
   getTop5Cus(e) {
@@ -277,8 +287,8 @@ getCusCityData(e) {
           }
         })
       }
-      cusStruct.updateData({
-        series
+      cusStruct1.updateData({
+        series: series
       });
     })
   },
@@ -323,7 +333,7 @@ getCusCityData(e) {
         series2 = []
       res.data.forEach(item => {
         series1.push({
-          name: item.gcName + item.count+'件',
+          name: item.gcName + item.count + '件',
           data: item.count,
         })
         series2.push({
@@ -331,12 +341,23 @@ getCusCityData(e) {
           data: item.price,
         })
       })
+
+      if (series1.length == 0) {
+        series1 = [{
+          name: '暂无',
+          data: '1'
+        }]
+        series2 = [{
+          name: '暂无',
+          data: '1'
+        }]
+      }
       pieChart0 = new wxCharts({
         animation: true,
         canvasId: 'pieCanvas0',
         type: 'pie',
         series: series1,
-        width: 137.5,
+        width: 150,
         height: 200,
         dataLabel: false,
       });
@@ -348,24 +369,6 @@ getCusCityData(e) {
         width: 137.5,
         height: 200,
         dataLabel: false,
-      });
-      pieChart_0 = new wxCharts({
-        animation: true,
-        canvasId: 'pieCanvas_0',
-        type: 'pie',
-        series: series1,
-        width: 300,
-        height: 300,
-        dataLabel: true,
-      });
-      pieChart_1 = new wxCharts({
-        animation: true,
-        canvasId: 'pieCanvas_1',
-        type: 'pie',
-        series: series2,
-        width: 300,
-        height: 300,
-        dataLabel: true,
       });
     })
   },

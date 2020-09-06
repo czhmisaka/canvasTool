@@ -587,6 +587,20 @@ Page({
         this.getAblum()
         this.getCheckList()
       } else {
+        this.setData({
+          orderList: [],
+          data: [
+            [],
+            [],
+            []
+          ], // 数据保存表
+          checkIndex: [
+            [],
+            [],
+            []
+          ], // 记录选择用表
+          checkMore: [false, false, false], // 多选开启
+        })
         this.initFn()
         this.getAblum()
         // 权宜之计

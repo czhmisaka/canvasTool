@@ -9,7 +9,7 @@
 		"enhance": true,
 		"postcss": true,
 		"preloadBackgroundData": false,
-		"minified": true,
+		"minified": false,
 		"newFeature": true,
 		"coverView": true,
 		"nodeModules": true,
@@ -26,12 +26,13 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
+		"bundle": true,
 		"useIsolateContext": true,
 		"useCompilerModule": false,
-		"userConfirmedUseCompilerModuleSwitch": false
+		"userConfirmedUseCompilerModuleSwitch": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.12.1",
+	"libVersion": "2.12.2",
 	"appid": "wx6cd16b87ee4f586a",
 	"projectname": "%E6%92%AD%E6%AC%BE-%E5%A5%BD%E5%AE%A2%E5%A4%9A",
 	"debugOptions": {

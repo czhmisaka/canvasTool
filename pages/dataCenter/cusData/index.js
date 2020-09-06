@@ -69,7 +69,7 @@ Page({
       const data = [];
       data.push({
         value: 1 * 3 + Math.random(10) * 100,
-        date: (1900 + 1) + '-12-10',
+        date: '2019-12-10',
         type: '当日访客'
       })
       chart.source(data, {
