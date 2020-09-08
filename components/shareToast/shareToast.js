@@ -206,32 +206,28 @@ Component({
         title: '绘制分享图片中',
         mask: true
       })
+      console.log(shopInfo)
       this.setData({
         painting: {
           width: 340,
-          height: 560,
+          height: 485,
           clear: true,
           views: [{
-            type: 'image',
-            url: '/static/images/canvasTool/ShareBg1.png',
+            type: 'roundRect',
             top: 0,
             left: 0,
             width: 340,
-            height: 560
+            height: 485,
+            raidus: 12,
+            fillColor: '#fff'
           }, {
             type: 'image',
             url: shopDetail.storeLogo,
             top: 40,
             left: 130,
             width: 80,
-            height: 80
-          }, {
-            type: 'image',
-            url: '/static/images/canvasTool/img_bg.png',
-            top: 0,
-            left: 0,
-            width: 340,
-            height: 560
+            height: 80,
+            borderRadius: 40
           }, {
             type: 'image',
             url: qrCodeImage,
@@ -241,7 +237,7 @@ Component({
             height: 240
           }, {
             type: 'text',
-            content: "关注我  新品抢先看",
+            content: "关注我  新品抢先看", 
             fontSize: 16,
             color: '#fff',
             textAlign: 'left',
@@ -266,7 +262,7 @@ Component({
             top: 465,
             left: 170 - 13 * 16 / 2,
             bolder: true
-          }, ]
+          }]
         }
       })
     },
@@ -319,7 +315,7 @@ Component({
             },
             {
               type: 'image',
-              url: (goodDetail.photoImage[0] != 'h' ? this.data.cdn : '') + goodDetail.photoImage+'?x-oss-process=image/resize,m_pad,w_640,h_580',
+              url: (goodDetail.photoImage[0] != 'h' ? this.data.cdn : '') + goodDetail.photoImage + '?x-oss-process=image/resize,m_pad,w_640,h_580',
               top: 90,
               left: 20,
               width: 300,
@@ -407,6 +403,9 @@ Component({
       if (errMsg === 'canvasdrawer:ok') {
         this.setData({
           shareImage: tempFilePath
+        })
+        wx.previewImage({
+          urls: [tempFilePath]
         })
       }
     }

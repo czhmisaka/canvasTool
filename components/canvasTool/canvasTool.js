@@ -123,6 +123,8 @@ Component({
           }
         } else if (views[i].type === 'rect') {
           this.drawRect(views[i])
+        } else if (views[i].type === 'roundRect') {
+          this.roundRect(views[i])
         }
       }
       this.ctx.draw(false, () => {
@@ -258,7 +260,11 @@ Component({
         width = 0,
         height = 0
       } = params
+
       this.ctx.setFillStyle(background)
+      // if (borderRadius != 0)
+      //   this.ctx.fillRoundRect(left, top, width, height, borderRadius)
+      // else
       this.ctx.fillRect(left, top, width, height)
       this.ctx.restore()
     },
@@ -319,6 +325,70 @@ Component({
           }
         }
       }, this)
-    }
+    },
+    // 画圆角 ctx、x起点、y起点、w宽度、y高度、r圆角半径、fillColor填充颜色、strokeColor边框颜色
+    roundRect(czh) {
+      let x, y, w, h, r, fillColor, strokeColor = '#fff';
+      x = czh.left
+      y = czh.top
+      w = czh.width
+      h = czh.height
+      r = czh.raidus
+      fillColor = czh.fillColor
+      // 开始绘制
+      this.ctx.beginPath()
+
+      // 绘制左上角圆弧 Math.PI = 180度
+      // 圆心x起点、圆心y起点、半径、以3点钟方向顺时针旋转后确认的起始弧度、以3点钟方向顺时针旋转后确认的终止弧度
+      this.ctx.arc(x + r, y + r, r, Math.PI, Math.PI * 1.5)
+
+      // 绘制border-top
+      // 移动起点位置 x终点、y终点
+      this.ctx.moveTo(x + r, y)
+      // 画一条线 x终点、y终点
+      this.ctx.lineTo(x + w - r, y)
+      // this.ctx.lineTo(x + w, y + r)
+
+      // 绘制右上角圆弧
+      this.ctx.arc(x + w - r, y + r, r, Math.PI * 1.5, Math.PI * 2)
+
+      // 绘制border-right
+      this.ctx.lineTo(x + w, y + h - r)
+      // this.ctx.lineTo(x + w - r, y + h)
+
+      // 绘制右下角圆弧
+      this.ctx.arc(x + w - r, y + h - r, r, 0, Math.PI * 0.5)
+
+      // 绘制border-bottom
+      this.ctx.lineTo(x + r, y + h)
+      // this.ctx.lineTo(x, y + h - r)
+
+      // 绘制左下角圆弧
+      this.ctx.arc(x + r, y + h - r, r, Math.PI * 0.5, Math.PI)
+
+      // 绘制border-left
+      this.ctx.lineTo(x, y + r)
+      // this.ctx.lineTo(x + r, y)
+
+      if (fillColor) {
+        // 因为边缘描边存在锯齿，最好指定使用 transparent 填充
+        this.ctx.setFillStyle(fillColor)
+        // 对绘画区域填充
+        this.ctx.fill()
+      }
+
+      if (strokeColor) {
+        // 因为边缘描边存在锯齿，最好指定使用 transparent 填充
+        this.ctx.setStrokeStyle(strokeColor)
+        // 画出当前路径的边框
+        this.ctx.stroke()
+      }
+      // 关闭一个路径
+      // this.ctx.closePath()
+
+      // 剪切，剪切之后的绘画绘制剪切区域内进行，需要save与restore
+      this.ctx.clip()
+    },
+
   }
 })

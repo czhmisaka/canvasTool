@@ -30,8 +30,7 @@
             </view>
         </view>
         <view class="wordBox">
-            <textarea class="textarea" placeholder="请输入商品说明" bindinput="typing"
-                value="{{word}}">
+            <textarea class="textarea" placeholder="请输入商品说明" bindinput="typing" value="{{word}}">
             </textarea>
             <!-- <view class="textarea-show" wx:else>{{word}}</view> -->
         </view>
@@ -55,18 +54,18 @@
             <view class="right icon">
                 <image src="/static/images/icon_page/ic_xy.png" />
             </view>
-            <view class="right red">
+            <view class="right">
                 <view wx:if="{{price.length==1&&price[0].favorableNum==0}}">
-                    {{'一口价 '+price[0].goodsPrice+'元'}}
+                    {{'一口价 '}} <span class="red">{{price[0].goodsPrice+'元'}}</span>
                 </view>
                 <view wx:if="{{price.length==1&&price[0].favorableNum!=0}}">
-                    {{price[0].favorableNum+'件以上'+price[0].goodsPrice+'元'}}
+                    {{price[0].favorableNum+'件以上'}}<span class="red">{{price[0].goodsPrice+'元'}}</span>
                 </view>
                 <view wx:if="{{price.length>1}}">
-                    {{price[0].favorableNum+'件以上'+price[0].goodsPrice+'元'}}
+                    {{price[0].favorableNum+'件以上'}}<span class="red">{{price[0].goodsPrice+'元'}}</span>
                 </view>
                 <view class="list" wx:key="*this" wx:for="{{price}}" wx:if="{{price.length>1&&index!=0}}">
-                    {{item.favorableNum+'件以上'+item.goodsPrice+'元'}}
+                    {{item.favorableNum+'件以上'}}<span class="red">{{item.goodsPrice+'元'}}</span>
                 </view>
             </view>
         </view>
@@ -74,7 +73,7 @@
     </view>
     <view class="section" style="margin-bottom:20rpx" bindtap="openCusShareToast">
         <view class="navToBox">
-            <view class="left">谁可以看</view>  
+            <view class="left">谁可以看</view>
             <view class="right icon">
                 <image src="/static/images/icon_page/ic_xy.png" />
             </view>

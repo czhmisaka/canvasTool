@@ -1,8 +1,8 @@
 <!--components/shareToast/shareToast.wxml-->
 <view class="wholeScreen" wx:if="{{show}}">
     <view class="hide" bindtap="hide"></view>
-    <image src="{{shareImage}}" wx:if="{{shareImage}}" class="share-image" bindload="finish" bindtap="eventSave">
-    </image>
+    <!-- <image src="{{shareImage}}" wx:if="{{shareImage}}" class="share-image" bindload="finish" bindtap="eventSave">
+    </image> -->
     <canvasdrawer painting="{{painting}}" class="canvasdrawer" bind:getImage="eventGetImage" />
     <!-- <div class="shareButtonBox" wx:if="{{showTabbar}}"> -->
     <!-- 这边代码屏蔽的原因在于修改了档口的分享方式 2020年8月25日 17点57分 -->

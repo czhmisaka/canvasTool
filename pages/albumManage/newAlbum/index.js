@@ -265,19 +265,17 @@ Page({
     }
     if (this.data.pageType != 0) {
       data.id = this.data.albumData.id
-      data.goodsAddDto.id = this.data.albumData.goodsVo&&this.data.albumData.goodsVo.id?this.data.albumData.goodsVo.id:''
+      data.goodsAddDto.id = this.data.albumData.goodsVo && this.data.albumData.goodsVo.id ? this.data.albumData.goodsVo.id : ''
     }
     if (this.data.isVideo) {
       data.photoImageMore = []
       data.photoVedio = imageSrcList[1]
     }
     if (this.data.goodsId && this.data.goodsPriceAddDtos.length < 1) return this.show('请添加价格信息')
-    if (this.data.goodsAddDto && this.data.goodsAddDto.goodsSerial) {
-
-    }
-    // if()
     if (photoShow == 1) {
-      if (data.goodsPriceAddDtos.length > 0 && (!data.goodsAddDto.goodsSpecAddDtos || data.goodsAddDto.goodsSpecAddDtos.length == 0)) {
+      // console.log(data)
+      // console.log(data.goodsPriceAddDtos.length > 0 && (!data.goodsAddDto.goodsSpecAddDtos || data.goodsAddDto.goodsSpecAddDtos.length == 0)&& !data.goodsAddDto.goodsSpecVos)
+      if (data.goodsPriceAddDtos.length > 0 && (!data.goodsAddDto.goodsSpecAddDtos || data.goodsAddDto.goodsSpecAddDtos.length == 0) && !data.goodsAddDto.goodsSpecVos) {
         return app.noIconToast('请完善商品信息')
       }
       if (data.goodsAddDto && data.goodsAddDto.goodsSerial) {

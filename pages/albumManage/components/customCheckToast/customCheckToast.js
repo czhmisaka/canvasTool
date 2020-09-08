@@ -1,6 +1,7 @@
 // pages/albumManage/components/customCheckToast/customCheckToast.js
 const util = require('../../../../utils/util.js')
 const app = getApp()
+
 Component({
   properties: {
     checkData: {
@@ -177,7 +178,7 @@ Component({
             res.check = false
           }
         })
-        checkLists[index].check = true
+        checkLists[index].check = !checkLists[index].check
       } else {
         checkLists[index].check = !checkLists[index].check
       }

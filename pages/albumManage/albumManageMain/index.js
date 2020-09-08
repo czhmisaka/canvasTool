@@ -10,6 +10,7 @@ Page({
       '已发布',
       '暂存'
     ],
+    typeListKey: [],
     selectType: 0,
     orderList: [],
     data: [
@@ -50,11 +51,6 @@ Page({
     this.setData({
       searchWord: e.detail.value
     })
-  },
-
-  // 返回
-  setCheckForShare(e) {
-
   },
 
   // 打开发布选择
@@ -115,9 +111,6 @@ Page({
       })
     }, 100)
   },
-
-
-  // 获取发布回调
 
   // 开始搜索
   searchStart(e) {
@@ -251,6 +244,7 @@ Page({
       }
     }
     requestData.photoShow = photoShow
+    that.getAblumNum()
     util.request({
       url: '/photo/list',
       data: requestData
@@ -273,6 +267,32 @@ Page({
       }
       swiperLock = false
       wx.hideLoading()
+    })
+  },
+
+  // 获取当前的相册数量
+  getAblumNum(e) {
+    let that = this
+    let requestData = this.data.requestData
+    let data = {
+      storeId: requestData.storeId,
+      labelIds: requestData.labelIds || [],
+      goodsClassIds: requestData.goodsClassIds || []
+    }
+    util.request({
+      url: 'photo/getPhotoNum/' + data.storeId,
+      data: requestData
+    }).then((res) => {
+      if (res.code != 200) return app.noIconToast('获取相册失败')
+      
+      if (res.data) {
+        let typeListKey = []
+        typeListKey.push(res.data.publishNum)
+        typeListKey.push(res.data.unPublishNum)
+        this.setData({
+          typeListKey
+        })
+      }
     })
   },
 

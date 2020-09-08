@@ -9,7 +9,7 @@
 		"enhance": true,
 		"postcss": true,
 		"preloadBackgroundData": false,
-		"minified": false,
+		"minified": true,
 		"newFeature": true,
 		"coverView": true,
 		"nodeModules": true,
@@ -125,7 +125,7 @@
 					"id": 8,
 					"name": "访问已有相册",
 					"pathName": "pages/albumManage/newAlbum/index",
-					"query": "id=1280075499581739009",
+					"query": "id=1303169932275486722",
 					"scene": null
 				},
 				{

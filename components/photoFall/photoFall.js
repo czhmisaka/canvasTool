@@ -111,7 +111,9 @@ Component({
           this.setData({
             data: data
           })
-          this.compareAndFix()
+          setTimeout(()=>{
+            this.compareAndFix()
+          },100)
         })
       })
     },

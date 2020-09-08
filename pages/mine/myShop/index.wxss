@@ -114,7 +114,7 @@
 
 .picker {
     font-weight: 100;
-    color: rgba(61, 61, 61, 0.5);
+    color: rgba(61, 61, 61, 1);
     font-size: 32rpx;
     font-family: "PingFangSC-Regular,PingFang SC";
 }
@@ -199,6 +199,7 @@
     height: 108rpx;
     line-height: 108rpx;
     margin: 0rpx;
+    color: #333;
 }
 
 .LH168rpx {
@@ -245,10 +246,12 @@
     color: white;
     text-align: center;
 }
-.hiden{
+
+.hiden {
     opacity: 0;
     width: 0rpx;
 }
+
 .buttonBar {
     position: fixed;
     z-index: 10001;
@@ -328,6 +331,10 @@
     width: 750rpx;
     position: absolute;
     bottom: 0rpx;
+}
+
+.input-placeholder{
+    color:#aaa;
 }
 
 @import '/components/cropper/cropper.wxss'

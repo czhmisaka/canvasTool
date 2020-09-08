@@ -108,7 +108,11 @@ Page({
   getFastMsg() {
     utils.request({
       url: '/photo/getPhotoNum/' + this.data.storeVo.id,
-      method: 'get'
+      data: {
+        "goodsClassIds": [],
+        "labelIds": [],
+        "storeId": this.data.storeVo.id
+      }
     }).then(ress => {
       this.formatNum([{
         num: ress.data ? ress.data.publishNum || 0 : 0,
@@ -125,7 +129,7 @@ Page({
       },
       type: 'noLogin'
     }).then((res) => {
-      // 这里注入了假数据， 待修改
+      if(res.code!=200) return 0;
       this.formatNum([{
         num: res.data ? res.data.buyerNum || 0 : 0,
         type: '客户量',

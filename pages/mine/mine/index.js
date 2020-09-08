@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    globalData: getApp().globalData
+    globalData: getApp().globalData,
+    myShopId: ''
   },
 
   toLogin: function () {
@@ -23,7 +24,11 @@ Page({
   },
 
   onLoad: function (options) {
-    let setPageLife = new getApp().setPageLife()},
+    let setPageLife = new getApp().setPageLife()
+    this.setData({
+      myShopId: getApp().globalData.shopInfo ? getApp().globalData.shopInfo.storeVo ? getApp().globalData.shopInfo.storeVo.id : '' : ''
+    })
+  },
   onReady: function () {},
   onShow: function () {
     this.setData({

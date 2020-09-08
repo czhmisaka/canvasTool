@@ -24,6 +24,13 @@
     "pages/dataCenter/inComeData/index",
     "pages/mine/my/index"
   ],
+  "subpackages": [
+    {
+      "root": "package_ForSeller",
+      "pages": [
+      ]
+    }
+  ],
   "tabBar": {
     "color": "#B3B6BF",
     "position": "bottom",

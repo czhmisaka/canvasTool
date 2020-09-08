@@ -6,6 +6,8 @@ const util = require('../util.js')
 
 /// 一些配置项
 
+// 开关记录
+const canMark = true
 // 控制台输出/调试用
 const canConsole = false
 // 是否保存信息到缓存中（防止漏上传等）
@@ -43,6 +45,7 @@ const getUserInfo_systemInfo = function () {
 
 // 写入记录
 const writeData = function (data) {
+    if (!canMark) return
     if (!getApp().globalData.dataWorkHistory)
         getApp().globalData.dataWorkHistory = []
     data.accessToken = getApp().globalData.accessToken
@@ -52,6 +55,7 @@ const writeData = function (data) {
 
 // 进入小程序 场景记录
 const setSceneWhenMPStart = async function (options) {
+
     let data = {
         title: '小程序打开场景记录',
         type: 'setSceneWhenMPStart',
@@ -103,6 +107,7 @@ const setRequest = function (obj) {
 
 // 跳转记录
 const setRoute = function (url) {
+
     let baseUrl, query;
     baseUrl = url.split('?')[0]
     query = url.split('?')[1]
@@ -122,6 +127,7 @@ const setRoute = function (url) {
 
 // 页面 生命周期记录
 const setPageLife = function () {
+
     let self = new Object
     let pageStock = getCurrentPages()
     let page = pageStock[pageStock.length - 1]
@@ -162,6 +168,7 @@ const setPageLife = function () {
 
 // 通用化记录
 const setNormal = async function (obj) {
+
     let data = {
         title: obj.title || '',
         type: obj.type || '',
@@ -203,11 +210,12 @@ const bindMethod = function (func, ) {
 
 // 获取用户系统信息
 const setUserPhoneInfo = function () {
-    
+
 }
 
 // 页面访问次数记录
 const setPageVisitTime = function (page, id = "") {
+
     if (!getApp().globalData.dataWorkPageVisitList)
         getApp().globalData.dataWorkPageVisitList = []
     let dataWorkPageVisitList = getApp().globalData.dataWorkPageVisitList

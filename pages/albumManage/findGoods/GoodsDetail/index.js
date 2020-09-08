@@ -10,8 +10,8 @@ Component({
       value: {},
       observer: function (e) {
         if (this.properties.goodsDetail) {
-          console.log('asasdad', this.properties.goodsDetail)
           this.goodDetailInitFn(this.properties.goodsDetail)
+          let data = this.properties.goodsDetail
           this.setData({
             goodsDetail: this.properties.goodsDetail
           })
@@ -266,7 +266,8 @@ Component({
         let checkData = {
           tabList: [],
           title: '品类',
-          only: true
+          only: true,
+          checkIdList: [this.data.goodsDetail.goodsClassId]
         }
         this.data.classList.forEach(item => {
           checkData.tabList.push({

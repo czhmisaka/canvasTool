@@ -242,3 +242,9 @@
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
 }
+
+.red {
+    color: #F57171;
+    font-size: 24rpx;
+    margin-left: 10rpx;
+}

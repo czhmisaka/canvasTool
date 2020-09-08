@@ -30,6 +30,7 @@ App({
   ...dataWork,
   ...tools,
 
+
   onShow: function (options) {
     this.globalData.onShowOptions = options.query
     setTimeout(() => {
@@ -107,9 +108,9 @@ App({
   getGlobalDataStorage: function () { // 缓存机制需要修改
     if (wx.getStorageSync('globalData'))
       this.globalData = wx.getStorageSync('globalData');
-    else{
+    else {
       wx.reLaunch({
-        url:'/pages/login/index'
+        url: '/pages/login/index'
       })
     }
   },

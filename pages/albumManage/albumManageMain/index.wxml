@@ -32,7 +32,7 @@
             style="{{'width:'+selectType.len*28+'rpx;margin-left:calc('+selectType.left+'px - 1em);'}}{{searchWord.length==0?'opacity:1;':'opacity:0;'}}">
         </view>
         <view class="type {{selectType.index==index?'highLight':''}}" data-index="{{index}}" bindtap="switchSubtitle"
-            style="margin:0px 30rpx" wx:for="{{typeList}}" wx:key="*this">{{item}}</view>
+            style="margin:0px 30rpx" wx:for="{{typeList}}" wx:key="*this">{{item}}<span class="red">{{typeListKey[index]}}</span></view>
         <!-- <view class="type {{selectType.index==0?'highLight':''}}" data-index="{{0}}" bindtap="switchSubtitle"
             style="margin:0px 30rpx">全部 </view>
         <view class="type {{selectType.index==1?'highLight':''}}" data-index="{{1}}" bindtap="switchSubtitle">

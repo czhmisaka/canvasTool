@@ -10,8 +10,8 @@
         </view>
     </view> -->
 
-    <view class="flexBox" style="height:110rpx;margin-top:20rpx" bindtap="navTo"
-        data-url="/pages/mine/myShopManage/index">
+    <view class="flexBox" style="height:110rpx;margin-top:20rpx" bindtap="navTo" 
+        data-url="{{'/pages/mine/myShop/index?id='+myShopId}}">
         <view class="toPhoto">
             <image class="icon40" src="/static/images/icon_page/ic_dpgl.png" />
             <view class="word">档口管理</view>

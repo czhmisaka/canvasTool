@@ -6,15 +6,9 @@ Page({
   },
 
 
-  checkEnvForBlueTooth(e){
-    
-  },
-
-
   onLoad(options) {
-    wx.setNavigationBarTitle({
-      title: '蓝牙设备链接尝试'
-    })
-
+    // wx.setNavigationBarTitle({
+    //   title: '蓝牙设备链接尝试'
+    // })
   },
 })
