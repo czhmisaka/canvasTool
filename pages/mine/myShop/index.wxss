@@ -73,7 +73,7 @@
     background-color: #fff;
     width: calc(100% - 68rpx);
     margin: 0rpx 34rpx;
-    border-radius: 8rpx;
+    border-radius: 0rpx;
     position: relative;
     display: flex;
     justify-content: space-between;
