@@ -85,40 +85,56 @@ Component({
       })
     },
 
+    // 确保获取品类和颜色等信息
+    checkForGetClass() {
+      return new Promise((res, rej) => {
+        let times = 0
+        let interval = setInterval(() => {
+          let {
+            tabCheckList
+          } = this.data
+          if (tabCheckList.length > 0 || times > 20) {
+            res(tabCheckList)
+          } else {
+            times++
+          }
+        }, 100)
+      })
+    },
+
     // 处理商品数据
     goodDetailInitFn(data) {
       let {
         goodsSpecVos
       } = data
-      let {
-        tabCheckList
-      } = this.data
-      let size = '',
-        color = '';
-      if (goodsSpecVos)
-        goodsSpecVos.forEach(res => {
-          let {
-            goodsSpecAttrVos
-          } = res
-          if (goodsSpecAttrVos)
-            goodsSpecAttrVos.forEach(item => {
-              tabCheckList.forEach((tab) => {
-                if (item.goodsAttrId == tab.id) {
-                  if (tab.word.split('/').indexOf(item.goodsAttrValueName) == -1) {
-                    if (tab.word.length != 0) {
-                      tab.word += '/'
+      this.checkForGetClass().then(tabCheckList => {
+        let size = '',
+          color = '';
+        if (goodsSpecVos)
+          goodsSpecVos.forEach(res => {
+            let {
+              goodsSpecAttrVos
+            } = res
+            if (goodsSpecAttrVos)
+              goodsSpecAttrVos.forEach(item => {
+                tabCheckList.forEach((tab) => {
+                  if (item.goodsAttrId == tab.id) {
+                    if (tab.word.split('/').indexOf(item.goodsAttrValueName) == -1) {
+                      if (tab.word.length != 0) {
+                        tab.word += '/'
+                      }
+                      tab.word += item.goodsAttrValueName
+                      tab.checkIdList.push(item.goodsAttrValueId)
                     }
-                    tab.word += item.goodsAttrValueName
-                    tab.checkIdList.push(item.goodsAttrValueId)
                   }
-                }
+                })
               })
-            })
+          })
+        this.setData({
+          size,
+          color,
+          tabCheckList
         })
-      this.setData({
-        size,
-        color,
-        tabCheckList
       })
     },
 
@@ -129,57 +145,64 @@ Component({
 
     // 获取自定义选择用列表
     getCheckList(id = '') {
-      wx.showLoading({
-        title: id ? '获取商品详情中' : '获取商品模板中'
-      })
-      let tabCheckList = []
-      util.request({
-        url: 'photo/goodsAttr',
-        data: {
-          id: app.globalData.shopInfo.storeVo.id
-        }
-      }).then((res) => {
-        this.getClassList(id, false)
-        res.data.forEach((item) => {
-          let tabList = []
-          item.goodsAttrValueVos.forEach((res) => {
-            tabList.push(res)
-          })
-          tabCheckList.push({
-            id: item.id,
-            title: item.attrName,
-            tabList: tabList,
-            word: '',
-            checkIdList: []
-          })
+      return new Promise((P_res, P_rej) => {
+        wx.showLoading({
+          title: id ? '获取商品详情中' : '获取商品模板中'
         })
-        this.setData({
-          tabCheckList
+        let tabCheckList = []
+        util.request({
+          url: 'photo/goodsAttr',
+          data: {
+            id: app.globalData.shopInfo.storeVo.id
+          }
+        }).then((res) => {
+          res.data.forEach((item) => {
+            let tabList = []
+            item.goodsAttrValueVos.forEach((resQ) => {
+              tabList.push(resQ)
+            })
+            tabCheckList.push({
+              id: item.id,
+              title: item.attrName,
+              tabList: tabList,
+              word: '',
+              checkIdList: []
+            })
+          })
+          this.setData({
+            tabCheckList
+          })
+          this.getClassList(id, false).then(back => {
+            P_res()
+          })
         })
       })
     },
 
     // 获取商品品类列表
     getClassList(id = "", type = true) {
-      if (type)
-        wx.showLoading({
-          title: '保存中',
-          mask: true
+      return new Promise((P_res, P_rej) => {
+        if (type)
+          wx.showLoading({
+            title: '保存中',
+            mask: true
+          })
+        util.request({
+          url: 'photo/goodsClass',
+          data: {
+            id: app.globalData.shopInfo.storeVo.id
+          }
+        }).then((res) => {
+          if (!id || type)
+            wx.hideLoading()
+          this.setData({
+            classList: res.data
+          })
+          if (id) {
+            this.getGoodsDetailById(id)
+          }
+          P_res()
         })
-      util.request({
-        url: 'photo/goodsClass',
-        data: {
-          id: app.globalData.shopInfo.storeVo.id
-        }
-      }).then((res) => {
-        if (!id || type)
-          wx.hideLoading()
-        this.setData({
-          classList: res.data
-        })
-        if (id) {
-          this.getGoodsDetailById(id)
-        }
       })
     },
 
@@ -350,33 +373,16 @@ Component({
 
   lifetimes: {
     attached: function () {
-      console.log('e')
       this.setData({
         new: true
       })
       this.getCheckList()
-
     },
     detached: function () {
       // 在组件实例被从页面节点树移除时执行
     },
   },
 
-
-  // onLoad: function (options) {
-  //   let setPageLife = new getApp().setPageLife()
-  //   if (options.id) {
-  //     this.setData({
-  //       goodsId: options.id
-  //     })
-  //     this.getCheckList(options.id)
-  //   } else {
-  //     this.setData({
-  //       new: true
-  //     })
-  //     this.getCheckList()
-  //   }
-  // },
   onReady: function () {},
   onShow: function () {},
   onHide: function () {},

@@ -6,10 +6,10 @@
 	"setting": {
 		"urlCheck": true,
 		"es6": true,
-		"enhance": true,
-		"postcss": true,
+		"enhance": false,
+		"postcss": false,
 		"preloadBackgroundData": false,
-		"minified": true,
+		"minified": false,
 		"newFeature": true,
 		"coverView": true,
 		"nodeModules": true,
@@ -26,7 +26,7 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"bundle": true,
+		"bundle": false,
 		"useIsolateContext": true,
 		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": true
@@ -125,7 +125,7 @@
 					"id": 8,
 					"name": "访问已有相册",
 					"pathName": "pages/albumManage/newAlbum/index",
-					"query": "id=1303169932275486722",
+					"query": "id=1303228549188030466",
 					"scene": null
 				},
 				{

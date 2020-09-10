@@ -10,25 +10,29 @@
         </view>
     </view>
     <view class="scroll">
-        <view class="whiteBg">
+        <!-- <view class="whiteBg">
             <view class="flexBox" style="margin-top:0rpx">
                 <view class="MsgBox" wx:for="{{fastMsg}}" wx:key="*this" bindtap="toFastCusMsg" data-msg="{{item}}">
                     <view class="Number">{{item.num}}</view>
                     <view class="word">{{item.type}}</view>
                 </view>
             </view>
-        </view>
+        </view> -->
         <!-- 留个坑 缺少跳转 -->
         <view class="flexBox" style="height:110rpx" bindtap="navTo" data-url="/pages/cus/tabManage/index">
             <view class="toPhoto">
                 <image class="icon40" src="/static/images/icon_page/ic_bqgl.png" />
-                <view class="word">管理标签</view>
+                <view class="word">客户分组</view>
             </view>
             <view class="right">
                 <image src="/static/images/icon_page/ic_xy.png" style="width: 14rpx;height: 26rpx;" />
             </view>
         </view>
         <view class="cusList">
+            <view class="topBar">
+                <view>{{fastMsg[0].type+':'+fastMsg[0].num}}</view>
+                <view>{{fastMsg[1].type+':'+fastMsg[1].num}}</view>
+            </view>
             <view class="cusDetail" wx:for="{{cusList}}" wx:key="*this" bindtap="toDetail" data-val="{{item.memberId}}"
                 data-money="{{item.orderAmount}}">
                 <view class="left">

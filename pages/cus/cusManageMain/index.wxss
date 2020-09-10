@@ -64,7 +64,7 @@
     font-size: 28rpx;
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
-    color: rgba(52,62,223,1);
+    color: rgba(52, 62, 223, 1);
     float: left;
     line-height: 28rpx;
     height: 28rpx;
@@ -92,7 +92,7 @@
 
 .MsgBox>.Number {
     font-family: "DINAlternate-Bold,DINAlternate";
-    color: rgba(52,62,223,1);
+    color: rgba(52, 62, 223, 1);
     font-weight: bold;
     font-size: 36rpx;
 }
@@ -121,6 +121,21 @@
     display: inline-block;
     background-color: white;
     height: auto;
+}
+
+.topBar {
+    margin: 32rpx;
+    width:calc( 100% - 64rpx);
+    height: 28rpx;
+}
+
+.topBar>view {
+    float: left;
+    text-indent: 1em;
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #999999;
 }
 
 .scroll {

@@ -9,7 +9,7 @@
     width: 100vw;
     height: 232rpx;
     overflow: hidden;
-    background-color: rgba(52,62,223,1);
+    background-color: rgba(52, 62, 223, 1);
     line-height: 232rpx;
 }
 
@@ -66,7 +66,7 @@
     font-size: 24srpx;
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: bolder;
-    color: rgba(52,62,223,1);
+    color: rgba(52, 62, 223, 1);
     line-height: 48rpx;
 }
 
@@ -76,15 +76,38 @@
 
 .section {
     width: calc(100vw - 68rpx);
-    margin: 0 34rpx;
-    height: auto;
-    display: inline-block;
-    border-bottom: 1rpx rgb(230, 230, 230) solid;
+    padding: 0 34rpx;
+    height: 112rpx;
+    display: block;
     line-height: 112rpx;
+    background: white;
+}
+
+.border_bottom {
+    border-bottom: 1rpx rgb(230, 230, 230) solid;
+    width: calc(100vw - 68rpx);
+    margin: 0 34rpx;
+    height: 1rpx;
 }
 
 .section>.left {
     color: #3D3D3D;
     font-size: 32rpx;
     font-family: PingFangSC-Regular, PingFang SC;
+}
+
+.wholeScreen {
+    width: 100vw;
+    height: auto;
+    display: inline-block;
+    min-height: 100vh;
+    background-color: #F7F8FA;
+}
+
+.switch {
+    zoom: .8;
+    height: 112rpx;
+    position: absolute;
+    margin-left: -97rpx;
+    margin-top: -4rpx;
 }

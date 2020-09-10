@@ -1,35 +1,51 @@
 <!--pages/cus/cusDetail/index.wxml-->
-<view class="header">
-    <view class="left img">
-        <image class="headerImg" src="{{cusDetail.avatar?cusDetail.avatar:'/static/images/icon_page/img_zwtx.png'}}">
-        </image>
-    </view>
-    <view class="left box">
-        <view class="word fontSize32rpx">{{cusDetail.nickname}}</view>
-        <view class="word">拿货金额￥{{options.money?options.money:0}}</view>
-    </view>
-    <view class="right">
+<view class="wholeScreen">
+
+    <view class="header">
+        <view class="left img">
+            <image class="headerImg"
+                src="{{cusDetail.avatar?cusDetail.avatar:'/static/images/icon_page/img_zwtx.png'}}">
+            </image>
+        </view>
+        <view class="left box">
+            <view class="word fontSize32rpx">{{cusDetail.nickname}}</view>
+            <view class="word">拿货金额￥{{options.money?options.money:0}}</view>
+        </view>
+        <!-- <view class="right">
         <view class="button" bindtap="changeStatusInBlackList">{{cusDetail.isBlack?'让看相册':'不让看相册'}}</view>
+    </view> -->
     </view>
-</view>
-<view class="section">
-    <view class="left">姓名</view>
-    <view class="right">{{cusDetail.remarkName||'未填写'}}</view>
-</view>
-<view class="section">
-    <view class="left">手机号码</view>
-    <view class="right">{{cusDetail.phone||'未填写'}}</view>
-</view>
-<view class="section">
-    <view class="left">客户标签</view>
-    <view class="right" wx:for="{{cusDetail.labelList}}" wx:key="*this">
-        {{index!=cusDetail.labelList.length-1?',':''}}{{item.labelName}}
+    <view class="section">
+        <view class="left">姓名</view>
+        <view class="right">{{cusDetail.remarkName||'未填写'}}</view>
     </view>
-    <view class="right" wx:if="{{cusDetail.labelList==0}}">
-        暂无标签
+    <view class="border_bottom"></view>
+    <view class="section">
+        <view class="left">手机号码</view>
+        <view class="right">{{cusDetail.phone||'未填写'}}</view>
     </view>
-</view>
-<view class="section">
-    <view class="left">备注</view>
-    <view class="right">{{cusDetail.remark||'未填写'}}</view>
+    <view class="border_bottom"></view>
+    <view class="section">
+        <view class="left">客户标签</view>
+        <view class="right" wx:for="{{cusDetail.labelList}}" wx:key="*this">
+            {{index!=cusDetail.labelList.length-1?',':''}}{{item.labelName}}
+        </view>
+        <view class="right" wx:if="{{cusDetail.labelList==0}}">
+            暂无标签
+        </view>
+    </view>
+    <view class="border_bottom"></view>
+    <view class="section">
+        <view class="left">备注</view>
+        <view class="right">{{cusDetail.remark||'未填写'}}</view>
+    </view>
+    <view class="border_bottom"></view>
+    <view class="section" style="margin-top:20.01rpx">
+        <view class="left">不让他看我的档口</view>
+        <view class="right">
+            <!-- <view class="button" bindtap="changeStatusInBlackList">{{cusDetail.isBlack?'让看相册':'不让看相册'}}</view>
+             -->
+            <switch checked="{{cusDetail.isBlack}}" class="switch" bindtap="changeStatusInBlackList" color="#343EDF" />
+        </view>
+    </view>
 </view>

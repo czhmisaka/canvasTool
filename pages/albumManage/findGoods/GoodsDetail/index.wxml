@@ -17,6 +17,7 @@
             </view>
             <input wx:if="{{new}}" class="right gray" bindinput="inputType" value="{{goodsDetail.goodsSerial}}"
                 placeholder="请输入货号" />
+            <view class="right">#</view>
         </view>
     </view>
     <view class="section" bindtap="letCusCheck" data-type="品类">

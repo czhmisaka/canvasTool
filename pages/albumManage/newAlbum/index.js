@@ -178,7 +178,7 @@ Page({
       videoDetail
     } = that.data
     if (imageList.length == 0) {
-      if (!videoDetail.duration) return app.noIconToast('请选择照片或者视频后提交')
+      if (!videoDetail.tempFilePath) return app.noIconToast('请选择照片或者视频后提交')
       else {
         app.setNeedRefresh('pages/albumManage/albumManageMain/index', {
           refresh: true
@@ -265,7 +265,8 @@ Page({
     }
     if (this.data.pageType != 0) {
       data.id = this.data.albumData.id
-      data.goodsAddDto.id = this.data.albumData.goodsVo && this.data.albumData.goodsVo.id ? this.data.albumData.goodsVo.id : ''
+      if (data.goodsAddDto)
+        data.goodsAddDto.id = (this.data.albumData.goodsVo && this.data.albumData.goodsVo.id) ? this.data.albumData.goodsVo.id : ''
     }
     if (this.data.isVideo) {
       data.photoImageMore = []
@@ -273,8 +274,7 @@ Page({
     }
     if (this.data.goodsId && this.data.goodsPriceAddDtos.length < 1) return this.show('请添加价格信息')
     if (photoShow == 1) {
-      // console.log(data)
-      // console.log(data.goodsPriceAddDtos.length > 0 && (!data.goodsAddDto.goodsSpecAddDtos || data.goodsAddDto.goodsSpecAddDtos.length == 0)&& !data.goodsAddDto.goodsSpecVos)
+      if (!data.goodsAddDto && this.data.goodsPriceAddDtos.length != 0) return app.noIconToast('请填写货号等信息')
       if (data.goodsPriceAddDtos.length > 0 && (!data.goodsAddDto.goodsSpecAddDtos || data.goodsAddDto.goodsSpecAddDtos.length == 0) && !data.goodsAddDto.goodsSpecVos) {
         return app.noIconToast('请完善商品信息')
       }
@@ -603,7 +603,18 @@ Page({
         pageType: 1
       })
     } else {
+      let {
+        albumData
+      } = this.data
+      albumData.labelIds = []
+      albumData.photoPriorityVos = []
+      albumData.labelIds.push(1)
+      albumData.photoPriorityVos.push({
+        labelId: 1,
+        labelName: '所有人'
+      })
       this.setData({
+        albumData,
         pageType: 0
       })
     }

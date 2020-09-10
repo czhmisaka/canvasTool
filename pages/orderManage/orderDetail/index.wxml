@@ -5,7 +5,7 @@
       <image src="{{order.avatar?order.avatar:'/static/images/canvasTool/bg.png'}}" />
     </view>
     <view class="title">{{order.wxNickName}}</view>
-    <view class="button right">立即联系</view>
+    <view class="button right" bindtap="showPhone">立即联系</view>
   </view>
   <view class="box" style="margin:20rpx 0rp 20rpx 24rpx">
     <view class="icon80 orangeBg">

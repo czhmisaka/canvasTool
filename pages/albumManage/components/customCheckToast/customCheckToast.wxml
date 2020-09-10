@@ -8,11 +8,13 @@
             <view class="btn" bindtap="callBackToPage">确认</view>
         </view>
         <view class="tabBox">
-            <view class="tab {{item.check?'highLight':''}}" wx:for="{{checkLists}}" wx:key="*this" bindtap="check"
+            <view class="tab {{item.check?'highLight':''}}" style="{{item.check?'':'padding-right:20rpx'}}" wx:for="{{checkLists}}" wx:key="*this" bindtap="check"
                 data-index="{{index}}">
                 {{item.name}}
+                <image wx:if="{{item.check}}" src="/static/images/icon_page/ic_scwhite.png" class="icon32" />
             </view>
-            <input class="tab add" bindconfirm="addTab" value="{{newValue}}" data-type="{{title}}" placeholder='{{"添加"+title}}' />
+            <input class="tab add" bindconfirm="addTab" value="{{newValue}}" data-type="{{title}}"
+                placeholder='{{"添加"+title}}' />
         </view>
     </view>
 </view>

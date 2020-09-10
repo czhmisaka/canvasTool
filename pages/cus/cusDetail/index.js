@@ -53,7 +53,7 @@ Page({
       wx.hideLoading()
       if (res.code == 200) {
         wx.setNavigationBarTitle({
-          title: res.data.nickName
+          title: res.data.nickname
         })
         this.setData({
           cusDetail: res.data

@@ -46,6 +46,24 @@ Page({
     })
   },
 
+  // 展示用户手机号
+  showPhone(e) {
+    let that = this
+    wx.showModal({
+      title: '买家手机号',
+      content: that.data.order.customerPhone,
+      showCancel: false,
+      confirmText:'复制',
+      success(res) {
+        if (res.confirm) {
+          wx.setClipboardData({
+            data: that.data.order.customerPhone,
+          })
+        }
+      }
+    })
+  },
+
   // 确认提交订单
   checkPrice(e) {
     app.showModal('确认价格为：' + this.data.price).then(result => {

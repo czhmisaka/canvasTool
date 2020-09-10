@@ -120,7 +120,6 @@ App({
     let {
       storeVo
     } = this.globalData.shopInfo
-    console.log(this.globalData)
     let key_checkList = ['storeLogo', 'storeName', 'storeAddress'],
       back = true;
     key_checkList.forEach((item, index) => {

@@ -56,4 +56,4 @@
     <photoWaterFall storeId="{{storeVo.id}}" bind:returnBack="returnBack" id="fall"></photoWaterFall>
 </view>
 <shareToast style="z-index:10000" dataid="{{ShareId}}" shareDetail="{{shareDetail}}" bind:closeShare="closeShare"
-    type="{{shareType}}" open="whatever" id="share"></shareToast>
+    type="{{shareType}}" open="whatever" id="share" albumNu="{{albumManageFastMsg[0].num}}"></shareToast>

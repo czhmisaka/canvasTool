@@ -79,23 +79,24 @@
 
 .tabBox>.tab {
     margin: 10rpx;
-    height: 28rpx;
-    padding: 14rpx 30rpx;
-    font-size: 28rpx;
+    height: 32rpx;
+    padding: 14rpx 20rpx;
+    padding-right: 0rpx;
+    font-size: 32rpx;
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
-    color: rgba(52,62,223,1);
-    line-height: 28rpx;
-    border-radius: 28rpx;
+    color: rgba(52, 62, 223, 1);
+    line-height: 32rpx;
+    border-radius: 30rpx;
     background: rgba(245, 245, 245, 1);
     border: 1rpx solid rgba(33, 55, 61, 0);
     transition: all 0.3s;
 }
 
 .tabBox>.highLight {
-    border: 1rpx solid rgba(52,62,223,1);
+    border: 1rpx solid rgba(52, 62, 223, 1);
     color: white;
-    background-color: rgba(52,62,223,1);
+    background-color: rgba(52, 62, 223, 1);
 }
 
 .tabBox>.add {
@@ -111,4 +112,12 @@
     border-radius: 28rpx;
     border: 1rpx solid rgba(204, 204, 204, 1);
     background-color: white;
+}
+
+.icon32 {
+    width: 32rpx;
+    height: 32rpx;
+    margin: 0rpx 10rpx;
+    margin-left: 16rpx;
+    float: right;
 }

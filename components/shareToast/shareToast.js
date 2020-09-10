@@ -17,6 +17,7 @@ Component({
     shareDetail: {
       type: Object,
     },
+    albumNu: Number
   },
 
   /**
@@ -206,61 +207,123 @@ Component({
         title: '绘制分享图片中',
         mask: true
       })
-      console.log(shopInfo)
+      console.log('shopDetail', shopDetail.num, )
       this.setData({
         painting: {
-          width: 340,
-          height: 485,
+          width: 680,
+          height: 970,
           clear: true,
           views: [{
             type: 'roundRect',
             top: 0,
             left: 0,
-            width: 340,
-            height: 485,
-            raidus: 12,
+            width: 680,
+            height: 970,
+            raidus: 24,
             fillColor: '#fff'
           }, {
             type: 'image',
+            url: shopDetail.storeBackground,
+            top: 0,
+            left: 0,
+            width: 680,
+            height: 380,
+          }, {
+            type: 'image',
+            url: '/static/images/canvasTool/white.png',
+            top: 314,
+            left: 254,
+            width: 172,
+            height: 172,
+            borderRadius: 86
+          }, {
+            type: 'image',
             url: shopDetail.storeLogo,
-            top: 40,
-            left: 130,
-            width: 80,
-            height: 80,
-            borderRadius: 40
+            top: 320,
+            left: 260,
+            width: 160,
+            height: 160,
+            borderRadius: 80
           }, {
             type: 'image',
             url: qrCodeImage,
-            top: 215,
-            left: 50,
-            width: 240,
-            height: 240
+            top: 803,
+            left: 276,
+            width: 128,
+            height: 128,
+            borderRadius: 64
           }, {
-            type: 'text',
-            content: "关注我  新品抢先看", 
-            fontSize: 16,
-            color: '#fff',
-            textAlign: 'left',
-            top: 178,
-            left: 170 - 9 * 16 / 2,
-            bolder: true
+            type: 'rect',
+            top: 769,
+            left: 0,
+            width: 680,
+            height: 1,
+            background: '#e6e6e6'
+          }, {
+            type: 'rect',
+            top: 604,
+            left: 339.5,
+            width: 1,
+            height: 86,
+            background: '#e6e6e6'
           }, {
             type: 'text',
             content: shopDetail.storeName,
-            fontSize: 16,
+            fontSize: 40,
             color: '#3D3D3D',
             textAlign: 'left',
-            top: 130,
-            left: 170 - shopDetail.storeName.length * 16 / 2,
+            top: 504,
+            left: 340 - shopDetail.storeName.length * 40 / 2,
             bolder: true
           }, {
             type: 'text',
-            content: "长按识别二维码，进店看上新",
-            fontSize: 16,
-            color: '#3d3d3d',
+            content: '长按小程序码',
+            fontSize: 24,
+            color: '#999',
             textAlign: 'left',
-            top: 465,
-            left: 170 - 13 * 16 / 2,
+            top: 853,
+            left: 142 - 6 * 24 / 2,
+          }, {
+            type: 'text',
+            content: '查看Ta的档口',
+            fontSize: 24,
+            color: '#999',
+            textAlign: 'left',
+            top: 853,
+            left: 532 - 6 * 24 / 2,
+          }, {
+            type: 'text',
+            content: '商品总量',
+            fontSize: 28,
+            color: '#999',
+            textAlign: 'left',
+            top: 662,
+            left: 173,
+          }, {
+            type: 'text',
+            content: '近3天上新',
+            fontSize: 28,
+            color: '#999',
+            textAlign: 'left',
+            top: 662,
+            left: 396,
+          }, {
+            type: 'text',
+            content: this.properties.albumNu,
+            fontSize: 48,
+            color: '#3D3D3D',
+            textAlign: 'center',
+            top: 604,
+            left: 241 - ('' + this.properties.albumNu).length * 12,
+            bolder: true
+          }, {
+            type: 'text',
+            content: shopDetail.num,
+            fontSize: 48,
+            color: '#3d3d3d',
+            textAlign: 'center',
+            top: 604,
+            left: 470 - ('' + shopDetail.num).length * 12,
             bolder: true
           }]
         }
@@ -274,91 +337,103 @@ Component({
         title: '绘制分享图片中',
         mask: true
       })
+
+      goodDetail.photoDesc = (goodDetail.goodsVo ? goodDetail.goodsVo.goodsSerial : '') + '  ' + goodDetail.photoDesc
       this.setData({
         painting: {
-          width: 340,
-          height: 560,
+          width: 680,
+          height: 970,
           clear: true,
           views: [{
-              type: 'image',
-              url: '/static/images/canvasTool/ShareBg1.png',
+              type: 'roundRect',
               top: 0,
               left: 0,
-              width: 340,
-              height: 560
+              width: 680,
+              height: 970,
+              raidus: 24,
+              fillColor: '#fff'
+            }, {
+              type: 'rect',
+              top: 769,
+              left: 0,
+              width: 680,
+              height: 1,
+              background: '#e6e6e6'
             },
             {
               type: 'image',
               url: shopInfo.storeVo.storeLogo,
-              top: 20,
-              left: 20,
-              width: 50,
-              height: 50
-            },
-            {
-              type: 'image', // 这个用来当遮罩层
-              url: '/static/images/canvasTool/avatarBg.png',
-              top: 20,
-              left: 20,
-              width: 50,
-              height: 50
+              top: 629,
+              left: 43,
+              width: 74,
+              height: 74,
+              borderRadius: 37
             },
             {
               type: 'text',
               content: shopInfo.storeVo.storeName,
-              fontSize: 16,
-              color: '#402D16',
+              fontSize: 32,
+              color: '#3D3D3D',
               textAlign: 'left',
-              top: 37,
-              left: 90,
+              top: 651,
+              left: 140,
               bolder: true
+            }, {
+              type: 'text',
+              content: '长按小程序码',
+              fontSize: 24,
+              color: '#999',
+              textAlign: 'left',
+              top: 853,
+              left: 142 - 6 * 24 / 2,
+            }, {
+              type: 'text',
+              content: '查看商品详情',
+              fontSize: 24,
+              color: '#999',
+              textAlign: 'left',
+              top: 853,
+              left: 532 - 6 * 24 / 2,
             },
             {
               type: 'image',
-              url: (goodDetail.photoImage[0] != 'h' ? this.data.cdn : '') + goodDetail.photoImage + '?x-oss-process=image/resize,m_pad,w_640,h_580',
-              top: 90,
-              left: 20,
-              width: 300,
-              height: 320
-            },
-            {
-              type: 'image',
-              url: '/static/images/canvasTool/avatarBg.png',
-              top: 415,
-              left: 240,
-              width: 80,
-              height: 80
+              url: (goodDetail.photoImage[0] != 'h' ? this.data.cdn : '') + goodDetail.photoImage + '?x-oss-process=image/crop,g_center,w_600,h_466',
+              top: 40,
+              left: 40,
+              width: 600,
+              height: 466
             },
             {
               type: 'image',
               url: qrCodeImage,
-              top: 415,
-              left: 240,
-              width: 80,
-              height: 78
+              top: 803,
+              left: 276,
+              width: 128,
+              height: 128,
+              borderRadius: 64
             },
             {
               type: 'text',
               content: goodDetail.photoDesc,
-              fontSize: 14,
-              lineHeight: 22,
+              fontSize: 32,
+              lineHeight: 32,
               color: '#666',
               textAlign: 'left',
-              top: 450,
-              left: 20,
-              width: 180,
-              MaxLineNumber: 3,
+              top: 534,
+              left: 40 + ((goodDetail.goodsPriceVos[0] ? goodDetail.goodsPriceVos[0].goodsPrice : '') + '').length * 32 + 5,
+              width: 680 - (40 + (goodDetail.goodsPriceVos[0] ? goodDetail.goodsPriceVos[0].goodsPrice : '').length * 32 + 5) - 50,
+              MaxLineNumber: 1,
               breakWord: true,
               bolder: true
             },
             {
               type: 'text',
               content: goodDetail.goodsPriceVos.length > 0 ? '￥' + goodDetail.goodsPriceVos[0].goodsPrice : '',
-              fontSize: 20,
+              fontSize: 32,
               color: '#F57171',
               textAlign: 'left',
-              top: 420,
-              left: 20,
+              top: 534,
+              left: 40,
               bolder: true
             },
             {
