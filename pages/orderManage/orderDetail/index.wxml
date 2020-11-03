@@ -5,7 +5,7 @@
       <image src="{{order.avatar?order.avatar:'/static/images/canvasTool/bg.png'}}" />
     </view>
     <view class="title">{{order.wxNickName}}</view>
-    <view class="button right" bindtap="showPhone">立即联系</view>
+    <button class="button right" open-type="share">立即联系</button>
   </view>
   <view class="box" style="margin:20rpx 0rp 20rpx 24rpx">
     <view class="icon80 orangeBg">
@@ -42,7 +42,7 @@
 
 <!-- 商品详情 -->
 <view class="orderDetailBox">
-  <text class="orderDetailTitle black">{{order.storeName}}</text>
+  <text class="orderDetailTitle bolder">{{order.storeName}}</text>
   <!-- <text class="orderState">{{state}}
     {{order.orderStatus == 0 ? '已取消' : order.orderStatus == 10 ? '待付款' : order.orderStatus == 20 ? '待发货':order.orderStatus == 30 ? '待收货':order.orderStatus == 40 ? '交易完成':order.orderStatus == 50 ? '已下单，待商家接单':order.orderStatus == 60 ? '商家已接单':''}}
   </text> -->

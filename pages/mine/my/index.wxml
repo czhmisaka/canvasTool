@@ -22,7 +22,7 @@
     </view> -->
     <view class="itemBox bgNone">
         <!-- <view class="flexBox H110rpx " bindtap='changeStatus' data-pageType="验证手机号"> -->
-        <button open-type="contact">
+        <!-- <button open-type="contact"> -->
             <view class="flexBox H110rpx ">
                 <view class="toPhoho LH110rpx">手机号</view>
                 <view class="right LH110rpx">
@@ -31,7 +31,7 @@
                         style="width: 14rpx;height: 26rpx;" />
                 </view>
             </view>
-        </button>
+        <!-- </button> -->
     </view>
     <view class="item" style="margin:34rpx 0rpx;">
         <button class="button longBotton" open-type="contact">

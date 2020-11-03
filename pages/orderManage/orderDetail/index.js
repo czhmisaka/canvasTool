@@ -46,22 +46,23 @@ Page({
     })
   },
 
-  // 展示用户手机号
+  // 展示用户信息 跳转到搜索页面 昵称
   showPhone(e) {
-    let that = this
-    wx.showModal({
-      title: '买家手机号',
-      content: that.data.order.customerPhone,
-      showCancel: false,
-      confirmText:'复制',
-      success(res) {
-        if (res.confirm) {
-          wx.setClipboardData({
-            data: that.data.order.customerPhone,
-          })
-        }
-      }
-    })
+    // let that = this
+    // wx.showModal({
+    //   title: '买家手机号',
+    //   content: that.data.order.customerPhone,
+    //   showCancel: false,
+    //   confirmText:'去搜索',
+    //   success(res) {
+    //     if (res.confirm) {
+    //       wx.setClipboardData({
+    //         data: that.data.order.customerPhone,
+    //       })
+    //       that.onShareAppMessage()
+    //     }
+    //   }
+    // })
   },
 
   // 确认提交订单
@@ -386,10 +387,32 @@ Page({
   },
   onReachBottom: function () {},
   onShareAppMessage: function (e) {
-    return {
-      title: this.data.order.wxNickName + '的订单',
-      imageUrl: this.data.order.goodsList[0].goodsImage,
-      path: '/pages/orderManage/orderDetail/index?id=' + this.data.order.orderId + "&type=toCus"
+    if (e.from == 'button') {
+      let that = this
+      // wx.showModal({
+      //   title: '买家手机号',
+      //   content: that.data.order.customerPhone,
+      //   showCancel: false,
+      //   confirmText: '去搜索',
+      //   success(res) {
+      //     if (res.confirm) {
+      wx.setClipboardData({
+        data: that.data.order.wxNickName,
+      })
+      return {
+        title: this.data.order.wxNickName + '的订单',
+        imageUrl: this.data.order.goodsList[0].goodsImage,
+        path: '/pages/orderManage/orderDetail/index?id=' + this.data.order.orderId + "&type=toCus"
+      }
+      //   }
+      // }
+      // })
+    } else {
+      return {
+        title: this.data.order.wxNickName + '的订单',
+        imageUrl: this.data.order.goodsList[0].goodsImage,
+        path: '/pages/orderManage/orderDetail/index?id=' + this.data.order.orderId + "&type=toCus"
+      }
     }
   }
 })

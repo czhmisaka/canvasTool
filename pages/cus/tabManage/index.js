@@ -5,7 +5,8 @@ const util = require('../../../utils/util.js')
 let pageNum = 0
 Page({
   data: {
-    tabList: []
+    tabList: [],
+    showToast: false
   },
 
   // 前往查看标签内的内容
@@ -19,7 +20,10 @@ Page({
 
   // 前往新建标签
   toNewTab(e) {
-    app.navTo('/pages/cus/tabDetail/index')
+    // app.navTo('/pages/cus/tabDetail/index')
+    this.setData({
+      showToast: true
+    })
   },
 
   // 获取标签数据
@@ -84,24 +88,44 @@ Page({
     }
   },
 
+  // 弹窗回调 函数 处理新建标签（分组）后的数据统一问题
+  returnBack(e) {
+    this.setData({
+      showToast: false
+    })
+    if (e) {
+      let {
+        tabList
+      } = this.data
+      tabList.push(e.detail.data)
+      this.setData({
+        tabList
+      })
+    }
+  },
+
   onLoad: function (options) {
     let setPageLife = new getApp().setPageLife()
     wx.setNavigationBarTitle({
-      title: '标签管理'
+      title: '客户分组'
     })
   },
   onReady: function () {},
   onShow: function () {
     this.getTabList()
     this.setData({
-      slideButtons: [{
-        text: '编辑',
-        src: '/static/images/icon_page/ic_xgjg.png', // icon的路径
-      }, {
-        type: 'warn',
-        text: '删除',
-        src: '/static/images/icon_page/ic_qx.png', // icon的路径
-      }],
+      slideButtons: [
+        // // 暂时不提供编辑功能
+        //   {
+        //   text: '编辑',
+        //   src: '/static/images/icon_page/ic_xgjg.png', // icon的路径
+        // },
+        {
+          type: 'warn',
+          text: '删除',
+          src: '/static/images/icon_page/ic_qx.png', // icon的路径
+        }
+      ],
     });
   },
   onHide: function () {},

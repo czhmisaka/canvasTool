@@ -140,7 +140,7 @@
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     color: rgba(52, 62, 223, 1);
-    padding: 0rpx 32rpx;
+    padding: 0rpx 42rpx;
     margin: 16rpx 20rpx;
     margin-left: 0rpx;
     float: right;
@@ -158,7 +158,7 @@
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     color: white;
-    padding: 0rpx 32rpx;
+    padding: 0rpx 42rpx;
     margin: 16rpx 20rpx;
     margin-left: 0rpx;
     float: right;

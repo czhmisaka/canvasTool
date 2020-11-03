@@ -6,10 +6,10 @@
 	"setting": {
 		"urlCheck": true,
 		"es6": true,
-		"enhance": false,
-		"postcss": false,
+		"enhance": true,
+		"postcss": true,
 		"preloadBackgroundData": false,
-		"minified": false,
+		"minified": true,
 		"newFeature": true,
 		"coverView": true,
 		"nodeModules": true,
@@ -26,7 +26,7 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"bundle": false,
+		"bundle": true,
 		"useIsolateContext": true,
 		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": true

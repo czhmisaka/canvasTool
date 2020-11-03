@@ -103,6 +103,10 @@ Component({
     // 用id 获取商铺详情
     getShopInfoDetail: function (id) {
       return new Promise((resolve, reject) => {
+        wx.hideLoading()
+        wx.showLoading({
+          title: '获取店铺信息中'
+        })
         util.request({
           url: '/store/' + id,
           method: 'get'
@@ -207,7 +211,6 @@ Component({
         title: '绘制分享图片中',
         mask: true
       })
-      console.log('shopDetail', shopDetail.num, )
       this.setData({
         painting: {
           width: 680,
@@ -228,6 +231,7 @@ Component({
             left: 0,
             width: 680,
             height: 380,
+            refresh: true
           }, {
             type: 'image',
             url: '/static/images/canvasTool/white.png',
@@ -271,9 +275,9 @@ Component({
             content: shopDetail.storeName,
             fontSize: 40,
             color: '#3D3D3D',
-            textAlign: 'left',
+            textAlign: 'center',
             top: 504,
-            left: 340 - shopDetail.storeName.length * 40 / 2,
+            left: 340,
             bolder: true
           }, {
             type: 'text',
@@ -477,7 +481,9 @@ Component({
       } = event.detail
       if (errMsg === 'canvasdrawer:ok') {
         this.setData({
-          shareImage: tempFilePath
+          show: false,
+          shareImage: tempFilePath,
+          showTabbar: true
         })
         wx.previewImage({
           urls: [tempFilePath]

@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "相册管理",
+  "navigationBarTitleText": "商品管理",
   "usingComponents": {
     "navBarCustom": "/components/navBarCustom/navBarCustom",
     "albumCard": "../components/albumCard/albumCard",

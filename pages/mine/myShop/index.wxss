@@ -37,7 +37,7 @@
     width: 48rpx;
     height: 48rpx;
     position: absolute;
-    margin: 80px 40px;
+    margin: 76px 36px;
 }
 
 .iconAdd>image {

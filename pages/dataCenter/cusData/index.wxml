@@ -30,7 +30,7 @@
                 </view>
                 <view class="contentLeft">
                     <view class="headImg">
-                        <image src="{{item.headImg?item.headImg:'/static/images/canvasTool/bg.png'}}" />
+                        <image src="{{item.avatar?item.avatar:'/static/images/canvasTool/bg.png'}}" />
                     </view>
                 </view>
                 <view class="contentLeft">

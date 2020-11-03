@@ -3,7 +3,13 @@ const app = getApp()
 const utils = require('../../../utils/util.js')
 Page({
   data: {
-    fastMsg: [],
+    fastMsg: [{
+      num: 0,
+      type: '所有客户'
+    }, {
+      num: 0,
+      type: '买过的人数'
+    }],
     cusList: []
   },
   navTo(e) {
@@ -41,6 +47,7 @@ Page({
         pageNum: 0
       }
     }).then(res => {
+      let num = res.data.total
       res = res.data.data
       res.forEach(item => {
         item.isBuyer = 1
@@ -52,6 +59,7 @@ Page({
       this.setData({
         cusList
       })
+      this.getCusInfo(num)
     })
   },
 
@@ -74,21 +82,18 @@ Page({
   // 获取客户数据
   getCusInfo(e) {
     utils.request({
-      url: 'customer/getNum',
+      url: 'customer/listBuyer',
       data: {
-        id: app.globalData.shopInfo.storeVo.id
+        storeId: app.globalData.shopInfo.storeVo.id
       }
     }).then(res => {
       res = res.data
       this.formatNum([{
-        num: res.visitorNum || 0,
-        type: '今日游客'
+        num: e || 0,
+        type: '所有客户'
       }, {
-        num: res.buyNum || 0,
-        type: '今日拿货'
-      }, {
-        num: res.fansNum || 0,
-        type: '今日粉丝'
+        num: res ? res.total || 0 : 0,
+        type: '买过的人数'
       }])
     })
   },
@@ -102,7 +107,6 @@ Page({
   onLoad: function (options) {
     let setPageLife = new getApp().setPageLife()
     if (!app.globalData.isLogin) return utils.toLogin()
-    this.getCusInfo()
     this.getCusList()
   },
   onReady: function () {},

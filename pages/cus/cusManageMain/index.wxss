@@ -23,11 +23,10 @@
 }
 
 .search>input {
-    width: calc(602rpx - 4em);
-    height: 54rpx;
+    width: calc(686rpx);
+    height: 64rpx;
     margin: 20rpx calc(74rpx - 2em);
-    /* margin-left: 34rpx; */
-    border-radius: 28rpx;
+    border-radius: 34rpx;
     text-align: center;
     padding-left: 1em;
     padding-right: 1em;
@@ -74,8 +73,8 @@
 .flexBox {
     z-index: 10;
     background-color: #fff;
-    width: calc(100% - 40rpx);
-    margin: 20rpx;
+    width: calc(100% - 0rpx);
+    margin: 20rpx 0rpx;
     height: 140rpx;
     border-radius: 8rpx;
     position: relative;
@@ -86,7 +85,7 @@
 .flexBox>.MsgBox {
     margin: 20rpx;
     width: calc(33% - 40rpx);
-    text-align: center;
+    text-align: center; 
 }
 
 
@@ -125,17 +124,18 @@
 
 .topBar {
     margin: 32rpx;
-    width:calc( 100% - 64rpx);
+    width: calc(100% - 64rpx);
     height: 28rpx;
 }
 
 .topBar>view {
     float: left;
-    text-indent: 1em;
+    /* text-indent: 1em; */
     font-size: 28rpx;
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     color: #999999;
+    margin-right: 1em;
 }
 
 .scroll {

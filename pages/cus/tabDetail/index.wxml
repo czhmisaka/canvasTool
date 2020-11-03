@@ -1,17 +1,18 @@
 <!--pages/cus/tabDetail/index.wxml-->
-<view class='page'>
-    <view class="box">
-        <view class="section">
-            <view class="title">
+<view class='tab_page'>
+    <view class="wholeScreen" bindtap="back" data-check="{{true}}"></view>
+    <view class="tab_box">
+        <view class="tab_section">
+            <view class="tab_title">
                 {{options.labelName?'编辑':'新建'}}分组
             </view>
         </view>
-        <view class="section" style="margin-bottom: 50rpx;">
-            <input type="text" class="input" value="{{value}}" bindinput="bindInput" bindconfirm="createTabAndNavToNext"
-                placeholder="请输入标签名称" />
+        <view class="tab_section" style="margin-bottom: 50rpx;">
+            <input type="text" class="tab_input" value="{{value}}" bindinput="bindInput"
+                bindconfirm="createTabAndNavToNext" placeholder="请输入分组名称" />
         </view>
-        <view class="button" wx:if="{{!options.type}}" bindtap="createTabAndNavToNext">
-            添加标签
+        <view class="tab_button" wx:if="{{!options.type}}" bindtap="createTabAndNavToNext">
+            完成
         </view>
     </view>
 </view>

@@ -1,4 +1,4 @@
-<view class="wholePage">
+<view class="wholePage" style="z-index:10">
     <!-- <view class="weui-cells" wx:for="{{tabList}}" bindtap="toTabDetail" data-val="{{item}}" wx:if="{{item.id<4}}">
         <view class="section marginLeft34rpx">
             <view class="left">{{item.labelName}}</view>
@@ -23,5 +23,8 @@
 </view>
 
 <view class="button" wx:if="{{!options.type}}" bindtap="toNewTab">
-    添加标签
+    添加分组
 </view>
+
+<tabDetail_toast wx:if="{{showToast}}" style="z-index:10000;position:fixed;top:0rpx;left:0rpx;width:100vw;height:100vh"
+    options="{{checkData[options]}}" bind:returnBack="returnBack" show="{{showToast}}"></tabDetail_toast>

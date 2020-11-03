@@ -149,13 +149,18 @@ Component({
         width = 0,
         height = 0,
         borderRadius = 0,
-        deg = 0
+        deg = 0,
+        refresh = false
       } = params
+      if(refresh){
+        // this.reStore()
+      }
       if (borderRadius) {
         this.ctx.beginPath()
         this.ctx.arc(left + borderRadius, top + borderRadius, borderRadius, 0, 2 * Math.PI)
         this.ctx.clip()
         this.ctx.drawImage(url, left, top, width, height)
+        this.ctx.restore()
       } else {
         if (deg !== 0) {
           this.ctx.translate(left + width / 2, top + height / 2)
@@ -164,8 +169,8 @@ Component({
         } else {
           this.ctx.drawImage(url, left, top, width, height)
         }
+        this.ctx.restore()
       }
-      this.ctx.restore()
     },
     drawText(params) {
       this.ctx.save()

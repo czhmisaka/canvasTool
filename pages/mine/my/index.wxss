@@ -220,12 +220,12 @@
 .button {
     position: relative;
     width: 270rpx;
-    height: 80rpx;
+    height: 88rpx;
     border-radius: 49rpx;
     background: rgba(228, 230, 255, 1);
     color: rgba(52, 62, 223, 1);
     border: 1rpx solid rgba(52, 62, 223, 0);
-    line-height: 80rpx;
+    line-height: 88rpx;
     text-align: center;
     margin: 0px 20rpx;
 }
@@ -259,7 +259,7 @@
 }
 
 .longBotton {
-    width: 560rpx;
+    width: 640rpx;
     background-color: rgba(52, 62, 223, 1);
     color: white;
     margin: 20rpx auto;
@@ -295,6 +295,13 @@
     width: 640rpx;
     margin: 0rpx 55rpx;
     border-bottom: 1rpx #e6e6e6 solid;
+}
+
+.toPhoho {
+    font-size: 32rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #3D3D3D;
 }
 
 .inputBox>.toPhoho {
@@ -390,6 +397,13 @@
 
 .right {
     float: right;
+}
+
+.word {
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #999999;
 }
 
 button {

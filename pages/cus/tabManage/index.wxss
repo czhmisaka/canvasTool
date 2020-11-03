@@ -77,10 +77,10 @@
 .button {
     position: fixed;
     bottom: 48rpx;
-    width: 560rpx;
+    width: 640rpx;
     left: 50%;
-    margin-left: -280rpx;
-    height: 80rpx;
+    margin-left: -340rpx;
+    height: 88rpx;
     background: rgba(52,62,223,1);
     border-radius: 46rpx;
     font-size: 32rpx;

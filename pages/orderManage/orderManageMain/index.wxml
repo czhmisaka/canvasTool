@@ -9,8 +9,10 @@
         </view>
     </view>
     <view class="subTitle">
+        <!-- <view class="moveBottombar"
+            style="{{'width:'+selectType.len*28+'rpx;margin-left:calc('+selectType.left+'px - 1em)'}}"></view> -->
         <view class="moveBottombar"
-            style="{{'width:'+selectType.len*28+'rpx;margin-left:calc('+selectType.left+'px - 1em)'}}"></view>
+            style="{{'width:'+40+'rpx;margin-left:calc('+selectType.left+'px - 6px)'}}"></view>
         <view class="type {{selectType.index==index?'highLight':''}}" data-index="{{index}}" wx:for="{{typeList}}"
             bindtap="switchSubtitle" wx:key="*this">
             {{item}}
