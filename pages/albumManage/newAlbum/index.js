@@ -58,11 +58,13 @@ Page({
         tabList: []
       }
       result.data.forEach((item, index) => {
-        tab.tabList.push({
-          tab: item.labelName,
-          id: item.id,
-          check: false
-        })
+        // console.log(item)
+        if (item.labelName != '所有人')
+          tab.tabList.push({
+            tab: item.labelName,
+            id: item.id,
+            check: false
+          })
       })
       checkData2.push(tab)
       this.setData({
@@ -399,8 +401,8 @@ Page({
     data.labelIds = labelIds
     if (data.labelIds.length == 0) {
       data.photoPriorityVos.push({
-        labelId: 1,
-        labelName: '所有人'
+        labelId: 2,
+        labelName: '粉丝'
       })
       data.labelIds.push(1)
     }
@@ -579,8 +581,8 @@ Page({
     if (albumData.labelIds.length < 1) {
       albumData.labelIds.push(1)
       albumData.photoPriorityVos.push({
-        labelId: 1,
-        labelName: '所有人'
+        labelId: 2,
+        labelName: '粉丝'
       })
     }
     this.setData({
@@ -610,8 +612,8 @@ Page({
       albumData.photoPriorityVos = []
       albumData.labelIds.push(1)
       albumData.photoPriorityVos.push({
-        labelId: 1,
-        labelName: '所有人'
+        labelId: 2,
+        labelName: '粉丝'
       })
       this.setData({
         albumData,

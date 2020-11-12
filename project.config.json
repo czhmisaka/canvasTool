@@ -1,292 +1,292 @@
 {
-	"description": "项目配置文件",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": true,
-		"es6": true,
-		"enhance": true,
-		"postcss": true,
-		"preloadBackgroundData": false,
-		"minified": true,
-		"newFeature": true,
-		"coverView": true,
-		"nodeModules": true,
-		"autoAudits": false,
-		"showShadowRootInWxmlPanel": false,
-		"scopeDataCheck": false,
-		"uglifyFileName": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"compileHotReLoad": false,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"bundle": true,
-		"useIsolateContext": true,
-		"useCompilerModule": false,
-		"userConfirmedUseCompilerModuleSwitch": true
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.12.2",
-	"appid": "wx6cd16b87ee4f586a",
-	"projectname": "%E6%92%AD%E6%AC%BE-%E5%A5%BD%E5%AE%A2%E5%A4%9A",
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
-	"isGameTourist": false,
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"currentL": -1,
-			"list": []
-		},
-		"gamePlugin": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": -1,
-			"list": [
-				{
-					"id": 0,
-					"name": "canvas Test",
-					"pathName": "pages/canvas/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 1,
-					"name": "订单中心",
-					"pathName": "pages/orderManage/orderManageMain/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 2,
-					"name": "我的消息",
-					"pathName": "pages/mine/mine/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "登录页面",
-					"pathName": "pages/login/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "相册管理页面",
-					"pathName": "pages/albumManage/albumManageMain/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "添加一个新的相册",
-					"pathName": "pages/albumManage/newAlbum/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "关联商品",
-					"pathName": "pages/albumManage/findGoods/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 7,
-					"name": "商品详情-通过id获取",
-					"pathName": "pages/albumManage/findGoods/GoodsDetail/index",
-					"query": "id=1278244207982546946",
-					"scene": null
-				},
-				{
-					"id": 8,
-					"name": "访问已有相册",
-					"pathName": "pages/albumManage/newAlbum/index",
-					"query": "id=1303228549188030466",
-					"scene": null
-				},
-				{
-					"id": 9,
-					"name": "商品详情",
-					"pathName": "pages/albumManage/findGoods/GoodsDetail/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "客户 一级页面",
-					"pathName": "pages/cus/cusManageMain/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 11,
-					"name": "订单详情-从其他小程序进入",
-					"pathName": "pages/orderManage/orderDetail/index",
-					"query": "id=1301351145800732674&type=toOther",
-					"scene": 1037,
-					"referrerInfo": {
-						"appId": "wx06a1bdb123d6a27e",
-						"extraData": "{\"id\":\"1286595204047966209\"}"
-					}
-				},
-				{
-					"id": 12,
-					"name": "分享指定商品",
-					"pathName": "pages/canvas/index",
-					"query": "id=1280031834456985601&type=goods",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "档口管理",
-					"pathName": "pages/mine/myShopManage/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 14,
-					"name": "访问已有档口",
-					"pathName": "pages/mine/myShop/index",
-					"query": "id=1299193347373535233",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "设置价格",
-					"pathName": "pages/orderManage/orderDetail/index",
-					"query": "id=1283669868020764673",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "新建档口",
-					"pathName": "pages/mine/myShop/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 17,
-					"name": "客户详情",
-					"pathName": "pages/cus/cusDetail/index",
-					"query": "memId=1281520127082237953",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "标签管理",
-					"pathName": "pages/cus/tabManage/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "客户 标签管理页面",
-					"pathName": "pages/cus/tabManage/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 20,
-					"name": "创建标签",
-					"pathName": "pages/cus/tabDetail/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 21,
-					"name": "搜索并添加用户到标签",
-					"pathName": "pages/cus/AddCusToTab/index",
-					"query": "labelId=2&canAdd=true",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "搜索商品",
-					"pathName": "pages/albumManage/findGoods/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 23,
-					"name": "搜索客户",
-					"pathName": "pages/cus/search/index",
-					"query": "search=c",
-					"scene": null
-				},
-				{
-					"id": 24,
-					"name": "搜索客户-仅供查看信息",
-					"pathName": "pages/cus/AddCusToTab/index",
-					"query": "search=c&canAdd=false",
-					"scene": null
-				},
-				{
-					"id": 25,
-					"name": " 编辑档口-新用户进入",
-					"pathName": "pages/mine/myShop/index",
-					"query": "id=1296715778036338690&canDelete=false",
-					"scene": null
-				},
-				{
-					"id": 26,
-					"name": "数据中心 - 客户数据",
-					"pathName": "pages/dataCenter/cusData/index",
-					"query": "id=1299193347373535233",
-					"scene": null
-				},
-				{
-					"id": 27,
-					"name": "数据中心 - 商品数据",
-					"pathName": "pages/dataCenter/goodsData/index",
-					"query": "id=1299193347373535233",
-					"scene": null
-				},
-				{
-					"id": 28,
-					"name": "数据中心 - 成交额",
-					"pathName": "pages/dataCenter/inComeData/index",
-					"query": "id=1299193347373535233",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的 - 管理 个人信息",
-					"pathName": "pages/mine/my/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 30,
-					"name": "我的 -- 档口编辑页面 -- 新用户首次进入",
-					"pathName": "pages/mine/myShop/index",
-					"query": "id=1299193347373535233&canDelete=false",
-					"scene": null
-				}
-			]
-		}
-	}
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": true,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": false,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "bundle": true,
+    "useIsolateContext": true,
+    "useCompilerModule": false,
+    "userConfirmedUseCompilerModuleSwitch": true,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.12.2",
+  "appid": "wx6cd16b87ee4f586a",
+  "projectname": "%E6%92%AD%E6%AC%BE-%E5%A5%BD%E5%AE%A2%E5%A4%9A",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "currentL": -1,
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": 0,
+          "name": "canvas Test",
+          "pathName": "pages/canvas/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 1,
+          "name": "订单中心",
+          "pathName": "pages/orderManage/orderManageMain/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 2,
+          "name": "我的消息",
+          "pathName": "pages/mine/mine/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "登录页面",
+          "pathName": "pages/login/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "相册管理页面",
+          "pathName": "pages/albumManage/albumManageMain/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "添加一个新的相册",
+          "pathName": "pages/albumManage/newAlbum/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "关联商品",
+          "pathName": "pages/albumManage/findGoods/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 7,
+          "name": "商品详情-通过id获取",
+          "pathName": "pages/albumManage/findGoods/GoodsDetail/index",
+          "query": "id=1278244207982546946",
+          "scene": null
+        },
+        {
+          "id": 8,
+          "name": "访问已有相册",
+          "pathName": "pages/albumManage/newAlbum/index",
+          "query": "id=1303228549188030466",
+          "scene": null
+        },
+        {
+          "id": 9,
+          "name": "商品详情",
+          "pathName": "pages/albumManage/findGoods/GoodsDetail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "客户 一级页面",
+          "pathName": "pages/cus/cusManageMain/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 11,
+          "name": "订单详情-从其他小程序进入",
+          "pathName": "pages/orderManage/orderDetail/index",
+          "query": "id=1301351145800732674&type=toOther",
+          "scene": 1037,
+          "referrerInfo": {
+            "appId": "wx06a1bdb123d6a27e",
+            "extraData": "{\"id\":\"1286595204047966209\"}"
+          }
+        },
+        {
+          "id": 12,
+          "name": "分享指定商品",
+          "pathName": "pages/canvas/index",
+          "query": "id=1280031834456985601&type=goods",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "档口管理",
+          "pathName": "pages/mine/myShopManage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 14,
+          "name": "访问已有档口",
+          "pathName": "pages/mine/myShop/index",
+          "query": "id=1299193347373535233",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "设置价格",
+          "pathName": "pages/orderManage/orderDetail/index",
+          "query": "id=1283669868020764673",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "新建档口",
+          "pathName": "pages/mine/myShop/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 17,
+          "name": "客户详情",
+          "pathName": "pages/cus/cusDetail/index",
+          "query": "memId=1281520127082237953",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "标签管理",
+          "pathName": "pages/cus/tabManage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "客户 标签管理页面",
+          "pathName": "pages/cus/tabManage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 20,
+          "name": "创建标签",
+          "pathName": "pages/cus/tabDetail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 21,
+          "name": "搜索并添加用户到标签",
+          "pathName": "pages/cus/AddCusToTab/index",
+          "query": "labelId=2&canAdd=true",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "搜索商品",
+          "pathName": "pages/albumManage/findGoods/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 23,
+          "name": "搜索客户",
+          "pathName": "pages/cus/search/index",
+          "query": "search=c",
+          "scene": null
+        },
+        {
+          "id": 24,
+          "name": "搜索客户-仅供查看信息",
+          "pathName": "pages/cus/AddCusToTab/index",
+          "query": "search=c&canAdd=false",
+          "scene": null
+        },
+        {
+          "id": 25,
+          "name": " 编辑档口-新用户进入",
+          "pathName": "pages/mine/myShop/index",
+          "query": "id=1296715778036338690&canDelete=false",
+          "scene": null
+        },
+        {
+          "id": 26,
+          "name": "数据中心 - 客户数据",
+          "pathName": "pages/dataCenter/cusData/index",
+          "query": "id=1299193347373535233",
+          "scene": null
+        },
+        {
+          "id": 27,
+          "name": "数据中心 - 商品数据",
+          "pathName": "pages/dataCenter/goodsData/index",
+          "query": "id=1299193347373535233",
+          "scene": null
+        },
+        {
+          "id": 28,
+          "name": "数据中心 - 成交额",
+          "pathName": "pages/dataCenter/inComeData/index",
+          "query": "id=1299193347373535233",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的 - 管理 个人信息",
+          "pathName": "pages/mine/my/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 30,
+          "name": "我的 -- 档口编辑页面 -- 新用户首次进入",
+          "pathName": "pages/mine/myShop/index",
+          "query": "id=1299193347373535233&canDelete=false",
+          "scene": null
+        }
+      ]
+    }
+  }
 }
